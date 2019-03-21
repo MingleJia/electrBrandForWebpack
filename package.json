@@ -1,7 +1,7 @@
 {
-  "name": "login",
+  "name": "electrclassbrand",
   "version": "1.0.0",
-  "description": "乐课网登录",
+  "description": "电子班牌",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.config.development.js --open-page login.html",
