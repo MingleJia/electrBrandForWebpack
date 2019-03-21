@@ -33,7 +33,7 @@
                     {
                         "libraryName": "antd",
                         "libraryDirectory": "es",
-                        "style": true
+                        "style": "css"
                     },
                     "ant"
                 ],
@@ -83,7 +83,7 @@
                     {
                         "libraryName": "antd",
                         "libraryDirectory": "es",
-                        "style": true
+                        "style": "css"
                     },
                     "ant"
                 ],
