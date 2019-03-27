@@ -109,7 +109,7 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-            template: 'views/login.html',
+            template: 'views/index.html',
             filename: 'login.html',
             minify: true,
             inject: true
