@@ -4,7 +4,7 @@
   "description": "电子班牌",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config ./build/webpack.config.development.js --open-page login.html",
+    "dev": "webpack-dev-server --config ./build/webpack.config.development.js --open",
     "build": "rimraf ./dist/* && webpack --config ./build/webpack.config.production.js  --progress"
   },
   "author": "",
