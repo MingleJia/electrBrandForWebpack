@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import configureStore from "STORE/configStore";
 
 const store = configureStore();
-const App = props => (
+const App = () => (
 	<Provider store={store}>
 		<HashRouter>
 			<Main />
