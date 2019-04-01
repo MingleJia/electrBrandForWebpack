@@ -1,0 +1,32 @@
+.tab{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.9rem;
+    background-color: #387ef1;
+    display: flex;
+    justify-content: center;
+    a{
+        display: block;
+        width: 0.88rem;
+        height: 100%;
+        margin: 0 1.44rem;
+        img{
+            width: 0.42rem;
+            height: 0.42rem;
+            display: block;
+            margin: 0.14rem auto 0.08rem;
+        }
+        .title{
+            font-size: 0.16rem;
+            color: #ffffff;
+            text-align: center;
+        }   
+    }
+    .tab-active{
+        background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.32) 0%,
+        #387ef1 100%);
+    }
+}

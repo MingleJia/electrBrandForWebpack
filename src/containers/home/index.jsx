@@ -1,4 +1,5 @@
-import React,{Component} from 'react';
+import React,{Component, Fragment} from 'react';
+import Tab from 'COMPONENTS/tab';
 
 class Home extends Component{
     constructor(props){
@@ -7,9 +8,10 @@ class Home extends Component{
 
     render(){
         const home = (
-            <div>
+            <Fragment>
                 首页
-            </div>
+                <Tab />
+            </Fragment>
         )
         return home;
     }
