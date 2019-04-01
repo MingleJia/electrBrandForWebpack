@@ -19,6 +19,7 @@ class Schedule extends Component{
 
     render(){
         const { scheduleType} = this.state;
+        //时间
         const classSchedule = (
             <div className={styles['classSchedule']}>
                 <ul className={styles['scheduleHead']}>
@@ -56,6 +57,7 @@ class Schedule extends Component{
                 </ul>
             </div>
         )
+        //课表内容
         const contentSchedule = (
             <div className={styles['contentSchedule']}>
                 <ul className={styles['subjectList']}>
@@ -68,7 +70,7 @@ class Schedule extends Component{
                                 </div>
                                 <div className={styles['time']}>08:00~08:45</div>
                             </div>
-                            <span className={styles['elective']}></span>
+                            <span className={styles['electivehidden']}>选修班</span>
                         </div>
                         <div className={styles['subjectname']}>
                             <div className={styles['lesson']}>
@@ -77,16 +79,16 @@ class Schedule extends Component{
                                 </div>
                                 <div className={styles['time']}>08:00~08:45</div>
                             </div>
-                            <div className={styles['electivehidden']}></div>
+                            <div className={styles['elective']}>选修班</div>
                         </div>
                         <div className={styles['subjectname']}>
-                        <div className={styles['lesson']}>
-                            <div className={styles['name']}>
-                                    <span>数学</span>
+                            <div className={styles['lesson']}>
+                                <div className={styles['name']}>
+                                    <span>数学数学数学数学数学数</span>
                                 </div>
                                 <div className={styles['time']}>08:00~08:45</div>
                             </div>
-                            <div className={styles['electivehidden']}></div>
+                            <div className={styles['elective']}>选修班</div>
                         </div>
                         <div className={styles['subjectname']}>
                             <div className={styles['lesson']}>
@@ -95,7 +97,7 @@ class Schedule extends Component{
                                 </div>
                                 <div className={styles['time']}>08:00~08:45</div>
                             </div>
-                            <div className={styles['electivehidden']}></div>
+                            <div className={styles['elective']}>选修班</div>
                         </div>
                         <div className={styles['subjectname']}>
                             <div className={styles['lesson']}>
@@ -104,7 +106,7 @@ class Schedule extends Component{
                                 </div>
                                 <div className={styles['time']}>08:00~08:45</div>
                             </div>
-                            <div className={styles['electivehidden']}></div>
+                            <div className={styles['electivehidden']}>选修班</div>
                         </div>
                     </li>
                     <li className={styles['subject']}>
@@ -112,13 +114,31 @@ class Schedule extends Component{
                         <div className={styles['subjectname']}>
                             <div className={styles['lesson']}>
                                 <div className={styles['name']}>
-                                    <span>语文</span>
+                                    <span>数学数学数学数学数</span>
                                 </div>
                                 <div className={styles['time']}>08:00~08:45</div>
                             </div>
-                            <div className={styles['electivehidden']}></div>
+                            <span className={styles['elective']}>选修班</span>
                         </div>
-                    </li>                    
+                    </li>
+                    <li className={styles['subject']}>
+                        <div className={styles['lessonType']}>第三节</div>
+                    </li>
+                    <li className={styles['subject']}>
+                        <div className={styles['lessonType']}>第四节</div>
+                    </li>
+                    <li className={styles['subject']}>
+                        <div className={styles['lessonType']}>第五节</div>
+                    </li> 
+                    <li className={styles['subject']}>
+                        <div className={styles['lessonType']}>第六节</div>
+                    </li> 
+                    <li className={styles['subject']}>
+                        <div className={styles['lessonType']}>第七节</div>
+                    </li>
+                    <li className={styles['subject']}>
+                        <div className={styles['lessonType']}>第八节</div>
+                    </li>                  
                 </ul>
             </div>
         )
