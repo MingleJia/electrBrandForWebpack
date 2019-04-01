@@ -1,10 +1,6 @@
 import React,{Component} from 'react';
 import styles from './index.scss';
-import home from 'ASSETS/tab/home.png';
-import attendance from 'ASSETS/tab/attendance.png';
-import studentStyle from 'ASSETS/tab/studentStyle.png';
-import campusStyle from 'ASSETS/tab/campusStyle.png';
-import personalCenter from 'ASSETS/tab/personalCenter.png';
+import { home, attendance, studentStyle, campusStyle, personalCenter } from 'ASSETS/tab';
 import { NavLink } from 'react-router-dom'
 
 class Tab extends Component{

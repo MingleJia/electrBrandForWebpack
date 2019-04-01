@@ -9,7 +9,7 @@ class Home extends Component{
     render(){
         const home = (
             <Fragment>
-                首页
+                
                 <Tab />
             </Fragment>
         )
