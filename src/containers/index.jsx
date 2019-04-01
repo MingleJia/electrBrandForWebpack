@@ -8,7 +8,7 @@ export default class Module extends Component{
     render(){
         const module = (
             <div>
-               
+                
             </div>
         )
         return module;
