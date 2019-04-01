@@ -62,39 +62,61 @@ class Schedule extends Component{
                     <li className={styles['subject']}>
                         <div className={styles['lessonType']}>第一节</div>
                         <div className={styles['subjectname']}>
-                            <div className={styles['name']}>数学</div>
-                            <div className={styles['time']}>08:00~08:45</div>
+                            <div className={styles['lesson']}>
+                                <div className={styles['name']}>
+                                    <span>数学数学数学数学数</span>
+                                </div>
+                                <div className={styles['time']}>08:00~08:45</div>
+                            </div>
+                            <span className={styles['elective']}></span>
                         </div>
                         <div className={styles['subjectname']}>
-                            <div className={styles['name']}>数学</div>
-                            <div className={styles['time']}>08:00~08:45</div>
+                            <div className={styles['lesson']}>
+                                <div className={styles['name']}>
+                                    <span>数学</span>
+                                </div>
+                                <div className={styles['time']}>08:00~08:45</div>
+                            </div>
+                            <div className={styles['electivehidden']}></div>
                         </div>
                         <div className={styles['subjectname']}>
-                            <div className={styles['name']}>数学</div>
-                            <div className={styles['time']}>08:00~08:45</div>
+                        <div className={styles['lesson']}>
+                            <div className={styles['name']}>
+                                    <span>数学</span>
+                                </div>
+                                <div className={styles['time']}>08:00~08:45</div>
+                            </div>
+                            <div className={styles['electivehidden']}></div>
                         </div>
                         <div className={styles['subjectname']}>
-                            <div className={styles['name']}>数学</div>
-                            <div className={styles['time']}>08:00~08:45</div>
+                            <div className={styles['lesson']}>
+                                <div className={styles['name']}>
+                                    <span>数学</span>
+                                </div>
+                                <div className={styles['time']}>08:00~08:45</div>
+                            </div>
+                            <div className={styles['electivehidden']}></div>
                         </div>
                         <div className={styles['subjectname']}>
-                            <div className={styles['name']}>数学</div>
-                            <div className={styles['time']}>08:00~08:45</div>
-                        </div>
-                        <div className={styles['subjectname']}>
-                            <div className={styles['name']}>数学</div>
-                            <div className={styles['time']}>08:00~08:45</div>
-                        </div>
-                        <div className={styles['subjectname']}>
-                            <div className={styles['name']}>数学</div>
-                            <div className={styles['time']}>08:00~08:45</div>
+                            <div className={styles['lesson']}>
+                                <div className={styles['name']}>
+                                    <span>数学</span>
+                                </div>
+                                <div className={styles['time']}>08:00~08:45</div>
+                            </div>
+                            <div className={styles['electivehidden']}></div>
                         </div>
                     </li>
                     <li className={styles['subject']}>
                         <div className={styles['lessonType']}>第二节</div>
                         <div className={styles['subjectname']}>
-                            <div className={styles['name']}>语文</div>
-                            <div className={styles['time']}>08:00~08:45</div>
+                            <div className={styles['lesson']}>
+                                <div className={styles['name']}>
+                                    <span>语文</span>
+                                </div>
+                                <div className={styles['time']}>08:00~08:45</div>
+                            </div>
+                            <div className={styles['electivehidden']}></div>
                         </div>
                     </li>                    
                 </ul>
