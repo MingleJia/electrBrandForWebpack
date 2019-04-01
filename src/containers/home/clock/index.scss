@@ -1,0 +1,19 @@
+.clock{
+    height: 1.2rem;
+    position: absolute;
+    top: 0;
+    right: 0.74rem;
+    display: flex;
+    align-items: center;
+    .time{
+        font-family: SFUIDisplay-Bold;
+        font-size: 0.72rem;
+        color: #ffffff;
+    }
+    .extra-time{
+        font-family: SourceHanSansCN-Light;
+        font-size: 0.28rem;
+        color: #ffffff;
+        margin-left: 0.45rem;
+    }
+}

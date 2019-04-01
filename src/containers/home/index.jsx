@@ -1,4 +1,6 @@
 import React,{Component, Fragment} from 'react';
+import styles from './index.scss';
+import Clock from './clock';
 import Tab from 'COMPONENTS/tab';
 
 class Home extends Component{
@@ -9,7 +11,14 @@ class Home extends Component{
     render(){
         const home = (
             <Fragment>
-                
+                <div className={styles['header']}>
+                    <span className={styles['class-info']}>
+                        <span className={styles['school-name']}>杭州市西湖区第一中学</span>
+                        <i></i>
+                        <span className={styles['class-name']}>高三（1）班</span>
+                    </span>
+                    <Clock />
+                </div>
                 <Tab />
             </Fragment>
         )
