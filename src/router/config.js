@@ -3,6 +3,11 @@ import * as config from 'ROUTER/index';
 export const routerConfig = [
     {
         path:'/',
+        component: config.Login,    // 登陆页
+        exact: true
+    },
+    {
+        path:'/home',
         component: config.Home,    // 首页
         exact: true
     },

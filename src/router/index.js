@@ -5,6 +5,12 @@ const Loading = () => <div></div>;
 const timeout = 1000;
 
 //文件按需加载批处理
+// 登陆页
+export const Login = Loadable({
+	loader: () => import("CONTAINERS/index"),
+	loading: Loading,
+	timeout: timeout
+});
 // 首页
 export const Home = Loadable({
 	loader: () => import("CONTAINERS/index"),
