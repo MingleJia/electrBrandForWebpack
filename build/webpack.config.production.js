@@ -6,6 +6,7 @@ const WebpackMd5Hash = require("webpack-md5-hash");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const modifyVars = require("./webpack.config.theme.js");
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = merge(base, {
@@ -99,6 +100,10 @@ module.exports = merge(base, {
                     loader: "css-loader",  // translates CSS into CommonJS
                 }, {
                     loader: "less-loader", // compiles Less to CSS
+                    options: {
+						modifyVars: modifyVars,
+						javascriptEnabled: true
+					}
                 }]
             }
         ]

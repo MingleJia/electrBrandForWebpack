@@ -13,7 +13,7 @@ export const Login = Loadable({
 });
 // 首页
 export const Home = Loadable({
-	loader: () => import("CONTAINERS/index"),
+	loader: () => import("CONTAINERS/home/index"),
 	loading: Loading,
 	timeout: timeout
 });
