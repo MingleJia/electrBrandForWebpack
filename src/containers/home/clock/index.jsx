@@ -33,7 +33,7 @@ class Clock extends Component{
     componentDidUpdate(){
         // this.clockInterval = setInterval(()=>{
         //     this.getClock();
-        // }, 60000);
+        // }, 10000);
     }
 
     componentWillUnmount(){
