@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const base = require("./webpack.config.base");
+const modifyVars = require("./webpack.config.theme.js");
 
 module.exports = merge(base, {
 	mode: "development",
@@ -75,6 +76,10 @@ module.exports = merge(base, {
 					loader: "css-loader",   // translates CSS into CommonJS
 				}, {
 					loader: "less-loader", // compiles Less to CSS
+					options: {
+						modifyVars: modifyVars,
+						javascriptEnabled: true
+					}
 				}]
 			}
 		]
