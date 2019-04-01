@@ -1,6 +1,7 @@
 import React,{Component, Fragment} from 'react';
 import styles from './index.scss';
 import Clock from './clock';
+import IncentiveRank from './incentiveRank';
 import Tab from 'COMPONENTS/tab';
 
 class Home extends Component{
@@ -18,6 +19,9 @@ class Home extends Component{
                         <span className={styles['class-name']}>高三（1）班</span>
                     </span>
                     <Clock />
+                </div>
+                <div className={styles['container']}>
+                    <IncentiveRank />
                 </div>
                 <Tab />
             </Fragment>
