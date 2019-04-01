@@ -61,8 +61,10 @@
             width: 100%;
             height: 1.08rem;
             background-color: #f8f8f8;
+            display: flex;
             .timetype{
-                width: 2.4rem;
+                // width: 2.4rem;
+                flex: 1;
                 height: 1.08rem;
                 text-align: center;
                 float: left;
@@ -101,22 +103,22 @@
             width: 100%;
             .subject{
                 width: 100%;
-                height: 0.92rem;
+                min-height: 0.92rem;
                 font-size: 0.3rem;
-                .lessonType{
-                    line-height: 0.92rem;
-                    height: 0.92rem;
-                    color: #333;
-                    float: left;
-                    width: 2.4rem;
-                    text-align: center;
-                }
+                display: flex;
                 .subjectname{
-                    height: 0.92rem;
+                    flex: 1;
+                    min-height: 0.92rem;
                     float: left;
                     width: 2.4rem;
                     text-align: center;
                     position: relative;
+                    .timeId{
+                        line-height: 0.92rem;
+                        min-height: 0.92rem;
+                        color: #333;
+                        text-align: center;
+                    }
                     .lesson{
                         .name{
                             color: #387ef1;
