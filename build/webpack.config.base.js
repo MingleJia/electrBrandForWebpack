@@ -37,7 +37,7 @@ module.exports = {
 			{
 				test: /\.(js|jsx)$/,
 				loader:  ["babel-loader", "eslint-loader"],
-				exclude: [/node_modules/, /assets/],
+				exclude: [/node_modules/],
 				include: path.resolve(__dirname, "../src")
 			},
 			{

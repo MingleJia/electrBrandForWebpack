@@ -3,7 +3,7 @@ import styles from './index.scss';
 import accountImg from 'ASSETS/login/account.png';
 import passwordImg from 'ASSETS/login/password.png';
 import clearImg from 'ASSETS/login/clear.png';
-import errorImg from 'ASSETS/login/error.png';
+// import errorImg from 'ASSETS/login/error.png';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
 
