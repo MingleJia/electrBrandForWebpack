@@ -22,4 +22,4 @@ export default function configStore(initialState) {
     }
 
     return store;
-};
+}

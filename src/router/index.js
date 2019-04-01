@@ -7,7 +7,7 @@ const timeout = 1000;
 //文件按需加载批处理
 // 登陆页
 export const Login = Loadable({
-	loader: () => import("CONTAINERS/index"),
+	loader: () => import("CONTAINERS/login/index"),
 	loading: Loading,
 	timeout: timeout
 });
