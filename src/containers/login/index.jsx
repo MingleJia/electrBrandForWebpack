@@ -3,7 +3,9 @@ import styles from './index.scss';
 import accountImg from 'ASSETS/login/account.png';
 import passwordImg from 'ASSETS/login/password.png';
 import clearImg from 'ASSETS/login/clear.png';
+import errorImg from 'ASSETS/login/error.png';
 import PropTypes from 'prop-types';
+import { message } from 'antd';
 
 class Login extends Component{
     constructor(props){
@@ -37,6 +39,10 @@ class Login extends Component{
     }
 
     login=()=>{
+        // const { account, password } = this.state;
+        message.error('班牌密码输入错误');
+        message.error('该班牌编号未创建');
+        message.error('该班牌编号已使用');
         this.props.history.push('home');
     }
 
