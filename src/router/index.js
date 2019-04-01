@@ -25,7 +25,7 @@ export const IncentiveMonth = Loadable({
 });
 // 更多课表
 export const ScheduleMore = Loadable({
-	loader: () => import("CONTAINERS/index"),
+	loader: () => import("CONTAINERS/scheduleMore/index"),
 	loading: Loading,
 	timeout: timeout
 });
