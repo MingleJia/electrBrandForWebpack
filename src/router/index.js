@@ -31,7 +31,7 @@ export const ScheduleMore = Loadable({
 });
 // 更多通知
 export const NoticeMore = Loadable({
-	loader: () => import("CONTAINERS/index"),
+	loader: () => import("CONTAINERS/noticeMore/index"),
 	loading: Loading,
 	timeout: timeout
 });
