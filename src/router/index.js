@@ -19,7 +19,7 @@ export const Home = Loadable({
 });
 // 激励月排行榜
 export const IncentiveMonth = Loadable({
-	loader: () => import("CONTAINERS/index"),
+	loader: () => import("CONTAINERS/incentiveMonth/index"),
 	loading: Loading,
 	timeout: timeout
 });
