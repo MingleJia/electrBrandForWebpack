@@ -125,6 +125,7 @@ class Rank extends Component{
                         </div>
                     </div>
                 </div>
+                <p className={styles['congratulations']}>恭喜以上同学，都是最棒的</p>
             </div>
         )
         return rank;
