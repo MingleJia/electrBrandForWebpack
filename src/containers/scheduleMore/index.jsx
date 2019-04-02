@@ -1,41 +1,48 @@
 import React,{Component} from 'react';
 import styles from './index.scss';
-import axios from 'UTILS/axios';
+// import axios from 'UTILS/axios';
 
 class Schedule extends Component{
     constructor(props){
         super(props);
         this.state={
             scheduleType : 0 , //课表类型 0 班级 1场地
-            arrCol : [], //  课表的行
-            col: 0, //
-            row: 0, //
-            arrRow : [], //课表的列
+            arrCol : [], //  课表的列
+            col: 0, // 列
+            row: 0, //行
+            arrRow : [], //课表的行
             arrHeader: [], //课表的头
             subjectInfo : [],  //课表信息
         }
     }
 
     componentDidMount(){
-        axios('get','http://192.168.20.146:3000/mock/168/getBoardClassSchedule',{
-            data:{
-                schoolId : 123,
-                classId : 123,
-            },
-            ticket: 'VDBSVlBRPT07Wm5kbVlIYz07ODU4NQ=='
-        }).then((json)=>{
+        // axios('get','http://192.168.20.146:3000/mock/168/getBoardClassSchedule',{
+        //     data:{
+        //         schoolId : 123,
+        //         classId : 123,
+        //     },
+        //     ticket: 'VDBSVlBRPT07Wm5kbVlIYz07ODU4NQ=='
+        // }).then(()=>{
+            let col = 7;
+            let row = 7;
+            let headerNum = 7;
+            let arrHeader = [];
             let arrCol = [];
             let arrRow = [];
-            for(let i=0;i < json.data.colHeader.length;i++){
+            for(let i=0;i < col;i++){
                 arrCol.push(i);
             }
-            for(let i=0;i < json.data.rowHeader.length;i++){
+            for(let i=0;i < row;i++){
                 arrRow.push(i);
+            }
+            for(let i=0;i < headerNum;i++){
+                arrHeader.push(i);
             }
             let subjectInfo = {
                 '1_1':[
                     {
-                        subName: '数学数学数学',
+                        subName: '道德与社会公...',
                         classType: 2,	
                         classTime: '08:00~08:45',
                     },
@@ -45,23 +52,58 @@ class Schedule extends Component{
                         classTime: '08:00~08:45',
                     },
                 ],
-                '1_2':{
-                    subName: '数学',
-                    classType: 1,	
-                    classTime: '08:00~08:45',
-                }
+                '2_2':[
+                    {
+                        subName: '数学',
+                        classType: 1,	
+                        classTime: '08:00~08:45',
+                    }
+                ],
+                '3_5':[
+                    {
+                        subName: '理综',
+                        classType: 1,	
+                        classTime: '08:00~08:45',
+                    }
+                ],
+                '4_1':[
+                    {
+                        subName: '语文',
+                        classType: 1,	
+                        classTime: '08:00~08:45',
+                    },
+                    {
+                        subName: '物理',
+                        classType: 1,	
+                        classTime: '08:00~08:45',
+                    },
+                ],
+                '6_3':[
+                    {
+                        subName: '语文',
+                        classType: 1,	
+                        classTime: '08:00~08:45',
+                    },
+                    {
+                        subName: '物理',
+                        classType: 1,	
+                        classTime: '08:00~08:45',
+                    },
+                ]
             }
-            window.console.log(subjectInfo['1_1'].length);
-
             this.setState({
-                col : json.data.colHeader.length,
-                row : json.data.rowHeader.length,
+                // col : json.data.colHeader.length,
+                // row : json.data.rowHeader.length,
+                col :7,
+                row: 7,
                 subjectInfo : subjectInfo,
                 arrRow : arrRow,
                 arrCol : arrCol,
-                arrHeader: json.data.rowHeader,
+                arrHeader: arrHeader,
+                // arrHeader: json.data.rowHeader,
+                // lessons: 
             })
-        })
+        // })
     }
 
     //课表类型切换
@@ -71,8 +113,45 @@ class Schedule extends Component{
         })
     }
 
+    //列内容
+    rowRender = (index,value,subjectInfo) => {
+        return(
+            <div className={styles['subjectname']} key={value}>
+                {
+                    (value+1)+'_'+(index+1) in subjectInfo &&  subjectInfo[(value+1)+'_'+(index+1)].map((lesson,lessonId)=>{
+                        return(
+                            this.LessonRender( lessonId,subjectInfo[(value+1)+'_'+(index+1)] )  
+                        )
+                    })
+                }
+            </div>
+        )
+    }
+
+    //填充课表内容
+    LessonRender = (lessonId,subjectInfo) =>{
+        return(
+            <div className={styles['lesson']} key={lessonId}>
+                <div className={` ${styles['name']} ${subjectInfo.length > 1 ? styles['nameSm'] : '' }`}>
+                    <span className={styles['lessonname']}>
+                        {
+                            subjectInfo[lessonId].subName
+                        }
+                    </span>
+                    <span className={` ${ subjectInfo[lessonId].classType === 2 ? styles['elective'] : styles['electivehidden']} `}>选修班</span>
+                </div>
+                <div className={` ${styles['time']} ${subjectInfo.length > 1 ? styles['timeSm'] : '' }`}>
+                    {
+                        subjectInfo[lessonId].classTime
+                    } 
+
+                </div>
+            </div>
+        )      
+    }
+
     render(){
-        const { scheduleType, arrCol, arrRow, arrHeader ,subjectInfo} = this.state;
+        const { scheduleType, arrCol, arrRow, arrHeader ,subjectInfo, } = this.state;
         //时间
         const classSchedule = (
             <div className={styles['classSchedule']}>
@@ -102,28 +181,12 @@ class Schedule extends Component{
                             return(
                                 <li className={styles['subject']} key={index}>
                                     <div className={styles['subjectname']}>
-                                        <span className={styles['timeId']}>第一节</span>
+                                        <span className={styles['timeId']}>第{index}节</span>
                                     </div>
                                     {
                                         arrCol.map((subject,value)=>{
                                             return(
-                                                <div className={styles['subjectname']} key={value}>
-                                                    <div className={styles['lesson']}>
-                                                        <div className={styles['name']}>
-                                                            <span className={styles['lessonname']}>
-                                                                {
-                                                                    (value+1)+'_'+(index+1) in subjectInfo ? subjectInfo[(value+1)+'_'+(index+1)].subName : ''
-                                                                }
-                                                            </span>
-                                                            <span className={` ${ (value+1)+'_'+(index+1) in subjectInfo ? subjectInfo[(value+1)+'_'+(index+1)].classType===2 ? styles['elective'] : styles['electivehidden'] : styles['electivehidden']} `}>选修班</span>
-                                                        </div>
-                                                        <div className={styles['time']}>
-                                                                {
-                                                                    (value+1)+'_'+(index+1) in subjectInfo ? subjectInfo[(value+1)+'_'+(index+1)].classTime : ''
-                                                                } 
-                                                        </div>
-                                                    </div>   
-                                                </div>
+                                                this.rowRender(index,value,subjectInfo)
                                             )
                                         }) 
                                     }

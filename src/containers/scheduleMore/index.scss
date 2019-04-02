@@ -109,7 +109,7 @@
                     flex: 1;
                     min-height: 0.92rem;
                     float: left;
-                    // width: 2.4rem;
+                    margin: auto;
                     text-align: center;
                     position: relative;
                     .timeId{
@@ -149,9 +149,15 @@
                                 display: none;
                             }
                         }
+                        .nameSm{
+                            font-size: 0.28rem;
+                        }
                         .time{
                             font-size: 0.24rem;
                             color: #666666;
+                        }
+                        .timeSm{
+                            font-size: 0.2rem;
                         }
                     }
                     
