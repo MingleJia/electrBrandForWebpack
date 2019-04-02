@@ -25,7 +25,7 @@ class Schedule extends Component{
         //     ticket: 'VDBSVlBRPT07Wm5kbVlIYz07ODU4NQ=='
         // }).then(()=>{
             let col = 7;
-            let row = 7;
+            let row = 6;
             let headerNum = 7;
             let arrHeader = [];
             let arrCol = [];
@@ -49,7 +49,7 @@ class Schedule extends Component{
                     {
                         subName: '数学',
                         classType: 1,	
-                        classTime: '08:00~08:45',
+                        classTime: '09:00~09:45',
                     },
                 ],
                 '2_2':[
@@ -85,8 +85,8 @@ class Schedule extends Component{
                         classTime: '08:00~08:45',
                     },
                     {
-                        subName: '物理',
-                        classType: 1,	
+                        subName: '历史与社会',
+                        classType: 2,	
                         classTime: '08:00~08:45',
                     },
                 ]
@@ -101,7 +101,6 @@ class Schedule extends Component{
                 arrCol : arrCol,
                 arrHeader: arrHeader,
                 // arrHeader: json.data.rowHeader,
-                // lessons: 
             })
         // })
     }
@@ -134,17 +133,12 @@ class Schedule extends Component{
             <div className={styles['lesson']} key={lessonId}>
                 <div className={` ${styles['name']} ${subjectInfo.length > 1 ? styles['nameSm'] : '' }`}>
                     <span className={styles['lessonname']}>
-                        {
-                            subjectInfo[lessonId].subName
-                        }
+                        { subjectInfo[lessonId].subName }
                     </span>
                     <span className={` ${ subjectInfo[lessonId].classType === 2 ? styles['elective'] : styles['electivehidden']} `}>选修班</span>
                 </div>
                 <div className={` ${styles['time']} ${subjectInfo.length > 1 ? styles['timeSm'] : '' }`}>
-                    {
-                        subjectInfo[lessonId].classTime
-                    } 
-
+                    { subjectInfo[lessonId].classTime } 
                 </div>
             </div>
         )      
@@ -213,4 +207,4 @@ class Schedule extends Component{
     }
 }
 
-export default Schedule
+export default Schedule;

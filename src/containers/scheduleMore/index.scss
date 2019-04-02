@@ -9,10 +9,7 @@
             margin-left: 0.82rem;
             height: 1.08rem;
             li{
-                font-size: 36px; 
-                font-stretch: normal;
-                line-height: 32px;
-                letter-spacing: 0px;
+                font-size: 0.36rem; 
                 color: #93bbfc;
                 float: left;
                 height: 1.08rem;
@@ -98,6 +95,7 @@
         height: 6.82rem;
         overflow-x: hidden;
         overflow-y: auto;
+        background-color: #f8f8f8;
         .subjectList{
             width: 100%;
             .subject{
@@ -124,7 +122,7 @@
                             font-size: 0.3rem;
                             margin-top: 0.12rem;
                             .lessonname{
-                                width: 2rem;
+                                width: 1.6rem;
                                 display: inline-block;
                                 white-space: nowrap;
                                 text-overflow: ellipsis;
@@ -140,7 +138,6 @@
                                 border: solid 0.01rem #f16338;
                                 display: inline-block;
                                 position: absolute;
-                                // right: -0.3rem;
                                 font-size: 0.18rem;
                                 color: #f16438;
                             
@@ -164,6 +161,9 @@
                 }
                 &:nth-child(even){
                     background: #f8f8f8;
+                }
+                &:nth-child(odd){
+                    background: #fff;
                 }
             }
         }
