@@ -1,0 +1,53 @@
+/**
+*  主题1
+*/ 
+
+// 首页-模块
+.block_blue {
+    box-shadow: 0rem 0rem 0.2rem 0rem 
+		rgba(70, 99, 194, 0.3);
+    border-radius: 0.16rem;
+    margin: 0.2rem 0.2rem 0 0.4rem;
+}
+
+
+.topLine_blue {
+  overflow: hidden;
+  .more {
+      width: 1.12rem;
+      float: right;
+      margin-top: 0.24rem;
+      margin-right: 0.28rem;
+      // .words {
+      //     font-size: .24rem;
+      //     line-height: .32rem;
+      //     color: #ffffff;
+      // }
+  }
+  .linkBtn {
+      font-size: 0.24rem;
+      color: #ffffff;
+      text-align: center;
+      height: 0.52rem;
+      line-height: 0.52rem;
+      background-color: #387ef1;
+      box-shadow: 0rem 0rem 0.2rem 0rem rgba(56, 126, 241, 0.5);
+      border-radius: 0.26rem;
+      display: block;
+  }
+  .title {
+      font-size: .36rem;
+      line-height: .36rem;
+      letter-spacing: 0px;
+      color: #333333;
+      display: inline-block;
+      margin: .33rem .29rem 0;
+  }
+  .linkIcon {
+      width: 0.12rem;
+      height: 0.22rem;
+      vertical-align: middle;
+      margin-left: 0.12rem;
+      margin-bottom: .02rem;
+  }
+} 

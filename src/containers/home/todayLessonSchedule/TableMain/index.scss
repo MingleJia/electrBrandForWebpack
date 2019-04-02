@@ -1,0 +1,41 @@
+$oddLine-color: #f6f8ff;
+.tableContent {
+    height: 4.3rem;
+    overflow: auto;
+    width: 100%;
+    margin-top: .24rem;
+    .lineStyle{
+        font-size: .24rem;
+        line-height: .32rem;
+        letter-spacing: 0px;
+        color: #333333;
+        padding: 0.17rem .3rem;
+        display: flex;
+        width: 100%;
+        .indexName {
+            width: 1.4rem;
+        }
+        .mutiLine {
+            display: flex;
+            flex-direction: column;
+            word-break: keep-all;
+            span {
+                overflow: hidden;
+                word-break: keep-all;
+                text-overflow: ellipsis;
+            }
+        }
+        .classTime {
+            margin-right: .86rem;
+        }
+        .subName {
+            width: 1.65rem;
+        }
+        .classType {
+            
+        }
+        &:nth-child(odd) {
+            background-color: #f6f8ff; 
+        }
+    }
+}

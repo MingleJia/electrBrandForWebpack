@@ -2,6 +2,8 @@ import React,{Component, Fragment} from 'react';
 import styles from './index.scss';
 import Clock from './clock';
 import IncentiveRank from './incentiveRank';
+import TodayLessonSchedule from "./todayLessonSchedule";
+import Notice from './Notice';
 import Tab from 'COMPONENTS/tab';
 
 class Home extends Component{
@@ -22,6 +24,10 @@ class Home extends Component{
                 </div>
                 <div className={styles['container']}>
                     <IncentiveRank />
+                    <div>
+                        <TodayLessonSchedule />
+                        <Notice />
+                    </div>
                 </div>
                 <Tab />
             </Fragment>
