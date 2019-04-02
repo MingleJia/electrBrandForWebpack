@@ -1,0 +1,115 @@
+.title{
+    height: 0.92rem;
+    line-height: 0.92rem;
+	background-color: #387ef1;
+	box-shadow: 0rem 0.03rem 0.07rem 0rem 
+        rgba(0, 0, 0, 0.08);
+    font-size: 0.42rem;
+    color: #ffffff;
+    text-align: center;
+    span{
+        position: relative;
+        img{
+            width: 0.36rem;
+            height: 0.36rem;
+            position: absolute;
+            top: 50%;
+            right: -0.6rem;
+            transform: translateY(-50%);
+        }
+    }
+}
+
+.container{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    .item{
+        width: 5rem;
+        margin: 0 1.36rem;
+        .icon{
+            width: 1.08rem;
+            height: 1.08rem;
+            display: block;
+            margin: 0 auto;
+        }
+        .item-title{
+            font-size: 0.24rem;
+            color: #444444;
+            text-align: center;
+            margin: 0.22rem 0 0.44rem;
+        }
+        .list{
+            display: flex;
+            justify-content: space-between;
+            ul{
+                li{
+                    height: 0.52rem;
+                    line-height: 0.52rem;
+                    img{
+                        width: 0.36rem;
+                        height: 0.4rem;
+                        vertical-align: middle;
+                    }
+                    .ranking{
+                        display: inline-block;
+                        width: 0.36rem;
+                        height: 0.36rem;
+                        line-height: 0.4rem;
+                        background-color: #d7e8ff;
+                        font-size: 0.24rem;
+                        color: #4663c2;
+                        text-align: center;
+                        border-radius: 50%;
+                        vertical-align: middle;
+                    }
+                    .student-name{
+                        font-size: 0.24rem;
+                        font-weight: 500;
+                        color: #333333;
+                        vertical-align: middle;
+                        display: inline-block;
+                        margin: 0 0.35rem 0 0.2rem;
+                        width: 0.72rem;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                    .number{
+                        font-size: 0.22rem;
+                        font-weight: 550;
+                        color: #1377ff;
+                        vertical-align: middle;
+                    }
+                }
+            }
+            .no-data{
+                font-family: SourceHanSansCN-Regular;
+                font-size: 0.62rem;
+                color: #cccccc;
+                margin-top: 1rem;
+            }
+        }
+    }
+}
+
+.encouragement{
+    position: absolute;
+    top: 1.2rem;
+    right: 0.39rem;
+    img, span{
+        display: inline-block;
+        vertical-align: middle;
+        height: 0.64rem;
+    }
+    img{
+        width: 0.62rem;
+        height: 0.64rem;
+        margin-right: 0.15rem;
+    }
+    span{
+        font-size: 0.24rem;
+        color: #333333;
+        line-height: 0.36rem;
+    }
+}

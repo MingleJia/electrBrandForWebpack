@@ -1,9 +1,11 @@
-import tipsImg from 'ASSETS/home/tips.png';
-import moreImg from 'ASSETS/home/more.png';
-import flowerImg from 'ASSETS/home/flower.png';
-import creditImg from 'ASSETS/home/credit.png';
+import tipsImg from './tips.png';
+import tipsWhiteImg from './tips-white.png';
+import moreImg from './more.png';
+import flowerImg from './flower.png';
+import creditImg from './credit.png';
 import firstImg from './first.png';
 import secondImg from './second.png';
 import thirdImg from './third.png';
+import goodImg from './good.png';
 
-export { tipsImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg }
+export { tipsImg, tipsWhiteImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg, goodImg }
