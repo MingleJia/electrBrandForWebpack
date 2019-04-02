@@ -37,7 +37,7 @@ export const NoticeMore = Loadable({
 });
 // 校园风采
 export const CampusStyle = Loadable({
-	loader: () => import("CONTAINERS/index"),
+	loader: () => import("CONTAINERS/campusStyle/index"),
 	loading: Loading,
 	timeout: timeout
 });
