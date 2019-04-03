@@ -49,7 +49,7 @@ export const CampusStyleMore = Loadable({
 });
 // 校园风采详情
 export const CampusStyleDetail = Loadable({
-	loader: () => import("CONTAINERS/index"),
+	loader: () => import("CONTAINERS/campusStyle/campusDetail/index"),
 	loading: Loading,
 	timeout: timeout
 });
