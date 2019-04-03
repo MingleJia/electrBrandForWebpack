@@ -1,5 +1,7 @@
-import React,{Component} from 'react';
+import React,{Component, Fragment} from 'react';
 import styles from './index.scss';
+import BackPrevHeader from 'COMPONENTS/backPrev';
+import Tab from 'COMPONENTS/tab';
 // import axios from 'UTILS/axios';
 
 class Schedule extends Component{
@@ -192,16 +194,20 @@ class Schedule extends Component{
             </div>
         )
         const schedule = (
-            <div className={styles['container']}>
-                <div className={styles['tabsList']}>
-                    <ul>
-                        <li className={`${scheduleType === 0 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(0) }>本班级课程表</li>
-                        <li className={`${scheduleType === 1 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(1) }>本场地课程表</li>
-                    </ul>
+            <Fragment>
+                <BackPrevHeader />
+                <div className={styles['container']}>
+                    <div className={styles['tabsList']}>
+                        <ul>
+                            <li className={`${scheduleType === 0 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(0) }>本班级课程表</li>
+                            <li className={`${scheduleType === 1 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(1) }>本场地课程表</li>
+                        </ul>
+                    </div>
+                    { classSchedule }
+                    { contentSchedule }
                 </div>
-                { classSchedule }
-                { contentSchedule }
-            </div>
+                <Tab />
+            </Fragment>
         )
         return schedule;
     }

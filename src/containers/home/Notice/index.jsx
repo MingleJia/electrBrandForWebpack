@@ -29,7 +29,7 @@ export default class Notice extends React.Component {
 const TopLine = () =>
 <div className={themeLoader(['topLine'], theme, style)}>
     <span className={style['title']}>通知</span>
-    <Link to='/schedulemore' className={`${style['more']} ${style['linkBtn']}`}>
+    <Link to='/noticemore' className={`${style['more']} ${style['linkBtn']}`}>
         更多<img  className={style['linkIcon']} src={ moreImg }></img>
     </Link>
 </div>
