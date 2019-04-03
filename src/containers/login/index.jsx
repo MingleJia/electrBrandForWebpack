@@ -1,9 +1,6 @@
 import React,{Component} from 'react';
 import styles from './index.scss';
-import accountImg from 'ASSETS/login/account.png';
-import passwordImg from 'ASSETS/login/password.png';
-import clearImg from 'ASSETS/login/clear.png';
-// import errorImg from 'ASSETS/login/error.png';
+import { accountImg, passwordImg, clearImg, titleImg } from 'ASSETS/login';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
 
@@ -51,7 +48,9 @@ class Login extends Component{
 
         const login = (
             <div className={styles['container']}>
-                <div className={styles['title']}>乐课网电子班牌</div>
+                <div className={styles['title']}>
+                    <img src={ titleImg }></img>
+                </div>
                 <div className={styles['input-box']}>
                     <img src={ accountImg }></img>
                     <input type='text' placeholder='请输入班牌编号' onChange={this.changeAccount} value={ account }></input>
