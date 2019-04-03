@@ -3,16 +3,66 @@
     height: 13.18rem;
     overflow-y: auto;
     overflow-x: hidden;
+    .tab{
+        width: 19.2rem;
+        height: 0.92rem;
+        background-color: #387ef1;
+        box-shadow: 0rem 0.03rem 0.07rem 0rem  rgba(0, 0, 0, 0.08);
+        position: fixed;
+        display: flex;
+        z-index: 1;
+        .title{
+            font-family: SourceHanSansCN-Medium;
+            font-size: 0.42rem;
+            font-weight: normal;
+            font-stretch: normal;
+            letter-spacing: 0rem;
+            color: #ffffff;
+            line-height: 0.92rem;
+            height: 0.92rem;;
+            margin-left: 0.4rem;
+        }
+        .btnMore{
+            width: 1.12rem;
+            height: 0.52rem;
+            line-height: 0.52rem;
+            background-color: #2f6aca;
+            border-radius: 0.26rem;
+            border: solid 0.02rem #9ac0ff;
+            text-align: center;
+            position: absolute;
+            right: 0.4rem;
+            top: 0.18rem;
+            font-family: SourceHanSansCN-Regular;
+            font-size: 0.24rem;
+            color: #ffffff;
+            .more {
+                display: inline-block;
+                width: 0.12rem;
+                height: 0.22rem;
+                background-color: #ffffff;
+                background: url('ASSETS/more.png');
+                background-size: 100%;
+                margin-left: 0.11rem;
+            }
+                  
+        }
+    }
     .content{
-        // min-height: 0.92rem;
         margin-bottom: 0.1rem;
         background-color: #fff;
-        padding: 0 0.4rem;
-        .picture{
+        padding: 0.92rem 0.4rem 0.9rem;
+        .imgs{
             width: 18.4rem;
             height: 10.35rem;
+            overflow: hidden;
             margin-top: 0.32rem;
+            .picture{
+                width: 18.4rem;
+                height: 10.35rem;
+            }
         }
+        
         .title{
             height: 0.92rem;
             position: relative;

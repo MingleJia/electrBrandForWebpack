@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import styles from './index.scss';
 import { defaultImg, } from 'ASSETS/campusstyle';
-
+import PropTypes from 'prop-types';
+import Tab from 'COMPONENTS/tab';
 
 class CampusStyle extends Component{
     constructor(props){
@@ -11,11 +12,34 @@ class CampusStyle extends Component{
         }
     }
 
+    static propTypes = {
+        history: PropTypes.object,
+    }
+
+    //点击更多
+    campusMore = () =>{
+        this.props.history.push('noticemore');
+    }
+    //点击内容到校园风采详情页
+    campusDetail = () => {
+        this.props.history.push('campusstyle/detail');
+    }
     render(){
         const campusStyle = (
             <div className={styles['container']}>
-                <div className={styles['content']}>
-                    <img className={styles['picture']} src={defaultImg}/>
+                <div className={styles['tab']}>
+                    <div className={styles['title']}>校园风采</div>
+                    <div className={styles['btnMore']} onClick={ ()=>this.campusMore() }>更多
+                        <span className={styles['more']}></span>
+                    </div>
+                </div>
+                <div className={styles['content']} onClick={ ()=>this.campusDetail() }>
+                    <div className={styles['imgs']}>
+                        <img className={styles['picture']} src={defaultImg}/>
+                        <img className={styles['picture']} src={defaultImg}/>
+                        <img className={styles['picture']} src={defaultImg}/>
+                        <img className={styles['picture']} src={defaultImg}/>
+                    </div>
                     <div className={styles['title']}>
                         <span className={styles['titlename']}>关于开展2019年全市学校卫生与健康专项监督检查的通知</span>
                     </div>
@@ -26,6 +50,7 @@ class CampusStyle extends Component{
                         </p>
                     </div>
                 </div>
+                <Tab/>
             </div>
         )
         return campusStyle;

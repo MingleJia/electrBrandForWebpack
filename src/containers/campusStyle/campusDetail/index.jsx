@@ -24,6 +24,7 @@ class CampusDetail extends Component{
                 <div className={styles['content']}>
                     <div className={styles['title']}>
                         <span className={styles['titlename']}>关于开展2019年全市学校卫生与健康专项监督检查的通知</span>
+                        <span className={styles['time']}>2019-03-28  11:32</span>
                     </div>
                     <div className={styles['detail']}>
                         <p className={styles['text']}>
