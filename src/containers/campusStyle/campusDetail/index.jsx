@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import styles from './index.scss';
 import { defaultImg, } from 'ASSETS/campusstyle';
-
+import Tab from 'COMPONENTS/tab';
 
 class CampusDetail extends Component{
     constructor(props){
@@ -11,11 +11,18 @@ class CampusDetail extends Component{
         }
     }
 
+    //返回首页
+    backHome = () => {
+        window.history.back(-1);
+    }
     render(){
         const campusDetail = (
             <div className={styles['container']}>
                 <div className={styles['tab']}>
-                    <div className={styles['back']}>返回</div>
+                    <div className={styles['back']} onClick={ ()=>this.backHome() }>
+                        <span className={styles['backimg']}></span>
+                        返回
+                    </div>
                     <div className={styles['btn']}>
                         <span className={styles['prevBtn']}>上一个</span>
                         <span className={styles['nextBtn']}>下一个</span>
@@ -34,6 +41,7 @@ class CampusDetail extends Component{
                         <img className={styles['picture']} src={defaultImg}/>
                     </div>
                 </div>
+                <Tab/>
             </div>
         )
         return campusDetail;
