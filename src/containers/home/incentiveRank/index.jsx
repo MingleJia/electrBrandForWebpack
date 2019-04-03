@@ -5,10 +5,21 @@ import { Link } from 'react-router-dom';
 
 class Rank extends Component{
     constructor(props){
-        super(props)
+        super(props);
+        this.state = {
+            data: []
+        }
     }
 
     componentDidMount(){
+        let { data } = this.state;
+        for(let i = 0; i < 20; i++){
+            data = data.concat({
+                studentName: '王'+(i+1),
+                number: i+1,
+            })
+        }
+        this.setState({ data });
         // const rankList = document.getElementById('rank-list');
         // const original = document.getElementById('original');
         // this.flowerScroll = setInterval(()=>{
@@ -24,7 +35,19 @@ class Rank extends Component{
         // clearInterval(this.flowerScroll);
     }
 
+    listItem=({ studentName, number }, index)=>{
+        const rankImg = [ firstImg, secondImg, thirdImg ];
+        return (
+            <li key={index}>
+                { index < 3 ? <img src={ rankImg[index] }></img> : <span className={styles['ranking']}>{ index + 1 }</span> }
+                <span className={styles['student-name']}>{ studentName }</span>
+                <span className={styles['number']}>{ number }</span>
+            </li>
+        )
+    }
+
     render(){
+        const { data } = this.state;
         const rank = (
             <div className={styles['rank']}>
                 <div className={styles['top']}>
@@ -42,78 +65,18 @@ class Rank extends Component{
                         <p className={styles['item-title']}>红花奖励TOP20</p>
                         <div className={styles['rank-list']} id='rank-list'>
                             <ul id='original'>
-                                <li>
-                                    <img src={ firstImg }></img>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>999+</span>
-                                </li>
-                                <li>
-                                    <img src={ secondImg }></img>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
-                                <li>
-                                    <img src={ thirdImg }></img>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
-                                <li>
-                                    <span className={styles['ranking']}>4</span>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
-                                <li>
-                                    <span className={styles['ranking']}>18</span>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
-                                <li>
-                                    <span className={styles['ranking']}>19</span>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
-                                <li>
-                                    <span className={styles['ranking']}>20</span>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
+                                { 
+                                    data.length !== 0 && data.map((item, index)=>{
+                                        return this.listItem(item, index);
+                                    })
+                                }
                             </ul>
                             <ul id='clone-rank-list'>
-                                <li>
-                                    <img src={ firstImg }></img>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>999+</span>
-                                </li>
-                                <li>
-                                    <img src={ secondImg }></img>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
-                                <li>
-                                    <img src={ thirdImg }></img>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
-                                <li>
-                                    <span className={styles['ranking']}>4</span>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
-                                <li>
-                                    <span className={styles['ranking']}>18</span>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
-                                <li>
-                                    <span className={styles['ranking']}>19</span>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
-                                <li>
-                                    <span className={styles['ranking']}>20</span>
-                                    <span className={styles['student-name']}>王蓝一</span>
-                                    <span className={styles['number']}>919</span>
-                                </li>
+                                {
+                                    data.length !== 0 && data.map((item, index)=>{
+                                        return this.listItem(item, index);
+                                    })
+                                }
                             </ul>
                         </div>
                     </div>
