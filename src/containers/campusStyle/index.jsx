@@ -18,7 +18,7 @@ class CampusStyle extends Component{
 
     //点击更多
     campusMore = () =>{
-        this.props.history.push('noticemore');
+        this.props.history.push('campusstyle/more');
     }
     //点击内容到校园风采详情页
     campusDetail = () => {
