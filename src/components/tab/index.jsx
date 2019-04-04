@@ -3,6 +3,13 @@ import styles from './index.scss';
 import { home, attendance, studentStyle, campusStyle, personalCenter } from 'ASSETS/tab';
 import { NavLink } from 'react-router-dom'
 
+// const nav = {
+//     '首页': '/home',
+//     '考勤': '',
+//     '学生风采': '',
+//     '校园风采': '',
+//     '个人中心': '',
+// }
 class Tab extends Component{
     constructor(props){
         super(props);
