@@ -4,7 +4,7 @@ import qs from 'qs';
 let baseURL = '';
 const env = process.env.NODE_ENV;
 if(env === 'development'){
-    baseURL = 'https://user.leke.cn';
+    baseURL = 'http://192.168.80.104:8001';
 }
 
 // axios defaults
