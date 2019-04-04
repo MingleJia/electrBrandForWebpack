@@ -4,11 +4,14 @@ import qs from 'qs';
 let baseURL = '';
 const env = process.env.NODE_ENV;
 if(env === 'development'){
-    baseURL = 'https://user.leke.cn';
+    baseURL = 'http://192.168.80.104:8001';
 }
 
 // axios defaults
 axios.defaults.withCredentials = true;
+function getItem(key){
+    return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(key).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+}
 
 function axiosRequest(method, url, params, type){
     switch (method) {
@@ -21,6 +24,7 @@ function axiosRequest(method, url, params, type){
                         ...params,
                         t: new Date().getTime(),
                     },
+                    headers: { 'token': getItem('token') },
                 }).then((json)=>{
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{
@@ -33,6 +37,7 @@ function axiosRequest(method, url, params, type){
                     url: baseURL + url,
                     method: 'post',
                     data: type === 'form' ? qs.stringify(params) : params,
+                    headers: { 'token': getItem('token') },
                 }).then((json)=>{
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{

@@ -1,25 +1,21 @@
-import React,{Component} from 'react';
+import React,{Component, Fragment} from 'react';
 import styles from './index.scss';
 import { tipsImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg } from 'ASSETS/home';
 import { Link } from 'react-router-dom';
+import axios from 'UTILS/axios';
 
 class Rank extends Component{
     constructor(props){
         super(props);
         this.state = {
-            data: []
+            flowerRank: [], // 红花排行
+            scoreRank: [],  // 勤学排行
+            congratulations: [],    // 祝贺语
         }
     }
 
     componentDidMount(){
-        let { data } = this.state;
-        for(let i = 0; i < 20; i++){
-            data = data.concat({
-                studentName: '王'+(i+1),
-                number: i+1,
-            })
-        }
-        this.setState({ data });
+        this.getData();
         // const rankList = document.getElementById('rank-list');
         // const original = document.getElementById('original');
         // this.flowerScroll = setInterval(()=>{
@@ -35,6 +31,18 @@ class Rank extends Component{
         // clearInterval(this.flowerScroll);
     }
 
+    getData=()=>{
+        axios('get', '/api/index/rank?type=1',).then((json)=>{
+            this.setState({
+                flowerRank: json.data.flowerRank,
+                scoreRank: json.data.scoreRank,
+            });
+        })
+        axios('get', '/api/index/congratulation').then((json)=>{
+            this.setState({ congratulations: json.data });
+        })
+    }
+
     listItem=({ studentName, number }, index)=>{
         const rankImg = [ firstImg, secondImg, thirdImg ];
         return (
@@ -47,7 +55,7 @@ class Rank extends Component{
     }
 
     render(){
-        const { data } = this.state;
+        const { flowerRank, scoreRank, congratulations } = this.state;
         const rank = (
             <div className={styles['rank']}>
                 <div className={styles['top']}>
@@ -64,31 +72,58 @@ class Rank extends Component{
                         <img src={ flowerImg } className={styles['icon']}></img>
                         <p className={styles['item-title']}>红花奖励TOP20</p>
                         <div className={styles['rank-list']} id='rank-list'>
-                            <ul id='original'>
-                                { 
-                                    data.length !== 0 && data.map((item, index)=>{
-                                        return this.listItem(item, index);
-                                    })
-                                }
-                            </ul>
-                            <ul id='clone-rank-list'>
-                                {
-                                    data.length !== 0 && data.map((item, index)=>{
-                                        return this.listItem(item, index);
-                                    })
-                                }
-                            </ul>
+                            {
+                                flowerRank.length !== 0 ?
+                                <Fragment>
+                                    <ul id='original'>
+                                        { 
+                                            flowerRank.map((item, index)=>{
+                                                return this.listItem(item, index);
+                                            })
+                                        }
+                                    </ul>
+                                    <ul id='clone-rank-list'>
+                                        {
+                                            flowerRank.map((item, index)=>{
+                                                return this.listItem(item, index);
+                                            })
+                                        }
+                                    </ul>
+                                </Fragment> : 
+                                <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                            }
                         </div>
                     </div>
                     <div className={styles['item']}>
                         <img src={ creditImg } className={styles['icon']}></img>
                         <p className={styles['item-title']}>勤学分奖励TOP20</p>
                         <div className={styles['rank-list']}>
-                            <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                            {
+                                scoreRank.length !== 0 ?
+                                <Fragment>
+                                    <ul id='original'>
+                                        { 
+                                            scoreRank.map((item, index)=>{
+                                                return this.listItem(item, index);
+                                            })
+                                        }
+                                    </ul>
+                                    <ul id='clone-rank-list'>
+                                        {
+                                            scoreRank.map((item, index)=>{
+                                                return this.listItem(item, index);
+                                            })
+                                        }
+                                    </ul>
+                                </Fragment> : 
+                                <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                            }
                         </div>
                     </div>
                 </div>
-                <p className={styles['congratulations']}>恭喜以上同学，都是最棒的</p>
+                <p className={styles['congratulations']}>
+                    { congratulations.length !== 0 ? congratulations[Math.round(Math.random() * congratulations.length)] : '' }
+                </p>
             </div>
         )
         return rank;

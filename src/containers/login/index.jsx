@@ -3,6 +3,9 @@ import styles from './index.scss';
 import { accountImg, passwordImg, clearImg, titleImg } from 'ASSETS/login';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
+import axios from 'UTILS/axios';
+import { connect } from 'react-redux';
+import { setUserInfo } from 'MODULES/root/actions';
 
 class Login extends Component{
     constructor(props){
@@ -15,6 +18,7 @@ class Login extends Component{
 
     static propTypes = {
         history: PropTypes.object,
+        setUserInfo: PropTypes.func,
     }
 
     changeAccount=(e)=>{
@@ -36,11 +40,25 @@ class Login extends Component{
     }
 
     login=()=>{
-        // const { account, password } = this.state;
-        message.error('班牌密码输入错误');
-        message.error('该班牌编号未创建');
-        message.error('该班牌编号已使用');
-        this.props.history.push('home');
+        const { account, password } = this.state;
+        if(account === ''){
+            message.error('请输入班牌编号');
+        }else if(password === ''){
+            message.error('请输入班牌密码');
+        }else{
+            axios('post', '/api/user/login', {
+                account: account,
+                password: password,
+            }, 'form').then((json)=>{
+                if(json.code === 1){
+                    this.props.setUserInfo({ info: json.data.userinfo });
+                    document.cookie = 'token='+json.data.userinfo.token;
+                    this.props.history.push('home');
+                }else if(json.code === 0){
+                    message.error(json.msg);
+                }
+            })
+        }
     }
 
     render(){
@@ -68,4 +86,7 @@ class Login extends Component{
     }
 }
 
-export default Login
+export default connect(
+    null,
+    { setUserInfo }
+)(Login)

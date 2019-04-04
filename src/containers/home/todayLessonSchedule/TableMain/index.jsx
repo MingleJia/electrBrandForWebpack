@@ -1,69 +1,6 @@
 import React from 'react';
-import axiosRequest from 'UTILS/axios'
+import axios from 'UTILS/axios';
 import style from './index.scss';
-
-const fetchUrl = 'https://lesson.leke.cn/api/w/getTodaySchedule.htm';
-// TODO:
-const fetchUrlMock = 'http://192.168.20.146:3000/mock/168/getTodaySchedule';
-
-const data = 
-{
-    "success":true,
-    "message":"eiusmod officia velit",
-    "code":"200",
-    "ticket":null,
-    "jsessionid":null,
-    "data":{
-        "todaySchedule":{
-            "第四节": [
-                {
-                    "subName":"语文","classType":1,"classTime":"08:00～08:45","indexName":""
-                }
-            ],
-            "第八节":[
-                {
-                    "subName":"语文",
-                    "classType":1,
-                    "classTime":"08:00～08:45",
-                    "indexName":"adipisicing sit Lorem commodo eiusmod"
-                },
-            ],
-            "第九节":[
-                {
-                    "subName":"计算机科学",
-                    "classType":1,
-                    "classTime":"08:00～08:45",
-                    "indexName":""
-                },
-            ],
-            "第十一节":[
-                {
-                    "subName":"语文",
-                    "classType":1,
-                    "classTime":"08:00～08:45",
-                    "indexName":"adipisicing sit Lorem commodo eiusmod"
-                },
-            ],
-            "第十二节":[
-                {
-                    "subName":"语文",
-                    "classType":1,
-                    "classTime":"08:00～08:45",
-                    "indexName":"adipisicing sit Lorem commodo eiusmod"
-                },
-            ],
-            "第十节":[
-                {
-                    "subName":"语文",
-                    "classType":1,
-                    "classTime":"08:00～08:45",
-                    "indexName":"adipisicing sit Lorem commodo eiusmod"
-                },
-            ],
-        }
-    },
-    "currentTime":82978214.86435777
-}
 
 export default class TableMain extends React.Component {
     constructor(props) {
@@ -72,41 +9,21 @@ export default class TableMain extends React.Component {
             tableData: {}
         };
     }
+    
     componentDidMount() {
         this.fetchData();
     }
+
     fetchData = () => {
-        // axiosRequest(
-        //     'get',
-        //     fetchUrlMock,
-        // {
-        //     data: {
-        //         "schoolId":123,"classId":123,"areaId":123
-        //     },
-        //     ticket: TICKET
-        // }
-        // ).then(data => {
-        //     console.log('data');
-            
-        // })
-        // axiosRequest(
-        //     'get',
-        //     fetchUrlMock,
-        //     {},
-        // ).then(data => {
-        //     console.log('data', data);
-        //     if (data.code === '200' && data.success) {
-        //         this.setState({
-        //             tableData: data.data.todaySchedule,
-        //         })
-        //     }
-        // })
-        this.setState({
-            tableData: data.data.todaySchedule
+        axios('get', '/api/index/schedule').then(data => {
+            if (data.code === '200' && data.success) {
+                this.setState({
+                    tableData: data.data.todaySchedule,
+                })
+            }
         })
     }
-    componentDidUpdate( prevProps, prevState, snapshot ) {
-    }
+
     renderTableLine = (key) => {
         const { tableData } = this.state;
         let obj = {};
