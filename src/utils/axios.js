@@ -9,6 +9,9 @@ if(env === 'development'){
 
 // axios defaults
 axios.defaults.withCredentials = true;
+function getItem(key){
+    return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(key).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+}
 
 function axiosRequest(method, url, params, type){
     switch (method) {
@@ -21,6 +24,7 @@ function axiosRequest(method, url, params, type){
                         ...params,
                         t: new Date().getTime(),
                     },
+                    headers: { 'token': getItem('token') },
                 }).then((json)=>{
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{
@@ -33,6 +37,7 @@ function axiosRequest(method, url, params, type){
                     url: baseURL + url,
                     method: 'post',
                     data: type === 'form' ? qs.stringify(params) : params,
+                    headers: { 'token': getItem('token') },
                 }).then((json)=>{
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{

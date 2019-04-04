@@ -5,20 +5,35 @@ import IncentiveRank from './incentiveRank';
 import TodayLessonSchedule from "./todayLessonSchedule";
 import Notice from './Notice';
 import Tab from 'COMPONENTS/tab';
+import axios from 'UTILS/axios';
 
 class Home extends Component{
     constructor(props){
-        super(props)
+        super(props);
+        this.state = {
+            schoolName: '',
+            className: '',
+        }
+    }
+
+    componentDidMount(){
+        axios('get', '/api/index/header').then((json)=>{
+            this.setState({
+                schoolName: json.data.schoolName,
+                className: json.data.className,
+            })
+        })
     }
 
     render(){
+        const { schoolName, className } = this.state;
         const home = (
             <Fragment>
                 <div className={styles['header']}>
                     <span className={styles['class-info']}>
-                        <span className={styles['school-name']}>杭州市西湖区第一中学</span>
+                        <span className={styles['school-name']}>{ schoolName }</span>
                         <i></i>
-                        <span className={styles['class-name']}>高三（1）班</span>
+                        <span className={styles['class-name']}>{ className }</span>
                     </span>
                     <Clock />
                 </div>
