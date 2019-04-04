@@ -24,6 +24,15 @@
             text-align: center;
             margin-left: 0.4rem;
             margin-top: 0.18rem;
+            .backimg{
+                display: inline-block;
+                width: 0.12rem;
+                height: 0.22rem;
+                background: url('ASSETS/header/back.png');
+                background-size: 100%;
+                transform: rotateY(180deg);
+                margin-right: 0.11rem;
+            }
         }
         .btn{
             width: 2.6rem;
