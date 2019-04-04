@@ -52,17 +52,6 @@
         margin-bottom: 0.1rem;
         background-color: #fff;
         padding: 0.92rem 0.4rem 0.9rem;
-        .imgs{
-            width: 18.4rem;
-            height: 10.35rem;
-            overflow: hidden;
-            margin-top: 0.32rem;
-            .picture{
-                width: 18.4rem;
-                height: 10.35rem;
-            }
-        }
-        
         .title{
             height: 0.92rem;
             position: relative;
@@ -95,6 +84,9 @@
     }
 }
 :global{
+    .ant-carousel .slick-slider.imgs{
+        margin-top: 0.32rem;
+    }
     .ant-carousel .slick-slider.imgs .slick-dots li.slick-active button{
         width: 0.24rem;
         height: 0.1rem;

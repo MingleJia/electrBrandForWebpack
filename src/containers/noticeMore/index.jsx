@@ -7,7 +7,7 @@ class Notice extends Component{
     constructor(props){
         super(props);
         this.state = {
-            arrExpan :[],
+            arrExpan :[0,],
             noticeList : [],
         }
     }
