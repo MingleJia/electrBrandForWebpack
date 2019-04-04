@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import { Carousel } from 'antd';
 import styles from './index.scss';
 import { defaultImg, } from 'ASSETS/campusstyle';
 import PropTypes from 'prop-types';
@@ -34,12 +35,12 @@ class CampusStyle extends Component{
                     </div>
                 </div>
                 <div className={styles['content']} onClick={ ()=>this.campusDetail() }>
-                    <div className={styles['imgs']}>
+                    <Carousel  className="imgs" autoplay autoplaySpeed={3000}>
                         <img className={styles['picture']} src={defaultImg}/>
                         <img className={styles['picture']} src={defaultImg}/>
                         <img className={styles['picture']} src={defaultImg}/>
                         <img className={styles['picture']} src={defaultImg}/>
-                    </div>
+                    </Carousel>
                     <div className={styles['title']}>
                         <span className={styles['titlename']}>关于开展2019年全市学校卫生与健康专项监督检查的通知</span>
                     </div>
