@@ -61,13 +61,6 @@ class IncentiveMonth extends Component{
                                             })
                                         }
                                     </ul>
-                                    <ul id='clone-rank-list'>
-                                        {
-                                            flowerRank.map((item, index)=>{
-                                                return this.listItem(item, index);
-                                            })
-                                        }
-                                    </ul>
                                 </Fragment> : 
                                 <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
                             }
