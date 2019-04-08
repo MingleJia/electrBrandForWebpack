@@ -33,11 +33,9 @@ export default class TableMain extends React.Component {
             })
         }) 
     }
-
-    componentDidUpdate( prevProps, prevState, snapshot ) {
-    }
+    
     fetchNoticeData = () => {
-        console.log(1111);
+        
     }
 
     renderTableLine = ({ title, start }, index) => {

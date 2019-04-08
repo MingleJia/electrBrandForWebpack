@@ -15,8 +15,7 @@ export default class Notice extends React.Component {
     }
     componentDidMount() {
     }
-    componentDidUpdate( prevProps, prevState, snapshot ) {
-    }
+    
     render() {
         return (
             <div className={`${themeLoader(['block', 'notice'], theme, style)}`}>

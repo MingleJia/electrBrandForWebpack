@@ -21,7 +21,7 @@ class Polling {
         try {
             this.timer = setTimeout(() => this.loop(data), timeout);
         } catch (err) {
-            
+            return ;
         }
     }
     destroy() {
