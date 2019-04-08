@@ -2,109 +2,45 @@ import React,{Component, Fragment} from 'react';
 import styles from './index.scss';
 import BackPrevHeader from 'COMPONENTS/backPrev';
 import Tab from 'COMPONENTS/tab';
-// import axios from 'UTILS/axios';
+import axios from 'UTILS/axios';
 
 class Schedule extends Component{
     constructor(props){
         super(props);
         this.state={
             scheduleType : 0 , //课表类型 0 班级 1场地
-            arrCol : [], //  课表的列
-            col: 0, // 列
-            row: 0, //行
-            arrRow : [], //课表的行
-            arrHeader: [], //课表的头
-            subjectInfo : [],  //课表信息
+            arrRow : [],      //课表的行
+            arrHeader: [],    //课表的头 课表的列
+            subjectInfo : [],    //课表信息
         }
     }
 
     componentDidMount(){
-        // axios('get','http://192.168.20.146:3000/mock/168/getBoardClassSchedule',{
-        //     data:{
-        //         schoolId : 123,
-        //         classId : 123,
-        //     },
-        //     ticket: 'VDBSVlBRPT07Wm5kbVlIYz07ODU4NQ=='
-        // }).then(()=>{
-            let col = 7;
-            let row = 6;
-            let headerNum = 7;
-            let arrHeader = [];
-            let arrCol = [];
-            let arrRow = [];
-            for(let i=0;i < col;i++){
-                arrCol.push(i);
-            }
-            for(let i=0;i < row;i++){
-                arrRow.push(i);
-            }
-            for(let i=0;i < headerNum;i++){
-                arrHeader.push(i);
-            }
-            let subjectInfo = {
-                '1_1':[
-                    {
-                        subName: '道德与社会公...',
-                        classType: 2,	
-                        classTime: '08:00~08:45',
-                    },
-                    {
-                        subName: '数学',
-                        classType: 1,	
-                        classTime: '09:00~09:45',
-                    },
-                ],
-                '2_2':[
-                    {
-                        subName: '数学',
-                        classType: 1,	
-                        classTime: '08:00~08:45',
-                    }
-                ],
-                '3_5':[
-                    {
-                        subName: '理综',
-                        classType: 1,	
-                        classTime: '08:00~08:45',
-                    }
-                ],
-                '4_1':[
-                    {
-                        subName: '语文',
-                        classType: 1,	
-                        classTime: '08:00~08:45',
-                    },
-                    {
-                        subName: '物理',
-                        classType: 1,	
-                        classTime: '08:00~08:45',
-                    },
-                ],
-                '6_3':[
-                    {
-                        subName: '语文',
-                        classType: 1,	
-                        classTime: '08:00~08:45',
-                    },
-                    {
-                        subName: '历史与社会',
-                        classType: 2,	
-                        classTime: '08:00~08:45',
-                    },
-                ]
-            }
-            this.setState({
-                // col : json.data.colHeader.length,
-                // row : json.data.rowHeader.length,
-                col :7,
-                row: 7,
-                subjectInfo : subjectInfo,
-                arrRow : arrRow,
-                arrCol : arrCol,
-                arrHeader: arrHeader,
-                // arrHeader: json.data.rowHeader,
+        this.getClassSchedule();
+    }
+
+    //获取班级课表
+    getClassSchedule = () => {
+        axios('get','/api/schedule/getClassSchedule',{
+        }).then((json)=>{
+            this.setState({       
+                subjectInfo : json.data.schedule,
+                arrRow : json.data.rowHeader,
+                arrHeader: json.data.colHeader,
             })
-        // })
+        })
+    }
+
+    //获取场地课表
+    getAreaSchedule = () => {
+        axios('get','/api/schedule/getAreaSchedule',{
+        }).then((json)=>{
+            this.setState({       
+                subjectInfo : json.data.schedule,
+                arrRow : json.data.rowHeader,
+                arrHeader: json.data.colHeader,
+            })
+        })
     }
 
     //课表类型切换
@@ -112,6 +48,7 @@ class Schedule extends Component{
         this.setState({
             scheduleType: value,
         })
+        value === 0 ? this.getClassSchedule() : this.getAreaSchedule();
     }
 
     //列内容
@@ -147,7 +84,7 @@ class Schedule extends Component{
     }
 
     render(){
-        const { scheduleType, arrCol, arrRow, arrHeader ,subjectInfo, } = this.state;
+        const { scheduleType, arrRow, arrHeader ,subjectInfo, } = this.state;
         //时间
         const classSchedule = (
             <div className={styles['classSchedule']}>
@@ -159,8 +96,8 @@ class Schedule extends Component{
                         arrHeader.map((item,index)=>{
                             return(
                                 <li className={styles['timetype']} key={index}>
-                                    <div className={styles['name']}>星期{index}</div>
-                                    <div className={styles['time']}>03-18</div>
+                                    <div className={styles['name']}>{item.indexName}</div>
+                                    <div className={styles['time']}>{item.indexDate}</div>
                                 </li>
                             )
                         }) 
@@ -177,10 +114,10 @@ class Schedule extends Component{
                             return(
                                 <li className={styles['subject']} key={index}>
                                     <div className={styles['subjectname']}>
-                                        <span className={styles['timeId']}>第{index}节</span>
+                                        <span className={styles['timeId']}>{item.indexName}</span>
                                     </div>
                                     {
-                                        arrCol.map((subject,value)=>{
+                                        arrHeader.map((subject,value)=>{
                                             return(
                                                 this.rowRender(index,value,subjectInfo)
                                             )
