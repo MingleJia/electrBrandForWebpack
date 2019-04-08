@@ -39,7 +39,11 @@ class Rank extends Component{
             });
         })
         axios('get', '/api/index/congratulation').then((json)=>{
-            this.setState({ congratulations: json.data });
+            let arrCongratulations = [];
+            for (let i in json.data) {
+                arrCongratulations.push(json.data[i]); 
+            }
+            this.setState({ congratulations: arrCongratulations });
         })
     }
 

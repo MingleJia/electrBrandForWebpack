@@ -3,11 +3,12 @@ import BackPrevHeader from 'COMPONENTS/backPrev';
 import Tab from 'COMPONENTS/tab';
 import styles from './index.scss';
 import axios from 'UTILS/axios';
+import moment from 'moment';
 class Notice extends Component{
     constructor(props){
         super(props);
         this.state = {
-            arrExpan :[0,],
+            arrExpan :[],
             noticeList : [],
             curPage : 1,
             pageSize: 20,
@@ -19,12 +20,9 @@ class Notice extends Component{
             current_page: 1,
             page_size : 20,
         }).then((json)=>{
-            let arrExpand = [];
             this.setState({       
                 noticeList : json.data.dataList,
-                arrExpan : arrExpand.push(json.data.dataList[0].id),
             })
-            window.console.log(arrExpand.push(json.data.dataList[0].id))
         })
     }
 
@@ -59,13 +57,13 @@ class Notice extends Component{
                                     <li className={styles['content']} key={index}>
                                         <div className={styles['title']}>
                                             <div className={styles['clickexpand']} onClick={ ()=>this.checkStatus(item.id) }>
-                                                { arrExpan.includes(index) ? '收起' : '展开' }
+                                                { arrExpan.includes(item.id) ? '收起' : '展开' }
                                                 <div className={`${arrExpan.includes(item.id) ? styles['collapse'] : styles['expand'] }`}></div>
                                             </div> 
                                             <span className={styles['titlename']}>{item.title}</span>
-                                            <span className={styles['time']}>{item.createtime}</span>
+                                            <span className={styles['time']}>{ moment(item.createtime).format('YYYY-MM-DD HH:mm')}</span>
                                         </div>
-                                        <div className={`${ arrExpan.includes(item.id) ? styles['detail'] : styles['detailHidden'] }`} dangerouslySetInnerHTML={{__html:`${item.title}`}}>
+                                        <div className={`${ arrExpan.includes(item.id) ? styles['detail'] : styles['detailHidden'] }`} dangerouslySetInnerHTML={{__html:`${item.content}`}}>
 
                                         </div>
                                     </li>
