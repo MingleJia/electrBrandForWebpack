@@ -33,6 +33,10 @@ export default class TableMain extends React.Component {
         // TODO: 开启定时器
         // this.timer.loop();
     }
+    //获取通知列表
+    getNoticeList = () => {
+        
+    }
     componentDidUpdate( prevProps, prevState, snapshot ) {
     }
     fetchNoticeData = () => {
