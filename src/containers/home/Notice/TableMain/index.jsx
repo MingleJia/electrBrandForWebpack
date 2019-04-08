@@ -33,10 +33,9 @@ export default class TableMain extends React.Component {
         // TODO: 开启定时器
         // this.timer.loop();
     }
-    componentDidUpdate( prevProps, prevState, snapshot ) {
-    }
+    
     fetchNoticeData = () => {
-        console.log(1111);
+        
     }
 
     renderTableLine = ({ title, start }) => {
