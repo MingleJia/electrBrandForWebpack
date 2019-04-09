@@ -15,16 +15,16 @@ export default class TableMain extends React.Component {
     }
 
     fetchData = () => {
-        axios('get', '/api/index/schedule').then(data => {
-            if (data.code === '200' && data.success) {
+        axios('get', '/api/index/schedule').then(json => {
+            if (json.code === 1 && json.msg) {
                 this.setState({
-                    tableData: data.data.todaySchedule,
+                    tableData: json.data.todaySchedule,
                 })
             }
         })
     }
 
-    renderTableLine = (key) => {
+    renderTableLine = (key,index) => {
         const { tableData } = this.state;
         let obj = {};
         const record = tableData[key];
@@ -38,7 +38,7 @@ export default class TableMain extends React.Component {
                 classType: record.map(ele => this.showClassType(ele.classType))
             }
         // }
-        return this.renderLine(obj);
+        return this.renderLine(obj,index);
     }
     showClassType = (classType) => {
         const TYPE = {
@@ -48,29 +48,33 @@ export default class TableMain extends React.Component {
         }
         return TYPE[classType];
     }
-    renderLine = ({ indexName, classTime, subName, classType }) => {
-        return <div className={style['lineStyle']}>
-            <span className={style['indexName']}>{indexName}</span>
-            <span className={`${style['classTime']} ${style['mutiLine']}`}>{
-                    classTime.map(ele =>
-                        <span key={ele}>{ele}</span>
-                    )
-            }</span>
-            <span className={`${style['subName']} ${style['mutiLine']}`}>
-                {
-                    subName.map(ele =>
-                        <span className={style['subName-words']} key={ele}>{ele}</span>
-                    )
-                }
-            </span>
-            <span className={`${style['classType']} ${style['mutiLine']}`}>
-                {
-                    classType.map(ele =>
-                        <span key={ele}>{ele}</span>
-                    )
-                }
-            </span>
-        </div>
+    renderLine = ({ indexName, classTime, subName, classType},index) => {
+        return(
+            <div className={style['lineStyle']} key={index}>
+                <span className={style['indexName']}>{indexName}</span>
+                <span className={`${style['classTime']} ${style['mutiLine']}`}>
+                    {
+                            classTime.map((ele,timeKey) =>
+                                <span key={timeKey}>{ele}</span>
+                            )
+                    }
+                </span>
+                <span className={`${style['subName']} ${style['mutiLine']}`}>
+                    {
+                        subName.map((ele,nameKey) =>
+                            <span className={style['subName-words']} key={nameKey}>{ele}</span>
+                        )
+                    }
+                </span>
+                <span className={`${style['classType']} ${style['mutiLine']}`}>
+                    {
+                        classType.map((ele,typeKey) =>
+                            <span key={typeKey}>{ele === '选修班' ? ele : ''}</span>
+                        )
+                    }
+                </span>
+            </div>
+        )
     }
     render() {
         const { tableData } = this.state;
@@ -78,8 +82,8 @@ export default class TableMain extends React.Component {
             <div className={style['tableContent']}>
                 <ul>
                     {
-                        Object.keys(tableData).map((ele) => 
-                            this.renderTableLine(ele)
+                        Object.keys(tableData).map((ele,index) => 
+                            this.renderTableLine(ele,index)
                         )
                     }
                 </ul>

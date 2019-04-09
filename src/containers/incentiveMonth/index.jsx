@@ -102,14 +102,7 @@ class IncentiveMonth extends Component{
                         </div>
                     </div>
                 </div>
-                { flowerRank.length !==0 || scoreRank.length!==0 ?  encouragement : ''}
-                {/* <div className={styles['encouragement']}>
-                    <img src={ goodImg }></img>
-                    <span>
-                        哇~~~~~~真棒！！！<br />
-                        辛勤耕耘，快乐收获
-                    </span>
-                </div> */}
+                { flowerRank.length !==0 || scoreRank.length!==0 ?  encouragement : '' }
                 <Tab />
             </Fragment>
         )
