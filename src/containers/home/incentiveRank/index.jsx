@@ -75,7 +75,6 @@ class Rank extends Component{
                 <div className={styles['top']}>
                     <span className={styles['title']}>
                         本周激励排行版
-                        
                         <Popover placement="bottomLeft" content={tips} trigger="click">
                             <img src={ tipsImg }></img>
                         </Popover>
