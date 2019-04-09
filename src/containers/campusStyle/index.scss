@@ -52,33 +52,42 @@
         margin-bottom: 0.1rem;
         background-color: #fff;
         padding: 0.92rem 0.4rem 0.9rem;
-        .title{
-            height: 0.92rem;
-            position: relative;
-            .titlename{
-                font-size: 0.36rem;
-                line-height: 0.92rem;
-                color: #333333;
-                font-family: SourceHanSansCN;
-            }
-            .time{
-                font-size: 0.28rem;
-                line-height: 0.92rem;
-                color: #999999;
-                position: absolute;
-                right: 0;
-            }
-        }
-        .detail{
-            .text{
-                font-family: SourceHanSansCN-Regular;
-                font-size: 0.24rem;
-                font-weight: normal;
-                font-stretch: normal;
-                line-height: 0.36rem;
-                letter-spacing: 0.01rem;
-                color: #666666;
-                padding-bottom: 0.24rem;
+        ul{
+            li{
+                margin-top: 0.32rem;
+                .defaultImg{
+                    width: 18.56rem;
+                    height: 10.44rem;
+                }
+                .title{
+                    height: 0.92rem;
+                    position: relative;
+                    .titlename{
+                        font-size: 0.36rem;
+                        line-height: 0.92rem;
+                        color: #333333;
+                        font-family: SourceHanSansCN;
+                    }
+                    .time{
+                        font-size: 0.28rem;
+                        line-height: 0.92rem;
+                        color: #999999;
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+                .detail{
+                    .text{
+                        font-family: SourceHanSansCN-Regular;
+                        font-size: 0.24rem;
+                        font-weight: normal;
+                        font-stretch: normal;
+                        line-height: 0.36rem;
+                        letter-spacing: 0.01rem;
+                        color: #666666;
+                        padding-bottom: 0.24rem;
+                    }
+                }
             }
         }
     }

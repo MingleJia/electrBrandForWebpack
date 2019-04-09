@@ -1,4 +1,4 @@
-import React,{Component,} from 'react';
+import React,{Component, Fragment,} from 'react';
 import { Carousel } from 'antd';
 import styles from './index.scss';
 import { defaultImg, } from 'ASSETS/campusstyle';
@@ -52,12 +52,25 @@ class CampusStyle extends Component{
                         campusList.length !== 0 && campusList.map((item,index)=>{
                             return(
                                 <li  onClick={ ()=>this.campusDetail() }  key={index}>
-                                    <Carousel  className="imgs" autoplay autoplaySpeed={3000}>
-                                        <img className={styles['picture']} src={defaultImg}/>
-                                        <img className={styles['picture']} src={defaultImg}/>
-                                        <img className={styles['picture']} src={defaultImg}/>
-                                        <img className={styles['picture']} src={defaultImg}/>
-                                    </Carousel>
+                                    {
+                                        item.images !== '' && item.images.split(',').length !== 0 ? 
+                                            <Fragment>
+                                                <Carousel  className="imgs" autoplay autoplaySpeed={3000}>
+                                                    {
+                                                        item.images.split(',').map((img,index)=>{
+                                                            return(
+                                                                <Fragment key={index}>
+                                                                    <img src={'https://static.leke.cn'+img} />
+                                                                </Fragment>
+                                                            )
+                                                        })
+                                                    }
+                                                </Carousel>
+                                            </Fragment> : 
+                                            <Fragment>
+                                                <img className={styles['defaultImg']} src={defaultImg}/>
+                                            </Fragment>
+                                    }
                                     <div className={styles['title']}>
                                         <span className={styles['titlename']}>{item.title}</span>
                                     </div>

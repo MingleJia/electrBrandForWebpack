@@ -11,22 +11,30 @@ class Notice extends Component{
             arrExpan :[],
             noticeList : [],
             curPage : 1,
-            pageSize: 20,
+            pageSize: 10,
             contents : {}, //收起展开内容区
         }
     }
 
     componentDidMount(){
+        this.getNoticeList();
+    }
+
+    //获取通知列表
+    getNoticeList = () => {
         axios('get','/api/index/notice',{
             current_page: 1,
             page_size : 20,
         }).then((json)=>{
+            let { arrExpan } = this.state;
+            arrExpan.push(json.data.dataList[0].id);
+            this.getNoticeContent(json.data.dataList[0].id);
             this.setState({       
                 noticeList : json.data.dataList,
+                arrExpan : arrExpan,
             })
         })
     }
-
     //展开收起
     checkStatus = (value) => {
         let { arrExpan,  }  = this.state;
@@ -42,7 +50,7 @@ class Notice extends Component{
             id: id,
         }).then((json)=>{
             let { contents } = this.state;
-            contents[id] = json.data.content
+            contents[id] = json.data.content;
             this.setState({
                 contents
             })
@@ -50,9 +58,13 @@ class Notice extends Component{
     }
 
     //渲染展开通知内容
-    // renderContent = (id) => {
-    //     window.console.log(id);
-    // }
+    renderContent = (id) => {
+        return(
+            <div className={`${ this.state.arrExpan.includes(id) ? styles['detail'] : styles['detailHidden'] }`} dangerouslySetInnerHTML={{__html:`${ this.state.contents[id] }`}} >
+                                       
+            </div>
+        )
+    }
     render(){
         let {arrExpan,noticeList} = this.state;
         const notice = (
