@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import styles from './index.scss';
-import { defaultImg, } from 'ASSETS/campusstyle';
+// import { defaultImg, } from 'ASSETS/campusstyle';
 import Tab from 'COMPONENTS/tab';
 import { connect } from 'react-redux';
 import { setCampusStyle } from 'MODULES/root/actions';
@@ -86,7 +86,7 @@ class CampusDetail extends Component{
                     </div>
                     <div className={styles['detail']}>
                         <p className={styles['text']}>{ compusContent.content }</p>
-                        <img className={styles['picture']} src={defaultImg}/>
+                        {/* <img className={styles['picture']} src={defaultImg}/> */}
                     </div>
                 </div>
                 <Tab/>

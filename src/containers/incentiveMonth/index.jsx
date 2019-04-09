@@ -38,6 +38,15 @@ class IncentiveMonth extends Component{
     }
     render(){
         const { flowerRank, scoreRank } = this.state;
+        const encouragement = (
+            <div className={styles['encouragement']}>
+                <img src={ goodImg }></img>
+                <span>
+                    哇~~~~~~真棒！！！<br />
+                    辛勤耕耘，快乐收获
+                </span>
+            </div>
+        )
         const incentiveMonth = (
             <Fragment>
                 <div className={styles['title']}>
@@ -93,13 +102,14 @@ class IncentiveMonth extends Component{
                         </div>
                     </div>
                 </div>
-                <div className={styles['encouragement']}>
+                { flowerRank.length !==0 || scoreRank.length!==0 ?  encouragement : ''}
+                {/* <div className={styles['encouragement']}>
                     <img src={ goodImg }></img>
                     <span>
                         哇~~~~~~真棒！！！<br />
                         辛勤耕耘，快乐收获
                     </span>
-                </div>
+                </div> */}
                 <Tab />
             </Fragment>
         )

@@ -126,7 +126,7 @@ class Rank extends Component{
                     </div>
                 </div>
                 <p className={styles['congratulations']}>
-                    { congratulations.length !== 0 ? congratulations[Math.round(Math.random() * congratulations.length)] : '' }
+                    { flowerRank.length!==0 || scoreRank.length!==0 && congratulations.length !== 0 ? congratulations[Math.round(Math.random() * congratulations.length)] : '' }
                 </p>
             </div>
         )
