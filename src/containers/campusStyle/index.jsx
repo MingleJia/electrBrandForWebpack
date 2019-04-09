@@ -5,6 +5,8 @@ import { defaultImg, } from 'ASSETS/campusstyle';
 import PropTypes from 'prop-types';
 import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
+import { connect } from 'react-redux';
+import { setCampusStyle } from 'MODULES/root/actions';
 class CampusStyle extends Component{
     constructor(props){
         super(props);
@@ -16,6 +18,7 @@ class CampusStyle extends Component{
 
     static propTypes = {
         history: PropTypes.object,
+        setCampusStyle: PropTypes.func,
     }
 
     componentDidMount(){
@@ -33,7 +36,10 @@ class CampusStyle extends Component{
         this.props.history.push('campusstyle/more');
     }
     //点击内容到校园风采详情页
-    campusDetail = () => {
+    campusDetail = (value) => {
+        this.props.setCampusStyle({
+            campusDetailId : value,
+        })
         this.props.history.push('campusstyle/detail');
     }
     render(){
@@ -51,7 +57,7 @@ class CampusStyle extends Component{
                     {
                         campusList.length !== 0 && campusList.map((item,index)=>{
                             return(
-                                <li  onClick={ ()=>this.campusDetail() }  key={index}>
+                                <li  onClick={ ()=>this.campusDetail(index) }  key={index}>
                                     {
                                         item.images !== '' && item.images.split(',').length !== 0 ? 
                                             <Fragment>
@@ -92,4 +98,7 @@ class CampusStyle extends Component{
     }
 }
 
-export default CampusStyle
+export default connect(
+    null,
+    { setCampusStyle }
+)(CampusStyle)
