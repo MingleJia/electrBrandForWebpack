@@ -1,4 +1,5 @@
 import React,{Component, Fragment} from 'react';
+import {Popover} from 'antd';
 import styles from './index.scss';
 import { tipsImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg } from 'ASSETS/home';
 import { Link } from 'react-router-dom';
@@ -60,12 +61,24 @@ class Rank extends Component{
 
     render(){
         const { flowerRank, scoreRank, congratulations } = this.state;
+
+        //悬浮排行榜规则提示框
+        const tips = (
+            <div className={styles['tips']}>
+                <p>若获得奖励数相同，则以优先获得为准。</p>
+                <p>数据每日零点更新。</p>
+            </div>
+        )
+
         const rank = (
             <div className={styles['rank']}>
                 <div className={styles['top']}>
                     <span className={styles['title']}>
                         本周激励排行版
-                        <img src={ tipsImg }></img>
+                        
+                        <Popover placement="bottomLeft" content={tips} trigger="click">
+                            <img src={ tipsImg }></img>
+                        </Popover>
                     </span>
                     <Link to='/incentivemonth' className={styles['more']}>
                         月排行榜<img src={ moreImg }></img>

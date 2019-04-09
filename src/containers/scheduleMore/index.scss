@@ -103,6 +103,7 @@
                 min-height: 0.92rem;
                 font-size: 0.3rem;
                 display: flex;
+                padding-bottom: 0.05rem;
                 .subjectname{
                     flex: 1;
                     min-height: 0.92rem;
@@ -178,6 +179,6 @@
 }
 :global{
     ol, ul, dl{
-        margin-bottom: 0;
+        margin-bottom: 0!important;
     }
 }

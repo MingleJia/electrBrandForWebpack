@@ -127,3 +127,29 @@
         margin-top: 0.44rem;
     }
 }
+.tips{
+    p{
+        font-size: 0.18rem;
+        line-height: 0.3rem;
+        color: #4664c2;   
+    }
+}
+:global{
+    .ant-popover-inner-content{
+        padding: 0.14rem 0.15rem;
+    }
+    .ant-popover-inner{
+        box-shadow: 0rem 0.03rem 0.06rem 0rem  rgba(0, 0, 0, 0.18);
+        border: solid 0.01rem #4664c2;
+    }
+    .ant-popover-placement-bottomLeft > .ant-popover-content > .ant-popover-arrow{
+        border-right-color: #fff;
+        border-bottom-color: #fff;
+        border-top: solid 0.01rem #4664c2;
+        border-left: solid 0.01rem #4664c2;
+
+    }
+    .ant-popover-placement-bottomLeft > .ant-popover-content > .ant-popover-arrow{
+        left: 6px;
+    }
+}
