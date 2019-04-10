@@ -66,7 +66,7 @@ class Notice extends Component{
         )
     }
     render(){
-        let {arrExpan,noticeList} = this.state;
+        let {arrExpan,noticeList,contents} = this.state;
         const notice = (
             <Fragment>
                 <BackPrevHeader />
@@ -84,10 +84,7 @@ class Notice extends Component{
                                             <span className={styles['titlename']}>{item.title}</span>
                                             <span className={styles['time']}>{ moment(item.createtime).format('YYYY-MM-DD HH:mm')}</span>
                                         </div>
-                                        {  arrExpan.includes(item.id) ? this.renderContent(item.id) : '' }
-                                        {/* <div className={`${ arrExpan.includes(item.id) ? styles['detail'] : styles['detailHidden'] }`} dangerouslySetInnerHTML={{__html:`${ item.content}`}} >
-                                       
-                                        </div> */}
+                                        {  contents[item.id] && arrExpan.includes(item.id) ? this.renderContent(item.id) : '' }
                                     </li>
                                 )
                             })

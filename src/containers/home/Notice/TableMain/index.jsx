@@ -3,7 +3,11 @@ import style from './index.scss';
 import Polling from 'UTILS/polling';
 import axios from 'UTILS/axios';
 import moment from 'moment';
+<<<<<<< HEAD
 import noInfoImg from 'ASSETS/home/info.png';
+=======
+import { noNoticeImg } from 'ASSETS/home';
+>>>>>>> 49cc75add5456578723efde536e0932fb702133e
 
 export default class TableMain extends React.Component {
     constructor(props) {
@@ -52,6 +56,7 @@ export default class TableMain extends React.Component {
         const { noticeList } = this.state;
         return (
             <div className={style['tableContent']}>
+<<<<<<< HEAD
                 {
                     this.state.noticeList.length==0
                     ?
@@ -68,6 +73,24 @@ export default class TableMain extends React.Component {
                         }
                     </ul>
                 }
+=======
+            {
+                noticeList.length === 0 ? 
+                    <div className={style['defaultImg']}>
+                        <img src={noNoticeImg} />
+                        <p className={style['text']}>暂无通知</p> 
+                    </div>
+                :
+                <ul>
+                    {
+                        noticeList.slice(0,3).map((ele,index) => 
+                            this.renderTableLine(ele,index)
+                        )
+                    }
+                </ul>
+            }
+                
+>>>>>>> 49cc75add5456578723efde536e0932fb702133e
             </div>
         );
     }
