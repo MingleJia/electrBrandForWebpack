@@ -52,7 +52,7 @@ export default class TableMain extends React.Component {
             <div className={style['tableContent']}>
                 <ul>
                     {
-                        noticeList.map((ele,index) => 
+                        noticeList.slice(0,3).map((ele,index) => 
                             this.renderTableLine(ele,index)
                         )
                     }

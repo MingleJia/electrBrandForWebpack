@@ -72,7 +72,6 @@ class IncentiveMonth extends Component{
                         <Popover placement="bottomLeft" content={tips} trigger="click">
                             <img src={ tipsWhiteImg }></img>
                         </Popover>
-                        {/* <img src={ tipsWhiteImg }></img> */}
                     </span>
                 </div>
                 <div className={styles['container']}>
