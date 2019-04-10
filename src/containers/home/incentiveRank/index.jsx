@@ -70,6 +70,11 @@ class Rank extends Component{
             </div>
         )
 
+        const incentivemonth = (
+            <Link to='/incentivemonth' className={styles['more']}>
+                月排行榜<img src={ moreImg }></img>
+            </Link>
+        )
         const rank = (
             <div className={styles['rank']}>
                 <div className={styles['top']}>
@@ -79,9 +84,7 @@ class Rank extends Component{
                             <img src={ tipsImg }></img>
                         </Popover>
                     </span>
-                    <Link to='/incentivemonth' className={styles['more']}>
-                        月排行榜<img src={ moreImg }></img>
-                    </Link>
+                    { flowerRank.length === 0 && scoreRank.length === 0 ? '' : incentivemonth }
                 </div>
                 <div className={styles['container']}>
                     <div className={styles['item']}>

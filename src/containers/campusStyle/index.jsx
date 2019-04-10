@@ -73,7 +73,7 @@ class CampusStyle extends Component{
                                                         item.images.split(',').map((img,index)=>{
                                                             return(
                                                                 <Fragment key={index}>
-                                                                    <img src={'https://static.leke.cn'+img} />
+                                                                    <img src={img} />
                                                                 </Fragment>
                                                             )
                                                         })
