@@ -19,6 +19,9 @@ export default class TableMain extends React.Component {
             if (json.code === 1 && json.msg) {
                 //向外传递tableData
                 this.props.changeTableData(json.data.todaySchedule||{});
+
+                // axios('get', '/api/index/schedule')
+
                 this.setState({
                     tableData: json.data.todaySchedule,
                 })

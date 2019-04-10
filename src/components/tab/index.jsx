@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import styles from './index.scss';
 import { home, attendance, studentStyle, campusStyle, personalCenter } from 'ASSETS/tab';
 import { NavLink } from 'react-router-dom'
-
+import axios from 'UTILS/axios';
 // const nav = {
 //     '首页': '/home',
 //     '考勤': '',
@@ -14,7 +14,12 @@ class Tab extends Component{
     constructor(props){
         super(props);
     }
-
+    componentDidMount(){
+        //返回数据不好看暂时先写死
+        // axios('get', '/api/index/nav').then(json=>{
+            // console.log(json);
+        // })  
+    }
     render(){
         const tab = (
             <div className={styles['tab']}>
