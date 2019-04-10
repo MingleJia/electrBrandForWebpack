@@ -10,7 +10,7 @@ export default class TodayLessonSchedule extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            tableData:{}
         };
     }
     componentDidMount() {
@@ -19,21 +19,24 @@ export default class TodayLessonSchedule extends React.Component {
     render() {
         return (
             <div className={`${themeLoader(['block', 'schedule'], theme, style)}`}>
-                <TopLine />
-                <TableMain />
+                <div className={themeLoader(['topLine'], theme, style)}>
+                    <span className={style['title']}>今日课程</span>
+                    {
+                        //如果tableData没有就不显示更多
+                        Object.keys(this.state.tableData).length
+                            ?
+                        <Link to='/schedulemore' className={`${style['more']} ${style['linkBtn']}`}>
+                            更多<img  className={style['linkIcon']} src={ moreImg }></img>
+                        </Link>
+                            :
+                        //到时候换成图片
+                        <div></div>
+                    }
+                </div>
+                <TableMain changeTableData={(tableData)=>{this.setState({tableData});}}/>
             </div>
         );
     }
 }
-
-const TopLine = () =>
-<div className={themeLoader(['topLine'], theme, style)}>
-    <span className={style['title']}>今日课程</span>
-    <Link to='/schedulemore' className={`${style['more']} ${style['linkBtn']}`}>
-        更多<img  className={style['linkIcon']} src={ moreImg }></img>
-    </Link>
-</div>
-
-
 TodayLessonSchedule.defaultProps = {};
 TodayLessonSchedule.propTypes = {};

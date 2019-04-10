@@ -17,6 +17,8 @@ export default class TableMain extends React.Component {
     fetchData = () => {
         axios('get', '/api/index/schedule').then(json => {
             if (json.code === 1 && json.msg) {
+                //向外传递tableData
+                this.props.changeTableData(json.data.todaySchedule||{});
                 this.setState({
                     tableData: json.data.todaySchedule,
                 })
@@ -92,6 +94,7 @@ export default class TableMain extends React.Component {
     }
 }
 TableMain.defaultProps = {};
+TableMain.propTypes = function(){};
 TableMain.propTypes = {};
 // PropTypes.array
 // PropTypes.bool
