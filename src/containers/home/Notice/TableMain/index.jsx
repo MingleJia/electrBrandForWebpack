@@ -56,24 +56,6 @@ export default class TableMain extends React.Component {
         const { noticeList } = this.state;
         return (
             <div className={style['tableContent']}>
-<<<<<<< HEAD
-                {
-                    this.state.noticeList.length==0
-                    ?
-                    <div className={style['noNoticeList']}>
-                        <img className={style['noNoticeListImg']} src={noInfoImg} alt=""/>
-                        <span className={style['noNoticeListWord']}>暂无通知</span>
-                    </div>
-                    :
-                    <ul>
-                        {
-                            noticeList.slice(0,3).map((ele,index) => 
-                            this.renderTableLine(ele,index)
-                            )
-                        }
-                    </ul>
-                }
-=======
             {
                 noticeList.length === 0 ? 
                     <div className={style['defaultImg']}>
@@ -90,7 +72,6 @@ export default class TableMain extends React.Component {
                 </ul>
             }
                 
->>>>>>> 49cc75add5456578723efde536e0932fb702133e
             </div>
         );
     }
