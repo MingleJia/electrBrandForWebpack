@@ -3,6 +3,7 @@ import style from './index.scss';
 import Polling from 'UTILS/polling';
 import axios from 'UTILS/axios';
 import moment from 'moment';
+import { noNoticeImg } from 'ASSETS/home';
 
 export default class TableMain extends React.Component {
     constructor(props) {
@@ -51,6 +52,13 @@ export default class TableMain extends React.Component {
         const { noticeList } = this.state;
         return (
             <div className={style['tableContent']}>
+            {
+                noticeList.length === 0 ? 
+                    <div className={style['defaultImg']}>
+                        <img src={noNoticeImg} />
+                        <p className={style['text']}>暂无通知</p> 
+                    </div>
+                :
                 <ul>
                     {
                         noticeList.slice(0,3).map((ele,index) => 
@@ -58,6 +66,8 @@ export default class TableMain extends React.Component {
                         )
                     }
                 </ul>
+            }
+                
             </div>
         );
     }

@@ -7,5 +7,6 @@ import firstImg from './first.png';
 import secondImg from './second.png';
 import thirdImg from './third.png';
 import goodImg from './good.png';
+import noNoticeImg from './no-notice.png';
 
-export { tipsImg, tipsWhiteImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg, goodImg }
+export { tipsImg, tipsWhiteImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg, goodImg,noNoticeImg }

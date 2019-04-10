@@ -3,6 +3,16 @@
     width: 100%;
     margin-top: .24rem;
     height: 1.8rem;
+    .defaultImg{
+        width: 100%;
+        margin-top: .16rem;
+        text-align: center;
+        .text{
+            margin-top: 0.12rem;
+            font-size: 0.28rem;
+            color: #cccccc;
+        }
+    }
     .lineStyle{
         font-size: .24rem;
         line-height: .32rem;
