@@ -60,9 +60,7 @@ class CampusMore extends Component{
                                             {
                                                 item.images !== '' && item.images.split(',').length !== 0 && item.images.split(',').map((img,index)=>{
                                                     return(
-                                                        <div key={index}>
-                                                            <img src={'https://static.leke.cn'+img} />
-                                                        </div>
+                                                        <img src={ img } key={index}/>
                                                     )
                                                 })
                                             }
