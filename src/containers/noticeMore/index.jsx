@@ -13,24 +13,32 @@ class Notice extends Component{
             curPage : 1,
             pageSize: 10,
             contents : {}, //收起展开内容区
+            idx:1,//下拉请求第几波数据
         }
     }
 
     componentDidMount(){
-        this.getNoticeList();
+        this.getNoticeList(this.state.idx);
     }
 
     //获取通知列表
-    getNoticeList = () => {
+    getNoticeList = (idx) => {
         axios('get','/api/index/notice',{
-            current_page: 1,
+            current_page: idx,
             page_size : 20,
         }).then((json)=>{
+            //如果没有数据就return
+            if(json.data.dataList.length==0) return;
             let { arrExpan } = this.state;
             arrExpan.push(json.data.dataList[0].id);
             this.getNoticeContent(json.data.dataList[0].id);
+
+            let noticeList=json.data.dataList;
             this.setState({       
-                noticeList : json.data.dataList,
+                noticeList :[
+                    ...this.state.noticeList,
+                    ...json.data.dataList,
+                ] ,
                 arrExpan : arrExpan,
             })
         })
@@ -65,12 +73,27 @@ class Notice extends Component{
             </div>
         )
     }
+    //下拉加载
+    onTouchMove(e){
+        e.preventDefault();
+　　　　 let offsetHeight= this.refs.a.offsetHeight
+　　　　 let scrollHeight =this.refs.a.scrollHeight
+　　　　 let scrollTop =  this.refs.a.scrollTop
+        if(scrollTop+offsetHeight ==scrollHeight){
+            this.setState({
+                idx:this.state.idx+1
+            },()=>{
+                this.getNoticeList(this.state.idx);
+            })
+        }
+    }
     render(){
         let {arrExpan,noticeList,contents} = this.state;
+        // console.log(arrExpan,noticeList,contents)
         const notice = (
             <Fragment>
                 <BackPrevHeader />
-                <div className={styles['container']}>
+                <div ref='a' className={styles['container']} onScroll={(e)=>{this.onTouchMove(e)}}>
                     <ul className={styles['list']}>
                         {
                             noticeList.length !== 0 && noticeList.map((item,index)=>{
