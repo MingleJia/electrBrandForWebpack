@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import styles from './index.scss';
 import { home, attendance, studentStyle, campusStyle, personalCenter } from 'ASSETS/tab';
 import { NavLink } from 'react-router-dom'
-import axios from 'UTILS/axios';
+// import axios from 'UTILS/axios';
 // const nav = {
 //     '首页': '/home',
 //     '考勤': '',
