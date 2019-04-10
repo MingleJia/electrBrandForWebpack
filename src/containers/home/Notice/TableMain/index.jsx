@@ -28,6 +28,7 @@ export default class TableMain extends React.Component {
             current_page: 1,
             page_size : 20,
         }).then((json)=>{
+            this.props.changeNoticeList(json.data.dataList||[]);
             this.setState({       
                 noticeList : json.data.dataList,
             })
@@ -61,4 +62,6 @@ export default class TableMain extends React.Component {
         );
     }
 }
-
+TableMain.defaultProps = {};
+TableMain.propTypes = function(){};
+TableMain.propTypes = {};

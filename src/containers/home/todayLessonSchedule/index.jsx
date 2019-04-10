@@ -29,7 +29,6 @@ export default class TodayLessonSchedule extends React.Component {
                             更多<img  className={style['linkIcon']} src={ moreImg }></img>
                         </Link>
                             :
-                        //到时候换成图片
                         <div></div>
                     }
                 </div>

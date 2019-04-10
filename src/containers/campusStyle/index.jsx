@@ -48,9 +48,16 @@ class CampusStyle extends Component{
             <div className={styles['container']}>
                 <div className={styles['tab']}>
                     <div className={styles['title']}>校园风采</div>
-                    <div className={styles['btnMore']} onClick={ ()=>this.campusMore() }>更多
-                        <span className={styles['more']}></span>
-                    </div>
+                    {
+
+                        campusList.length
+                        ?
+                        <div className={styles['btnMore']} onClick={ ()=>this.campusMore() }>更多
+                            <span className={styles['more']}></span>
+                        </div>
+                        :
+                        <div></div>
+                    }
                 </div>
                 <div className={styles['content']}>
                     <ul>

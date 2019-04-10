@@ -10,7 +10,7 @@ export default class Notice extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            noticeList:[]
         };
     }
     componentDidMount() {
@@ -19,16 +19,20 @@ export default class Notice extends React.Component {
     render() {
         return (
             <div className={`${themeLoader(['block', 'notice'], theme, style)}`}>
-                <TopLine />
-                <TableMain />
+                <div className={themeLoader(['topLine'], theme, style)}>
+                    <span className={style['title']}>通知</span>
+                    {
+                        this.state.noticeList.length
+                        ?
+                        <Link to='/noticemore' className={`${style['more']} ${style['linkBtn']}`}>
+                            更多<img  className={style['linkIcon']} src={ moreImg }></img>
+                        </Link>
+                        :
+                        <div></div>
+                    }
+                </div>
+                <TableMain changeNoticeList={(noticeList)=>{this.setState({noticeList});}} />
             </div>
         );
     }
 }
-const TopLine = () =>
-<div className={themeLoader(['topLine'], theme, style)}>
-    <span className={style['title']}>通知</span>
-    <Link to='/noticemore' className={`${style['more']} ${style['linkBtn']}`}>
-        更多<img  className={style['linkIcon']} src={ moreImg }></img>
-    </Link>
-</div>
