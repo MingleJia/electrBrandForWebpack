@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'UTILS/axios';
 import style from './index.scss';
-
+import noClassImg from 'ASSETS/home/class.png';
 export default class TableMain extends React.Component {
     constructor(props) {
         super(props);
@@ -82,13 +82,22 @@ export default class TableMain extends React.Component {
         const { tableData } = this.state;
         return (
             <div className={style['tableContent']}>
-                <ul>
-                    {
-                        Object.keys(tableData).map((ele,index) => 
+                {
+                    Object.keys(tableData).length==0
+                    ?
+                    <div className={style['noTableData']}>
+                        <img className={style['noTableDataImg']} src={noClassImg} alt=""/>
+                        <span className={style['noTableDataWord']}>暂无课程</span>
+                    </div>
+                    :
+                    <ul>
+                        {
+                            Object.keys(tableData).map((ele,index) => 
                             this.renderTableLine(ele,index)
-                        )
-                    }
-                </ul>
+                            )
+                        }
+                    </ul>
+                }
             </div>
         );
     }

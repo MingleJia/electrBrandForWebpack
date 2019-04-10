@@ -39,4 +39,17 @@ $oddLine-color: #f6f8ff;
             background-color: #f6f8ff; 
         }
     }
+    .noTableData{
+        margin-top: 1.5rem;
+        text-align: center;
+        .noTableDataImg{
+            width: 0.4rem;
+            padding-bottom: 0.1rem;
+        }
+        .noTableDataWord{
+            display: block;
+            font-size: 0.26rem;
+            color:#ccc;
+        }
+    }
 }

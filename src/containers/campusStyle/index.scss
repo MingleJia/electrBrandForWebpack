@@ -90,6 +90,19 @@
                 }
             }
         }
+        .noCampusList{
+            margin-top: 5.2rem;
+            text-align: center;
+            .noCampusListImg{
+                width: 0.6rem;
+                padding-bottom: 0.1rem;
+            }
+            .noCampusListWord{
+                display: block;
+                font-size: 0.26rem;
+                color:#ccc;
+            }
+        }
     }
 }
 :global{

@@ -25,4 +25,17 @@
             background-color: #f6f8ff; 
         }
     }
+    .noNoticeList{
+        margin-top: 0.2rem;
+        text-align: center;
+        .noNoticeListImg{
+            width: 0.4rem;
+            padding-bottom: 0.1rem;
+        }
+        .noNoticeListWord{
+            display: block;
+            font-size: 0.26rem;
+            color:#ccc;
+        }
+    }
 }

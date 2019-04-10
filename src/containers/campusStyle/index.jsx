@@ -1,7 +1,8 @@
 import React,{Component, Fragment,} from 'react';
 import { Carousel } from 'antd';
 import styles from './index.scss';
-import { defaultImg, } from 'ASSETS/campusstyle';
+import { defaultImg } from 'ASSETS/campusstyle';
+import campusImg from 'ASSETS/campusstyle/campusImg.png'
 import PropTypes from 'prop-types';
 import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
@@ -60,9 +61,17 @@ class CampusStyle extends Component{
                     }
                 </div>
                 <div className={styles['content']}>
-                    <ul>
                     {
-                        campusList.length !== 0 && campusList.map((item,index)=>{
+                        campusList.length==0
+                        ?
+                        <div className={styles['noCampusList']}>
+                            <img className={styles['noCampusListImg']} src={campusImg} alt=""/>
+                            <span className={styles['noCampusListWord']}>暂无校园风采</span>
+                        </div>
+                        :
+                        <ul>
+                        {
+                            campusList.length !== 0 && campusList.map((item,index)=>{
                             return(
                                 <li  onClick={ ()=>this.campusDetail(index) }  key={index}>
                                     {
@@ -94,9 +103,10 @@ class CampusStyle extends Component{
                                     </div>
                                 </li>
                             )
-                        }) 
+                            }) 
+                        }
+                        </ul>
                     }
-                    </ul>
                 </div>
                 <Tab/>
             </div>
