@@ -3,11 +3,7 @@ import style from './index.scss';
 import Polling from 'UTILS/polling';
 import axios from 'UTILS/axios';
 import moment from 'moment';
-<<<<<<< HEAD
-import noInfoImg from 'ASSETS/home/info.png';
-=======
 import { noNoticeImg } from 'ASSETS/home';
->>>>>>> 49cc75add5456578723efde536e0932fb702133e
 
 export default class TableMain extends React.Component {
     constructor(props) {
