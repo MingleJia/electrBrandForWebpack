@@ -35,7 +35,7 @@ class Notice extends Component {
                 this.setState({
                     isOver: true
                 })
-            };
+            }
             let { arrExpan } = this.state;
             arrExpan.push(json.data.dataList[0].id);
             this.getNoticeContent(json.data.dataList[0].id);
