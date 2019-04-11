@@ -1,8 +1,5 @@
 .container{
-    width: 100%;
-    height: 13.18rem;
-    overflow-y: auto;
-    overflow-x: hidden;
+    display: flex;
     .tab{
         width: 19.2rem;
         height: 0.92rem;
@@ -10,7 +7,6 @@
         box-shadow: 0rem 0.03rem 0.07rem 0rem  rgba(0, 0, 0, 0.08);
         position: fixed;
         display: flex;
-        z-index: 1;
         .title{
             font-family: SourceHanSansCN-Medium;
             font-size: 0.42rem;
@@ -51,7 +47,11 @@
     .content{
         margin-bottom: 0.1rem;
         background-color: #fff;
-        padding: 0.92rem 0.4rem 0.9rem;
+        height: 8.98rem;
+        width: 100%;
+        padding: 0 .4rem;
+        margin-top: 0.92rem;
+        overflow-y: auto;
         ul{
             li{
                 margin-top: 0.32rem;
@@ -91,7 +91,7 @@
             }
         }
         .noCampusList{
-            margin-top: 5.2rem;
+            margin-top: 4.5rem;
             text-align: center;
             .noCampusListImg{
                 width: 0.6rem;
