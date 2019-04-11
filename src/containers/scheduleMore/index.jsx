@@ -24,7 +24,7 @@ class Schedule extends Component{
         axios('get','/api/schedule/getClassSchedule',{
         }).then((json)=>{
             this.setState({       
-                subjectInfo : json.data.schedule,
+                subjectInfo : json.data.schedule||{},
                 arrRow : json.data.rowHeader,
                 arrHeader: json.data.colHeader,
             })
