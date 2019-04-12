@@ -51,7 +51,7 @@ class IncentiveMonth extends Component{
             <div className={styles['encouragement']}>
                 <img src={ goodImg }></img>
                 <span>
-                    { flowerRank.length!==0 || scoreRank.length!==0 && congratulations.length !== 0 ? congratulations[Math.round(Math.random() * congratulations.length)] : '' }
+                    { flowerRank.length!==0 || scoreRank.length!==0 && congratulations.length !== 0 ? congratulations[Math.floor(Math.random() * congratulations.length)] : '' }
                 </span>
             </div>
         )
