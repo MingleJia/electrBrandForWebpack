@@ -7,6 +7,10 @@
         width: 100%;
         margin-top: .16rem;
         text-align: center;
+        img{
+            width: 0.42rem;
+	        height: 0.46rem;
+        }
         .text{
             margin-top: 0.12rem;
             font-size: 0.28rem;
@@ -41,18 +45,5 @@
         margin:0.141rem .3rem 0 .3rem;
         height: 1rem;
         overflow: hidden;
-    }
-    .noNoticeList{
-        margin-top: 0.2rem;
-        text-align: center;
-        .noNoticeListImg{
-            width: 0.4rem;
-            padding-bottom: 0.1rem;
-        }
-        .noNoticeListWord{
-            display: block;
-            font-size: 0.26rem;
-            color:#ccc;
-        }
     }
 }

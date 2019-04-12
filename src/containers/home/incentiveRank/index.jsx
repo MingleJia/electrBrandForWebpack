@@ -84,8 +84,7 @@ class Rank extends Component{
                             <img src={ tipsImg }></img>
                         </Popover>
                     </span>
-                    { incentivemonth }
-                    {/* { flowerRank.length === 0 && scoreRank.length === 0 ? '' : incentivemonth } */}
+                    { flowerRank.length === 0 && scoreRank.length === 0 ? '' : incentivemonth }
                 </div>
                 <div className={styles['container']}>
                     <div className={styles['item']}>
