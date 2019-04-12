@@ -34,6 +34,7 @@
                 margin-right: 0.11rem;
             }
         }
+        //这是老的样式不想删除
         .btn{
             width: 2.6rem;
             height: 0.52rem;
@@ -54,6 +55,37 @@
             }
             .prevBtn{
                 border-right: solid 0.02rem #9ac0ff;
+            }
+        }
+        //这是新的样式
+        .btnWrap{
+            line-height: 0.52rem;
+            text-align: center;
+            position: absolute;
+            right: 0.4rem;
+            top: 0.18rem;
+            height: 0.52rem;
+            width: 2.6rem;
+            span{
+                display: inline-block;
+                width: 1.2rem; 
+                font-family: SourceHanSansCN;
+                font-size: 0.24rem;
+                color: #ffffff;
+                background-color: #2f6aca;
+                width: 1.3rem;
+                height: 0.52rem;
+                border: solid 0.02rem #9ac0ff;
+            }
+            .prevBtn{
+                position: absolute;
+                left: 0;
+                border-radius: 0.26rem  0 0 0.26rem;
+            }
+            .nextBtn{
+                position: absolute;
+                right: 0;
+                border-radius: 0 0.26rem  0.26rem 0;
             }
         }
     }
