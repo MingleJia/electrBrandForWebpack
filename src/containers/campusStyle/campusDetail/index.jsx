@@ -72,7 +72,7 @@ class CampusDetail extends Component {
     }
     render() {
         const { compusContent, campusList } = this.state;
-
+        // console.log(compusContent)
         const campusDetail = (
             <div className={styles['container']}>
                 <div className={styles['tab']}>
@@ -107,6 +107,18 @@ class CampusDetail extends Component {
                     </div>
                     <div className={styles['detail']}>
                         <p className={styles['text']}>{compusContent.content}</p>
+                        {
+                            compusContent.images
+                                ?
+                                compusContent.images.split(',').map(
+                                    (img, index) =>
+                                        <div key={index} className={styles['imgWarp']} style={index % 2 == 0 ? { padding: '0 10px 20px 0' } : { padding: '0 0 20px 10px' }}>
+                                            <img className={styles['img']} src={img} key={index} />
+                                        </div>
+                                )
+                                :
+                                null
+                        }
                         {/* <img className={styles['picture']} src={defaultImg}/> */}
                     </div>
                 </div>

@@ -63,6 +63,7 @@
             }
             .detail{
                 padding-bottom: 10px;
+                overflow: hidden;
                 .text{
                     font-family: SourceHanSansCN-Regular;
                     font-size: 0.24rem;
@@ -72,6 +73,17 @@
                     letter-spacing: 0.01rem;
                     color: #666666;
                     padding-bottom: 0.24rem;
+                }
+                .imgWarp{
+                    text-align: center;
+                    width: 50%;
+                    height: 500px;
+                    float: left;
+                    overflow: hidden;
+                    .img{
+                        height: 480px;
+                        max-width: 100%;
+                    }
                 }
                 .picture{  
                     width: 9.1rem;

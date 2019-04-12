@@ -59,8 +59,12 @@ class CampusMore extends Component{
                                             </p>
                                             {
                                                 item.images !== '' && item.images.split(',').length !== 0 && item.images.split(',').map((img,index)=>{
+                                                // item.images !== '' && item.images.split(',').length !== 0 && 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555071593507&di=ccb6ca5abf8d04509996e7f9979dc8de&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201609%2F23%2F20160923160028_YNFsP.jpeg,https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555072865068&di=f0e42e5fdfce46bfc372147704b70410&imgtype=0&src=http%3A%2F%2Fwww.gamemei.com%2Fbackground%2Fuploads%2Fallimg%2F20160918%2F1474187297205713.jpg,https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555071593507&di=ccb6ca5abf8d04509996e7f9979dc8de&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201609%2F23%2F20160923160028_YNFsP.jpeg,https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555072865068&di=f0e42e5fdfce46bfc372147704b70410&imgtype=0&src=http%3A%2F%2Fwww.gamemei.com%2Fbackground%2Fuploads%2Fallimg%2F20160918%2F1474187297205713.jpg'.split(',').map((img,index)=>{
                                                     return(
-                                                        <img src={ img } key={index}/>
+                                                        // <img src={ img } key={index}/>
+                                                        <div key={index} className={styles['imgWarp']} style={index%2==0?{padding:'0 10px 20px 0'}:{padding:'0 0 20px 10px'}}>
+                                                            <img className={styles['img']} src={ img } key={index}/>
+                                                        </div>
                                                     )
                                                 })
                                             }

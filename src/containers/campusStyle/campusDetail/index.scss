@@ -130,6 +130,17 @@
                 color: #666666;
                 padding-bottom: 0.24rem;
             }
+            .imgWarp{
+                text-align: center;
+                width: 50%;
+                height: 500px;
+                float: left;
+                overflow: hidden;
+                .img{
+                    height: 480px;
+                    max-width: 100%;
+                }
+            }
         }
     }
 }
