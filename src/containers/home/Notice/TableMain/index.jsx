@@ -10,6 +10,7 @@ export default class TableMain extends React.Component {
         super(props);
         this.state = {
             noticeList : [],
+            content : '',  //通知只有一条时的内容区
         };
         const timer = new Polling({
             timeout: 1000*10,
@@ -30,10 +31,24 @@ export default class TableMain extends React.Component {
             page_size : 20,
         }).then((json)=>{
             this.props.changeNoticeList(json.data.dataList||[]);
+            if( json.data.dataList.length === 1 ){
+                this.getNoticeContent(json.data.dataList[0].id);
+            }
             this.setState({       
                 noticeList : json.data.dataList,
             })
         }) 
+    }
+
+    //通知详情
+    getNoticeContent = (id) => {
+        axios('get', '/api/notice/getNoticeContent', {
+            id: id,
+        }).then((json) => {
+            this.setState({
+                content: json.data.content,
+            })
+        })
     }
     
     fetchNoticeData = () => {
@@ -42,9 +57,22 @@ export default class TableMain extends React.Component {
 
     renderTableLine = ({ title, start }, index) => {
         return(
-            <div className={style['lineStyle']} key={index}>
-                <span className={style['title']}>{title}</span>
-                <span className={style['start']}>{moment(start).format('YYYY-MM-DD HH:mm')}</span>
+            <div className={style['line']} key={index}>
+                <div className={style['lineStyle']}>
+                    <span className={style['title']}>{title}</span>
+                    <span className={style['start']}>{moment(start).format('YYYY-MM-DD HH:mm')}</span>
+                </div>
+                {
+                    this.state.content !== '' ? this.renderContent() : ''
+                }
+            </div>
+        )
+    }
+    //只有一条通知时渲染内容区
+    renderContent = () => {
+        return (
+            <div className={style.detail} dangerouslySetInnerHTML={{ __html: `${this.state.content}` }} >
+
             </div>
         )
     }

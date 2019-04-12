@@ -84,7 +84,8 @@ class Rank extends Component{
                             <img src={ tipsImg }></img>
                         </Popover>
                     </span>
-                    { flowerRank.length === 0 && scoreRank.length === 0 ? '' : incentivemonth }
+                    { incentivemonth }
+                    {/* { flowerRank.length === 0 && scoreRank.length === 0 ? '' : incentivemonth } */}
                 </div>
                 <div className={styles['container']}>
                     <div className={styles['item']}>
@@ -141,7 +142,7 @@ class Rank extends Component{
                     </div>
                 </div>
                 <p className={styles['congratulations']}>
-                    { flowerRank.length!==0 || scoreRank.length!==0 && congratulations.length !== 0 ? congratulations[Math.round(Math.random() * congratulations.length)] : '' }
+                    { flowerRank.length!==0 || scoreRank.length!==0 && congratulations.length !== 0 ? congratulations[Math.floor(Math.random() * congratulations.length)] : '' }
                 </p>
             </div>
         )
