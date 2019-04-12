@@ -1,0 +1,184 @@
+.container{
+    width: 100%;
+    height: 8.98rem;
+    .tabsList{
+        width: 100%;
+        height: 1.08rem;
+        background-color: #ffffff;
+        ul{
+            margin-left: 0.82rem;
+            height: 1.08rem;
+            li{
+                font-size: 0.36rem; 
+                color: #93bbfc;
+                float: left;
+                height: 1.08rem;
+                line-height: 1.08rem;
+                margin-right: 1.62rem;
+                font-weight: normal;
+            }
+            .tab-active{
+                color: #387ef1;
+                position: relative;
+                text-decoration: none;
+                font-weight: bold;
+                &:before{
+                    position: absolute;
+                    bottom: 0;
+                    left:50%;
+                    transform: translateX(-50%);
+                    content: '';
+                    width: 0.62rem;
+                    height: 0.06rem;
+                    background-color: #1e69e5;
+                    border-radius: 0.03rem;
+                    box-shadow: 0rem -0.03rem 0.06rem 0rem 	rgba(30, 105, 229, 0.2);
+                }
+            }
+        }
+        &:after{
+            display:block; 
+            content:""; 
+            clear:both; 
+            overflow:hidden; 
+            visibility:hidden;
+        }
+    }
+    .classSchedule{
+        font-family: SourceHanSansCN-Regular;
+        font-size: 0.28rem;
+        font-weight: normal;
+        font-stretch: normal;
+        line-height: 0.32rem;
+        letter-spacing: 0rem;
+        color: #333;
+        width: 100%;
+        border-top: 0.01rem solid #efefef;
+        .scheduleHead{
+            width: 100%;
+            height: 1.08rem;
+            background-color: #f8f8f8;
+            display: flex;
+            .timetype{
+                flex: 1;
+                height: 1.08rem;
+                text-align: center;
+                float: left;
+                color: #333;
+                .type{
+                    line-height: 1.08rem;
+                    height: 1.08rem;
+                }
+                .name{
+                    font-family: SourceHanSansCN-Regular;
+                    font-size: 0.28rem;
+                    margin-top: 0.15rem;
+                }
+                .time{
+                    color: #666;
+                    font-size: 0.24rem;
+                    font-family: MicrosoftYaHei;
+                    margin-top: 0.13rem;
+                }
+            }
+        }
+        &:after{
+            display:block; 
+            content:""; 
+            clear:both; 
+            overflow:hidden; 
+            visibility:hidden;
+        }
+    }
+    .contentSchedule{
+        width: 100%;
+        height: 6.82rem;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background-color: #f8f8f8;
+        .subjectList{
+            width: 100%;
+            .subject{
+                width: 100%;
+                min-height: 0.92rem;
+                font-size: 0.3rem;
+                display: flex;
+                padding-bottom: 0.05rem;
+                .subjectname{
+                    flex: 1;
+                    min-height: 0.92rem;
+                    float: left;
+                    margin: auto;
+                    text-align: center;
+                    position: relative;
+                    .timeId{
+                        line-height: 0.92rem;
+                        min-height: 0.92rem;
+                        color: #333;
+                        text-align: center;
+                    }
+                    .lesson{
+                        .name{
+                            color: #387ef1;
+                            font-size: 0.3rem;
+                            margin-top: 0.12rem;
+                            .lessonname{
+                                width: 1.6rem;
+                                display: inline-block;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                font-weight: bold; 
+                            }
+                            .elective{
+                                width: 0.68rem;
+                                height: 0.31rem;
+                                line-height: 0.31rem;
+                                background-color: #fff;
+                                border-radius: 0.04rem;
+                                border: solid 0.01rem #f16338;
+                                display: inline-block;
+                                position: absolute;
+                                font-size: 0.18rem;
+                                color: #f16438;
+                            
+                            }
+                            .electivehidden{
+                                display: none;
+                            }
+                        }
+                        .nameSm{
+                            font-size: 0.28rem;
+                        }
+                        .time{
+                            font-size: 0.24rem;
+                            color: #666666;
+                        }
+                        .timeSm{
+                            font-size: 0.2rem;
+                        }
+                    }
+                    
+                }
+                &:nth-child(even){
+                    background: #f8f8f8;
+                }
+                &:nth-child(odd){
+                    background: #fff;
+                }
+            }
+        }
+        &:after{
+            display:block; 
+            content:""; 
+            clear:both; 
+            overflow:hidden; 
+            visibility:hidden;
+        }
+    }
+}
+:global{
+    ol, ul, dl{
+        margin-bottom: 0!important;
+    }
+}

@@ -22,11 +22,13 @@ class CampusDetail extends Component {
         setCampusStyle: PropTypes.func,
         root: PropTypes.object,
     }
-    UNSAFE_componentWillMount() {
-        this.setState({ idx: this.props.root.campusDetailId })
-    }
+
+    // componentWillMount() {
+    //     this.setState({ idx: this.props.root.campusDetailId })
+    // }
 
     componentDidMount() {
+        this.setState({ idx: this.props.root.campusDetailId })
         this.getContent();
     }
 
@@ -70,7 +72,7 @@ class CampusDetail extends Component {
     }
     render() {
         const { compusContent, campusList } = this.state;
-        // console.log(this.state.idx);
+
         const campusDetail = (
             <div className={styles['container']}>
                 <div className={styles['tab']}>
