@@ -1,0 +1,14 @@
+.content{
+    width: 5.48rem;
+    float: left;
+    .v-item{
+        height: 200px;
+        width: 100%;
+        text-align: center;
+        // border-bottom: 1px solid red;
+        img{
+            height: 100%;
+            max-width: 100%;
+        }
+    }
+}

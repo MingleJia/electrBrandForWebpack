@@ -1,6 +1,7 @@
 *{
 	margin: 0;
 	padding: 0;
+	touch-action: pan-y;
 }
 html{
 	font-size: 5.208vw;
