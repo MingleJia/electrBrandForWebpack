@@ -5,6 +5,7 @@ import IncentiveRank from './incentiveRank';
 import TodayLessonSchedule from "./todayLessonSchedule";
 import Notice from './Notice';
 import Tab from 'COMPONENTS/tab';
+// import MyCarousel from 'COMPONENTS/carousel/StuStyleCarousel.jsx';
 import axios from 'UTILS/axios';
 
 class Home extends Component {
@@ -39,6 +40,12 @@ class Home extends Component {
                 </div>
                 <div className={styles['container']}>
                     <IncentiveRank />
+                    {/* <div style={{width:'100%',padding:'10px'}}>
+                        <MyCarousel />
+                        <MyCarousel />
+                        <MyCarousel />
+                        <MyCarousel />
+                    </div> */}
                     <div>
                         <TodayLessonSchedule />
                         <Notice />
