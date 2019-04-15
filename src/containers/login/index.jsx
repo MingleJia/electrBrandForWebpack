@@ -52,8 +52,8 @@ class Login extends Component{
             }, 'form').then((json)=>{
                 if(json.code === 1){
                     this.props.setUserInfo({ info: json.data.userinfo });
-                    document.cookie = 'token=271eb32e-4858-4434-9574-0c2dafb14bd7';
-                    // document.cookie = 'token='+json.data.userinfo.token;
+                    // document.cookie = 'token=271eb32e-4858-4434-9574-0c2dafb14bd7';
+                    document.cookie = 'token='+json.data.userinfo.token;
                     this.props.history.push('home');
                 }else if(json.code === 0){
                     message.error(json.msg);
