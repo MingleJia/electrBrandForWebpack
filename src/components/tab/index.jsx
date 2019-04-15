@@ -53,6 +53,7 @@ class Tab extends Component {
             this.setState({
                 tabList: tabList.length == 0 ? ['首页', '考勤', '学生风采', '校园风采', '个人中心'] : tabList
             })
+            this.props.getTabList&&this.props.getTabList(tabList.length == 0 ? ['首页', '考勤', '学生风采', '校园风采', '个人中心'] : tabList);
         })
     }
     render() {
@@ -95,3 +96,4 @@ class Tab extends Component {
 }
 
 export default Tab;
+Tab.propTypes = function(){};

@@ -1,4 +1,4 @@
-import React,{Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import styles from './index.scss';
 import Clock from './clock';
 import IncentiveRank from './incentiveRank';
@@ -7,8 +7,8 @@ import Notice from './Notice';
 import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
 
-class Home extends Component{
-    constructor(props){
+class Home extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             schoolName: '',
@@ -16,8 +16,8 @@ class Home extends Component{
         }
     }
 
-    componentDidMount(){
-        axios('get', '/api/index/header').then((json)=>{
+    componentDidMount() {
+        axios('get', '/api/index/header').then((json) => {
             this.setState({
                 schoolName: json.data.schoolName,
                 className: json.data.className,
@@ -25,15 +25,15 @@ class Home extends Component{
         })
     }
 
-    render(){
+    render() {
         const { schoolName, className } = this.state;
         const home = (
             <Fragment>
                 <div className={styles['header']}>
                     <span className={styles['class-info']}>
-                        <span className={styles['school-name']}>{ schoolName }</span>
+                        <span className={styles['school-name']}>{schoolName}</span>
                         <i></i>
-                        <span className={styles['class-name']}>{ className }</span>
+                        <span className={styles['class-name']}>{className}</span>
                     </span>
                     <Clock />
                 </div>
