@@ -43,6 +43,27 @@ class CampusStyle extends Component{
         })
         this.props.history.push('campusstyle/detail');
     }
+    //
+    renderCarouselImg = (images) => {
+        return(
+            <Carousel  className="imgs" autoplay autoplaySpeed={3000}>
+                {
+                    images.split(',').map((img,index)=>{
+                        return(
+                            <Fragment key={index}>
+                                <img src={img} className="imgcarouse" />
+                            </Fragment>
+                        )
+                    })
+                }
+            </Carousel>
+        )
+    }
+    renderDefaultImg = () => {
+        return(
+            <img className={styles['defaultImg']} src={defaultImg}/>
+        )
+    }
     render(){
         let { campusList } = this.state;
         const campusStyle = (
@@ -73,25 +94,9 @@ class CampusStyle extends Component{
                         {
                             campusList.length !== 0 && campusList.map((item,index)=>{
                             return(
-                                <li  onClick={ ()=>this.campusDetail(index) }  key={index}>
+                                <li className={styles['list']} onClick={ ()=>this.campusDetail(index) }  key={index}>
                                     {
-                                        item.images.replace(/\s/g,'') !== '' ? 
-                                            <Fragment>
-                                                <Carousel  className="imgs" autoplay autoplaySpeed={3000}>
-                                                    {
-                                                        item.images.split(',').map((img,index)=>{
-                                                            return(
-                                                                <Fragment key={index}>
-                                                                    <img src={img} />
-                                                                </Fragment>
-                                                            )
-                                                        })
-                                                    }
-                                                </Carousel>
-                                            </Fragment> : 
-                                            <Fragment>
-                                                <img className={styles['defaultImg']} src={defaultImg}/>
-                                            </Fragment>
+                                        item.images ? this.renderCarouselImg(item.images) : this.renderDefaultImg()
                                     }
                                     <div className={styles['title']}>
                                         <span className={styles['titlename']}>{item.title}</span>
