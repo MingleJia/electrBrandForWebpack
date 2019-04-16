@@ -17,19 +17,19 @@ class Rank extends Component{
 
     componentDidMount(){
         this.getData();
-        const rankList = document.getElementById('rank-list');
-        const original = document.getElementById('original');
-        this.flowerScroll = setInterval(()=>{
-            if(rankList.scrollTop > original.offsetHeight){
-                rankList.scrollTop = 0;
-            }else{
-                rankList.scrollTop += 1;
-            }
-        }, 20);
+        // const rankList = document.getElementById('rank-list');
+        // const original = document.getElementById('original');
+        // this.flowerScroll = setInterval(()=>{
+        //     if(rankList.scrollTop > original.offsetHeight){
+        //         rankList.scrollTop = 0;
+        //     }else{
+        //         rankList.scrollTop += 1;
+        //     }
+        // }, 20);
     }
 
     componentWillUnmount(){
-        clearInterval(this.flowerScroll);
+        // clearInterval(this.flowerScroll);
     }
 
     getData=()=>{
