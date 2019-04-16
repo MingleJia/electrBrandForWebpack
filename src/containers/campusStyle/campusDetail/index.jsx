@@ -114,8 +114,7 @@ class CampusDetail extends Component {
                                     (img, index) =>
                                         <div
                                             key={index}
-                                            className={styles['imgWarp']}
-                                            style={index % 2 == 0 ? (index == compusContent.images.split(',').length - 1 ? { padding: '0 10px 20px 0', float: 'none', margin: '0 auto', overflow: 'hidden' } : { padding: '0 10px 20px 0' }) : { padding: '0 0 20px 10px' }}>
+                                            className={`${compusContent.images.split(',').length > 1 ? styles['imgWarp'] : styles['imgone'] }`}>
                                             <img className={styles['img']} src={img} key={index} />
                                         </div>
                                 )
