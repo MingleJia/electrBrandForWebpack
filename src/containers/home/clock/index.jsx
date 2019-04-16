@@ -31,14 +31,15 @@ class Clock extends Component{
     }
 
     componentDidUpdate(){
+        clearInterval(this.clockInterval);
         this.clockInterval = setInterval(()=>{
             this.getClock();
         }, 10000);
     }
 
-    componentWillUnmount(){
-        clearInterval(this.clockInterval);
-    }
+    // componentWillUnmount(){
+    //     clearInterval(this.clockInterval);
+    // }
 
     render(){
         const { now } = this.state;
