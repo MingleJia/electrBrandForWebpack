@@ -58,7 +58,7 @@ class CampusMore extends Component {
                                                 {item.content}
                                             </p>
                                             {
-                                                item.images !== '' && item.images.split(',').length !== 0 && item.images.split(',').map((img, index) => {
+                                                item.images && item.images.split(',').map((img, index) => {
                                                     // item.images !== '' && item.images.split(',').length !== 0 && 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555071593507&di=ccb6ca5abf8d04509996e7f9979dc8de&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201609%2F23%2F20160923160028_YNFsP.jpeg,https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555071593507&di=ccb6ca5abf8d04509996e7f9979dc8de&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201609%2F23%2F20160923160028_YNFsP.jpeg,https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555071593507&di=ccb6ca5abf8d04509996e7f9979dc8de&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201609%2F23%2F20160923160028_YNFsP.jpeg'.split(',').map((img, index) => {
                                                     return (
                                                         // <img src={ img } key={index}/>

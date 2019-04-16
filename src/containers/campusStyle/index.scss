@@ -53,7 +53,7 @@
         margin-top: 0.92rem;
         overflow-y: auto;
         ul{
-            li{
+            .list{
                 margin-top: 0.32rem;
                 .defaultImg{
                     width: 18.56rem;
@@ -120,4 +120,10 @@
         opacity: 0.8;
         border-radius: 50%;
     } 
+    .imgs{
+        .imgcarouse{
+            width: 18.56rem;
+	        height: 10.44rem;
+        }
+    }
 }
