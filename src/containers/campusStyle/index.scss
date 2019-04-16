@@ -55,9 +55,13 @@
         ul{
             .list{
                 margin-top: 0.32rem;
-                .defaultImg{
+                .imgBlock{
                     width: 18.56rem;
                     height: 10.44rem;
+                }
+                .defaultImg{
+                    max-width: 18.56rem;
+                    max-height: 10.44rem;    
                 }
                 .title{
                     height: 0.92rem;
