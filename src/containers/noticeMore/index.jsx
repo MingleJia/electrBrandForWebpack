@@ -112,7 +112,7 @@ class Notice extends Component {
                                                 <div className={`${arrExpan.includes(item.id) ? styles['collapse'] : styles['expand']}`}></div>
                                             </div>
                                             <span className={styles['titlename']}>{item.title}</span>
-                                            <span className={styles['time']}>{moment(item.createtime).format('YYYY-MM-DD HH:mm')}</span>
+                                            <span className={styles['time']}>{moment(item.start).format('YYYY-MM-DD HH:mm')}</span>
                                         </div>
                                         {contents[item.id] && arrExpan.includes(item.id) ? this.renderContent(item.id) : ''}
                                     </li>
