@@ -75,7 +75,7 @@ class CampusStyle extends Component{
                             return(
                                 <li  onClick={ ()=>this.campusDetail(index) }  key={index}>
                                     {
-                                        item.images !== '' && item.images.split(',').length !== 0 ? 
+                                        item.images.replace(/\s/g,'') !== '' ? 
                                             <Fragment>
                                                 <Carousel  className="imgs" autoplay autoplaySpeed={3000}>
                                                     {

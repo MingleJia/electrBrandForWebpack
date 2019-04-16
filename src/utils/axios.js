@@ -4,7 +4,6 @@ import qs from 'qs';
 let baseURL = '';
 const env = process.env.NODE_ENV;
 if(env === 'development'){
-    // baseURL = 'http://192.168.80.68:8001';
     baseURL = 'http://eboard.leke.cn';
 }
 
