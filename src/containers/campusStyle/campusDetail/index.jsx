@@ -72,7 +72,6 @@ class CampusDetail extends Component {
     }
     render() {
         const { compusContent, campusList } = this.state;
-        // console.log(compusContent)
         const campusDetail = (
             <div className={styles['container']}>
                 <div className={styles['tab']}>
@@ -103,7 +102,7 @@ class CampusDetail extends Component {
                 <div className={styles['content']}>
                     <div className={styles['title']}>
                         <span className={styles['titlename']}>{compusContent.title}</span>
-                        <span className={styles['time']}>{moment(compusContent.createtime).format('YYYY-MM-DD HH:mm')}</span>
+                        <span className={styles['time']}>{moment(compusContent.createtime*1000).format('YYYY-MM-DD HH:mm')}</span>
                     </div>
                     <div className={styles['detail']}>
                         <p className={styles['text']}>{compusContent.content}</p>

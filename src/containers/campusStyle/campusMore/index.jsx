@@ -51,7 +51,7 @@ class CampusMore extends Component {
                                                 <div className={`${arrExpan.includes(index) ? styles['collapse'] : styles['expand']}`}></div>
                                             </div>
                                             <span className={styles['titlename']}>{item.title}</span>
-                                            <span className={styles['time']}>{moment(item.createtime).format('YYYY-MM-DD HH:mm')}</span>
+                                            <span className={styles['time']}>{moment(item.createtime*1000).format('YYYY-MM-DD HH:mm')}</span>
                                         </div>
                                         <div className={`${arrExpan.includes(index) ? styles['detail'] : styles['detailHidden']}`}>
                                             <p className={styles['text']}>

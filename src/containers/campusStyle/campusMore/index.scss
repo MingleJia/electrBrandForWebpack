@@ -76,7 +76,9 @@
                 }
                 .imgWarp{
                     text-align: center;
-                    width: 50%;
+                    width:9.1rem;
+                    margin-right: 0.2rem;
+                    margin-bottom: 0.2rem;
                     height: 5.12rem;
                     float: left;
                     overflow: hidden;
@@ -88,6 +90,9 @@
                         transform: translate(-50%,-50%);
                         max-height: 5.12rem;
                         max-width: 100%;
+                    }
+                    &:nth-of-type(even){
+                        margin-right: 0;
                     }
                 }
                 .picture{  
