@@ -23,6 +23,7 @@ class Rank extends Component{
 
     componentWillUnmount(){
         clearInterval(this.flowerScroll);
+        clearInterval(this.scoreRankScoll);
     }
 
     getData=()=>{
@@ -33,14 +34,25 @@ class Rank extends Component{
             });
         }).then(()=>{
             const { flowerRank,scoreRank } = this.state;
-            const rankList = document.getElementById('rank-list');
-            const original = document.getElementById('original');
-            if(flowerRank.length !== 0 && flowerRank.length > 5 || scoreRank.length!== 0 && scoreRank.length > 5 ){
+            const rankList = document.getElementById('rank-list-flower');
+            const original = document.getElementById('original-flower');
+            if(flowerRank.length !== 0 && flowerRank.length > 5){
                 this.flowerScroll = setInterval(()=>{
                     if(rankList.scrollTop > original.offsetHeight){
                         rankList.scrollTop = 0;
                     }else{
                         rankList.scrollTop += 1;
+                    }
+                }, 20);
+            }
+            const rankScore = document.getElementById('rank-list-score');
+            const originalScore = document.getElementById('original-score');
+            if( scoreRank.length!== 0 && scoreRank.length > 5 ){
+                this.scoreRankScoll = setInterval(()=>{
+                    if(rankScore.scrollTop > originalScore.offsetHeight){
+                        rankScore.scrollTop = 0;
+                    }else{
+                        rankScore.scrollTop += 1;
                     }
                 }, 20);
             }
@@ -98,11 +110,11 @@ class Rank extends Component{
                     <div className={styles['item']}>
                         <img src={ flowerImg } className={styles['icon']}></img>
                         <p className={styles['item-title']}>红花奖励TOP20</p>
-                        <div className={styles['rank-list']} id='rank-list'>
+                        <div className={styles['rank-list']} id='rank-list-flower'>
                             {
                                 flowerRank.length !== 0 ?
                                 <Fragment>
-                                    <ul id='original'>
+                                    <ul id='original-flower'>
                                         { 
                                             flowerRank.map((item, index)=>{
                                                 return this.listItem(item, index);
@@ -130,11 +142,11 @@ class Rank extends Component{
                     <div className={styles['item']}>
                         <img src={ creditImg } className={styles['icon']}></img>
                         <p className={styles['item-title']}>勤学分奖励TOP20</p>
-                        <div className={styles['rank-list']}>
+                        <div className={styles['rank-list']} id='rank-list-score'>
                             {
                                 scoreRank.length !== 0 ?
                                 <Fragment>
-                                    <ul id='original'>
+                                    <ul id='original-score'>
                                         { 
                                             scoreRank.map((item, index)=>{
                                                 return this.listItem(item, index);
