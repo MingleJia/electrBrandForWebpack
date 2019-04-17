@@ -51,7 +51,7 @@ class CampusMore extends Component {
                                                 <div className={`${arrExpan.includes(index) ? styles['collapse'] : styles['expand']}`}></div>
                                             </div>
                                             <span className={styles['titlename']}>{item.title}</span>
-                                            <span className={styles['time']}>{moment(item.createtime).format('YYYY-MM-DD HH:mm')}</span>
+                                            <span className={styles['time']}>{moment(item.createtime*1000).format('YYYY-MM-DD HH:mm')}</span>
                                         </div>
                                         <div className={`${arrExpan.includes(index) ? styles['detail'] : styles['detailHidden']}`}>
                                             <p className={styles['text']}>
@@ -65,7 +65,7 @@ class CampusMore extends Component {
                                                         <div
                                                             key={index}
                                                             className={styles['imgWarp']}
-                                                            style={index % 2 == 0 ? (index == item.images.split(',').length - 1 ? { padding: '0 10px 20px 0', float: 'none', margin: '0 auto', overflow: 'hidden' } : { padding: '0 10px 20px 0' }) : { padding: '0 0 20px 10px' }}>
+                                                            >
                                                             <img className={styles['img']} src={img} key={index} />
                                                         </div>
                                                     )

@@ -17,19 +17,11 @@ class Rank extends Component{
 
     componentDidMount(){
         this.getData();
-        // const rankList = document.getElementById('rank-list');
-        // const original = document.getElementById('original');
-        // this.flowerScroll = setInterval(()=>{
-        //     if(rankList.scrollTop > original.offsetHeight){
-        //         rankList.scrollTop = 0;
-        //     }else{
-        //         rankList.scrollTop += 1;
-        //     }
-        // }, 20);
+        
     }
 
     componentWillUnmount(){
-        // clearInterval(this.flowerScroll);
+        clearInterval(this.flowerScroll);
     }
 
     getData=()=>{
@@ -38,6 +30,20 @@ class Rank extends Component{
                 flowerRank: json.data.flowerRank,
                 scoreRank: json.data.scoreRank,
             });
+        }).then(()=>{
+            const { flowerRank,scoreRank } = this.state;
+            const rankList = document.getElementById('rank-list');
+            const original = document.getElementById('original');
+            if(flowerRank.length !== 0 || scoreRank.length!== 0){
+                this.flowerScroll = setInterval(()=>{
+                    if(rankList.scrollTop > original.offsetHeight){
+                        rankList.scrollTop = 0;
+                    }else{
+                        rankList.scrollTop += 1;
+                    }
+                }, 20);
+            }
+            
         })
         axios('get', '/api/index/congratulation').then((json)=>{
             let arrCongratulations = [];

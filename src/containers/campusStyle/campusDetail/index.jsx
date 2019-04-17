@@ -72,7 +72,6 @@ class CampusDetail extends Component {
     }
     render() {
         const { compusContent, campusList } = this.state;
-        // console.log(compusContent)
         const campusDetail = (
             <div className={styles['container']}>
                 <div className={styles['tab']}>
@@ -103,7 +102,7 @@ class CampusDetail extends Component {
                 <div className={styles['content']}>
                     <div className={styles['title']}>
                         <span className={styles['titlename']}>{compusContent.title}</span>
-                        <span className={styles['time']}>{moment(compusContent.createtime).format('YYYY-MM-DD HH:mm')}</span>
+                        <span className={styles['time']}>{moment(compusContent.createtime*1000).format('YYYY-MM-DD HH:mm')}</span>
                     </div>
                     <div className={styles['detail']}>
                         <p className={styles['text']}>{compusContent.content}</p>
@@ -114,8 +113,7 @@ class CampusDetail extends Component {
                                     (img, index) =>
                                         <div
                                             key={index}
-                                            className={styles['imgWarp']}
-                                            style={index % 2 == 0 ? (index == compusContent.images.split(',').length - 1 ? { padding: '0 10px 20px 0', float: 'none', margin: '0 auto', overflow: 'hidden' } : { padding: '0 10px 20px 0' }) : { padding: '0 0 20px 10px' }}>
+                                            className={`${compusContent.images.split(',').length > 1 ? styles['imgWarp'] : styles['imgone'] }`}>
                                             <img className={styles['img']} src={img} key={index} />
                                         </div>
                                 )

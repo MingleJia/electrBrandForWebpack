@@ -129,16 +129,40 @@
                 letter-spacing: 0.01rem;
                 color: #666666;
                 padding-bottom: 0.24rem;
+                word-break: break-all;
             }
             .imgWarp{
                 text-align: center;
-                width: 50%;
-                // height: 500px;
+                width: 9.1rem;
+                margin-right: 0.2rem;
+                margin-bottom: 0.2rem;
+                height: 5.12rem;
                 float: left;
                 overflow: hidden;
+                position: relative;
                 .img{
-                    max-height: 480px;
+                    max-height: 5.12rem;
                     max-width: 100%;
+                    position: absolute;
+                    top:50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                }
+                &:nth-of-type(even){
+                    margin-right: 0;
+                }
+            }
+            .imgone{
+                width: 100%;
+                height: 5.12rem;
+                position: relative;
+                .img{
+                    max-height: 5.12rem;
+                    max-width: 100%;
+                    position: absolute;
+                    top:50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
                 }
             }
         }

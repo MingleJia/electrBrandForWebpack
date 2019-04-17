@@ -1,4 +1,4 @@
-import React,{Component, Fragment,} from 'react';
+import React,{Component} from 'react';
 import { Carousel } from 'antd';
 import styles from './index.scss';
 import { defaultImg } from 'ASSETS/campusstyle';
@@ -50,9 +50,9 @@ class CampusStyle extends Component{
                 {
                     images.split(',').map((img,index)=>{
                         return(
-                            <Fragment key={index}>
+                            <div className={styles['imgBlock']} key={index}>
                                 <img src={img} className="imgcarouse" />
-                            </Fragment>
+                            </div>
                         )
                     })
                 }
@@ -61,7 +61,9 @@ class CampusStyle extends Component{
     }
     renderDefaultImg = () => {
         return(
-            <img className={styles['defaultImg']} src={defaultImg}/>
+            <div className={styles['imgBlock']}>
+                <img className={styles['defaultImg']} src={defaultImg}/>
+            </div>
         )
     }
     render(){
