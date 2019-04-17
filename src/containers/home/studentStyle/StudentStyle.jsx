@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import MyCarousel from 'COMPONENTS/carousel/StuStyleCarousel.jsx';
 import styles from './StudentStyle.scss';
 import { moreImg } from 'ASSETS/home';
-class Home extends Component {
+class StudentStyle extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,4 +35,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default StudentStyle;

@@ -41,4 +41,9 @@ export const routerConfig = [
         component: config.CampusStyleDetail,    // 校园风采详情
         exact: true
     },
+    {
+        path:'/studentsstyle',
+        component: config.StudentsStyle,    // 校园风采详情
+        exact: true
+    },
 ]
