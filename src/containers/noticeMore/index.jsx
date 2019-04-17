@@ -9,7 +9,7 @@ class Notice extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            arrExpan: [],
+            arrExpan: [],//用来存储已经展开的列
             noticeList: [],
             curPage: 1,
             pageSize: 10,
@@ -37,9 +37,12 @@ class Notice extends Component {
                     isOver: true
                 })
             }
+            //默认第一条数据展示
             let { arrExpan } = this.state;
-            arrExpan.push(json.data.dataList[0].id);
-            this.getNoticeContent(json.data.dataList[0].id);
+            if (idx == 1) {
+                arrExpan.push(json.data.dataList[0].id);
+                this.getNoticeContent(json.data.dataList[0].id);
+            }
 
             // let noticeList=json.data.dataList;
             this.setState({
@@ -109,14 +112,14 @@ class Notice extends Component {
                                         <div className={styles['title']}>
                                             <div className={styles['clickexpand']} onClick={() => this.checkStatus(item.id)}>
                                                 {
-                                                    arrExpan.includes(item.id) 
-                                                    ?
+                                                    arrExpan.includes(item.id)
+                                                        ?
                                                         <Fragment>
-                                                            <span>收起</span><img src={ collapseImg } className={styles['collapse']} />
+                                                            <span>收起</span><img src={collapseImg} className={styles['collapse']} />
                                                         </Fragment>
-                                                    :
-                                                         <Fragment>
-                                                            <span>展开</span><img src={ expandImg } className={styles['expand']} />
+                                                        :
+                                                        <Fragment>
+                                                            <span>展开</span><img src={expandImg} className={styles['expand']} />
                                                         </Fragment>
                                                 }
                                             </div>
