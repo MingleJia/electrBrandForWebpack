@@ -1,40 +1,47 @@
 import React, { Component } from 'react';
 import styles from './index.scss';
-import { home, attendance, studentStyle, campusStyle, personalCenter } from 'ASSETS/tab';
+// import { home, attendance, studentStyle, campusStyle, personalCenter } from 'ASSETS/tab';
+import { home, attendance, } from 'ASSETS/tab';
 import { NavLink } from 'react-router-dom'
 import axios from 'UTILS/axios';
-const dic = {
-    '首页': {
-        to: '/home',
-        src: home,
-        title: '首页'
-    },
-    '考勤': {
-        to: '/campusstyle',
-        src: attendance,
-        title: '考勤'
-    },
-    '学生风采': {
-        to: '/campusStyle',
-        src: studentStyle,
-        title: '学生风采'
-    },
-    '校园风采': {
-        to: '/campusStyle',
-        src: campusStyle,
-        title: '校园风采'
-    },
-    '个人中心': {
-        to: '/campusStyle',
-        src: personalCenter,
-        title: '个人中心'
-    },
-}
+// const dic = {
+//     '首页': {
+//         to: '/home',
+//         src: home,
+//         title: '首页'
+//     },
+//     '考勤': {
+//         to: '/campusstyle',
+//         src: attendance,
+//         title: '考勤'
+//     },
+//     '学生风采': {
+//         to: '/campusStyle',
+//         src: studentStyle,
+//         title: '学生风采'
+//     },
+//     '校园风采': {
+//         to: '/campusStyle',
+//         src: campusStyle,
+//         title: '校园风采'
+//     },
+//     '个人中心': {
+//         to: '/campusStyle',
+//         src: personalCenter,
+//         title: '个人中心'
+//     },
+// }
 class Tab extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tabList: ['首页', '考勤', '学生风采', '校园风采', '个人中心']
+            tabList: [
+                {
+                    "base_name": "首页",
+                    "url": "/home",
+                    "icon": home
+                }
+            ]
         }
     }
     componentDidMount() {
@@ -49,15 +56,19 @@ class Tab extends Component {
     }
     getNavBar() {
         axios('get', '/api/index/nav').then(json => {
-            const tabList = json.data.nav_bar.filter(item => dic[item]);
+            const tabList = json.data.nav_bar;
             this.setState({
-                tabList: tabList.length == 0 ? ['首页', '考勤', '学生风采', '校园风采', '个人中心'] : tabList
+                tabList:[
+                    ...this.state.tabList,
+                    ...tabList
+                ]
             })
-            this.props.getTabList&&this.props.getTabList(tabList.length == 0 ? ['首页', '考勤', '学生风采', '校园风采', '个人中心'] : tabList);
+            this.props.getTabList && this.props.getTabList(tabList);
         })
     }
     render() {
         let { tabList } = this.state;
+        console.log(tabList)
         const tab = (
             <div className={styles['tab']}>
                 {/* 写固定的内容 */}
@@ -83,10 +94,10 @@ class Tab extends Component {
                 </NavLink> */}
                 {
                     //动态生成tab
-                    tabList.filter(item => dic[item]).map(
-                        (item, index) => <NavLink key={index} to={dic[item].to} activeClassName={styles['tab-active']}>
-                            <img src={dic[item].src}></img>
-                            <div className={styles['title']}>{dic[item].title}</div>
+                    tabList.map(
+                        (item, index) => <NavLink key={index} to={item.url || '/home'} activeClassName={styles['tab-active']}>
+                            <img src={item.icon || attendance}></img>
+                            <div className={styles['title']}>{item.base_name}</div>
                         </NavLink>)
                 }
             </div>
@@ -96,4 +107,4 @@ class Tab extends Component {
 }
 
 export default Tab;
-Tab.propTypes = function(){};
+Tab.propTypes = function () { };
