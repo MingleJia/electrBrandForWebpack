@@ -73,3 +73,28 @@
         }
     }
 }
+.content4{
+    width: 33%;//*
+    padding-left: 0.29rem; 
+    float: left;
+    .v-item{
+        height: 2.5rem;//*
+        width: 100%;
+        text-align: center;
+        // border-bottom: 1px solid red;
+        img{
+            height: 100%;
+            max-width: 100%;
+        }
+    }
+    .textWrap{
+        .textTitle{
+            font-size: 0.16rem;
+            color:#333333;
+            font-weight: bold;
+        }
+        .text{
+            font-size: 0.14rem;
+        }
+    }
+}

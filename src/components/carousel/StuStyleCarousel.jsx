@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styles from './StuStyleCarousel.scss';
-import { Card } from 'antd';
-import { Carousel, WingBlank } from 'antd-mobile';
-const { Meta } = Card;
+import { Carousel } from 'antd-mobile';
 class StuStyleCarousel extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +16,7 @@ class StuStyleCarousel extends Component {
   render() {
 
     return <Fragment>
-      <div className={styles['content3']} >
+      <div className={styles['content4']} >
               <Carousel
                 autoplay={false}
                 infinite

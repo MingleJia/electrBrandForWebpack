@@ -15,7 +15,7 @@ const dic = {
         title: '考勤'
     },
     '学生风采': {
-        to: '/campusstyle',
+        to: '/campusStyle',
         src: studentStyle,
         title: '学生风采'
     },
