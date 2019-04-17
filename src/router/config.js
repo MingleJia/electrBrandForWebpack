@@ -42,8 +42,13 @@ export const routerConfig = [
         exact: true
     },
     {
-        path:'/studentsstyle',
+        path:'/studentsStyle',
         component: config.StudentsStyle,    // 校园风采详情
+        exact: true
+    },
+    {
+        path:'/studentsStyle/more',
+        component: config.StudentsStyleMore,    // 校园风采详情
         exact: true
     },
 ]

@@ -17,7 +17,7 @@ class StudentsStyle extends Component {
 
     render() {
         return <Fragment>
-            <ToMore title={'学生风采'} toWhere={'/campusstyle'} isShow={true} />\
+            <ToMore title={'学生风采'} toWhere={'/studentsStyle/more'} isShow={true} />\
             <div>
 
             </div>
