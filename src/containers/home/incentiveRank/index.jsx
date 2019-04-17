@@ -107,13 +107,19 @@ class Rank extends Component{
                                             })
                                         }
                                     </ul>
-                                    <ul id='clone-rank-list'>
-                                        {
-                                            flowerRank.map((item, index)=>{
-                                                return this.listItem(item, index);
-                                            })
-                                        }
-                                    </ul>
+                                    {
+                                        flowerRank.length  > 5 ? 
+                                        <Fragment>
+                                            <ul id='clone-rank-list'>
+                                            {
+                                                flowerRank.map((item, index)=>{
+                                                    return this.listItem(item, index);
+                                                })
+                                            }
+                                        </ul>
+                                        </Fragment>  :
+                                        ''
+                                    }
                                 </Fragment> : 
                                 <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
                             }
@@ -133,13 +139,19 @@ class Rank extends Component{
                                             })
                                         }
                                     </ul>
-                                    <ul id='clone-rank-list'>
-                                        {
-                                            scoreRank.map((item, index)=>{
-                                                return this.listItem(item, index);
-                                            })
-                                        }
-                                    </ul>
+                                    {
+                                        scoreRank.length  > 5 ? 
+                                        <Fragment>
+                                            <ul id='clone-rank-list'>
+                                                {
+                                                    scoreRank.map((item, index)=>{
+                                                        return this.listItem(item, index);
+                                                    })
+                                                }
+                                            </ul>
+                                        </Fragment>  :
+                                        ''
+                                    }
                                 </Fragment> : 
                                 <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
                             }
