@@ -18,13 +18,7 @@ class StuStyleCarousel extends Component {
   render() {
 
     return <Fragment>
-      <div className={styles['content']} >
-        <WingBlank>
-          <Card
-            hoverable
-            bordered
-            style={{ width: '5rem', borderRadius: '0.1rem' }}
-            cover={
+      <div className={styles['content3']} >
               <Carousel
                 autoplay={false}
                 infinite
@@ -35,14 +29,10 @@ class StuStyleCarousel extends Component {
                 <div className={styles['v-item']}><img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" /></div>
                 <div className={styles['v-item']}><img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" /></div>
               </Carousel>
-            }
-          >
-            <Meta
-              description="www.cnstrong.com"
-            />
-          </Card>
-
-        </WingBlank>
+              <div className={styles['textWrap']}>
+                  <p className={styles['textTitle']}>安身的地方阿三阿三阿三的</p>
+                  <span className={styles['text']}>asdfsdf sdfs dfs dfsd fsdf sdf sasdfsdf sdfs dfs dfsd fsdf sdasdfsdf sdfs dfs dfsd fsdf sdasdfsdf sdfs dfs dfsd fsdf sdasdfsdf sdfs dfs dfsd fsdf sddf sdf23344444 sdffffffffffffffffffffffffffffffffffffffffffsdfdfsfdgdfgdf ghdfghg dfghdfgh dfgh dfgh dfgh dfg hdfgh f </span>
+              </div>
       </div>
     </Fragment>;
   }
