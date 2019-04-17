@@ -78,10 +78,7 @@ module.exports = merge(base, {
                 test: /\.scss$/,
                 use: [
                     {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            publicPath: "../"
-                        }
+                        loader: MiniCssExtractPlugin.loader
                     },
                     {
                         loader: "css-loader",
