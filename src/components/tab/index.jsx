@@ -68,7 +68,6 @@ class Tab extends Component {
     }
     render() {
         let { tabList } = this.state;
-        console.log(tabList)
         const tab = (
             <div className={styles['tab']}>
                 {/* 写固定的内容 */}
