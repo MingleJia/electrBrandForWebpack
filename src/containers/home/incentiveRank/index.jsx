@@ -34,7 +34,7 @@ class Rank extends Component{
             const { flowerRank,scoreRank } = this.state;
             const rankList = document.getElementById('rank-list');
             const original = document.getElementById('original');
-            if(flowerRank.length !== 0 || scoreRank.length!== 0){
+            if(flowerRank.length !== 0 && flowerRank.length > 5 || scoreRank.length!== 0 && scoreRank.length > 5 ){
                 this.flowerScroll = setInterval(()=>{
                     if(rankList.scrollTop > original.offsetHeight){
                         rankList.scrollTop = 0;
@@ -54,13 +54,13 @@ class Rank extends Component{
         })
     }
 
-    listItem=({ studentName, number }, index)=>{
+    listItem=({ userName, value }, index)=>{
         const rankImg = [ firstImg, secondImg, thirdImg ];
         return (
             <li key={index}>
                 { index < 3 ? <img src={ rankImg[index] }></img> : <span className={styles['ranking']}>{ index + 1 }</span> }
-                <span className={styles['student-name']}>{ studentName }</span>
-                <span className={styles['number']}>{ number }</span>
+                <span className={styles['student-name']}>{ userName }</span>
+                <span className={styles['number']}>{ value }</span>
             </li>
         )
     }
