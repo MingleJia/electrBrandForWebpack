@@ -1,6 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import styles from './index.scss';
-import { detailsImg,campusImg, noImg } from 'ASSETS/campusstyle';
+import { detailsImg,campusImg, noImg, moreImg } from 'ASSETS/campusstyle';
 import PropTypes from 'prop-types';
 import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
@@ -73,11 +73,10 @@ class CampusStyle extends Component{
                 <div className={styles['tab']}>
                     <div className={styles['title']}>校园风采</div>
                     {
-
                         campusList.length
                         ?
-                        <div className={styles['btnMore']} onClick={ ()=>this.campusMore() }>更多
-                            <span className={styles['more']}></span>
+                        <div className={styles['btnMore']} onClick={ ()=>this.campusMore() }>
+                        <span>更多</span><img className={styles['more']} src={ moreImg } />
                         </div>
                         :
                         <div></div>

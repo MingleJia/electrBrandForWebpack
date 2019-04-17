@@ -1,7 +1,8 @@
 import React,{Component, Fragment} from 'react';
 import {Popover} from 'antd';
 import styles from './index.scss';
-import { tipsImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg } from 'ASSETS/home';
+import { tipsImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg, } from 'ASSETS/home';
+// import { tipsImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg, rankBgImg } from 'ASSETS/home';
 import { Link } from 'react-router-dom';
 import axios from 'UTILS/axios';
 
@@ -83,6 +84,7 @@ class Rank extends Component{
         )
         const rank = (
             <div className={styles['rank']}>
+            {/* <div className={styles['rank']} style={{ background: 'url('+rankBgImg+') 100% 100%' }}> */}
                 <div className={styles['top']}>
                     <span className={styles['title']}>
                         本周激励排行版
@@ -107,13 +109,19 @@ class Rank extends Component{
                                             })
                                         }
                                     </ul>
-                                    <ul id='clone-rank-list'>
-                                        {
-                                            flowerRank.map((item, index)=>{
-                                                return this.listItem(item, index);
-                                            })
-                                        }
-                                    </ul>
+                                    {
+                                        flowerRank.length  > 5 ? 
+                                        <Fragment>
+                                            <ul id='clone-rank-list'>
+                                            {
+                                                flowerRank.map((item, index)=>{
+                                                    return this.listItem(item, index);
+                                                })
+                                            }
+                                        </ul>
+                                        </Fragment>  :
+                                        ''
+                                    }
                                 </Fragment> : 
                                 <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
                             }
@@ -133,13 +141,19 @@ class Rank extends Component{
                                             })
                                         }
                                     </ul>
-                                    <ul id='clone-rank-list'>
-                                        {
-                                            scoreRank.map((item, index)=>{
-                                                return this.listItem(item, index);
-                                            })
-                                        }
-                                    </ul>
+                                    {
+                                        scoreRank.length  > 5 ? 
+                                        <Fragment>
+                                            <ul id='clone-rank-list'>
+                                                {
+                                                    scoreRank.map((item, index)=>{
+                                                        return this.listItem(item, index);
+                                                    })
+                                                }
+                                            </ul>
+                                        </Fragment>  :
+                                        ''
+                                    }
                                 </Fragment> : 
                                 <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
                             }
