@@ -68,6 +68,7 @@ class Login extends Component {
                 }
             })
         }
+        message.config({ maxCount:1,});
     }
     //这是自动登入,代码内容和登入一样只是登入的参数从浏览器缓存获取
     loginAuto = () => {
@@ -95,6 +96,7 @@ class Login extends Component {
                 }
             })
         }
+        message.config({ maxCount:1,});
     }
     render() {
         const { account, password } = this.state;
