@@ -4,6 +4,7 @@ import Tab from 'COMPONENTS/tab';
 import styles from './index.scss';
 import axios from 'UTILS/axios';
 import moment from 'moment';
+import { collapseImg, expandImg, } from 'ASSETS/campusstyle';
 class Notice extends Component {
     constructor(props) {
         super(props);
@@ -96,7 +97,6 @@ class Notice extends Component {
     }
     render() {
         let { arrExpan, noticeList, contents } = this.state;
-        // console.log(arrExpan,noticeList,contents)
         const notice = (
             <Fragment>
                 <BackPrevHeader />
@@ -108,8 +108,17 @@ class Notice extends Component {
                                     <li className={styles['content']} key={index}>
                                         <div className={styles['title']}>
                                             <div className={styles['clickexpand']} onClick={() => this.checkStatus(item.id)}>
-                                                {arrExpan.includes(item.id) ? '收起' : '展开'}
-                                                <div className={`${arrExpan.includes(item.id) ? styles['collapse'] : styles['expand']}`}></div>
+                                                {
+                                                    arrExpan.includes(item.id) 
+                                                    ?
+                                                        <Fragment>
+                                                            <span>收起</span><img src={ collapseImg } className={styles['collapse']} />
+                                                        </Fragment>
+                                                    :
+                                                         <Fragment>
+                                                            <span>展开</span><img src={ expandImg } className={styles['expand']} />
+                                                        </Fragment>
+                                                }
                                             </div>
                                             <span className={styles['titlename']}>{item.title}</span>
                                             <span className={styles['time']}>{moment(item.start).format('YYYY-MM-DD HH:mm')}</span>
