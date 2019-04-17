@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './index.scss';
-// import { defaultImg, } from 'ASSETS/campusstyle';
+import { backImg } from 'ASSETS/header';
 import Tab from 'COMPONENTS/tab';
 import { connect } from 'react-redux';
 import { setCampusStyle } from 'MODULES/root/actions';
@@ -76,8 +76,7 @@ class CampusDetail extends Component {
             <div className={styles['container']}>
                 <div className={styles['tab']}>
                     <div className={styles['back']} onClick={() => this.backHome()}>
-                        <span className={styles['backimg']}></span>
-                        返回
+                        <img className={styles['backimg']} src={ backImg }></img><span>返回</span>
                     </div>
                     {
                         campusList.length < 2
