@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react';
 import styles from './index.scss';
 import Clock from './clock';
 import IncentiveRank from './incentiveRank';
+// import StudentStyle from './studentStyle/StudentStyle';
 import TodayLessonSchedule from "./todayLessonSchedule";
 import Notice from './Notice';
 import Tab from 'COMPONENTS/tab';
-import MyCarousel from 'COMPONENTS/carousel/StuStyleCarousel.jsx';
 import axios from 'UTILS/axios';
 
 class Home extends Component {
@@ -40,12 +40,7 @@ class Home extends Component {
                 </div>
                 <div className={styles['container']}>
                     <IncentiveRank />
-                    {/* <div className={styles['myCarouselWrap']}>
-                        <MyCarousel />
-                        <MyCarousel />
-                        <MyCarousel />
-                        <MyCarousel />
-                    </div> */}
+                    {/* <StudentStyle/> */}
                     <div>
                         <TodayLessonSchedule />
                         <Notice />
