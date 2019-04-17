@@ -1,8 +1,6 @@
-import React,{Component} from 'react';
-import { Carousel } from 'antd';
+import React,{Component,Fragment} from 'react';
 import styles from './index.scss';
-import { defaultImg } from 'ASSETS/campusstyle';
-import campusImg from 'ASSETS/campusstyle/campusImg.png'
+import { detailsImg,campusImg, noImg } from 'ASSETS/campusstyle';
 import PropTypes from 'prop-types';
 import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
@@ -46,23 +44,25 @@ class CampusStyle extends Component{
     //
     renderCarouselImg = (images) => {
         return(
-            <Carousel  className="imgs" autoplay autoplaySpeed={3000}>
+            <Fragment>
                 {
                     images.split(',').map((img,index)=>{
                         return(
                             <div className={styles['imgBlock']} key={index}>
-                                <img src={img} className="imgcarouse" />
+                                <img src={img} className={styles['defaultImg']} />
                             </div>
                         )
                     })
                 }
-            </Carousel>
+            </Fragment>
         )
     }
+
     renderDefaultImg = () => {
         return(
-            <div className={styles['imgBlock']}>
-                <img className={styles['defaultImg']} src={defaultImg}/>
+            <div className={styles['imgdefault']}>
+                <img className={styles['default']} src={noImg}/>
+                <p>暂未上传图片</p>
             </div>
         )
     }
@@ -95,23 +95,26 @@ class CampusStyle extends Component{
                         <ul>
                         {
                             campusList.length !== 0 && campusList.map((item,index)=>{
-                            return(
-                                <li className={styles['list']} onClick={ ()=>this.campusDetail(index) }  key={index}>
-                                    {
-                                        item.images ? this.renderCarouselImg(item.images) : this.renderDefaultImg()
-                                    }
-                                    <div className={styles['title']}>
-                                        <span className={styles['titlename']}>{item.title}</span>
-                                    </div>
-                                    <div className={styles['detail']}>
-                                        <p className={styles['text']}>
-                                            { item.content }
-                                        </p>
-                                    </div>
-                                </li>
-                            )
-                            }) 
-                        }
+                                return(
+                                    <li className={styles['list']} key={index}>
+                                        <div className={styles['images']}>
+                                            {
+                                                item.images ? this.renderCarouselImg(item.images) : this.renderDefaultImg()
+                                            }
+                                        </div>
+                                        <div className={styles['title']}>
+                                            <span className={styles['titlename']}>{item.title}</span>
+                                            <div className={styles['detailborder']}  onClick={ ()=>this.campusDetail(index) } >
+                                                <img className={styles['detailImg']} src={ detailsImg }></img><span>详情</span>
+                                            </div>
+                                        </div>
+                                        <div className={styles['detail']}>         
+                                            { item.content }                                            
+                                        </div>
+                                    </li>
+                                )
+                                }) 
+                            }
                         </ul>
                     }
                 </div>
