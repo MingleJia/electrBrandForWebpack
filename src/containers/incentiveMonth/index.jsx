@@ -22,8 +22,8 @@ class IncentiveMonth extends Component{
     getData=()=>{
         axios('get', '/api/index/rank?type=2',).then((json)=>{
             this.setState({
-                flowerRank: json.data.flowerRank,
-                scoreRank: json.data.scoreRank,
+                flowerRank: json.data.flowerRank||[],
+                scoreRank: json.data.scoreRank||[],
             });
         })
         axios('get', '/api/index/congratulation').then((json)=>{
