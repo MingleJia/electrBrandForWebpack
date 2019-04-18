@@ -78,9 +78,13 @@ module.exports = {
                 use: [{
                     loader: 'file-loader',
                     options: {
-						name: '[name].[ext]',
-						outputPath: './assets',
-						publicPath: '/electrClassbrand/assets'
+						//线上
+						// name: '[name].[ext]',
+						// outputPath: './assets',
+						// publicPath: '/electrClassbrand/assets'
+						//本地
+						name: 'assets/[name].[ext]',
+						
                     }
                 }]
 			},
