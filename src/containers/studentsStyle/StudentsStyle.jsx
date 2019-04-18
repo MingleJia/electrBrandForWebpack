@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import ToMore from '../../components/toMore/ToMore';
 import Tab from 'COMPONENTS/tab';
 import MyCarousel from 'COMPONENTS/carousel/StuStyleCarousel.jsx';
@@ -22,9 +23,12 @@ class StudentsStyle extends Component {
 
             </div>
             <div className={styles['content']}>
-                <MyCarousel />
-                <MyCarousel />
-                <MyCarousel />
+                <Link to={'/studentsStyle/deatil'}>
+                    <MyCarousel />
+                </Link>
+                <Link to={'/studentsStyle/deatil'}>
+                    <MyCarousel />
+                </Link>
                 <MyCarousel />
                 <MyCarousel />
                 <MyCarousel />

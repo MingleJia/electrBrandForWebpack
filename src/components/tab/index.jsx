@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './index.scss';
 // import { home, attendance, studentStyle, campusStyle, personalCenter } from 'ASSETS/tab';
-import { home, attendance, campusStyle, } from 'ASSETS/tab';
+import { home, attendance, campusStyle, studentStyle} from 'ASSETS/tab';
 import { NavLink } from 'react-router-dom'
 import axios from 'UTILS/axios';
 // const dic = {

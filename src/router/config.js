@@ -48,7 +48,12 @@ export const routerConfig = [
     },
     {
         path:'/studentsStyle/more',
-        component: config.StudentsStyleMore,    // 校园风采详情
+        component: config.StudentsStyleMore,    // 更多学生风采
+        exact: true
+    },
+    {
+        path:'/studentsStyle/deatil',
+        component: config.StudentsStyleDetail,    // 学生风采详情
         exact: true
     },
 ]

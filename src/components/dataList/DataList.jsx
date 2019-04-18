@@ -21,8 +21,8 @@ class Datalist extends Component {
             <ul className={styles['list']}>
                 <DataItem isOpen={false} />
                 <DataItem isOpen={false} />
-                <DataItem isOpen={true} />
-                <DataItem isOpen={true} />
+                <DataItem isOpen={false} />
+                <DataItem isOpen={false} />
             </ul>
         </Fragment>;
     }
