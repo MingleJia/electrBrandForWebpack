@@ -41,11 +41,11 @@ class Tab extends Component {
                     "url": "/home",
                     "icon": home
                 }, 
-                {
-                    "base_name": "校园风采",
-                    "url": "/campusStyle",
-                    "icon": campusStyle
-                }, 
+                // {
+                //     "base_name": "校园风采",
+                //     "url": "/campusStyle",
+                //     "icon": campusStyle
+                // }, 
                 // {
                 //     "base_name": "学生风采",
                 //     "url": "/studentsStyle",
