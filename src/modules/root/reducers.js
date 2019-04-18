@@ -4,6 +4,7 @@ import * as Actions from "./actions";
 const INITIAL_STATE = {
 	info: {} ,// 用户信息
 	campusDetailId : '', //校园风采详情页默认id
+	campusList: [], //校园风采
 };
 const root = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
@@ -16,6 +17,7 @@ const root = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				campusDetailId: action.campusDetailId,
+				campusList: action.campusList,
 			};
 		default:
 			return state;

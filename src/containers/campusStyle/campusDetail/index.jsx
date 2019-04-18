@@ -5,14 +5,13 @@ import Tab from 'COMPONENTS/tab';
 import { connect } from 'react-redux';
 import { setCampusStyle } from 'MODULES/root/actions';
 import PropTypes from 'prop-types';
-import axios from 'UTILS/axios';
+// import axios from 'UTILS/axios';
 import moment from 'moment';
 
 class CampusDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            campusList: [], //所有校园风采列表
             compusContent: {}, //当前显示的校园风采信息
             idx: 0
         }
@@ -23,24 +22,11 @@ class CampusDetail extends Component {
         root: PropTypes.object,
     }
 
-    // componentWillMount() {
-    //     this.setState({ idx: this.props.root.campusDetailId })
-    // }
-
     componentDidMount() {
-        this.setState({ idx: this.props.root.campusDetailId })
-        this.getContent();
-    }
-
-    getContent = () => {
-        axios('get', '/api/campus/getList', {
-        }).then((json) => {
-            this.setState({
-                campusList: json.data,
-                // compusContent: json.data[this.props.root.campusDetailId]
-                compusContent: json.data[this.state.idx]
-            })
-
+        const { campusList } = this.props.root;
+        this.setState({ 
+            idx: this.props.root.campusDetailId,
+            compusContent : campusList[this.props.root.campusDetailId]
         })
     }
 
@@ -50,20 +36,18 @@ class CampusDetail extends Component {
     }
     //上一页
     prevBtn = () => {
-        // let { campusDetailId } = this.props.root;
-        let { campusList, idx } = this.state;
+        let {  idx } = this.state;
+        let { campusList } = this.props.root;
         idx < 1 ? idx = campusList.length - 1 : idx = idx - 1;
         this.setState({
             compusContent: campusList[idx],
             idx,
         })
-        // this.props.setCampusStyle({
-        //     campusDetailId: campusDetailId,
-        // })
     }
     //下一页
     nextBtn = () => {
-        let { campusList, idx } = this.state;
+        let {  idx } = this.state;
+        let { campusList } = this.props.root;
         idx >= campusList.length - 1 ? idx = 0 : idx = idx + 1;
         this.setState({
             compusContent: campusList[idx],
@@ -71,7 +55,8 @@ class CampusDetail extends Component {
         })
     }
     render() {
-        const { compusContent, campusList } = this.state;
+        const { compusContent } = this.state;
+        const { campusList } = this.props.root;
         const campusDetail = (
             <div className={styles['container']}>
                 <div className={styles['tab']}>
@@ -79,14 +64,10 @@ class CampusDetail extends Component {
                         <img className={styles['backimg']} src={ backImg }></img><span>返回</span>
                     </div>
                     {
-                        campusList.length < 2
+                        campusList.length !== 0 && campusList.length < 2
                             ?
                             <div></div>
                             :
-                            // <div className={styles['btn']}>
-                            //     <span className={styles['prevBtn']} onClick={() => this.prevBtn()}>上一个</span>
-                            //     <span className={styles['nextBtn']} onClick={() => this.nextBtn()}>下一个</span>
-                            // </div>
                             <div className={styles['btnWrap']}>
                                 {
                                     this.state.idx == 0 ? '' : <span className={styles['prevBtn']} onClick={() => this.prevBtn()}>上一个</span>
@@ -112,7 +93,7 @@ class CampusDetail extends Component {
                                     (img, index) =>
                                         <div
                                             key={index}
-                                            className={`${compusContent.images.split(',').length > 1 ? styles['imgWarp'] : styles['imgone'] }`}>
+                                            className={styles['imgWarp']}>
                                             <img className={styles['img']} src={img} key={index} />
                                         </div>
                                 )
