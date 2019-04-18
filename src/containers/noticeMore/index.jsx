@@ -16,6 +16,7 @@ class Notice extends Component {
             contents: {}, //收起展开内容区
             idx: 1,//下拉请求第几波数据
             isOver: false,//下拉是否已经到最底部
+            lock: true,//正在加载中,未来可以用来设置loading
         }
     }
 
@@ -51,6 +52,7 @@ class Notice extends Component {
                     ...json.data.dataList,
                 ],
                 arrExpan: arrExpan,
+                lock: true
             })
         })
     }
@@ -90,9 +92,10 @@ class Notice extends Component {
         let offsetHeight = this.container.offsetHeight
         let scrollHeight = this.container.scrollHeight
         let scrollTop = this.container.scrollTop
-        if (scrollTop + offsetHeight == scrollHeight) {
+        if (scrollTop + offsetHeight >= scrollHeight - 100 && this.state.lock) {
             this.setState({
-                idx: this.state.idx + 1
+                idx: this.state.idx + 1,
+                lock: false
             }, () => {
                 this.getNoticeList(this.state.idx);
             })
