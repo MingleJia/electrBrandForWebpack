@@ -18,15 +18,25 @@ class CampusStyle extends Component{
     static propTypes = {
         history: PropTypes.object,
         setCampusStyle: PropTypes.func,
+        root: PropTypes.object,
     }
 
     componentDidMount(){
         axios('get','/api/campus/getList',{
         }).then((json)=>{
-            this.setState({       
+            // let campusList = json.data;
+            // for (let i = 0; i < json.data.length; i++) {
+            //     for(let j = 0;j < json.data.length-1-i;j++){
+            //         if (campusList[j].weigh > campusList[j+1].weigh) { //相邻元素两两对比
+            //             let temp = campusList[j+1]; //元素交换
+            //             campusList[j+1] = campusList[j];
+            //             campusList[j] = temp;
+            //         }
+            //     }
+            // }
+            this.props.setCampusStyle({
                 campusList : json.data,
             })
-
         })
     }
 
@@ -36,8 +46,10 @@ class CampusStyle extends Component{
     }
     //点击内容到校园风采详情页
     campusDetail = (value) => {
+        let { campusList } = this.props.root;
         this.props.setCampusStyle({
             campusDetailId : value,
+            campusList
         })
         this.props.history.push('campusstyle/detail');
     }
@@ -67,7 +79,7 @@ class CampusStyle extends Component{
         )
     }
     render(){
-        let { campusList } = this.state;
+        let { campusList } = this.props.root;
         const campusStyle = (
             <div className={styles['container']}>
                 <div className={styles['tab']}>
@@ -125,6 +137,7 @@ class CampusStyle extends Component{
 }
 
 export default connect(
-    null,
-    { setCampusStyle }
+    ({ root }) => ({
+        root: root,
+    }), { setCampusStyle }
 )(CampusStyle)
