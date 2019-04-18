@@ -22,8 +22,8 @@ class IncentiveMonth extends Component{
     getData=()=>{
         axios('get', '/api/index/rank?type=2',).then((json)=>{
             this.setState({
-                flowerRank: json.data.flowerRank,
-                scoreRank: json.data.scoreRank,
+                flowerRank: json.data.flowerRank||[],
+                scoreRank: json.data.scoreRank||[],
             });
         })
         axios('get', '/api/index/congratulation').then((json)=>{
@@ -97,7 +97,7 @@ class IncentiveMonth extends Component{
                                         }
                                     </ul>
                                 </Fragment> : 
-                                <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                                <p className={styles['no-data']}>本月排名暂未产生<br/>敬请期待明日公布</p>
                             }
                         </div>
                     </div>
@@ -123,7 +123,7 @@ class IncentiveMonth extends Component{
                                         }
                                     </ul>
                                 </Fragment> : 
-                                <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                                <p className={styles['no-data']}>本月排名暂未产生<br/>敬请期待明日公布</p>
                             }
                         </div>
                     </div>
