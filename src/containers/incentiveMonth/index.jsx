@@ -69,7 +69,7 @@ class IncentiveMonth extends Component{
                 <div className={styles['title']}>
                     <span>
                         本月激励排行榜
-                        <Popover placement="bottomLeft" content={tips} trigger="click">
+                        <Popover placement="bottomLeft" content={tips} trigger="click" overlayClassName="monthRank">
                             <img src={ tipsWhiteImg }></img>
                         </Popover>
                     </span>
