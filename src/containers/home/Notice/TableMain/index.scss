@@ -1,8 +1,9 @@
 .tableContent {
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     width: 100%;
     margin-top: .24rem;
-    height: 1.8rem;
+    height: 1.78rem;
     .defaultImg{
         width: 100%;
         margin-top: .16rem;
@@ -44,6 +45,5 @@
     .detail{
         margin:0.141rem .3rem 0 .3rem;
         height: 1rem;
-        overflow: hidden;
     }
 }
