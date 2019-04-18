@@ -61,7 +61,7 @@ export const StudentsStyle = Loadable({
 });
 //更多学生风采
 export const StudentsStyleMore = Loadable({
-	loader: () => import("CONTAINERS/studentsStyleMore/studentsStyleMore"),
+	loader: () => import("CONTAINERS/studentsStyleMore/StudentsStyleMore"),
 	loading: Loading,
 	timeout: timeout
 });
