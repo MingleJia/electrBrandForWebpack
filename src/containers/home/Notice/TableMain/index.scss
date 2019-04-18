@@ -27,6 +27,7 @@
             padding: 0.141rem .3rem;
             display: flex;
             width: 100%;
+            position: relative;
             .title {
                 overflow: hidden;
                 word-break: keep-all;
@@ -35,7 +36,9 @@
             }
             .start {
                 font-size: 0.2rem;
-                color: #999999;    
+                color: #999999;
+                position: absolute;
+                right: .3rem;
             }
         }
         &:nth-child(odd) {
