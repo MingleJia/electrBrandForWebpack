@@ -5,6 +5,7 @@ let baseURL = '';
 const env = process.env.NODE_ENV;
 if(env === 'development'){
     baseURL = 'http://eboard.leke.cn';
+    // baseURL = 'http://local.leke-eboard.cc';
 }
 
 // axios defaults

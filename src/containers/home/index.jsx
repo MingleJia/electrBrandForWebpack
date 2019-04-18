@@ -40,7 +40,7 @@ class Home extends Component {
                 </div>
                 <div className={styles['container']}>
                     <IncentiveRank />
-                    {/* <StudentStyle/> */}
+                    {/* <StudentStyle /> */}
                     <div>
                         <TodayLessonSchedule />
                         <Notice />

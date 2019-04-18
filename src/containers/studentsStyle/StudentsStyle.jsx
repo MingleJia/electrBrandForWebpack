@@ -23,15 +23,24 @@ class StudentsStyle extends Component {
 
             </div>
             <div className={styles['content']}>
+                {/* <Link to={'/studentsStyle/deatil'}>
+                    <MyCarousel />
+                </Link>
+                <Link to={'/studentsStyle/deatil'}>
+                    <MyCarousel />
+                </Link>
                 <Link to={'/studentsStyle/deatil'}>
                     <MyCarousel />
                 </Link>
                 <Link to={'/studentsStyle/deatil'}>
                     <MyCarousel />
                 </Link>
-                <MyCarousel />
-                <MyCarousel />
-                <MyCarousel />
+                <Link to={'/studentsStyle/deatil'}>
+                    <MyCarousel />
+                </Link> */}
+                <Link to={'/studentsStyle/deatil'}>
+                    <MyCarousel />
+                </Link>
             </div>
             <Tab />
         </Fragment>
