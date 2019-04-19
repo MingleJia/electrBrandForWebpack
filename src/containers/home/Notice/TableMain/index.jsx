@@ -13,7 +13,7 @@ export default class TableMain extends React.Component {
             content : '',  //通知只有一条时的内容区
         };
         const timer = new Polling({
-            timeout: 1000*100,
+            timeout: 1000*10,
             fn: this.getNoticeList
         });
         this.timer = timer;
@@ -21,8 +21,7 @@ export default class TableMain extends React.Component {
     componentDidMount() {
         // TODO: 开启定时器
         this.timer.loop();
-        this.getNoticeList();
-       
+        // this.getNoticeList();
     }
     componentWillUnmount(){
         this.timer.destroy();
