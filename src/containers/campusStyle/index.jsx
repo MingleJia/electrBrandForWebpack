@@ -73,7 +73,7 @@ class CampusStyle extends Component{
     }
     render(){
         let { campusList } = this.props.root;
-        window.console.log()
+        const { loading } = this.state;
 
         const defaultPage=(
             <div className={styles['defaultImg']}>
@@ -124,7 +124,7 @@ class CampusStyle extends Component{
                         <div></div>
                     }
                 </div>
-                { campusList.length === 0 ? defaultPage : campusContent }
+                { loading ? '' : campusList.length === 0 ? defaultPage : campusContent }
                 <Tab/>
             </div>
         )

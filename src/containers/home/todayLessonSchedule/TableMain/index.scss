@@ -22,7 +22,7 @@ $oddLine-color: #f6f8ff;
             word-break: keep-all;
             span {
                 overflow: hidden;
-                word-break: keep-all;
+                white-space: nowrap;
                 text-overflow: ellipsis;
             }
         }
@@ -30,11 +30,12 @@ $oddLine-color: #f6f8ff;
             margin-right: .86rem;
         }
         .subName {
-            width: 1.65rem;
+            width: 1.4rem;
+            margin-right: 0.2rem;
         }
-        .classType {
+        // .classType {
             
-        }
+        // }
         &:nth-child(odd) {
             background-color: #f6f8ff; 
         }

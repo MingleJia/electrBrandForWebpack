@@ -11,7 +11,6 @@ class CampusMore extends Component {
         this.state = {
             arrExpan: [0,],
             campusList: [],
-            images: [],
             loading : true, 
         }
     }
@@ -22,7 +21,6 @@ class CampusMore extends Component {
             this.setState({
                 campusList: json.data,
             })
-
         }).then(()=>{
             this.setState({
                 loading : false,
@@ -40,7 +38,7 @@ class CampusMore extends Component {
     }
 
     render() {
-        let { arrExpan, campusList } = this.state;
+        let { arrExpan, campusList,loading } = this.state;
 
         const defaultPage=(
             <div className={styles['defaultImg']}>
@@ -97,7 +95,7 @@ class CampusMore extends Component {
         const campusMore = (
             <Fragment>
                 <BackPrevHeader />
-                    { campusList.length === 0 ? defaultPage : campusContent}
+                    { loading ? '' : campusList.length === 0 ? defaultPage : campusContent}
                 <Tab />
             </Fragment>
         )

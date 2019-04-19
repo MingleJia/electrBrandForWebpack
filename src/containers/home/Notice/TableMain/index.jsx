@@ -24,6 +24,9 @@ export default class TableMain extends React.Component {
         this.getNoticeList();
        
     }
+    componentWillUnmount(){
+        this.timer.destroy();
+    }
     //获取通知列表
     getNoticeList = () => {
         axios('get','/api/index/notice',{
