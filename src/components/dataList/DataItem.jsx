@@ -32,18 +32,28 @@ class DataItem extends Component {
                                 </Fragment>
                         }
                     </div>
-                    <span className={styles['titlename']}>{'sdfsdfsdf'}</span>
+                    <span className={styles['titlename']}>{this.props.item.title || '暂无标题'}</span>
                     <span className={styles['time']}>{'12.334'}</span>
                 </div>
                 {/* 下方内容区域 */}
                 <div className={`${isOpen ? styles['detail'] : styles['detailHidden']}`}>
                     <p className={styles['text']}>
-                        内容那日如能容忍你人人手动内容那日如能容忍你人人手动 内容那日如能容忍你人人手动 内容那日如能容忍你人人手动 内容那日如能容忍你人人手动  
+                        {
+                            this.props.item.desc || '暂无内容'
+                        }
                     </p>
-                    {/* 图片区域 */}
-                    <div  className={styles['imgWarp']} >
-                        <img className={styles['img']} src={'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg'}  />
-                    </div> 
+                    {/* 图片区域 https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg */}
+                    {
+                        this.props.item.images.map(
+                            (item, index) =>
+                                <div
+                                    style={{ width: `${(index == this.props.item.images.length - 1 && index % 2 == 0) ? '18.2rem' : '9.1rem'}` }}
+                                    key={index}
+                                    className={styles['imgWarp']} >
+                                    <img className={styles['img']} src={item.image} />
+                                </div>
+                        )
+                    }
                 </div>
             </li>
         </Fragment>;
