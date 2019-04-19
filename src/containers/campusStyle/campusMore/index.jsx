@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import BackPrevHeader from 'COMPONENTS/backPrev';
 import Tab from 'COMPONENTS/tab';
 import styles from './index.scss';
-import { collapseImg, expandImg, noImg } from 'ASSETS/campusstyle';
+import { collapseImg, expandImg, campusImg } from 'ASSETS/campusstyle';
 import axios from 'UTILS/axios';
 import moment from 'moment';
 class CampusMore extends Component {
@@ -44,7 +44,7 @@ class CampusMore extends Component {
 
         const defaultPage=(
             <div className={styles['defaultImg']}>
-                <img src={noImg} alt=""/>
+                <img src={campusImg} alt=""/>
                 <p className={styles['text']}>暂无校园风采</p>
             </div>
         )

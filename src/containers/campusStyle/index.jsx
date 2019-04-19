@@ -1,6 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import styles from './index.scss';
-import { detailsImg, noImg, moreImg } from 'ASSETS/campusstyle';
+import { detailsImg, campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
 import PropTypes from 'prop-types';
 import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
@@ -77,7 +77,7 @@ class CampusStyle extends Component{
 
         const defaultPage=(
             <div className={styles['defaultImg']}>
-                <img src={noImg} alt=""/>
+                <img src={campusImg} alt=""/>
                 <p className={styles['text']}>暂无校园风采</p>
             </div>
         )
