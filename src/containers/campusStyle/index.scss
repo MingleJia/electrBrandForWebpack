@@ -178,18 +178,20 @@
                 }
             }
         }
-        .noCampusList{
-            margin-top: 4.5rem;
-            text-align: center;
-            .noCampusListImg{
+       
+    }
+    //缺省图
+    .defaultImg{
+        width: 100%;
+        text-align: center;
+            img{
                 width: 0.6rem;
-                padding-bottom: 0.1rem;
+                margin-top: 4.8rem;
             }
-            .noCampusListWord{
-                display: block;
+            .text{
+                margin-top: 0.12rem;
                 font-size: 0.28rem;
-                color:#ccc;
+                color: #cccccc;
             }
-        }
     }
 }
