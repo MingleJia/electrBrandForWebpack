@@ -115,7 +115,7 @@ class ClassTable extends Component {
             </Fragment>
         )
         return <Fragment>
-            <div className={styles['container']}>
+            <div className={styles['containerLesson']}>
                 { JSON.stringify(subjectInfo) === "{}" ? defaultPage : lessonContent }
             </div>
         </Fragment>
