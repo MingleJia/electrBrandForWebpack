@@ -6,6 +6,7 @@ import axios from 'UTILS/axios';
 import moment from 'moment';
 import { collapseImg, expandImg, } from 'ASSETS/campusstyle';
 import { noNoticeImg } from 'ASSETS/home';
+import { loadingImg } from 'ASSETS/loading';
 class Notice extends Component {
     constructor(props) {
         super(props);
@@ -57,7 +58,7 @@ class Notice extends Component {
                 lock: true,
                 loading: true
             })
-        }).then(()=>{
+        }).then(() => {
             this.setState({
                 loading: false
             })
@@ -89,12 +90,12 @@ class Notice extends Component {
     renderContent = (id) => {
         return (
             <div className={`${this.state.arrExpan.includes(id) ? styles['detail'] : styles['detailHidden']}`} >
-                <p className={styles['noticeContent']}>{ this.state.contents[id].content }</p>
+                <p className={styles['noticeContent']}>{this.state.contents[id].content}</p>
                 <div className={styles['wrap']}>
                     {
-                        this.state.contents[id].accessorys.length !== 0 && this.state.contents[id].accessorys.map((img,index)=>{
+                        this.state.contents[id].accessorys.length !== 0 && this.state.contents[id].accessorys.map((img, index) => {
                             {
-                                return(
+                                return (
                                     <div className={styles['imgBlock']} key={index}>
                                         <img src={img.fileUrl} className={styles['noticeimg']} />
                                     </div>
@@ -112,10 +113,7 @@ class Notice extends Component {
         let offsetHeight = this.container.offsetHeight;
         let scrollHeight = this.container.scrollHeight;
         let scrollTop = this.container.scrollTop;
-        console.log(offsetHeight,scrollTop,scrollHeight);
-        console.log(this.state.lock)
         if (scrollTop + offsetHeight >= scrollHeight - 100 && this.state.lock) {
-            console.log('-----------')
             this.setState({
                 idx: this.state.idx + 1,
                 lock: false
@@ -129,29 +127,30 @@ class Notice extends Component {
         let offsetHeight = this.container.offsetHeight;
         let scrollHeight = this.container.scrollHeight;
         let scrollTop = this.container.scrollTop;
-        if (this.state.isOver && scrollTop + offsetHeight > scrollHeight - 90) {
+        //必须没有数据且拉到底部,且整体高度大于898,且消息长度大于8条
+        if (this.state.isOver && scrollTop + offsetHeight > scrollHeight - 90 && scrollHeight > 898 &&this.state.noticeList.length > 8 ) {
             this.backTimer = setInterval(() => {
                 offsetHeight = this.container.offsetHeight;
                 scrollHeight = this.container.scrollHeight;
                 scrollTop = this.container.scrollTop;
-                this.container.scrollTop -= 5
+                this.container.scrollTop -= 10
                 if (scrollTop + offsetHeight + 80 < scrollHeight) clearInterval(this.backTimer);
             }, 10)
         }
 
     }
     render() {
-        let { arrExpan, noticeList, contents,loading,isOver,lock  } = this.state;
+        let { arrExpan, noticeList, contents, loading, isOver } = this.state;
         const defaultPage = (
             <div className={styles['defaultImg']}>
                 <img src={noNoticeImg} />
-                <p className={styles['text']}>暂无通知</p> 
+                <p className={styles['text']}>暂无通知</p>
             </div>
         )
         const noticeContent = (
-            <div ref={(container) => { this.container = container }} 
-                className={styles['container']} 
-                onTouchEnd={() => { this.goToBottom() }} 
+            <div ref={(container) => { this.container = container }}
+                className={styles['container']}
+                onTouchEnd={() => { this.goToBottom() }}
                 onScroll={(e) => { this.onTouchMove(e) }}>
                 <ul className={styles['list']}>
                     {
@@ -175,19 +174,24 @@ class Notice extends Component {
                                         <span className={styles['titlename']}>{item.title}</span>
                                         <span className={styles['time']}>{moment(item.start).format('YYYY-MM-DD HH:mm')}</span>
                                     </div>
-                                    { contents[item.id] && arrExpan.includes(item.id) ? this.renderContent(item.id) : ''}
+                                    {contents[item.id] && arrExpan.includes(item.id) ? this.renderContent(item.id) : ''}
                                 </li>
                             )
                         })
                     }
-                    <div style={{ display: `${isOver ? 'block' : 'none'}` }} className={styles['noMore']}>没有更多数据</div>
+                    <div style={{ display: `${isOver && noticeList.length > 8 ? 'block' : 'none'}` }} className={styles['noMore']}>没有更多数据</div>
                 </ul>
             </div>
         )
         const notice = (
             <Fragment>
                 <BackPrevHeader />
-                    {loading ? '' : noticeList.length === 0 ? defaultPage : noticeContent}
+                {
+                    loading ? <div className={styles['loading']}>
+                        <img src={loadingImg} />
+                    </div> : null
+                }
+                {noticeList.length === 0 ? defaultPage : noticeContent}
                 <Tab />
             </Fragment>
         )
