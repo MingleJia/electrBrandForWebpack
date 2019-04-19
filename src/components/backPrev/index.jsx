@@ -15,7 +15,7 @@ class BackPrevHeader extends Component{
         const header = (
             <div className={styles['header']}>
                 <span className={styles['goback']} onClick={ this.backPrev }>
-                    <img src={ backImg }></img><span>返回</span>
+                    <img src={ backImg }></img><span className={styles['backtext']}>返回</span>
                 </span>
             </div>
         )
