@@ -1,6 +1,6 @@
 import React,{Component,Fragment} from 'react';
 import styles from './index.scss';
-import { detailsImg,campusImg, noImg, moreImg } from 'ASSETS/campusstyle';
+import { detailsImg, noImg, moreImg } from 'ASSETS/campusstyle';
 import PropTypes from 'prop-types';
 import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
@@ -10,8 +10,7 @@ class CampusStyle extends Component{
     constructor(props){
         super(props);
         this.state = {
-            campusList : [],
-            images : [],
+            loading: true,
         }
     }
 
@@ -24,19 +23,13 @@ class CampusStyle extends Component{
     componentDidMount(){
         axios('get','/api/campus/getList',{
         }).then((json)=>{
-            let campusList = json.data;
-            for (let i = 0; i < json.data.length; i++) {
-                for(let j = 0;j < json.data.length-1-i;j++){
-                    if (campusList[j].weigh > campusList[j+1].weigh) { 
-                        let temp = campusList[j+1]; 
-                        campusList[j+1] = campusList[j];
-                        campusList[j] = temp;
-                    }
-                }
-            }
             this.props.setCampusStyle({
                 campusList : json.data,
             })
+        }).then(()=>{
+            this.setState({
+                loading:false
+            })    
         })
     }
 
@@ -80,6 +73,43 @@ class CampusStyle extends Component{
     }
     render(){
         let { campusList } = this.props.root;
+        window.console.log()
+
+        const defaultPage=(
+            <div className={styles['defaultImg']}>
+                <img src={noImg} alt=""/>
+                <p className={styles['text']}>暂无校园风采</p>
+            </div>
+        )
+
+        const campusContent = (
+            <div className={styles['content']}>   
+                <ul>
+                {
+                    campusList.length !== 0 && campusList.map((item,index)=>{
+                        return(
+                            <li className={styles['list']} key={index}>
+                                <div className={styles['images']}>
+                                    {
+                                        item.images ? this.renderCarouselImg(item.images) : this.renderDefaultImg()
+                                    }
+                                </div>
+                                <div className={styles['title']}>
+                                    <span className={styles['titlename']}>{item.title}</span>
+                                    <div className={styles['detailborder']}  onClick={ ()=>this.campusDetail(index) } >
+                                        <img className={styles['detailImg']} src={ detailsImg }></img><span>详情</span>
+                                    </div>
+                                </div>
+                                <div className={styles['detail']}>         
+                                    { item.content }                                            
+                                </div>
+                            </li>
+                        )
+                        }) 
+                    }
+                </ul>
+            </div>
+        )
         const campusStyle = (
             <div className={styles['container']}>
                 <div className={styles['tab']}>
@@ -94,41 +124,7 @@ class CampusStyle extends Component{
                         <div></div>
                     }
                 </div>
-                <div className={styles['content']}>
-                    {
-                        campusList.length==0
-                        ?
-                        <div className={styles['noCampusList']}>
-                            <img className={styles['noCampusListImg']} src={campusImg} alt=""/>
-                            <span className={styles['noCampusListWord']}>暂无校园风采</span>
-                        </div>
-                        :
-                        <ul>
-                        {
-                            campusList.length !== 0 && campusList.map((item,index)=>{
-                                return(
-                                    <li className={styles['list']} key={index}>
-                                        <div className={styles['images']}>
-                                            {
-                                                item.images ? this.renderCarouselImg(item.images) : this.renderDefaultImg()
-                                            }
-                                        </div>
-                                        <div className={styles['title']}>
-                                            <span className={styles['titlename']}>{item.title}</span>
-                                            <div className={styles['detailborder']}  onClick={ ()=>this.campusDetail(index) } >
-                                                <img className={styles['detailImg']} src={ detailsImg }></img><span>详情</span>
-                                            </div>
-                                        </div>
-                                        <div className={styles['detail']}>         
-                                            { item.content }                                            
-                                        </div>
-                                    </li>
-                                )
-                                }) 
-                            }
-                        </ul>
-                    }
-                </div>
+                { campusList.length === 0 ? defaultPage : campusContent }
                 <Tab/>
             </div>
         )

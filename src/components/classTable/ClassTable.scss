@@ -180,6 +180,20 @@
         }
     }
 }
+//缺省图
+.defaultImg{
+    width: 100%;
+    text-align: center;
+        img{
+            width: 0.6rem;
+            margin-top: 3.3rem;
+        }
+        .text{
+            margin-top: 0.12rem;
+            font-size: 0.28rem;
+            color: #cccccc;
+        }
+}
 :global{
     ol, ul, dl{
         margin-bottom: 0!important;

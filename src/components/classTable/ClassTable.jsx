@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import styles from './ClassTable.scss';
+import noClassImg from 'ASSETS/home/class.png';
+
 class ClassTable extends Component {
     constructor(props) {
         super(props);
@@ -7,6 +9,7 @@ class ClassTable extends Component {
             arrRow: [],      //课表的行
             arrHeader: [],    //课表的头 课表的列
             subjectInfo: [],    //课表信息
+            loading: true, //加载中
         }
     }
 
@@ -53,6 +56,13 @@ class ClassTable extends Component {
     }
     render() {
         const { arrRow, arrHeader, subjectInfo, } = this.state;
+        //缺省图
+        const defaultPage = (
+            <div className={styles['defaultImg']}>
+                <img src={noClassImg} alt=""/>
+                <p className={styles['text']}>暂无课程</p>
+            </div>
+        )
         //时间
         const classSchedule = (
             <div className={styles['classSchedule']}>
@@ -98,10 +108,15 @@ class ClassTable extends Component {
                 </ul>
             </div>
         )
-        return <Fragment>
-            <div className={styles['container']}>
+        const lessonContent = (
+            <Fragment>
                 {classSchedule}
                 {contentSchedule}
+            </Fragment>
+        )
+        return <Fragment>
+            <div className={styles['container']}>
+                { JSON.stringify(subjectInfo) === "{}" ? defaultPage : lessonContent }
             </div>
         </Fragment>
     }

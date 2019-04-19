@@ -5,6 +5,7 @@ import styles from './index.scss';
 import axios from 'UTILS/axios';
 import moment from 'moment';
 import { collapseImg, expandImg, } from 'ASSETS/campusstyle';
+import { noNoticeImg } from 'ASSETS/home';
 class Notice extends Component {
     constructor(props) {
         super(props);
@@ -54,6 +55,10 @@ class Notice extends Component {
                 arrExpan: arrExpan,
                 lock: true
             })
+        }).then(()=>{
+            this.setState({
+                lock: false,
+            })
         })
     }
     //展开收起
@@ -102,40 +107,49 @@ class Notice extends Component {
         }
     }
     render() {
-        let { arrExpan, noticeList, contents } = this.state;
+        let { arrExpan, noticeList, contents, lock } = this.state;
+        const defaultPage = (
+            <div className={styles['defaultImg']}>
+                <img src={noNoticeImg} />
+                <p className={styles['text']}>暂无通知</p> 
+            </div>
+        )
+        const noticeContent = (
+            <div ref={(container) => { this.container = container }} className={styles['container']} onScroll={(e) => { this.onTouchMove(e) }}>
+                <ul className={styles['list']}>
+                    {
+                        noticeList.length !== 0 && noticeList.map((item, index) => {
+                            return (
+                                <li className={styles['content']} key={index}>
+                                    <div className={styles['title']}>
+                                        <div className={styles['clickexpand']} onClick={() => this.checkStatus(item.id)}>
+                                            {
+                                                arrExpan.includes(item.id)
+                                                    ?
+                                                    <Fragment>
+                                                        <span>收起</span><img src={collapseImg} className={styles['collapse']} />
+                                                    </Fragment>
+                                                    :
+                                                    <Fragment>
+                                                        <span>展开</span><img src={expandImg} className={styles['expand']} />
+                                                    </Fragment>
+                                            }
+                                        </div>
+                                        <span className={styles['titlename']}>{item.title}</span>
+                                        <span className={styles['time']}>{moment(item.start).format('YYYY-MM-DD HH:mm')}</span>
+                                    </div>
+                                    {contents[item.id] && arrExpan.includes(item.id) ? this.renderContent(item.id) : ''}
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+            </div>
+        )
         const notice = (
             <Fragment>
                 <BackPrevHeader />
-                <div ref={(container) => { this.container = container }} className={styles['container']} onScroll={(e) => { this.onTouchMove(e) }}>
-                    <ul className={styles['list']}>
-                        {
-                            noticeList.length !== 0 && noticeList.map((item, index) => {
-                                return (
-                                    <li className={styles['content']} key={index}>
-                                        <div className={styles['title']}>
-                                            <div className={styles['clickexpand']} onClick={() => this.checkStatus(item.id)}>
-                                                {
-                                                    arrExpan.includes(item.id)
-                                                        ?
-                                                        <Fragment>
-                                                            <span>收起</span><img src={collapseImg} className={styles['collapse']} />
-                                                        </Fragment>
-                                                        :
-                                                        <Fragment>
-                                                            <span>展开</span><img src={expandImg} className={styles['expand']} />
-                                                        </Fragment>
-                                                }
-                                            </div>
-                                            <span className={styles['titlename']}>{item.title}</span>
-                                            <span className={styles['time']}>{moment(item.start).format('YYYY-MM-DD HH:mm')}</span>
-                                        </div>
-                                        {contents[item.id] && arrExpan.includes(item.id) ? this.renderContent(item.id) : ''}
-                                    </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
+                    { lock ? '' : noticeList.length === 0 ? defaultPage : noticeContent}
                 <Tab />
             </Fragment>
         )
