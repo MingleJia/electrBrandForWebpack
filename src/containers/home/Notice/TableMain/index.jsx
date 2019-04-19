@@ -21,8 +21,7 @@ export default class TableMain extends React.Component {
     componentDidMount() {
         // TODO: 开启定时器
         this.timer.loop();
-        this.getNoticeList();
-       
+        // this.getNoticeList();
     }
     componentWillUnmount(){
         this.timer.destroy();

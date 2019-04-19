@@ -60,7 +60,7 @@ class ClassTable extends Component {
         const defaultPage = (
             <div className={styles['defaultImg']}>
                 <img src={noClassImg} alt=""/>
-                <p className={styles['text']}>暂无课程</p>
+                <p className={styles['text']}>暂无课表</p>
             </div>
         )
         //时间
