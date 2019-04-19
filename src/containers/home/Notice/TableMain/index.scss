@@ -46,10 +46,25 @@
         }
     }
     .detail{
-        padding:0.141rem 0.3rem 0.1rem 0.3rem;
+        padding:0.141rem 0.3rem 0 0.3rem;
         background-color: #fff;
         font-size: 0.2rem;
         color: #999;
+        overflow: hidden;
+        margin-bottom: 0.1rem;
+        height: 1rem;
+        overflow: hidden;
+        font-size: 0.24rem;
+        color: #666666;
+        position: relative;
+        margin-left: 0.06rem;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        // autoflex:off;
+        -webkit-box-orient:vertical;
+        // autoflex: on;
+        -webkit-line-clamp: 3;
+        word-break: break-all;
     }
 }
 :global{
