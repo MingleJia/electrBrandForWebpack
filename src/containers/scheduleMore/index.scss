@@ -2,6 +2,7 @@
     width: 100%;
     height: 8.98rem;
     overflow: hidden;
+    position: relative;
     .tabsList{
         width: 100%;
         height: 1.08rem;
@@ -180,6 +181,6 @@
 }
 :global{
     ol, ul, dl{
-        margin-bottom: 0!important;
+        margin-bottom: 0;
     }
 }

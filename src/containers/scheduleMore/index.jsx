@@ -63,21 +63,26 @@ class Schedule extends Component{
     }
     render(){
         const { scheduleType, arrRow, arrHeader ,subjectInfo, loading } = this.state;
-        const schedulecontent = (
-                <div className={styles['container']}>
-                    <div className={styles['tabsList']}>
-                        <ul>
-                            <li className={`${scheduleType === 0 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(0) }>本班级课表</li>
-                            <li className={`${scheduleType === 1 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(1) }>本场地课表</li>
-                        </ul>
-                    </div>
-                   <ClassTable arrRow={arrRow} arrHeader={arrHeader} subjectInfo={subjectInfo} />
-                </div>
+        const scheduleTab = (
+            <div className={styles['tabsList']}>
+                <ul>
+                    <li className={`${scheduleType === 0 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(0) }>本班级课表</li>
+                    <li className={`${scheduleType === 1 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(1) }>本场地课表</li>
+                </ul>
+            </div>
+        )
+        const schedulecontent = (   
+            <ClassTable arrRow={arrRow} arrHeader={arrHeader} subjectInfo={subjectInfo} />
+                
         )
         const schedule = (
             <Fragment>
                 <BackPrevHeader />
-                { loading ? <Loading/> : schedulecontent}
+                <div className={styles['container']}>
+                    { scheduleTab }
+                    { loading ? <Loading/> : schedulecontent}
+                </div>
+               
                 <Tab />
             </Fragment>
         )
