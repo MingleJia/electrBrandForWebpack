@@ -6,6 +6,7 @@ import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
 import { connect } from 'react-redux';
 import { setCampusStyle } from 'MODULES/root/actions';
+import Loading from 'COMPONENTS/loading';
 class CampusStyle extends Component{
     constructor(props){
         super(props);
@@ -124,7 +125,7 @@ class CampusStyle extends Component{
                         <div></div>
                     }
                 </div>
-                { loading ? '' : campusList.length === 0 ? defaultPage : campusContent }
+                { loading ? <Loading/> : campusList.length === 0 ? defaultPage : campusContent }
                 <Tab/>
             </div>
         )

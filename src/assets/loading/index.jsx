@@ -1,4 +1,4 @@
-import loadingImg from './loading.gis';
+import loadingImg from './loading.gif';
 
 
 export { loadingImg }
