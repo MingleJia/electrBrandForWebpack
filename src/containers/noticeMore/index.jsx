@@ -17,7 +17,7 @@ class Notice extends Component {
             contents: {}, //收起展开内容区
             idx: 1,//下拉请求第几波数据
             isOver: false,//下拉是否已经到最底部
-            lock: true,//正在加载中,未来可以用来设置loading
+            loading: true,//正在加载中,未来可以用来设置loading
         }
     }
 
@@ -53,11 +53,11 @@ class Notice extends Component {
                     ...json.data.dataList,
                 ],
                 arrExpan: arrExpan,
-                lock: true
+                loading: true
             })
         }).then(()=>{
             this.setState({
-                lock: false,
+                loading: false
             })
         })
     }
@@ -107,9 +107,9 @@ class Notice extends Component {
     //下拉加载
     onTouchMove(e) {
         e.preventDefault();
-        let offsetHeight = this.container.offsetHeight
-        let scrollHeight = this.container.scrollHeight
-        let scrollTop = this.container.scrollTop
+        let offsetHeight = this.container.offsetHeight;
+        let scrollHeight = this.container.scrollHeight;
+        let scrollTop = this.container.scrollTop;
         if (scrollTop + offsetHeight >= scrollHeight - 100 && this.state.lock) {
             this.setState({
                 idx: this.state.idx + 1,
@@ -119,8 +119,24 @@ class Notice extends Component {
             })
         }
     }
+    //如果滑到底部就返回,针对移动端
+    goToBottom() {
+        let offsetHeight = this.container.offsetHeight;
+        let scrollHeight = this.container.scrollHeight;
+        let scrollTop = this.container.scrollTop;
+        if (this.state.isOver && scrollTop + offsetHeight > scrollHeight - 90) {
+            this.backTimer = setInterval(() => {
+                offsetHeight = this.container.offsetHeight;
+                scrollHeight = this.container.scrollHeight;
+                scrollTop = this.container.scrollTop;
+                this.container.scrollTop -= 5
+                if (scrollTop + offsetHeight + 80 < scrollHeight) clearInterval(this.backTimer);
+            }, 10)
+        }
+
+    }
     render() {
-        let { arrExpan, noticeList, contents, lock } = this.state;
+        let { arrExpan, noticeList, contents,loading,isOver } = this.state;
         const defaultPage = (
             <div className={styles['defaultImg']}>
                 <img src={noNoticeImg} />
@@ -128,7 +144,10 @@ class Notice extends Component {
             </div>
         )
         const noticeContent = (
-            <div ref={(container) => { this.container = container }} className={styles['container']} onScroll={(e) => { this.onTouchMove(e) }}>
+            <div ref={(container) => { this.container = container }} 
+                className={styles['container']} 
+                onTouchEnd={() => { this.goToBottom() }} 
+                onScroll={(e) => { this.onTouchMove(e) }}>
                 <ul className={styles['list']}>
                     {
                         noticeList.length !== 0 && noticeList.map((item, index) => {
@@ -156,13 +175,14 @@ class Notice extends Component {
                             )
                         })
                     }
+                    <div style={{ display: `${isOver ? 'block' : 'none'}` }} className={styles['noMore']}>没有更多数据</div>
                 </ul>
             </div>
         )
         const notice = (
             <Fragment>
                 <BackPrevHeader />
-                    { lock ? '' : noticeList.length === 0 ? defaultPage : noticeContent}
+                    {loading ? '' : noticeList.length === 0 ? defaultPage : noticeContent}
                 <Tab />
             </Fragment>
         )
