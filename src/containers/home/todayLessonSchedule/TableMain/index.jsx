@@ -90,7 +90,7 @@ export default class TableMain extends React.Component {
                     ?
                     <div className={style['noTableData']}>
                         <img className={style['noTableDataImg']} src={noClassImg} alt=""/>
-                        <span className={style['noTableDataWord']}>暂无课程</span>
+                        <span className={style['noTableDataWord']}>暂无课表</span>
                     </div>
                     :
                     <ul>
