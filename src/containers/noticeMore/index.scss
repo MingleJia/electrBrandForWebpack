@@ -3,6 +3,7 @@
     height: 8.98rem;
     overflow-y: auto;
     font-size: 0.26rem;
+    transition:all 1s;
     .list{
         background-color: #efefef;
         .content{
@@ -64,6 +65,14 @@
                 display: none;
             }
         }
+    }
+    .noMore{
+        width: 100%;
+        padding: 0.3rem 0 0 0;
+        text-align: center;
+        font-size: 0.26rem;
+        color:#333333;
+        background-color: white;
     }
     &:after{
         display:block; 
