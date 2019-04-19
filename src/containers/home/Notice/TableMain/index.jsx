@@ -70,8 +70,8 @@ export default class TableMain extends React.Component {
     //只有一条通知时渲染内容区
     renderContent = () => {
         return (
-            <div className={style.detail} dangerouslySetInnerHTML={{ __html: `${this.state.content}` }} >
-
+            <div className={style.detail} >
+                { this.state.content }
             </div>
         )
     }

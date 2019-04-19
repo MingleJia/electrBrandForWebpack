@@ -58,7 +58,45 @@
                 }
             }
             .detail{
+                width: 100%;
+                height: auto;
                 padding-bottom: 0.32rem;
+                .noticeContent{
+                    font-family: MicrosoftYaHei;
+                    font-size: 0.24rem;
+                    line-height: 0.36rem;
+                    color: #666; 
+                }
+                .wrap{
+                    width: 100%;
+                    height: auto;
+                    margin-top: 0.24rem;
+                    .imgBlock{
+                        width: 8.72rem;
+                        height: 4.9rem;
+                        float: left;
+                        position: relative;
+                        margin-bottom: 0.2rem;
+                        .noticeimg{
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%,-50%);
+                            max-width: 8.72rem;
+                            max-height: 4.9rem;
+                        }
+                        &:nth-of-type(even){
+                            margin-left: 0.2rem;
+                        }
+                    }
+                    &:after{
+                        clear: both;
+                        overflow: hidden;
+                        content: '';
+                        display: block;
+                    }
+                }
+                
             }
             .detailHidden{
                 display: none;

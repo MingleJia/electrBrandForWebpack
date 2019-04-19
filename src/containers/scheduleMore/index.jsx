@@ -58,8 +58,8 @@ class Schedule extends Component{
                 <div className={styles['container']}>
                     <div className={styles['tabsList']}>
                         <ul>
-                            <li className={`${scheduleType === 0 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(0) }>本班级课程表</li>
-                            <li className={`${scheduleType === 1 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(1) }>本场地课程表</li>
+                            <li className={`${scheduleType === 0 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(0) }>本班级课表</li>
+                            <li className={`${scheduleType === 1 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(1) }>本场地课表</li>
                         </ul>
                     </div>
                     <ClassTable arrRow={arrRow} arrHeader={arrHeader} subjectInfo={subjectInfo} />

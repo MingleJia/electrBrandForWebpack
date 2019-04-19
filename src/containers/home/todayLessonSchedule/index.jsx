@@ -20,7 +20,7 @@ export default class TodayLessonSchedule extends React.Component {
         return (
             <div className={`${themeLoader(['block', 'schedule'], theme, style)}`}>
                 <div className={themeLoader(['topLine'], theme, style)}>
-                    <span className={style['title']}>今日课程</span>
+                    <span className={style['title']}>今日课表</span>
                     {
                         //如果tableData没有就不显示更多
                         Object.keys(this.state.tableData).length

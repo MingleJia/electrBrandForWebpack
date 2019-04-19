@@ -76,7 +76,7 @@ class Notice extends Component {
             id: id,
         }).then((json) => {
             let { contents } = this.state;
-            contents[id] = json.data.content;
+            contents[id] = json.data;
             this.setState({
                 contents
             })
@@ -86,8 +86,21 @@ class Notice extends Component {
     //渲染展开通知内容
     renderContent = (id) => {
         return (
-            <div className={`${this.state.arrExpan.includes(id) ? styles['detail'] : styles['detailHidden']}`} dangerouslySetInnerHTML={{ __html: `${this.state.contents[id]}` }} >
-
+            <div className={`${this.state.arrExpan.includes(id) ? styles['detail'] : styles['detailHidden']}`} >
+                <p className={styles['noticeContent']}>{ this.state.contents[id].content }</p>
+                <div className={styles['wrap']}>
+                    {
+                        this.state.contents[id].accessorys.length !== 0 && this.state.contents[id].accessorys.map((img,index)=>{
+                            {
+                                return(
+                                    <div className={styles['imgBlock']} key={index}>
+                                        <img src={img.fileUrl} className={styles['noticeimg']} />
+                                    </div>
+                                )
+                            }
+                        })
+                    }
+                </div>
             </div>
         )
     }
@@ -138,7 +151,7 @@ class Notice extends Component {
                                         <span className={styles['titlename']}>{item.title}</span>
                                         <span className={styles['time']}>{moment(item.start).format('YYYY-MM-DD HH:mm')}</span>
                                     </div>
-                                    {contents[item.id] && arrExpan.includes(item.id) ? this.renderContent(item.id) : ''}
+                                    { contents[item.id] && arrExpan.includes(item.id) ? this.renderContent(item.id) : ''}
                                 </li>
                             )
                         })
