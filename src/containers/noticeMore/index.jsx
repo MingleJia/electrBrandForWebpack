@@ -17,6 +17,7 @@ class Notice extends Component {
             contents: {}, //收起展开内容区
             idx: 1,//下拉请求第几波数据
             isOver: false,//下拉是否已经到最底部
+            lock: true,//正在加载中,未来可以用来设置loading
             loading: true,//正在加载中,未来可以用来设置loading
         }
     }
@@ -53,6 +54,7 @@ class Notice extends Component {
                     ...json.data.dataList,
                 ],
                 arrExpan: arrExpan,
+                lock: true,
                 loading: true
             })
         }).then(()=>{
@@ -110,7 +112,10 @@ class Notice extends Component {
         let offsetHeight = this.container.offsetHeight;
         let scrollHeight = this.container.scrollHeight;
         let scrollTop = this.container.scrollTop;
+        console.log(offsetHeight,scrollTop,scrollHeight);
+        console.log(this.state.lock)
         if (scrollTop + offsetHeight >= scrollHeight - 100 && this.state.lock) {
+            console.log('-----------')
             this.setState({
                 idx: this.state.idx + 1,
                 lock: false
@@ -136,7 +141,7 @@ class Notice extends Component {
 
     }
     render() {
-        let { arrExpan, noticeList, contents,loading,isOver } = this.state;
+        let { arrExpan, noticeList, contents,loading,isOver,lock  } = this.state;
         const defaultPage = (
             <div className={styles['defaultImg']}>
                 <img src={noNoticeImg} />
