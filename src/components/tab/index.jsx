@@ -13,7 +13,7 @@ import axios from 'UTILS/axios';
 //     '考勤': {
 //         to: '/campusstyle',
 //         src: attendance,
-//         title: '考勤'
+//         title: '考勤'22
 //     },
 //     '学生风采': {
 //         to: '/campusStyle',
