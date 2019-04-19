@@ -44,7 +44,7 @@ export default class TableMain extends React.Component {
 
     //通知详情
     getNoticeContent = (id) => {
-        axios('get', '/api/notice/getNoticeContent', {
+        axios('get', '/api/notice/getNoticeContentWithNoPic', {
             id: id,
         }).then((json) => {
             this.setState({
