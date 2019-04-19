@@ -25,10 +25,11 @@ function reLogin(error){
         },3000)
     }
 }
+let toastLock = true;
 function axiosRequest(method, url, params, type){
     switch (method) {
         case 'get':
-            return new Promise((resolve, reject)=>{
+            return new Promise((resolve)=>{
                 axios({
                     url: baseURL + url,
                     method: 'get',
@@ -37,11 +38,18 @@ function axiosRequest(method, url, params, type){
                         t: new Date().getTime(),
                     },
                     headers: { 'token': getItem('token') },
+                    timeout:10000,
                 }).then((json)=>{
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{
-                    reLogin(error);
-                    reject(error.response);
+                    if(error.message.indexOf('timeout') !== -1 && toastLock){
+                        message.info('网络不给力');
+                        toastLock = false;
+                    }
+                    setTimeout(() => {
+                        toastLock = true;
+                    }, 2000);
+
                 });
             });
         case 'post':

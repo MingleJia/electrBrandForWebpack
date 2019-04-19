@@ -24,16 +24,16 @@ class CampusStyle extends Component{
     componentDidMount(){
         axios('get','/api/campus/getList',{
         }).then((json)=>{
-            // let campusList = json.data;
-            // for (let i = 0; i < json.data.length; i++) {
-            //     for(let j = 0;j < json.data.length-1-i;j++){
-            //         if (campusList[j].weigh > campusList[j+1].weigh) { //相邻元素两两对比
-            //             let temp = campusList[j+1]; //元素交换
-            //             campusList[j+1] = campusList[j];
-            //             campusList[j] = temp;
-            //         }
-            //     }
-            // }
+            let campusList = json.data;
+            for (let i = 0; i < json.data.length; i++) {
+                for(let j = 0;j < json.data.length-1-i;j++){
+                    if (campusList[j].weigh > campusList[j+1].weigh) { 
+                        let temp = campusList[j+1]; 
+                        campusList[j+1] = campusList[j];
+                        campusList[j] = temp;
+                    }
+                }
+            }
             this.props.setCampusStyle({
                 campusList : json.data,
             })

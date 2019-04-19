@@ -41,7 +41,7 @@ class IncentiveMonth extends Component{
             <li key={index}>
                 { index < 3 ? <img src={ rankImg[index] }></img> : <span className={styles['ranking']}>{ index + 1 }</span> }
                 <span className={styles['student-name']}>{ userName }</span>
-                <span className={styles['number']}>{ value }</span>
+                <span className={styles['number']}>{ value > 999 ? '999+' : value }</span>
             </li>
         )
     }
