@@ -31,35 +31,41 @@ import axios from 'UTILS/axios';
 //         title: '个人中心'
 //     },
 // }
+const defaultTab = [
+    {
+        "base_name": "首页",
+        "url": "/home",
+        "icon": home
+    },
+    // {
+    //     "base_name": "校园风采",
+    //     "url": "/campusStyle",
+    //     "icon": campusStyle
+    // },
+    // {
+    //     "base_name": "学生风采",
+    //     "url": "/studentsStyle",
+    //     "icon": studentStyle
+    // },
+]
 class Tab extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tabList: [
-                {
-                    "base_name": "首页",
-                    "url": "/home",
-                    "icon": home
-                }, 
-                // {
-                //     "base_name": "校园风采",
-                //     "url": "/campusStyle",
-                //     "icon": campusStyle
-                // }, 
-                // {
-                //     "base_name": "学生风采",
-                //     "url": "/studentsStyle",
-                //     "icon": studentStyle
-                // },
-            ]
+            tabList: JSON.parse(window.localStorage.getItem('tabList')) || defaultTab
         }
     }
     componentDidMount() {
         //返回数据不好看暂时先写死
         setInterval(() => {
             const myDate = new Date();
+            //在每天早6点晚6点自动刷新
             if ((myDate.getHours() == 6 && myDate.getMinutes() == 0) || (myDate.getHours() == 18 && myDate.getMinutes() == 0)) {
-                this.getNavBar();
+                window.localStorage.removeItem('tabList');
+                this.setState({
+                    tabList: JSON.parse(window.localStorage.getItem('tabList')) || defaultTab
+                }, () => { this.getNavBar() })
+
             }
         }, 59000);
         this.getNavBar();
@@ -68,11 +74,14 @@ class Tab extends Component {
         axios('get', '/api/index/nav').then(json => {
             const tabList = json.data.nav_bar;
             this.setState({
-                tabList: [
+                tabList: JSON.parse(window.localStorage.getItem('tabList')) || [
                     ...this.state.tabList,
                     ...tabList
                 ]
+            }, () => {
+                window.localStorage.setItem("tabList", JSON.stringify(this.state.tabList));
             })
+
             this.props.getTabList && this.props.getTabList(tabList);
         })
     }

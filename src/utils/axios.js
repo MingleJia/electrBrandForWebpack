@@ -20,6 +20,7 @@ function reLogin(error){
         //删除缓存3秒后返回登录页
         window.localStorage.removeItem('password'); 
         window.localStorage.removeItem('account'); 
+        window.localStorage.removeItem('tabList'); 
         setTimeout(function(){
             window.location.href = window.location.href.split('#/')[0];
         },3000)

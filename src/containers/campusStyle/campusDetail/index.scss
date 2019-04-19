@@ -31,28 +31,8 @@
                 transform: rotateY(180deg);
                 margin-right: 0.11rem;
             }
-        }
-        //这是老的样式不想删除
-        .btn{
-            width: 2.6rem;
-            height: 0.52rem;
-            line-height: 0.52rem;
-            background-color: #2f6aca;
-            border-radius: 0.26rem;
-            border: solid 0.02rem #9ac0ff;
-            text-align: center;
-            position: absolute;
-            right: 0.4rem;
-            top: 0.18rem;
-            span{
-                display: inline-block;
-                width: 1.2rem; 
-                font-family: SourceHanSansCN;
-                font-size: 0.24rem;
-                color: #ffffff;
-            }
-            .prevBtn{
-                border-right: solid 0.02rem #9ac0ff;
+            &:hover{
+                background-color: #4d87e5;
             }
         }
         //这是新的样式
