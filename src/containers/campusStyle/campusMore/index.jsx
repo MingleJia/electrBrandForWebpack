@@ -5,6 +5,7 @@ import styles from './index.scss';
 import { collapseImg, expandImg, campusImg } from 'ASSETS/campusstyle';
 import axios from 'UTILS/axios';
 import moment from 'moment';
+import Loading from 'COMPONENTS/loading';
 class CampusMore extends Component {
     constructor(props) {
         super(props);
@@ -95,7 +96,7 @@ class CampusMore extends Component {
         const campusMore = (
             <Fragment>
                 <BackPrevHeader />
-                    { loading ? '' : campusList.length === 0 ? defaultPage : campusContent}
+                    { loading ? <Loading/> : campusList.length === 0 ? defaultPage : campusContent}
                 <Tab />
             </Fragment>
         )

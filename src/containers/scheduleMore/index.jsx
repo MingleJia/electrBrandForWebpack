@@ -4,6 +4,7 @@ import BackPrevHeader from 'COMPONENTS/backPrev';
 import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
 import ClassTable from 'COMPONENTS/classTable/ClassTable.jsx';
+import Loading from 'COMPONENTS/loading';
 class Schedule extends Component{
     constructor(props){
         super(props);
@@ -12,6 +13,7 @@ class Schedule extends Component{
             arrRow : [],      //课表的行
             arrHeader: [],    //课表的头 课表的列
             subjectInfo : [],    //课表信息
+            loading : true,
         }
     }
 
@@ -28,6 +30,10 @@ class Schedule extends Component{
                 arrRow : json.data.rowHeader,
                 arrHeader: json.data.colHeader,
             })
+        }).then(()=>{
+            this.setState({
+                loading: false,
+            })
         })
     }
 
@@ -40,6 +46,10 @@ class Schedule extends Component{
                 arrRow : json.data.rowHeader,
                 arrHeader: json.data.colHeader,
             })
+        }).then(()=>{
+            this.setState({
+                loading: false,
+            })
         })
     }
 
@@ -47,14 +57,13 @@ class Schedule extends Component{
     checkSchedule = (value) => {
         this.setState({
             scheduleType: value,
+            loading: true,
         })
         value === 0 ? this.getClassSchedule() : this.getAreaSchedule();
     }
     render(){
-        const { scheduleType, arrRow, arrHeader ,subjectInfo } = this.state;
-        const schedule = (
-            <Fragment>
-                <BackPrevHeader />
+        const { scheduleType, arrRow, arrHeader ,subjectInfo, loading } = this.state;
+        const schedulecontent = (
                 <div className={styles['container']}>
                     <div className={styles['tabsList']}>
                         <ul>
@@ -62,8 +71,13 @@ class Schedule extends Component{
                             <li className={`${scheduleType === 1 ? styles['tab-active'] : '' }`} onClick={ ()=>this.checkSchedule(1) }>本场地课表</li>
                         </ul>
                     </div>
-                    <ClassTable arrRow={arrRow} arrHeader={arrHeader} subjectInfo={subjectInfo} />
+                   <ClassTable arrRow={arrRow} arrHeader={arrHeader} subjectInfo={subjectInfo} />
                 </div>
+        )
+        const schedule = (
+            <Fragment>
+                <BackPrevHeader />
+                { loading ? <Loading/> : schedulecontent}
                 <Tab />
             </Fragment>
         )
