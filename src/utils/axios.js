@@ -16,7 +16,8 @@ function getItem(key){
 //如果账户被删除重新登入  error:错误信息{}
 function reLogin(error){
     if(error.response.status == 401){
-        message.warning('账户已经被删除,请重新登录');
+        message.error('账户已经被删除,请重新登录');
+        message.config({ maxCount:1,});
         //删除缓存3秒后返回登录页
         window.localStorage.removeItem('password'); 
         window.localStorage.removeItem('account'); 
