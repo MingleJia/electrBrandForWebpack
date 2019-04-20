@@ -46,7 +46,10 @@ class Login extends Component {
     }
 
     login = () => {
-        const { account, password } = this.state;
+        let { account, password } = this.state;
+        // 过滤前后空格
+        account=account.replace(/(^\s*)|(\s*$)/g, "");
+        password=password.replace(/(^\s*)|(\s*$)/g, "");
         if (account.replace(/\s+/g,"") === '') {
             message.error('请输入班牌编号');
         } else if (password === '') {
@@ -73,8 +76,11 @@ class Login extends Component {
     //这是自动登入,代码内容和登入一样只是登入的参数从浏览器缓存获取
     loginAuto = () => {
         // const { account, password } = this.state;
-        const account = decodeURI(window.atob(window.localStorage.getItem('account')));
-        const password = decodeURI(window.atob(window.localStorage.getItem('password')));
+        let account = decodeURI(window.atob(window.localStorage.getItem('account')));
+        let password = decodeURI(window.atob(window.localStorage.getItem('password')));
+        // 过滤前后空格
+        account=account.replace(/(^\s*)|(\s*$)/g, "");
+        password=password.replace(/(^\s*)|(\s*$)/g, "");
         if (account === '') {
             message.error('请输入班牌编号');
         } else if (password === '') {
