@@ -42,6 +42,7 @@ function axiosRequest(method, url, params, type){
                     timeout:10000,
                 }).then((json)=>{
                     json.status === 200 && resolve(json.data);
+                    reLogin(error);
                 }).catch((error)=>{
                     if(error.message.indexOf('timeout') !== -1 && toastLock){
                         message.info('网络不给力');

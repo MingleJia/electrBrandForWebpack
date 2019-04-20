@@ -60,8 +60,8 @@ class Login extends Component {
                     this.props.setUserInfo({ info: json.data.userinfo });
                     // document.cookie = 'token=271eb32e-4858-4434-9574-0c2dafb14bd7';
                     document.cookie = 'token=' + json.data.userinfo.token;
-                    window.localStorage.setItem("account", window.btoa(account));
-                    window.localStorage.setItem("password", window.btoa(password));
+                    window.localStorage.setItem("account", window.btoa(encodeURI(account)));
+                    window.localStorage.setItem("password", window.btoa(encodeURI(password)));
                     this.props.history.push('home');
                 } else if (json.code === 0) {
                     message.error(json.msg);
@@ -73,8 +73,8 @@ class Login extends Component {
     //这是自动登入,代码内容和登入一样只是登入的参数从浏览器缓存获取
     loginAuto = () => {
         // const { account, password } = this.state;
-        const account = window.atob(window.localStorage.getItem('account'));
-        const password = window.atob(window.localStorage.getItem('password'));
+        const account = decodeURI(window.atob(window.localStorage.getItem('account')));
+        const password = decodeURI(window.atob(window.localStorage.getItem('password')));
         if (account === '') {
             message.error('请输入班牌编号');
         } else if (password === '') {
@@ -88,8 +88,8 @@ class Login extends Component {
                     this.props.setUserInfo({ info: json.data.userinfo });
                     // document.cookie = 'token=271eb32e-4858-4434-9574-0c2dafb14bd7';
                     document.cookie = 'token=' + json.data.userinfo.token;
-                    window.localStorage.setItem("account", window.btoa(account));
-                    window.localStorage.setItem("password", window.btoa(password));
+                    window.localStorage.setItem("account", window.btoa(encodeURI(account)));
+                    window.localStorage.setItem("password", window.btoa(encodeURI(password)));
                     this.props.history.push('home');
                 } else if (json.code === 0) {
                     message.error(json.msg);
