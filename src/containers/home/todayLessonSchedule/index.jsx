@@ -10,7 +10,8 @@ export default class TodayLessonSchedule extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableData:{}
+            tableData:{},
+            loading: true,
         };
     }
     componentDidMount() {
@@ -32,7 +33,7 @@ export default class TodayLessonSchedule extends React.Component {
                         <div></div>
                     }
                 </div>
-                <TableMain changeTableData={(tableData)=>{this.setState({tableData});}}/>
+                <TableMain changeTableData={(tableData,loading)=>{this.setState({tableData,loading});}}/>
             </div>
         );
     }
