@@ -10,7 +10,8 @@ export default class Notice extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            noticeList:[]
+            noticeList:[],
+            loadingnotice: true,
         };
     }
     componentDidMount() {
@@ -31,7 +32,7 @@ export default class Notice extends React.Component {
                         <div></div>
                     }
                 </div>
-                <TableMain changeNoticeList={(noticeList)=>{this.setState({noticeList});}} />
+                <TableMain changeNoticeList={(noticeList,loadingnotice)=>{this.setState({noticeList,loadingnotice});}} />
             </div>
         );
     }

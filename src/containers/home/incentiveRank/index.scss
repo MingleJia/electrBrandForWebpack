@@ -7,6 +7,7 @@
     background: url('ASSETS/home/rank-bg.png');
     background-size: 100%;
     margin: 0.2rem 0.2rem 0.2rem 0.4rem;
+    position: relative;
     .top{
         .title{
             font-family: SourceHanSansCN-Medium;
@@ -129,6 +130,9 @@
         color: #577cf3;
         text-align: center;
         margin-top: 0.44rem;
+        width: 100%;
+        position: absolute;
+        bottom: 0.56rem;
     }
 }
 .tips{

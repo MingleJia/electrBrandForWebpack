@@ -4,6 +4,7 @@ import styles from './index.scss';
 import { tipsImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg, } from 'ASSETS/home';
 import { Link } from 'react-router-dom';
 import axios from 'UTILS/axios';
+import Loading from 'COMPONENTS/loading';
 
 class Rank extends Component{
     constructor(props){
@@ -12,6 +13,7 @@ class Rank extends Component{
             flowerRank: [], // 红花排行
             scoreRank: [],  // 勤学排行
             congratulations: [],    // 祝贺语
+            loading: true,
         }
     }
 
@@ -32,9 +34,12 @@ class Rank extends Component{
             });
         }).then(()=>{
             const { flowerRank,scoreRank } = this.state;
-            const rankList = document.getElementById('rank-list-flower');
-            const original = document.getElementById('original-flower');
+            this.setState({
+                loading: false,
+            })
             if(flowerRank.length !== 0 && flowerRank.length > 5){
+                const rankList = document.getElementById('rank-list-flower');
+                const original = document.getElementById('original-flower');
                 this.flowerScroll = setInterval(()=>{
                     if(rankList.scrollTop > original.offsetHeight){
                         rankList.scrollTop = 0;
@@ -43,9 +48,9 @@ class Rank extends Component{
                     }
                 }, 20);
             }
-            const rankScore = document.getElementById('rank-list-score');
-            const originalScore = document.getElementById('original-score');
             if( scoreRank.length!== 0 && scoreRank.length > 5 ){
+                const rankScore = document.getElementById('rank-list-score');
+                const originalScore = document.getElementById('original-score');
                 this.scoreRankScoll = setInterval(()=>{
                     if(rankScore.scrollTop > originalScore.offsetHeight){
                         rankScore.scrollTop = 0;
@@ -77,7 +82,7 @@ class Rank extends Component{
     }
 
     render(){
-        const { flowerRank, scoreRank, congratulations } = this.state;
+        const { flowerRank, scoreRank, congratulations,loading } = this.state;
 
         //悬浮排行榜规则提示框
         const tips = (
@@ -92,6 +97,75 @@ class Rank extends Component{
                 月排行榜<img src={ moreImg }></img>
             </Link>
         )
+
+        const rankContent=(
+            <div className={styles['container']}>
+                <div className={styles['item']}>
+                    <img src={ flowerImg } className={styles['icon']}></img>
+                    <p className={styles['item-title']}>红花奖励TOP20</p>
+                    <div className={styles['rank-list']} id='rank-list-flower'>
+                        {
+                            flowerRank.length !== 0 ?
+                            <Fragment>
+                                <ul id='original-flower'>
+                                    { 
+                                        flowerRank.map((item, index)=>{
+                                            return this.listItem(item, index);
+                                        })
+                                    }
+                                </ul>
+                                {
+                                    flowerRank.length  > 5 ? 
+                                    <Fragment>
+                                        <ul id='clone-rank-list-flower'>
+                                        {
+                                            flowerRank.map((item, index)=>{
+                                                return this.listItem(item, index);
+                                            })
+                                        }
+                                    </ul>
+                                    </Fragment>  :
+                                    ''
+                                }
+                            </Fragment> : 
+                            <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                        }
+                    </div>
+                </div>
+                <div className={styles['item']}>
+                    <img src={ creditImg } className={styles['icon']}></img>
+                    <p className={styles['item-title']}>勤学分奖励TOP20</p>
+                    <div className={styles['rank-list']} id='rank-list-score'>
+                        {
+                            scoreRank.length !== 0 ?
+                            <Fragment>
+                                <ul id='original-score'>
+                                    { 
+                                        scoreRank.map((item, index)=>{
+                                            return this.listItem(item, index);
+                                        })
+                                    }
+                                </ul>
+                                {
+                                    scoreRank.length  > 5 ? 
+                                    <Fragment>
+                                        <ul id='clone-rank-list-score'>
+                                            {
+                                                scoreRank.map((item, index)=>{
+                                                    return this.listItem(item, index);
+                                                })
+                                            }
+                                        </ul>
+                                    </Fragment>  :
+                                    ''
+                                }
+                            </Fragment> : 
+                            <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        )
         const rank = (
             <div className={styles['rank']}>
                 <div className={styles['top']}>
@@ -103,72 +177,7 @@ class Rank extends Component{
                     </span>
                     { flowerRank.length === 0 && scoreRank.length === 0 ? '' : incentivemonth }
                 </div>
-                <div className={styles['container']}>
-                    <div className={styles['item']}>
-                        <img src={ flowerImg } className={styles['icon']}></img>
-                        <p className={styles['item-title']}>红花奖励TOP20</p>
-                        <div className={styles['rank-list']} id='rank-list-flower'>
-                            {
-                                flowerRank.length !== 0 ?
-                                <Fragment>
-                                    <ul id='original-flower'>
-                                        { 
-                                            flowerRank.map((item, index)=>{
-                                                return this.listItem(item, index);
-                                            })
-                                        }
-                                    </ul>
-                                    {
-                                        flowerRank.length  > 5 ? 
-                                        <Fragment>
-                                            <ul id='clone-rank-list'>
-                                            {
-                                                flowerRank.map((item, index)=>{
-                                                    return this.listItem(item, index);
-                                                })
-                                            }
-                                        </ul>
-                                        </Fragment>  :
-                                        ''
-                                    }
-                                </Fragment> : 
-                                <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
-                            }
-                        </div>
-                    </div>
-                    <div className={styles['item']}>
-                        <img src={ creditImg } className={styles['icon']}></img>
-                        <p className={styles['item-title']}>勤学分奖励TOP20</p>
-                        <div className={styles['rank-list']} id='rank-list-score'>
-                            {
-                                scoreRank.length !== 0 ?
-                                <Fragment>
-                                    <ul id='original-score'>
-                                        { 
-                                            scoreRank.map((item, index)=>{
-                                                return this.listItem(item, index);
-                                            })
-                                        }
-                                    </ul>
-                                    {
-                                        scoreRank.length  > 5 ? 
-                                        <Fragment>
-                                            <ul id='clone-rank-list'>
-                                                {
-                                                    scoreRank.map((item, index)=>{
-                                                        return this.listItem(item, index);
-                                                    })
-                                                }
-                                            </ul>
-                                        </Fragment>  :
-                                        ''
-                                    }
-                                </Fragment> : 
-                                <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
-                            }
-                        </div>
-                    </div>
-                </div>
+                { loading ? <Loading/> : rankContent }
                 <p className={styles['congratulations']}>
                     { flowerRank.length!==0 || scoreRank.length!==0 && congratulations.length !== 0 ? congratulations[Math.floor(Math.random() * congratulations.length)] : '' }
                 </p>

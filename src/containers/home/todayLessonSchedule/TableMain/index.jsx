@@ -9,7 +9,7 @@ export default class TableMain extends React.Component {
         super(props);
         this.state = {
             tableData: {},
-            loading: true,
+            loadingLesson: true,
         };
     }
     
@@ -31,7 +31,7 @@ export default class TableMain extends React.Component {
             }
         }).then(()=>{
             this.setState({
-                loading: false,
+                loadingLesson: false,
             })
         })
     }
@@ -89,7 +89,7 @@ export default class TableMain extends React.Component {
         )
     }
     render() {
-        const { tableData,loading } = this.state;
+        const { tableData,loadingLesson } = this.state;
         const content = (
             <Fragment>
                 {
@@ -112,7 +112,7 @@ export default class TableMain extends React.Component {
         )
         return (
             <div className={style['tableContent']}>
-               { loading ? <Loading/> : content  }
+               { loadingLesson ? <Loading/> : content  }
             </div>
         );
     }
