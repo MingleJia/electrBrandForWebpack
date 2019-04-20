@@ -4,6 +4,7 @@ import Tab from 'COMPONENTS/tab';
 import styles from './index.scss';
 import { flowerImg, creditImg, firstImg, secondImg, thirdImg, tipsWhiteImg, goodImg } from 'ASSETS/home';
 import axios from 'UTILS/axios';
+import Loading from 'COMPONENTS/loading';
 
 class IncentiveMonth extends Component{
     constructor(props){
@@ -12,6 +13,7 @@ class IncentiveMonth extends Component{
             flowerRank : [],
             scoreRank : [],
             congratulations:[],
+            loading: true,
         }
     }
 
@@ -25,6 +27,10 @@ class IncentiveMonth extends Component{
                 flowerRank: json.data.flowerRank||[],
                 scoreRank: json.data.scoreRank||[],
             });
+        }).then(()=>{
+            this.setState({
+                loading:false,
+            })
         })
         axios('get', '/api/index/congratulation').then((json)=>{
             let arrCongratulations = [];
@@ -46,7 +52,7 @@ class IncentiveMonth extends Component{
         )
     }
     render(){
-        const { flowerRank, scoreRank,congratulations } = this.state;
+        const { flowerRank, scoreRank,congratulations,loading } = this.state;
         const encouragement = (
             <div className={styles['encouragement']}>
                 <img src={ goodImg }></img>
@@ -64,16 +70,8 @@ class IncentiveMonth extends Component{
             </div>
         )
 
-        const incentiveMonth = (
+        const rankcontent = (
             <Fragment>
-                <div className={styles['title']}>
-                    <span>
-                        本月激励排行榜
-                        <Popover placement="bottomLeft" content={tips} trigger="click" overlayClassName="monthRank">
-                            <img src={ tipsWhiteImg }></img>
-                        </Popover>
-                    </span>
-                </div>
                 <div className={styles['container']}>
                     <div className={styles['item']}>
                         <img src={ flowerImg } className={styles['icon']}></img>
@@ -129,6 +127,21 @@ class IncentiveMonth extends Component{
                     </div>
                 </div>
                 { flowerRank.length !==0 || scoreRank.length!==0 ?  encouragement : '' }
+            </Fragment>
+        )
+        const incentiveMonth = (
+            <Fragment>
+                <div className={styles['title']}>
+                    <span>
+                        本月激励排行榜
+                        <Popover placement="bottomLeft" content={tips} trigger="click" overlayClassName="monthRank">
+                            <img src={ tipsWhiteImg }></img>
+                        </Popover>
+                    </span>
+                </div>
+                
+                { loading? <Loading/> : rankcontent  }
+               
                 <Tab />
             </Fragment>
         )

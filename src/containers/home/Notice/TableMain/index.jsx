@@ -4,13 +4,14 @@ import Polling from 'UTILS/polling';
 import axios from 'UTILS/axios';
 import moment from 'moment';
 import { noNoticeImg } from 'ASSETS/home';
-
+import Loading from 'COMPONENTS/loading';
 export default class TableMain extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             noticeList : [],
             content : '',  //通知只有一条时的内容区
+            loadingnotice: true,
         };
         const timer = new Polling({
             timeout: 1000*100,
@@ -39,7 +40,11 @@ export default class TableMain extends React.Component {
             this.setState({       
                 noticeList : json.data.dataList,
             })
-        }) 
+        }).then(()=>{
+            this.setState({       
+                loadingnotice : false,
+            })
+        })
     }
 
     //通知详情
@@ -75,25 +80,26 @@ export default class TableMain extends React.Component {
         )
     }
     render() {
-        const { noticeList } = this.state;
+        const { noticeList,loadingnotice } = this.state;
+
+        const defaultPage = (
+            <div className={style['defaultImg']}>
+                <img src={noNoticeImg} />
+                <p className={style['text']}>暂无通知</p> 
+            </div>
+        )
+        const noticeContent = (
+            <ul>
+                {
+                    noticeList.slice(0,3).map((ele,index) => 
+                        this.renderTableLine(ele,index)
+                    )
+                }
+            </ul>  
+        )
         return (
             <div className={style['tableContent']}>
-            {
-                noticeList.length === 0 ? 
-                    <div className={style['defaultImg']}>
-                        <img src={noNoticeImg} />
-                        <p className={style['text']}>暂无通知</p> 
-                    </div>
-                :
-                <ul>
-                    {
-                        noticeList.slice(0,3).map((ele,index) => 
-                            this.renderTableLine(ele,index)
-                        )
-                    }
-                </ul>
-            }
-                
+                { loadingnotice ? <Loading/> : noticeList.length === 0 ? defaultPage : noticeContent }
             </div>
         );
     }
