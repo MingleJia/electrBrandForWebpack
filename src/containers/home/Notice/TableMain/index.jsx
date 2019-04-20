@@ -34,11 +34,11 @@ export default class TableMain extends React.Component {
             page_size : 20,
         }).then((json)=>{
             this.props.changeNoticeList(json.data.dataList||[]);
-            if( json.data.dataList.length === 1 ){
+            if( json.data.length !== 0 && json.data.dataList.length === 1 ){
                 this.getNoticeContent(json.data.dataList[0].id);
             }
             this.setState({       
-                noticeList : json.data.dataList,
+                noticeList : json.data.dataList||[],
             })
         }).then(()=>{
             this.setState({       
@@ -81,7 +81,6 @@ export default class TableMain extends React.Component {
     }
     render() {
         const { noticeList,loadingnotice } = this.state;
-
         const defaultPage = (
             <div className={style['defaultImg']}>
                 <img src={noNoticeImg} />
