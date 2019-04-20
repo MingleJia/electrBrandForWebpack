@@ -1,12 +1,15 @@
-import React from 'react';
+import React,{Fragment} from 'react';
 import axios from 'UTILS/axios';
 import style from './index.scss';
 import noClassImg from 'ASSETS/home/class.png';
+import Loading from 'COMPONENTS/loading';
+
 export default class TableMain extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableData: {}
+            tableData: {},
+            loading: true,
         };
     }
     
@@ -26,6 +29,10 @@ export default class TableMain extends React.Component {
                     tableData: json.data.todaySchedule,
                 })
             }
+        }).then(()=>{
+            this.setState({
+                loading: false,
+            })
         })
     }
 
@@ -82,9 +89,9 @@ export default class TableMain extends React.Component {
         )
     }
     render() {
-        const { tableData } = this.state;
-        return (
-            <div className={style['tableContent']}>
+        const { tableData,loading } = this.state;
+        const content = (
+            <Fragment>
                 {
                     Object.keys(tableData).length==0
                     ?
@@ -101,6 +108,11 @@ export default class TableMain extends React.Component {
                         }
                     </ul>
                 }
+            </Fragment>
+        )
+        return (
+            <div className={style['tableContent']}>
+               { loading ? <Loading/> : content  }
             </div>
         );
     }

@@ -47,7 +47,7 @@ class Login extends Component {
 
     login = () => {
         const { account, password } = this.state;
-        if (account === '') {
+        if (account.replace(/\s+/g,"") === '') {
             message.error('请输入班牌编号');
         } else if (password === '') {
             message.error('请输入班牌密码');
