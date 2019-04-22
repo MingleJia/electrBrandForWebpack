@@ -1,7 +1,7 @@
 import React,{Component, Fragment} from 'react';
 import styles from './index.scss';
 import BackPrevHeader from 'COMPONENTS/backPrev';
-import Tab from 'COMPONENTS/tab';
+// import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
 import ClassTable from 'COMPONENTS/classTable/ClassTable.jsx';
 import Loading from 'COMPONENTS/loading';
@@ -83,7 +83,7 @@ class Schedule extends Component{
                     { loading ? <Loading/> : schedulecontent}
                 </div>
                
-                <Tab />
+                {/* <Tab /> */}
             </Fragment>
         )
         return schedule;

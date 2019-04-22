@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import BackPrevHeader from 'COMPONENTS/backPrev';
-import Tab from 'COMPONENTS/tab';
+// import Tab from 'COMPONENTS/tab';
 import styles from './index.scss';
 import axios from 'UTILS/axios';
 import moment from 'moment';
@@ -143,9 +143,9 @@ class Notice extends Component {
                     {
                         noticeList.length !== 0 && noticeList.map((item, index) => {
                             return (
-                                <li className={styles['content']} key={index}>
+                                <li className={styles['content']} key={index}  onClick={() => this.checkStatus(item.id)}>
                                     <div className={styles['title']}>
-                                        <div className={styles['clickexpand']} onClick={() => this.checkStatus(item.id)}>
+                                        <div className={styles['clickexpand']}>
                                             {
                                                 arrExpan.includes(item.id)
                                                     ?
@@ -179,7 +179,7 @@ class Notice extends Component {
                     </div> : null
                 }
                 {noticeList.length === 0 ? defaultPage : noticeContent}
-                <Tab />
+                {/* <Tab /> */}
             </Fragment>
         )
         return notice;

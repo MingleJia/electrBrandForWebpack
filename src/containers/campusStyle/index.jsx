@@ -1,6 +1,7 @@
 import React,{Component,Fragment} from 'react';
 import styles from './index.scss';
-import { detailsImg, campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
+import { campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
+// import { detailsImg, campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
 import PropTypes from 'prop-types';
 import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
@@ -89,7 +90,7 @@ class CampusStyle extends Component{
                 {
                     campusList.length !== 0 && campusList.map((item,index)=>{
                         return(
-                            <li className={styles['list']} key={index}>
+                            <li className={styles['list']} key={index} onClick={ ()=>this.campusDetail(index) }>
                                 <div className={styles['images']}>
                                     {
                                         item.images ? this.renderCarouselImg(item.images) : this.renderDefaultImg()
@@ -97,9 +98,9 @@ class CampusStyle extends Component{
                                 </div>
                                 <div className={styles['title']}>
                                     <span className={styles['titlename']}>{item.title}</span>
-                                    <div className={styles['detailborder']}  onClick={ ()=>this.campusDetail(index) } >
+                                    {/* <div className={styles['detailborder']}  onClick={ ()=>this.campusDetail(index) } >
                                         <img className={styles['detailImg']} src={ detailsImg }></img><span>详情</span>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className={styles['detail']}>         
                                     { item.content }                                            
