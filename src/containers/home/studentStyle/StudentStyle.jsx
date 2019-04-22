@@ -21,17 +21,16 @@ class StudentStyle extends Component {
         })
     }
     getStyleType(len) {
-        if(len <= 1){
-            return  'content1';
-        }else if(len<=2){
+        if (len <= 1) {
+            return 'content1';
+        } else if (len <= 2) {
             return 'content2';
-        }else if(len>=4){
+        } else if (len >= 4) {
             return 'content4';
         }
     }
     render() {
         let { dataList } = this.state;
-        console.log(dataList);
         return <Fragment>
             <div className={styles['myCarouselWrap']}>
                 <div className={styles['topBar']}>
@@ -42,9 +41,14 @@ class StudentStyle extends Component {
 
                 </div>
                 {
-                    dataList.map((item, index) => <Link to={'/studentsStyle/deatil'} key={index}>
-                        <MyCarousel desc={item.desc} title={item.title} images={item.images} styleType={this.getStyleType(dataList.length)}/>
-                    </Link>)
+                    dataList.map((item, index) =>
+                        <Link to={`/studentsStyle/deatil?id=${index}`} key={index}>
+                            <MyCarousel
+                                desc={item.desc}
+                                title={item.title}
+                                images={item.images}
+                                styleType={this.getStyleType(dataList.length)} />
+                        </Link>)
                 }
                 {/* <Link to={'/studentsStyle/deatil'} >
                     <MyCarousel desc={'1223333'} title={'22222'} images={[]} styleType={'content2'} />
