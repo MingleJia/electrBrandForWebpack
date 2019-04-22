@@ -9,6 +9,8 @@ class DataDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            dataList: [],
+            id: 0
         }
     }
     //返回首页
@@ -16,7 +18,10 @@ class DataDetail extends Component {
         window.history.back(-1);
     }
     componentDidMount() {
-
+        this.setState({
+            dataList: this.props.dataList,
+            id: this.props.id
+        })
     }
 
     render() {
@@ -55,3 +60,6 @@ class DataDetail extends Component {
 }
 
 export default DataDetail;
+DataDetail.defaultProps = {};
+DataDetail.propTypes = function(){};
+DataDetail.propTypes = {};

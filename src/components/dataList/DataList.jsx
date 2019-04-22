@@ -7,25 +7,33 @@ class Datalist extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen:false
+            isOpen: false
         }
     }
 
     componentDidMount() {
-        
+
     }
 
     render() {
 
         return <Fragment>
             <ul className={styles['list']}>
+                {/* <DataItem isOpen={false} />
                 <DataItem isOpen={false} />
                 <DataItem isOpen={false} />
-                <DataItem isOpen={false} />
-                <DataItem isOpen={false} />
+                <DataItem isOpen={false} /> */}
+                {
+                    this.props.dataList.map(
+                        (item, index) => <DataItem key={index} isOpen={false} item={item} />
+                    )
+                }
             </ul>
         </Fragment>;
     }
 }
 
 export default Datalist;
+Datalist.defaultProps = {};
+Datalist.propTypes = function () { };
+Datalist.propTypes = {};
