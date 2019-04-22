@@ -76,13 +76,16 @@
                 border: solid 0.02rem #9ac0ff;
             }
             .prevBtn{
-                position: absolute;
-                left: 0;
+                // position: absolute;
+                // left: 0;
                 border-radius: 0.26rem  0 0 0.26rem;
             }
+            .onlyOneBtn{
+                border-radius: 0.26rem 0.26rem 0.26rem 0.26rem;
+            }
             .nextBtn{
-                position: absolute;
-                right: 0;
+                // position: absolute;
+                // right: 0;
                 border-radius: 0 0.26rem  0.26rem 0;
             }
         }
@@ -128,6 +131,10 @@
                 color: #666666;
                 padding-bottom: 0.24rem;
                 word-break: break-all;
+                span{
+                    font-weight: bold;
+                    color:#333333;
+                }
             }
             .imgWarp{
                 text-align: center;

@@ -20,13 +20,12 @@ class StudentsStyleDetail extends Component {
             this.setState({
                 dataList: json.data
             })
-            // console.log(json)
         })
     }
     render() {
 
         return <Fragment>
-            <DataDetail dataList={this.state.dataList} id={this.state.id} />
+            <DataDetail dataList={this.state.dataList} id={this.state.id} a={1} />
             <Tab />
         </Fragment>;
     }
