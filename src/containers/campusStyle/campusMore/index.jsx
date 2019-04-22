@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import BackPrevHeader from 'COMPONENTS/backPrev';
-import Tab from 'COMPONENTS/tab';
+// import Tab from 'COMPONENTS/tab';
 import styles from './index.scss';
 import { collapseImg, expandImg, campusImg } from 'ASSETS/campusstyle';
 import axios from 'UTILS/axios';
@@ -54,9 +54,9 @@ class CampusMore extends Component {
                     {
                         campusList.length !== 0 && campusList.map((item, index) => {
                             return (
-                                <li className={styles['content']} key={index}>
+                                <li className={styles['content']} key={index}  onClick={() => this.checkStatus(index)}>
                                     <div className={styles['title']}>
-                                        <div className={styles['clickexpand']} onClick={() => this.checkStatus(index)}>
+                                        <div className={styles['clickexpand']}>
                                             {
                                                 arrExpan.includes(index) 
                                                 ?
@@ -97,7 +97,7 @@ class CampusMore extends Component {
             <Fragment>
                 <BackPrevHeader />
                     { loading ? <Loading/> : campusList.length === 0 ? defaultPage : campusContent}
-                <Tab />
+                {/* <Tab /> */}
             </Fragment>
         )
         return campusMore;

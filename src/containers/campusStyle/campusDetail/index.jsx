@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './index.scss';
 import { backImg } from 'ASSETS/header';
-import Tab from 'COMPONENTS/tab';
+// import Tab from 'COMPONENTS/tab';
 import { connect } from 'react-redux';
 import { setCampusStyle } from 'MODULES/root/actions';
 import PropTypes from 'prop-types';
@@ -55,7 +55,7 @@ class CampusDetail extends Component {
         })
     }
     render() {
-        const { compusContent } = this.state;
+        const { compusContent, idx } = this.state;
         const { campusList } = this.props.root;
         const campusDetail = (
             <div className={styles['container']}>
@@ -70,11 +70,10 @@ class CampusDetail extends Component {
                             :
                             <div className={styles['btnWrap']}>
                                 {
-                                    this.state.idx == 0 ? '' : <span className={styles['prevBtn']} onClick={() => this.prevBtn()}>上一个</span>
+                                    this.state.idx == 0 ? '' : <span className={`${ idx === campusList.length - 1 ? styles['btn'] : styles['prevBtn']}`} onClick={() => this.prevBtn()}>上一个</span>
                                 }
                                 {
-
-                                    this.state.idx == campusList.length - 1 ? '' : <span className={styles['nextBtn']} onClick={() => this.nextBtn()}>下一个</span>
+                                    this.state.idx == campusList.length - 1 ? '' : <span className={`${ idx === 0 ? styles['btn'] : styles['nextBtn']}`} onClick={() => this.nextBtn()}>下一个</span>
                                 }
                             </div>
                     }
@@ -100,10 +99,9 @@ class CampusDetail extends Component {
                                 :
                                 null
                         }
-                        {/* <img className={styles['picture']} src={defaultImg}/> */}
                     </div>
                 </div>
-                <Tab />
+                {/* <Tab /> */}
             </div>
         )
         return campusDetail;

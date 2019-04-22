@@ -1,6 +1,7 @@
 .container{
     width: 100%;
-    height: 8.98rem;
+    // height: 8.98rem;0.9
+    height: 9.88rem;
     overflow-y: auto;
     font-size: 0.26rem;
     background-color: #efefef;
@@ -18,7 +19,7 @@
                     width: 0.76rem;
                     height: 0.32rem;
                     line-height: 0.3rem;
-                    margin-top: 0.34rem;
+                    margin-top: 0.3rem;
                     margin-right: 0.25rem;
                     border-radius: 0.04rem;
                     border: solid 0.02rem #f16338;
@@ -87,8 +88,9 @@
                         top: 50%;
                         left: 50%;
                         transform: translate(-50%,-50%);
-                        max-height: 5.12rem;
-                        max-width: 100%;
+                        height: 5.12rem;
+                        width: 100%;
+                        object-fit: cover;
                     }
                     &:nth-of-type(even){
                         margin-right: 0;

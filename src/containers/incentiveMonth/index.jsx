@@ -1,8 +1,10 @@
 import React,{Component, Fragment} from 'react';
-import {Popover} from 'antd';
-import Tab from 'COMPONENTS/tab';
+// import {Popover} from 'antd';
+// import Tab from 'COMPONENTS/tab';
 import styles from './index.scss';
-import { flowerImg, creditImg, firstImg, secondImg, thirdImg, tipsWhiteImg, goodImg } from 'ASSETS/home';
+import { flowerImg, creditImg, firstImg, secondImg, thirdImg, goodImg } from 'ASSETS/home';
+// import { flowerImg, creditImg, firstImg, secondImg, thirdImg, tipsWhiteImg, goodImg } from 'ASSETS/home';
+import { backImg } from 'ASSETS/header';
 import axios from 'UTILS/axios';
 import Loading from 'COMPONENTS/loading';
 
@@ -51,6 +53,12 @@ class IncentiveMonth extends Component{
             </li>
         )
     }
+
+    //返回
+    backHome = () => {
+        window.history.back(-1);
+    }
+
     render(){
         const { flowerRank, scoreRank,congratulations,loading } = this.state;
         const encouragement = (
@@ -63,12 +71,12 @@ class IncentiveMonth extends Component{
         )
 
         //悬浮排行榜规则提示框
-        const tips = (
-            <div className={styles['tips']}>
-                <p>若获得奖励数相同，则以优先获得为准。</p>
-                <p>数据每日零点更新。</p>
-            </div>
-        )
+        // const tips = (
+        //     <div className={styles['tips']}>
+        //         <p>若获得奖励数相同，则以优先获得为准。</p>
+        //         <p>数据每日零点更新。</p>
+        //     </div>
+        // )
 
         const rankcontent = (
             <Fragment>
@@ -132,17 +140,20 @@ class IncentiveMonth extends Component{
         const incentiveMonth = (
             <Fragment>
                 <div className={styles['title']}>
+                    <div className={styles['back']} onClick={() => this.backHome()}>
+                        <img className={styles['backimg']} src={ backImg }></img><span>返回</span>
+                    </div>
                     <span>
                         本月激励排行榜
-                        <Popover placement="bottomLeft" content={tips} trigger="click" overlayClassName="monthRank">
+                        {/* <Popover placement="bottomLeft" content={tips} trigger="click" overlayClassName="monthRank">
                             <img src={ tipsWhiteImg }></img>
-                        </Popover>
+                        </Popover> */}
                     </span>
                 </div>
                 
                 { loading? <Loading/> : rankcontent  }
                
-                <Tab />
+                {/* <Tab /> */}
             </Fragment>
         )
         return incentiveMonth;
