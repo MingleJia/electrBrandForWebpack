@@ -5,11 +5,13 @@ import Tab from 'COMPONENTS/tab';
 import MyCarousel from 'COMPONENTS/carousel/StuStyleCarousel.jsx';
 import styles from './StudentsStyle.scss';
 import axios from 'UTILS/axios';
+import Loading from 'COMPONENTS/loading';
 class StudentsStyle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataList: []
+            dataList: [],
+            loading: false
         }
     }
 
@@ -18,10 +20,12 @@ class StudentsStyle extends Component {
     }
 
     getDataList() {
+        this.setState({ loading: true })
         axios('get', '/api/eboardshow/lists', {
         }).then((json) => {
             this.setState({
-                dataList: json.data
+                dataList: json.data,
+                loading: false
             })
         })
     }
@@ -33,17 +37,26 @@ class StudentsStyle extends Component {
             <div>
 
             </div>
-            <div className={styles['content']}>
-                {/* <Link to={'/studentsStyle/deatil'}>
-                    <MyCarousel />
-                </Link> */}
-                {
-                    dataList.map((item, index) =>
-                        <Link to={`/studentsStyle/deatil?id=${index}`} key={index}>
-                            <MyCarousel desc={item.desc} title={item.title} images={item.images} styleType={'content6'} />
-                        </Link>)
-                }
-            </div>
+            {
+                this.state.loading
+                    ?
+                    <div style={{ width: '100%', height: '100%' }}>
+                        <Loading />
+                    </div>
+                    :
+
+                    <div className={styles['content']}>
+                        {/* <Link to={'/studentsStyle/deatil'}>
+                            <MyCarousel />
+                        </Link> */}
+                        {
+                            dataList.map((item, index) =>
+                                <Link to={`/studentsStyle/deatil?id=${index}`} key={index}>
+                                    <MyCarousel desc={item.desc} title={item.title} images={item.images} styleType={'content6'} />
+                                </Link>)
+                        }
+                    </div>
+            }
             <Tab />
         </Fragment>
     }

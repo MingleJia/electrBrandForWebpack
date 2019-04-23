@@ -1,13 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import DataDetail from 'COMPONENTS/dataDetail/DataDetail';
-import Tab from 'COMPONENTS/tab';
+// import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
+import Loading from 'COMPONENTS/loading';
 class StudentsStyleDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
             dataList: [],
-            id: window.location.href.split('?')[1].split('=')[1]
+            id: window.location.href.split('?')[1].split('=')[1],
+            loading: false,
         }
     }
 
@@ -16,17 +18,28 @@ class StudentsStyleDetail extends Component {
         this.getDetail();
     }
     getDetail() {
+        this.setState({ loading: true })
         axios('get', '/api/eboardshow/lists').then((json) => {
             this.setState({
-                dataList: json.data
+                dataList: json.data,
+                loading: false
             })
         })
     }
     render() {
 
         return <Fragment>
-            <DataDetail dataList={this.state.dataList} id={this.state.id} a={1} />
-            <Tab />
+            {
+
+                this.state.loading
+                    ?
+                    <div style={{ width: '100%', height: '100%' }}>
+                        <Loading />
+                    </div>
+                    :
+                    <DataDetail dataList={this.state.dataList} id={this.state.id} a={1} />
+            }
+            {/* <Tab /> */}
         </Fragment>;
     }
 }

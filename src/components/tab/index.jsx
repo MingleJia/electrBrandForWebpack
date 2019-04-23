@@ -82,7 +82,7 @@ class Tab extends Component {
                 window.localStorage.setItem("tabList", JSON.stringify(this.state.tabList));
             })
 
-            this.props.getTabList && this.props.getTabList(tabList);
+            this.props.getTabList && this.props.getTabList(tabList || []);
         })
     }
     render() {

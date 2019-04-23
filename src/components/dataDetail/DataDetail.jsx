@@ -11,7 +11,8 @@ class DataDetail extends Component {
         this.state = {
             dataList: [],
             id: this.getId(),
-            a: 1
+            visible: false,
+            showImgSrc: ''
         }
     }
     //返回首页
@@ -43,12 +44,21 @@ class DataDetail extends Component {
             id: this.state.id - 1,
         })
     }
+    showImg(showImgSrc) {
+        this.setState({
+            visible: !this.state.visible,
+            showImgSrc: showImgSrc
+        });
+    }
     render() {
         let { id, dataList } = this.state;
         let dataListNow = dataList.length > 1 ? dataList[id] : {};
-        console.log(id);
-        console.log(dataListNow);
+        // console.log(id);
+        // console.log(dataListNow);
         return <Fragment>
+            <div onClick={() => { this.showImg() }} style={{ display: `${this.state.visible ? 'block' : 'none'}` }} className={styles['showImg']}>
+                <img src={this.state.showImgSrc} alt="" />
+            </div>
             <div className={styles['container']}>
                 <div className={styles['tab']}>
                     <div className={styles['back']} onClick={() => this.backHome()}>
@@ -75,13 +85,15 @@ class DataDetail extends Component {
                         <p className={styles['text']}>{dataListNow.desc || '暂无内容'}</p>
 
                         {
+                            //https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg
                             (dataListNow.images || []).map((item, index) =>
                                 <div
                                     key={index}
                                     className={styles['imgWarp']}>
                                     <img
+                                        onClick={()=>{this.showImg(item.image)}}
                                         className={styles['img']}
-                                        src={'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg'} />
+                                        src={item.image} />
                                 </div>)
                         }
                         {
