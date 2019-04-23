@@ -1,11 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import BackPrevHeader from 'COMPONENTS/backPrev';
-// import Tab from 'COMPONENTS/tab';
 import styles from './index.scss';
 import { collapseImg, expandImg, campusImg } from 'ASSETS/campusstyle';
 import axios from 'UTILS/axios';
 import moment from 'moment';
 import Loading from 'COMPONENTS/loading';
+import PreviewImg from 'COMPONENTS/previewImg';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { setPreviewImg } from 'MODULES/root/actions';
 class CampusMore extends Component {
     constructor(props) {
         super(props);
@@ -14,6 +17,11 @@ class CampusMore extends Component {
             campusList: [],
             loading : true, 
         }
+    }
+
+    static propTypes = {
+        setPreviewImg: PropTypes.func,
+        root: PropTypes.object,
     }
 
     componentDidMount() {
@@ -38,6 +46,14 @@ class CampusMore extends Component {
         })
     }
 
+    //点击图片放大查看
+    previewImg = (img) => {
+        this.props.setPreviewImg({
+            displayImg:true,
+            previewImg: img,
+        })
+    }
+
     render() {
         let { arrExpan, campusList,loading } = this.state;
 
@@ -50,12 +66,13 @@ class CampusMore extends Component {
 
         const campusContent = (
             <div className={styles['container']}>
+                <PreviewImg/>
                 <ul className={styles['list']}>
                     {
                         campusList.length !== 0 && campusList.map((item, index) => {
                             return (
-                                <li className={styles['content']} key={index}  onClick={() => this.checkStatus(index)}>
-                                    <div className={styles['title']}>
+                                <li className={styles['content']} key={index} >
+                                    <div className={styles['title']} onClick={() => this.checkStatus(index)}>
                                         <div className={styles['clickexpand']}>
                                             {
                                                 arrExpan.includes(index) 
@@ -80,7 +97,7 @@ class CampusMore extends Component {
                                             item.images && item.images.split(',').map((img, index) => {
                                                 return (
                                                     <div key={index} className={styles['imgWarp']} >
-                                                        <img className={styles['img']} src={img} key={index} />
+                                                        <img className={styles['img']} src={img} key={index} onClick={ ()=>this.previewImg(img) } />
                                                     </div>
                                                 )
                                             })
@@ -97,11 +114,14 @@ class CampusMore extends Component {
             <Fragment>
                 <BackPrevHeader />
                     { loading ? <Loading/> : campusList.length === 0 ? defaultPage : campusContent}
-                {/* <Tab /> */}
             </Fragment>
         )
         return campusMore;
     }
 }
 
-export default CampusMore
+export default connect(
+    ({ root }) => ({
+        root: root,
+    }), { setPreviewImg }
+)(CampusMore)

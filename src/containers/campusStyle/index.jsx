@@ -98,9 +98,6 @@ class CampusStyle extends Component{
                                 </div>
                                 <div className={styles['title']}>
                                     <span className={styles['titlename']}>{item.title}</span>
-                                    {/* <div className={styles['detailborder']}  onClick={ ()=>this.campusDetail(index) } >
-                                        <img className={styles['detailImg']} src={ detailsImg }></img><span>详情</span>
-                                    </div> */}
                                 </div>
                                 <div className={styles['detail']}>         
                                     { item.content }                                            
