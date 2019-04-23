@@ -5,7 +5,7 @@ import styles from './StudentStyle.scss';
 import { moreImg } from 'ASSETS/home';
 import axios from 'UTILS/axios';
 import Loading from 'COMPONENTS/loading';
-import NoDataPage from '../../../components/noDataPage/NoDataPage';
+// import NoDataPage from '../../../components/noDataPage/NoDataPage';
 class StudentStyle extends Component {
     constructor(props) {
         super(props);

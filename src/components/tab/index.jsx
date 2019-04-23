@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './index.scss';
-import { home, attendance, studentStyle, campusStyle, personalCenter } from 'ASSETS/tab';
-// import { home, attendance, } from 'ASSETS/tab';
+// import { home, attendance, studentStyle, campusStyle, personalCenter } from 'ASSETS/tab';
+import { home, attendance, } from 'ASSETS/tab';
 import { NavLink } from 'react-router-dom'
 import axios from 'UTILS/axios';
 // const dic = {
@@ -42,11 +42,11 @@ const defaultTab = [
     //     "url": "/campusStyle",
     //     "icon": campusStyle
     // },
-    {
-        "base_name": "学生风采",
-        "url": "/studentsStyle",
-        "icon": studentStyle
-    },
+    // {
+    //     "base_name": "学生风采",
+    //     "url": "/studentsStyle",
+    //     "icon": studentStyle
+    // },
 ]
 class Tab extends Component {
     constructor(props) {
@@ -69,11 +69,11 @@ class Tab extends Component {
             }
         }, 59000);
         this.getNavBar();
-        this.props.getTabList && this.props.getTabList( [{
-            "base_name": "学生风采",
-            "url": "/studentsStyle",
-            "icon": studentStyle
-        },]);
+        // this.props.getTabList && this.props.getTabList( [{
+        //     "base_name": "学生风采",
+        //     "url": "/studentsStyle",
+        //     "icon": studentStyle
+        // },]);
     }
     getNavBar() {
         axios('get', '/api/index/nav').then(json => {

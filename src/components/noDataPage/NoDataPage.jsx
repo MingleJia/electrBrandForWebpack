@@ -31,3 +31,6 @@ class NoDataPage extends Component {
 }
 
 export default NoDataPage;
+NoDataPage.defaultProps = {};
+NoDataPage.propTypes = function () { };
+NoDataPage.propTypes = {};
