@@ -71,3 +71,9 @@ export const StudentsStyleDetail = Loadable({
 	loading: Loading,
 	timeout: timeout
 });
+// 手机端页面
+export const StudentsStyleP = Loadable({
+	loader: () => import("CONTAINERS/phoneStudentStyle/StudentsStyleP"),
+	loading: Loading,
+	timeout: timeout
+});

@@ -56,4 +56,10 @@ export const routerConfig = [
         component: config.StudentsStyleDetail,    // 学生风采详情
         exact: true
     },
+    //手机端页面
+    {
+        path:'/phone/studentsStyle',
+        component: config.StudentsStyleP,    // 学生风采
+        exact: true
+    },
 ]

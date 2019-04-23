@@ -1,25 +1,35 @@
 import React, { Component, Fragment } from 'react';
 import styles from './DataItem.scss';
 import { collapseImg, expandImg } from 'ASSETS/campusstyle';
-// import { Carousel } from 'antd-mobile';
+import moment from 'moment';
 class DataItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isOpen: this.props.isOpen
+            isOpen: this.props.isOpen,
+            visible: false,
+            showImgSrc: ''
         }
     }
 
     componentDidMount() {
 
     }
-
+    showImg(showImgSrc) {
+        this.setState({
+            visible: !this.state.visible,
+            showImgSrc: showImgSrc
+        });
+    }
     render() {
         let { isOpen } = this.state;
         return <Fragment>
+            <div onClick={() => { this.showImg() }} style={{ display: `${this.state.visible ? 'block' : 'none'}` }} className={styles['showImg']}>
+                <img src={this.state.showImgSrc} alt="" />
+            </div>
             <li className={styles['content']} >
-                <div className={styles['title']}>
-                    <div className={styles['clickexpand']} onClick={() => { this.setState({ isOpen: !isOpen }) }}>
+                <div className={styles['title']} onClick={() => { this.setState({ isOpen: !isOpen }) }}>
+                    <div className={styles['clickexpand']} >
                         {
                             isOpen
                                 ?
@@ -33,7 +43,7 @@ class DataItem extends Component {
                         }
                     </div>
                     <span className={styles['titlename']}>{this.props.item.title || '暂无标题'}</span>
-                    <span className={styles['time']}>{'12.334'}</span>
+                    <span className={styles['time']}>{moment(this.props.item.show_time || 0).format("HH:mm:ss")}</span>
                 </div>
                 {/* 下方内容区域 */}
                 <div className={`${isOpen ? styles['detail'] : styles['detailHidden']}`}>
@@ -50,9 +60,22 @@ class DataItem extends Component {
                                     style={{ width: `${(index == this.props.item.images.length - 1 && index % 2 == 0) ? '18.2rem' : '9.1rem'}` }}
                                     key={index}
                                     className={styles['imgWarp']} >
-                                    <img className={styles['img']} src={item.image} />
+                                    <img onClick={() => { this.showImg(item.image) }} className={styles['img']} src={item.image} />
+                                    {/* <img onClick={() => { this.showImg('https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg') }} className={styles['img']} src={'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg'} /> */}
                                 </div>
                         )
+                    }
+                    {
+                        this.props.item.comment
+                            ?
+                            <p className={styles['text']}>
+                                <span>教师评价:</span>
+                                {
+                                    this.props.item.comment
+                                }
+                            </p>
+                            :
+                            null
                     }
                 </div>
             </li>
