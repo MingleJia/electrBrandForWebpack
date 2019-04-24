@@ -12,7 +12,7 @@ class BackPrevHeader extends Component{
         if( window.navigator.onLine === true ){
             window.history.back(-1);
         }else{
-            message.warning('暂无网络，请检查网络问题');
+            message.warning('网络不可用');
         }
     }
 

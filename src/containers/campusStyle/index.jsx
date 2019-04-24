@@ -29,7 +29,6 @@ class CampusStyle extends Component{
             this.props.setCampusStyle({
                 campusList : json.data,
             })
-        }).then(()=>{
             this.setState({
                 loading:false
             })    
@@ -41,7 +40,8 @@ class CampusStyle extends Component{
         if( window.navigator.onLine === true ){
             this.props.history.push('campusstyle/more');
         }else{
-            message.warning('没有网络了...',20);
+            message.warning('网络不可用',20);
+            message.config({ maxCount:1,});
         }
     }
     //点击内容到校园风采详情页
@@ -54,7 +54,8 @@ class CampusStyle extends Component{
         if( window.navigator.onLine === true ){
             this.props.history.push('campusstyle/detail');
         }else{
-            message.warning('没有网络了...',20);
+            message.warning('网络不可用',20);
+            message.config({ maxCount:1,});
         }
     }
     //

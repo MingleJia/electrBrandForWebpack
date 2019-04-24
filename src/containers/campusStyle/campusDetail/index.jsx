@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import { message } from 'antd';
 import styles from './index.scss';
 import { backImg } from 'ASSETS/header';
 import { connect } from 'react-redux';
 import { setCampusStyle, setPreviewImg } from 'MODULES/root/actions';
 import PropTypes from 'prop-types';
-// import axios from 'UTILS/axios';
 import PreviewImg from 'COMPONENTS/previewImg';
 import moment from 'moment';
 
@@ -31,9 +31,14 @@ class CampusDetail extends Component {
         })
     }
 
-    //返回首页
+    //返回上一页
     backHome = () => {
-        window.history.back(-1);
+        if( window.navigator.onLine === true ){
+            window.history.back(-1);
+        }else{
+            message.warning('网络不可用',20);
+            message.config({ maxCount:1,});
+        }
     }
     //上一页
     prevBtn = () => {
@@ -112,7 +117,6 @@ class CampusDetail extends Component {
                         }
                     </div>
                 </div>
-                {/* <Tab /> */}
             </div>
         )
         return campusDetail;
