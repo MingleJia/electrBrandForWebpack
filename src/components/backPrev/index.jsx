@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import { message } from 'antd';
 import styles from './index.scss';
 import { backImg } from 'ASSETS/header';
 
@@ -8,7 +9,11 @@ class BackPrevHeader extends Component{
     }
 
     backPrev=()=>{
-        window.history.back(-1);
+        if( window.navigator.onLine === true ){
+            window.history.back(-1);
+        }else{
+            message.warning('暂无网络，请检查网络问题');
+        }
     }
 
     render(){

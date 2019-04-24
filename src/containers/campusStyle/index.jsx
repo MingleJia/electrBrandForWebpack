@@ -1,4 +1,5 @@
 import React,{Component,Fragment} from 'react';
+import { message } from 'antd';
 import styles from './index.scss';
 import { campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
 // import { detailsImg, campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
@@ -37,7 +38,11 @@ class CampusStyle extends Component{
 
     //点击更多
     campusMore = () =>{
-        this.props.history.push('campusstyle/more');
+        if( window.navigator.onLine === true ){
+            this.props.history.push('campusstyle/more');
+        }else{
+            message.warning('没有网络了...',20);
+        }
     }
     //点击内容到校园风采详情页
     campusDetail = (value) => {
@@ -46,7 +51,11 @@ class CampusStyle extends Component{
             campusDetailId : value,
             campusList
         })
-        this.props.history.push('campusstyle/detail');
+        if( window.navigator.onLine === true ){
+            this.props.history.push('campusstyle/detail');
+        }else{
+            message.warning('没有网络了...',20);
+        }
     }
     //
     renderCarouselImg = (images) => {

@@ -1,6 +1,4 @@
 import React,{Component, Fragment} from 'react';
-// import {Popover} from 'antd';
-// import Tab from 'COMPONENTS/tab';
 import styles from './index.scss';
 import { flowerImg, creditImg, firstImg, secondImg, thirdImg, goodImg } from 'ASSETS/home';
 // import { flowerImg, creditImg, firstImg, secondImg, thirdImg, tipsWhiteImg, goodImg } from 'ASSETS/home';
@@ -70,14 +68,6 @@ class IncentiveMonth extends Component{
             </div>
         )
 
-        //悬浮排行榜规则提示框
-        // const tips = (
-        //     <div className={styles['tips']}>
-        //         <p>若获得奖励数相同，则以优先获得为准。</p>
-        //         <p>数据每日零点更新。</p>
-        //     </div>
-        // )
-
         const rankcontent = (
             <Fragment>
                 <div className={styles['container']}>
@@ -95,13 +85,18 @@ class IncentiveMonth extends Component{
                                             })
                                         }
                                     </ul>
-                                    <ul id='clone-rank-list'>
-                                        {
-                                            flowerRank.slice(10).map((item, index)=>{
-                                                return this.listItem(item, index+10);
-                                            })
-                                        }
-                                    </ul>
+                                    {
+                                        flowerRank.length > 10 ?
+                                        <ul id='clone-rank-list'>
+                                            {
+                                                flowerRank.slice(10).map((item, index)=>{
+                                                    return this.listItem(item, index+10);
+                                                })
+                                            }
+                                        </ul> :
+                                        null
+                                    }
+                                   
                                 </Fragment> : 
                                 <p className={styles['no-data']}>本月排名暂未产生<br/>敬请期待明日公布</p>
                             }
@@ -121,13 +116,18 @@ class IncentiveMonth extends Component{
                                             })
                                         }
                                     </ul>
-                                    <ul id='clone-rank-list'>
-                                        {
-                                            scoreRank.slice(10).map((item, index)=>{
-                                                return this.listItem(item, index+10);
-                                            })
-                                        }
-                                    </ul>
+                                    {
+                                        scoreRank.length > 10 ?
+                                            <ul id='clone-rank-list'>
+                                                {
+                                                    scoreRank.slice(10).map((item, index)=>{
+                                                        return this.listItem(item, index+10);
+                                                    })
+                                                }
+                                            </ul> :
+                                            null
+                                    }
+                                    
                                 </Fragment> : 
                                 <p className={styles['no-data']}>本月排名暂未产生<br/>敬请期待明日公布</p>
                             }
