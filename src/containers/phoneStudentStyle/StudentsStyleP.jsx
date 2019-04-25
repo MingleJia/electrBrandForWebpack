@@ -18,14 +18,28 @@ class StudentsStyleP extends Component {
     }
 
     componentDidMount() {
-        this.getData();
+        this.getInfo();
     }
-    getData() {
+    getInfo() {
         axios('post', '/api/show/auth', {
         }, 'form').then((json) => {
             this.setState({
                 roleId: json.data.roleId
-            })
+            }, () => {
+                this.getList()
+            }
+            )
+        })
+    }
+    getList() {
+        axios('get', '/api/show/lists', {
+            is_teacher: this.state.roleId == 102 ? 0 : 1,
+            audit_status: this.state.type
+        }).then((json) => {
+            // console.log(json)
+            // this.setState({
+            //     campusList: json.data,
+            // })
         })
     }
     closeShowImg = () => {
@@ -53,9 +67,6 @@ class StudentsStyleP extends Component {
                 { title: '已经同意', value: 1 },
                 { title: '已驳回', value: 2 },
             ];
-
-
-
         return <Fragment>
             <div
                 className={styles['box']}
