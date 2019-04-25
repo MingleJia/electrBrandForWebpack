@@ -29,7 +29,7 @@ const root = (state = INITIAL_STATE, action) => {
 				displayImg: action.displayImg,
 				previewImg: action.previewImg,
 			};
-		case Actions.checkNoticeId:
+		case Actions.checkNotice:
 			return {
 				...state,
 				noticeId: action.noticeId,
