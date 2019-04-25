@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { message } from 'antd';
 import styles from './index.scss';
 import { backImg } from 'ASSETS/header';
-// import Tab from 'COMPONENTS/tab';
 import { connect } from 'react-redux';
-import { setCampusStyle } from 'MODULES/root/actions';
+import { setCampusStyle, setPreviewImg } from 'MODULES/root/actions';
 import PropTypes from 'prop-types';
-// import axios from 'UTILS/axios';
+import PreviewImg from 'COMPONENTS/previewImg';
 import moment from 'moment';
 
 class CampusDetail extends Component {
@@ -19,6 +19,7 @@ class CampusDetail extends Component {
 
     static propTypes = {
         setCampusStyle: PropTypes.func,
+        setPreviewImg: PropTypes.func,
         root: PropTypes.object,
     }
 
@@ -30,9 +31,14 @@ class CampusDetail extends Component {
         })
     }
 
-    //返回首页
+    //返回上一页
     backHome = () => {
-        window.history.back(-1);
+        if( window.navigator.onLine === true ){
+            window.history.back(-1);
+        }else{
+            message.warning('网络不可用',20);
+            message.config({ maxCount:1,});
+        }
     }
     //上一页
     prevBtn = () => {
@@ -54,11 +60,21 @@ class CampusDetail extends Component {
             idx
         })
     }
+
+    //点击图片放大查看
+    previewImg = (img) => {
+        this.props.setPreviewImg({
+            displayImg:true,
+            previewImg: img,
+        })
+    }
+
     render() {
         const { compusContent, idx } = this.state;
         const { campusList } = this.props.root;
         const campusDetail = (
             <div className={styles['container']}>
+                <PreviewImg/>
                 <div className={styles['tab']}>
                     <div className={styles['back']} onClick={() => this.backHome()}>
                         <img className={styles['backimg']} src={ backImg }></img><span>返回</span>
@@ -93,7 +109,7 @@ class CampusDetail extends Component {
                                         <div
                                             key={index}
                                             className={styles['imgWarp']}>
-                                            <img className={styles['img']} src={img} key={index} />
+                                            <img className={styles['img']} src={img} key={index} onClick={ ()=>this.previewImg(img) }/>
                                         </div>
                                 )
                                 :
@@ -101,7 +117,6 @@ class CampusDetail extends Component {
                         }
                     </div>
                 </div>
-                {/* <Tab /> */}
             </div>
         )
         return campusDetail;
@@ -111,5 +126,8 @@ class CampusDetail extends Component {
 export default connect(
     ({ root }) => ({
         root: root,
-    }), { setCampusStyle }
+    }), { 
+            setCampusStyle,
+            setPreviewImg
+        }
 )(CampusDetail)

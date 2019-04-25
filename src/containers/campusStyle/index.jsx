@@ -1,4 +1,5 @@
 import React,{Component,Fragment} from 'react';
+import { message } from 'antd';
 import styles from './index.scss';
 import { campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
 // import { detailsImg, campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
@@ -28,7 +29,6 @@ class CampusStyle extends Component{
             this.props.setCampusStyle({
                 campusList : json.data,
             })
-        }).then(()=>{
             this.setState({
                 loading:false
             })    
@@ -37,7 +37,12 @@ class CampusStyle extends Component{
 
     //点击更多
     campusMore = () =>{
-        this.props.history.push('campusstyle/more');
+        if( window.navigator.onLine === true ){
+            this.props.history.push('campusstyle/more');
+        }else{
+            message.warning('网络不可用',20);
+            message.config({ maxCount:1,});
+        }
     }
     //点击内容到校园风采详情页
     campusDetail = (value) => {
@@ -46,7 +51,12 @@ class CampusStyle extends Component{
             campusDetailId : value,
             campusList
         })
-        this.props.history.push('campusstyle/detail');
+        if( window.navigator.onLine === true ){
+            this.props.history.push('campusstyle/detail');
+        }else{
+            message.warning('网络不可用',20);
+            message.config({ maxCount:1,});
+        }
     }
     //
     renderCarouselImg = (images) => {
@@ -98,9 +108,6 @@ class CampusStyle extends Component{
                                 </div>
                                 <div className={styles['title']}>
                                     <span className={styles['titlename']}>{item.title}</span>
-                                    {/* <div className={styles['detailborder']}  onClick={ ()=>this.campusDetail(index) } >
-                                        <img className={styles['detailImg']} src={ detailsImg }></img><span>详情</span>
-                                    </div> */}
                                 </div>
                                 <div className={styles['detail']}>         
                                     { item.content }                                            

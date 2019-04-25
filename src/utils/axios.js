@@ -4,8 +4,8 @@ import { message } from 'antd';
 let baseURL = '';
 const env = process.env.NODE_ENV;
 if(env === 'development'){
-    // baseURL = 'http://eboard.leke.cn';
-    baseURL = 'http://local.leke-eboard.cc';
+    baseURL = 'http://eboard.leke.cn';
+    // baseURL = 'http://local.leke-eboard.cc';
 }
 
 // axios defaults
@@ -44,15 +44,14 @@ function axiosRequest(method, url, params, type){
                 }).then((json)=>{
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{
-                    reLogin(error);
                     if(error.message.indexOf('timeout') !== -1 && toastLock){
-                        message.info('网络不给力');
+                        message.info('网络不给力',20);
                         toastLock = false;
                     }
                     setTimeout(() => {
                         toastLock = true;
                     }, 2000);
-
+                    reLogin(error);
                 });
             });
         case 'post':
@@ -65,6 +64,13 @@ function axiosRequest(method, url, params, type){
                 }).then((json)=>{
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{
+                    if(error.message.indexOf('timeout') !== -1 && toastLock){
+                        message.info('网络不给力',20);
+                        toastLock = false;
+                    }
+                    setTimeout(() => {
+                        toastLock = true;
+                    }, 2000);
                     reLogin(error);
                     reject(error.response);
                 });
