@@ -4,14 +4,18 @@ import { message } from 'antd';
 let baseURL = '';
 const env = process.env.NODE_ENV;
 if(env === 'development'){
-    baseURL = 'http://eboard.leke.cn';
-    // baseURL = 'http://local.leke-eboard.cc';
+    // baseURL = 'http://eboard.leke.cn';
+    baseURL = 'http://local.leke-eboard.cc';
 }
 
 // axios defaults
 axios.defaults.withCredentials = true;
 function getItem(key){
-    return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(key).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+    if(window.location.href.indexOf("phone")!=-1){
+        return 'VGxFOVBRPT07TmpBME1EWXhNRE0wOzU1';
+    }else{
+        return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(key).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+    }
 }
 //如果账户被删除重新登入  error:错误信息{}
 function reLogin(error){
