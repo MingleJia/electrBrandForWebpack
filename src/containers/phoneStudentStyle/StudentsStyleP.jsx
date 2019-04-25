@@ -9,24 +9,22 @@ class StudentsStyleP extends Component {
         super(props);
         this.state = {
             ticket: '',//客户端给我用来获取信息
-            type: '',
             isShowImg: false,
             showImgSrc: '',
-            useBodyScroll: false,
 
-
+            roleId: null,//角色id
+            type: 0, //0:待审批 1:已同意 2:已驳回 showing:展示中
         }
     }
 
     componentDidMount() {
         this.getData();
     }
-    getData(){
+    getData() {
         axios('post', '/api/show/auth', {
         }, 'form').then((json) => {
             this.setState({
-                dataList: json.data,
-                loading: false
+                roleId: json.data.roleId
             })
         })
     }
@@ -35,17 +33,26 @@ class StudentsStyleP extends Component {
     }
     onTouchMove(e) {
         e.preventDefault();
-        let offsetHeight = this.container.offsetHeight;
-        let scrollHeight = this.container.scrollHeight;
-        let scrollTop = this.container.scrollTop;
+        // let offsetHeight = this.container.offsetHeight;
+        // let scrollHeight = this.container.scrollHeight;
+        // let scrollTop = this.container.scrollTop;
         // console.log(offsetHeight, scrollHeight, scrollTop)
     }
+    onChange = (tab, index) => {
+        this.setState({ type: index })
+        // console.log(tab, index)
+    }
     render() {
-        const tabs = [
+        const tabs = this.state.roleId == 102 ? [
             { title: '待审批', value: 0 },
             { title: '已经同意', value: 1 },
             { title: '已驳回', value: 2 },
-        ];
+        ] : [
+                { title: '展示中', value: 'showing' },
+                { title: '待审批', value: 0 },
+                { title: '已经同意', value: 1 },
+                { title: '已驳回', value: 2 },
+            ];
 
 
 
@@ -61,9 +68,9 @@ class StudentsStyleP extends Component {
                     tabBarUnderlineStyle={{ border: '1px #4ea375 solid' }}
                     tabBarActiveTextColor={'#4ea375'}
                     // onTabClick={(tab, index) => { console.log(tab, index) }}
-                    // onChange={(tab, index) => { console.log(tab, index) }}
+                    onChange={this.onChange}
                     tabs={tabs}
-                    initialPage={0}
+                    initialPage={this.state.type}
                     animated={true}
                     useOnPan={false}>
                     {/* tab1 */}
