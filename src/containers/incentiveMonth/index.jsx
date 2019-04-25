@@ -94,7 +94,7 @@ class IncentiveMonth extends Component{
                                                 })
                                             }
                                         </ul> :
-                                        null
+                                        ''
                                     }
                                    
                                 </Fragment> : 
@@ -125,7 +125,7 @@ class IncentiveMonth extends Component{
                                                     })
                                                 }
                                             </ul> :
-                                            null
+                                            ''
                                     }
                                     
                                 </Fragment> : 
@@ -145,15 +145,10 @@ class IncentiveMonth extends Component{
                     </div>
                     <span>
                         本月激励排行榜
-                        {/* <Popover placement="bottomLeft" content={tips} trigger="click" overlayClassName="monthRank">
-                            <img src={ tipsWhiteImg }></img>
-                        </Popover> */}
                     </span>
                 </div>
                 
                 { loading? <Loading/> : rankcontent  }
-               
-                {/* <Tab /> */}
             </Fragment>
         )
         return incentiveMonth;

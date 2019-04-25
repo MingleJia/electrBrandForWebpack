@@ -61,6 +61,7 @@ function axiosRequest(method, url, params, type){
                     method: 'post',
                     data: type === 'form' ? qs.stringify(params) : params,
                     headers: { 'token': getItem('token') },
+                    timeout:10000,
                 }).then((json)=>{
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{

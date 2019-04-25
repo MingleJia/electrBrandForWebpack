@@ -113,7 +113,7 @@ class CampusDetail extends Component {
                                         </div>
                                 )
                                 :
-                                null
+                                ''
                         }
                     </div>
                 </div>
