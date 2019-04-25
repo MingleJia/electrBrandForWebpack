@@ -54,7 +54,7 @@ class CampusStyle extends Component{
         if( window.navigator.onLine === true ){
             this.props.history.push('campusstyle/detail');
         }else{
-            message.warning('网络不可用',20);
+            message.warning('网络不可用',10);
             message.config({ maxCount:1,});
         }
     }

@@ -1,12 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import BackPrevHeader from 'COMPONENTS/backPrev';
-// import Tab from 'COMPONENTS/tab';
 import styles from './index.scss';
 import axios from 'UTILS/axios';
 import moment from 'moment';
 import { collapseImg, expandImg, } from 'ASSETS/campusstyle';
 import { noNoticeImg } from 'ASSETS/home';
 import { loadingImg } from 'ASSETS/loading';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { setNotice } from 'MODULES/root/actions';
+
 class Notice extends Component {
     constructor(props) {
         super(props);
@@ -21,6 +24,11 @@ class Notice extends Component {
             lock: true,//正在加载中,未来可以用来设置loading
             loading: true,//正在加载中,未来可以用来设置loading
         }
+    }
+
+    static propTypes = {
+        setNotice: PropTypes.func,
+        root: PropTypes.object,
     }
 
     componentDidMount() {
@@ -41,13 +49,12 @@ class Notice extends Component {
                     isOver: true
                 })
             }
-            //默认第一条数据展示
+            //默认数据展示,根据首页点击的通知展示，否则默认展示第一条
             let { arrExpan } = this.state;
-            if (idx == 1) {
-                arrExpan.push(json.data.dataList[0].id);
-                this.getNoticeContent(json.data.dataList[0].id);
+            if (idx == this.props.root.noticeNum) {
+                arrExpan.push(json.data.dataList[this.props.root.noticeNum].id);
+                this.getNoticeContent(json.data.dataList[this.props.root.noticeNum].id);
             }
-
             // let noticeList=json.data.dataList;
             this.setState({
                 noticeList: [
@@ -58,10 +65,13 @@ class Notice extends Component {
                 lock: true,
                 loading: true
             })
+            
         }).then(() => {
             this.setState({
                 loading: false
             })
+            let offsetList = document.getElementById('wrapList');
+            offsetList.scrollTop = 100+100*this.props.root.noticeNum;
         })
     }
     //展开收起
@@ -138,7 +148,9 @@ class Notice extends Component {
             <div ref={(container) => { this.container = container }}
                 className={styles['container']}
                 onTouchEnd={() => { this.goToBottom() }}
-                onScroll={(e) => { this.onTouchMove(e) }}>
+                onScroll={(e) => { this.onTouchMove(e) }}
+                id="wrapList"
+                >
                 <ul className={styles['list']}>
                     {
                         noticeList.length !== 0 && noticeList.map((item, index) => {
@@ -186,4 +198,8 @@ class Notice extends Component {
     }
 }
 
-export default Notice
+export default connect(
+    ({ root }) => ({
+        root: root,
+    }), { setNotice }
+)(Notice)

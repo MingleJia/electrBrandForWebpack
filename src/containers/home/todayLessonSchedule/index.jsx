@@ -1,4 +1,5 @@
 import React from 'react';
+import { message } from 'antd';
 import style from "./index.scss";
 import themeLoader from "UTILS/themeLoader";
 import { Link } from 'react-router-dom';
@@ -17,6 +18,15 @@ export default class TodayLessonSchedule extends React.Component {
     componentDidMount() {
 
     }
+
+    jumpMore = (e) => {
+        if( window.navigator.onLine === false ){
+            e.preventDefault();
+            e.stopPropagation();
+            message.warning('网络不可用',10);
+            message.config({ maxCount:1,});
+        }
+    }
     render() {
         return (
             <div className={`${themeLoader(['block', 'schedule'], theme, style)}`}>
@@ -26,7 +36,7 @@ export default class TodayLessonSchedule extends React.Component {
                         //如果tableData没有就不显示更多
                         Object.keys(this.state.tableData).length
                             ?
-                        <Link to='/schedulemore' className={`${style['more']} ${style['linkBtn']}`}>
+                        <Link to='/schedulemore' className={`${style['more']} ${style['linkBtn']}`} onClick={ this.jumpMore }>
                             更多<img  className={style['linkIcon']} src={ moreImg }></img>
                         </Link>
                             :

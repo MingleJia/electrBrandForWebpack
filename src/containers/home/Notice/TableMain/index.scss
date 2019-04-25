@@ -19,33 +19,37 @@
             color: #cccccc;
         }
     }
-    .line{
-        .lineStyle{
-            font-size: .24rem;
-            line-height: .32rem;
-            letter-spacing: 0px;
-            color: #333333;
-            padding: 0.141rem .3rem;
-            display: flex;
-            width: 100%;
-            position: relative;
-            .title {
-                overflow: hidden;
-                word-break: keep-all;
-                text-overflow: ellipsis;
-                width: 4.56rem;
+    .noticeList{
+        .line{
+            display: block;
+            .lineStyle{
+                font-size: .24rem;
+                line-height: .32rem;
+                letter-spacing: 0px;
+                color: #333333;
+                padding: 0.141rem .3rem;
+                display: flex;
+                width: 100%;
+                position: relative;
+                .title {
+                    overflow: hidden;
+                    word-break: keep-all;
+                    text-overflow: ellipsis;
+                    width: 4.56rem;
+                }
+                .start {
+                    font-size: 0.2rem;
+                    color: #999999;
+                    position: absolute;
+                    right: 0.3rem;
+                }
             }
-            .start {
-                font-size: 0.2rem;
-                color: #999999;
-                position: absolute;
-                right: 0.3rem;
+            &:nth-child(odd) {
+                background-color: #f6f8ff; 
             }
-        }
-        &:nth-child(odd) {
-            background-color: #f6f8ff; 
         }
     }
+    
     .detail{
         padding:0.141rem 0.3rem 0 0.3rem;
         background-color: #fff;

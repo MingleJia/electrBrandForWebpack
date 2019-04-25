@@ -36,7 +36,7 @@ class CampusDetail extends Component {
         if( window.navigator.onLine === true ){
             window.history.back(-1);
         }else{
-            message.warning('网络不可用',20);
+            message.warning('网络不可用',10);
             message.config({ maxCount:1,});
         }
     }
