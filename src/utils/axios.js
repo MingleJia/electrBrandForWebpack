@@ -49,7 +49,7 @@ function axiosRequest(method, url, params, type){
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{
                     if(error.message.indexOf('timeout') !== -1 && toastLock){
-                        message.info('网络不给力',20);
+                        message.info('网络不给力',10);
                         toastLock = false;
                     }
                     setTimeout(() => {
@@ -69,7 +69,7 @@ function axiosRequest(method, url, params, type){
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{
                     if(error.message.indexOf('timeout') !== -1 && toastLock){
-                        message.info('网络不给力',20);
+                        message.info('网络不给力',10);
                         toastLock = false;
                     }
                     setTimeout(() => {
