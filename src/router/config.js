@@ -62,4 +62,9 @@ export const routerConfig = [
         component: config.StudentsStyleP,    // 学生风采
         exact: true
     },
+    {
+        path:'/phone/studentsStyle/edit',
+        component: config.StudentsStyleEditP,    // 学生风采
+        exact: true
+    },
 ]

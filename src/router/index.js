@@ -77,3 +77,9 @@ export const StudentsStyleP = Loadable({
 	loading: Loading,
 	timeout: timeout
 });
+//编辑
+export const StudentsStyleEditP = Loadable({
+	loader: () => import("CONTAINERS/phoneStudentStyle/StudentsStyleEditP"),
+	loading: Loading,
+	timeout: timeout
+});
