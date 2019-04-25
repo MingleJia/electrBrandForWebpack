@@ -32,13 +32,13 @@ class CampusDetail extends Component {
     }
 
     //返回上一页
-    backHome = () => {
-        // if( window.navigator.onLine === true ){
+    backHome() {
+        if( window.navigator.onLine === true ){
             window.history.back(-1);
-        // }else{
+        }else{
         //     message.warning('网络不可用',10);
         //     message.config({ maxCount:1,});
-        // }
+        }
     }
     //上一页
     prevBtn = () => {
@@ -76,7 +76,7 @@ class CampusDetail extends Component {
             <div className={styles['container']}>
                 <PreviewImg/>
                 <div className={styles['tab']}>
-                    <div className={styles['back']} onClick={() => this.backHome()}>
+                    <div className={styles['back']} onClick={() => {this.backHome()}}>
                         <img className={styles['backimg']} src={ backImg }></img><span>返回</span>
                     </div>
                     {
