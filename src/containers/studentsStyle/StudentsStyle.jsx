@@ -33,7 +33,7 @@ class StudentsStyle extends Component {
     render() {
         let { dataList } = this.state;
         return <Fragment>
-            <ToMore title={'学生风采'} toWhere={'/studentsStyle/more'} isShow={true} />\
+            <ToMore title={'学生风采'} toWhere={'/studentsStyle/more'} isShow={true} />
             <div>
 
             </div>

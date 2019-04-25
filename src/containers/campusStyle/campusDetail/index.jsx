@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { message } from 'antd';
+// import { message } from 'antd';
 import styles from './index.scss';
 import { backImg } from 'ASSETS/header';
 import { connect } from 'react-redux';
@@ -33,12 +33,12 @@ class CampusDetail extends Component {
 
     //返回上一页
     backHome = () => {
-        if( window.navigator.onLine === true ){
+        // if( window.navigator.onLine === true ){
             window.history.back(-1);
-        }else{
-            message.warning('网络不可用',10);
-            message.config({ maxCount:1,});
-        }
+        // }else{
+        //     message.warning('网络不可用',10);
+        //     message.config({ maxCount:1,});
+        // }
     }
     //上一页
     prevBtn = () => {
