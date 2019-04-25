@@ -51,7 +51,7 @@ class Notice extends Component {
             }
             //默认数据展示,根据首页点击的通知展示，否则默认展示第一条
             let { arrExpan } = this.state;
-            if (idx == 0) {
+            if (idx == 1) {
                 arrExpan.push(json.data.dataList[this.props.root.noticeNum].id);
                 this.getNoticeContent(json.data.dataList[this.props.root.noticeNum].id);
             }
