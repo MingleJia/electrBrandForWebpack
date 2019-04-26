@@ -23,6 +23,7 @@ class Notice extends Component {
             isOver: false,//下拉是否已经到最底部
             lock: true,//正在加载中,未来可以用来设置loading
             loading: true,//正在加载中,未来可以用来设置loading
+            firstTime : true, //是否是第一次进入
         }
     }
 
@@ -70,8 +71,7 @@ class Notice extends Component {
             this.setState({
                 loading: false
             })
-            let offsetList = document.getElementById('wrapList');
-            offsetList.scrollTop = 100+100*this.props.root.noticeNum;
+            
         })
     }
     //展开收起
@@ -80,6 +80,7 @@ class Notice extends Component {
         arrExpan.includes(value) ? arrExpan.splice(arrExpan.indexOf(value), 1) : arrExpan.push(value) && this.getNoticeContent(value);
         this.setState({
             arrExpan: arrExpan,
+            firstTime:false,
         })
     }
 
@@ -93,6 +94,12 @@ class Notice extends Component {
             this.setState({
                 contents
             })
+        }).then(()=>{
+            let offsetList = document.getElementById('contentList');
+            let ulList = document.getElementById('wrapList');
+            if(ulList.scrollHeight > 988 && this.state.firstTime ){
+                offsetList.scrollTop = 100*this.props.root.noticeNum;
+            }
         })
     }
 
@@ -149,9 +156,9 @@ class Notice extends Component {
                 className={styles['container']}
                 onTouchEnd={() => { this.goToBottom() }}
                 onScroll={(e) => { this.onTouchMove(e) }}
-                id="wrapList"
+                id="contentList"
                 >
-                <ul className={styles['list']}>
+                <ul className={styles['list']} id="wrapList">
                     {
                         noticeList.length !== 0 && noticeList.map((item, index) => {
                             return (
