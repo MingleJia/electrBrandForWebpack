@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import styles from './StudentsStyleEditP.scss';
-import { DatePicker, Picker, List, TextareaItem, InputItem } from 'antd-mobile';
+import { DatePicker, Picker, List, InputItem } from 'antd-mobile';
+// import { DatePicker, Picker, List, TextareaItem, InputItem } from 'antd-mobile';
 import UploadImgs from 'COMPONENTS/uploadImgs'
+
 class StudentsStyleP extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +22,7 @@ class StudentsStyleP extends Component {
         let { show_time, title } = this.state;
         // console.log(show_time)
         return <Fragment>
+            
             <div className={styles['box']}>
                 <div className={styles['top']}>
                     <div className={styles['row']}>

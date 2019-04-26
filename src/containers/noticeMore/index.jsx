@@ -70,8 +70,11 @@ class Notice extends Component {
             this.setState({
                 loading: false
             })
-            let offsetList = document.getElementById('wrapList');
-            offsetList.scrollTop = 100+100*this.props.root.noticeNum;
+            let offsetList = document.getElementById('contentList');
+            let ulList = document.getElementById('wrapList');
+            if(ulList.scrollHeight > 988){
+                offsetList.scrollTop = 100*this.props.root.noticeNum;
+            }
         })
     }
     //展开收起
@@ -149,9 +152,9 @@ class Notice extends Component {
                 className={styles['container']}
                 onTouchEnd={() => { this.goToBottom() }}
                 onScroll={(e) => { this.onTouchMove(e) }}
-                id="wrapList"
+                id="contentList"
                 >
-                <ul className={styles['list']}>
+                <ul className={styles['list']} id="wrapList">
                     {
                         noticeList.length !== 0 && noticeList.map((item, index) => {
                             return (

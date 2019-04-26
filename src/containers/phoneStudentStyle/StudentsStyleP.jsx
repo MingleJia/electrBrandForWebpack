@@ -4,6 +4,7 @@ import styles from './StudentsStyleP.scss';
 import { Tabs } from 'antd-mobile';
 import InfoItem from '../../components/phone_infoItem/InfoItem';
 import axios from 'UTILS/axios';
+import DeleteDialog from 'COMPONENTS/phoneDialog/deleteDialog';
 class StudentsStyleP extends Component {
     constructor(props) {
         super(props);
@@ -35,7 +36,7 @@ class StudentsStyleP extends Component {
         axios('get', '/api/show/lists', {
             is_teacher: this.state.roleId == 102 ? 0 : 1,
             audit_status: this.state.type
-        }).then((json) => {
+        }).then(() => {
             // console.log(json)
             // this.setState({
             //     campusList: json.data,
@@ -68,6 +69,7 @@ class StudentsStyleP extends Component {
                 { title: '已驳回', value: 2 },
             ];
         return <Fragment>
+        <DeleteDialog/>
             <div
                 className={styles['box']}
             >

@@ -71,7 +71,6 @@ class TableMain extends Component {
     }
 
     jumpDetailNotice = (index,id) => {
-        window.console.log(index)
         this.props.setNotice({
             noticeId: id,
             noticeNum: index,
