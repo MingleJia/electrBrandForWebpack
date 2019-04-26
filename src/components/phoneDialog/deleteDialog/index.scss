@@ -27,9 +27,12 @@
         .tips{
             font-weight: bold;
             color: #333;  
+            padding: 8.27vw 0 5.47vw 0;
+            font-size: 4.8vw;
         }
         .info{
             color: #5a5a5a;
+            font-size: 4vw;
         }
         .btns{
             width: 100%;
@@ -37,6 +40,20 @@
             border-top: 0.13vw solid #dbdbdb;
             position: absolute;
             bottom: 0;
+            line-height: 12vw;
+            span{
+                display: inline-block;
+                width: 50%;
+                height: 100%;
+                font-size: 4.8vw;
+            }
+            .cancel{
+                border-right: 0.13vw solid #dbdbdb;
+                color: #999;
+            }
+            .delete{
+                color: #4ea375;
+            }
         }
     }
     
