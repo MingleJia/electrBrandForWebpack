@@ -12,11 +12,33 @@ class InfoItem extends Component {
 
     componentDidMount() {
     }
+    getOperationMode() {
+        if (this.props.roleId == 102) {
+            if (this.props.type == 0) {
+                return ['撤回', '修改']
+            }
+            if (this.props.type == 1 || this.props.type == 2) {
+                return ['', '删除']
+            }
+        } else {
+            if (this.props.type == 0) {
+                return ['驳回', '同意']
+            }
+            if (this.props.type == 1 || this.props.type == 2) {
+                return ['修改', '删除']
+            }
+            if (this.props.type == 'showing') {
+                return ['撤回', '修改']
+            }
+        }
+        return ['', ''];
+    }
     showImg(showImgSrc) {
         this.props.showImg && this.props.showImg(true, showImgSrc)
     }
     render() {
-
+        let operationMode = this.getOperationMode();
+        // console.log(this.props.roleId, this.props.type)
         return <Fragment>
             <div className={styles['box']}>
                 <div className={styles['top']}>
@@ -27,7 +49,7 @@ class InfoItem extends Component {
                     <div className={styles['textWrap']}>
                         <div className={styles['title']}>标题:</div>
                         <div className={styles['text']}>
-                            <p>sdfsdfsdf sdf sdf sdsdfsd sd双方</p>
+                            <p>{this.props.title||''}</p>
                         </div>
                     </div>
                     <WhiteSpace size="sm" />
@@ -84,8 +106,8 @@ class InfoItem extends Component {
                 </div>
                 <div className={styles['bottom']}>
                     <p>审批时间2019-04-29 23:00
-                        <span className={styles['l1']}>右边</span>
-                        <span className={styles['l2']}>左边</span>
+                        <span className={styles['l1']}>{operationMode[1]}</span>
+                        <span className={styles['l2']}>{operationMode[0]}</span>
                     </p>
                 </div>
             </div>
