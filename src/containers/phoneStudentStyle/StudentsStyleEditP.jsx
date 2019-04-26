@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import styles from './StudentsStyleEditP.scss';
 import { DatePicker, Picker, List, TextareaItem, InputItem } from 'antd-mobile';
+import UploadImgs from 'COMPONENTS/uploadImgs'
 class StudentsStyleP extends Component {
     constructor(props) {
         super(props);
@@ -54,6 +55,7 @@ class StudentsStyleP extends Component {
                         >标题</InputItem>
                     </div>
                 </div>
+                <UploadImgs />
             </div>
         </Fragment >
     }
