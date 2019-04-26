@@ -32,6 +32,11 @@ export default class UploadImgs extends React.Component{
         window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'takePicture', []);
     }
 
+    // 查看大图
+    showImg = (path) => {
+        window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'openPicture', [{'path': path}]);
+    }
+
     render() {
         let {uploadImgs, maxImgNum} = this.state;
         return (
@@ -41,7 +46,7 @@ export default class UploadImgs extends React.Component{
                     uploadImgs.map((item, index) => {
                         return (
                             <span className={`${styles.imgItem} ${styles.showImg}`} key={item}>
-                                <img className={styles.showImgItem} src={item}/>
+                                <img className={styles.showImgItem} src={item} onClick={() => {this.showImg(item)}}/>
                                 <img className={styles.deleteImg} src={deleteImg} onClick={() => {this.delImg(index)}} />
                             </span>
                         )
