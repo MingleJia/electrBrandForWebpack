@@ -3,6 +3,7 @@ import styles from './InfoItem.scss';
 import { WhiteSpace, } from 'antd-mobile';
 import deletImg from '../../assets/phone/delet.png';
 import moment from 'moment';
+import axios from 'UTILS/axios';
 class InfoItem extends Component {
     constructor(props) {
         super(props);
@@ -13,6 +14,7 @@ class InfoItem extends Component {
 
     componentDidMount() {
     }
+    //设置操作节点
     getOperationMode() {
         if (this.props.roleId == 102) {
             if (this.props.type == 0) {
@@ -29,7 +31,7 @@ class InfoItem extends Component {
                 return ['修改', '删除']
             }
             if (this.props.type == 'showing') {
-                return ['撤回', '修改']
+                return ['撤下', '修改']
             }
         }
         return ['', ''];
@@ -42,16 +44,76 @@ class InfoItem extends Component {
             if (str == '修改') {
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id;
             }
+            if (str == '撤回') {
+                this.withdraw();
+            }
+            if (str == '删除') {
+                this.delete();
+            }
         }
+        if (this.props.roleId == 103) {
+            if (str == '修改') {
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id;
+            }
+            if (str == '撤下') {
+                this.goDown();
+            }
+            if (str == '驳回') {
+                this.check(2);
+            }
+            if (str == '同意') {
+                this.check(1);
+            }
+        }
+    }
+    //撤回消息
+    withdraw() {
+        axios('post', '/api/show/recall', {
+            show_id: this.props.id
+        }, 'form').then((json) => {
+            console.log(json);
+            if (json.code == 1) {
+                // 刷新列表
+                this.props.upload && this.props.upload()
+            }
+        })
+    }
+    // 撤下展示
+    goDown() {
+        axios('post', '/api/show/withdraw', {
+            show_id: this.props.id
+        }, 'form').then((json) => {
+            // console.log(json);
+            if (json.code == 1) {
+                // 刷新列表
+                this.props.upload && this.props.upload()
+            }
+        })
+    }
+    //删除消息
+    delete() {
+    }
+    //审核: 1同意 2驳回
+    check(n) {
+        axios('post', '/api/show/audit', {
+            show_id: this.props.id,
+            audit_status: n
+        }, 'form').then((json) => {
+            console.log(json);
+            if (json.code == 1) {
+                // 刷新列表
+                this.props.upload && this.props.upload()
+            }
+        })
     }
     render() {
         let operationMode = this.getOperationMode();
-        // console.log(this.props.roleId, this.props.type)
+        console.log(this.props.roleId, this.props.type, this.props.id)
         return <Fragment>
             <div className={styles['box']}>
                 <div className={styles['top']}>
                     <span className={styles['left']}>学生姓名</span>
-                    <span className={styles['right']}>高一三班</span>
+                    {this.props.roleId == 103 && <span className={styles['right']}>高一三班</span>}
                 </div>
                 <div className={styles['content']}>
                     <div className={styles['textWrap']}>

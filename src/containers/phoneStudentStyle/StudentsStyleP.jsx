@@ -26,7 +26,8 @@ class StudentsStyleP extends Component {
         axios('post', '/api/show/auth', {
         }, 'form').then((json) => {
             this.setState({
-                roleId: json.data.roleId
+                roleId: json.data.roleId,
+                type: 'showing'
             }, () => {
                 this.getList()
             }
@@ -55,9 +56,9 @@ class StudentsStyleP extends Component {
         // let scrollTop = this.container.scrollTop;
         // console.log(offsetHeight, scrollHeight, scrollTop)
     }
-    onChange = (tab, index) => {
+    onChange = (tab) => {
         this.setState({
-            type: index,
+            type: tab.value,
             dataList: [],
         }, () => {
             this.getList();
@@ -94,6 +95,35 @@ class StudentsStyleP extends Component {
                     initialPage={this.state.type}
                     animated={true}
                     useOnPan={false}>
+                    {/* 展示中 */}
+                    {
+                        roleId == 103 && <div className={styles['tabItem']}>
+                            <div className={styles['scroll']}>
+                                {
+                                    dataList.map(
+                                        (item, index) =>
+                                            <InfoItem
+                                                key={index}
+                                                upload={() => { this.getList() }}
+                                                showImg={(isShowImg, showImgSrc) => {
+                                                    this.setState({ isShowImg, showImgSrc })
+                                                }}
+                                                roleId={roleId}
+                                                type={type}
+                                                title={item.title}
+                                                show_time={item.show_time}
+                                                desc={item.desc}
+                                                createtime={item.createtime}
+                                                id={item.id}
+                                            />
+                                    )
+                                }
+                                <div className={styles['noMoreData']}>
+                                    无跟多数据
+                                </div>
+                            </div>
+                        </div>
+                    }
                     {/* tab1 */}
                     <div
                         className={styles['tabItem']}
@@ -112,6 +142,8 @@ class StudentsStyleP extends Component {
                                 dataList.map(
                                     (item, index) =>
                                         <InfoItem
+                                            key={index}
+                                            upload={() => { this.getList() }}
                                             showImg={(isShowImg, showImgSrc) => {
                                                 this.setState({ isShowImg, showImgSrc })
                                             }}
@@ -137,6 +169,8 @@ class StudentsStyleP extends Component {
                                 dataList.map(
                                     (item, index) =>
                                         <InfoItem
+                                            key={index}
+                                            upload={() => { this.getList() }}
                                             showImg={(isShowImg, showImgSrc) => {
                                                 this.setState({ isShowImg, showImgSrc })
                                             }}
@@ -146,6 +180,7 @@ class StudentsStyleP extends Component {
                                             show_time={item.show_time}
                                             desc={item.desc}
                                             createtime={item.createtime}
+                                            id={item.id}
                                         />
                                 )
                             }
@@ -156,7 +191,30 @@ class StudentsStyleP extends Component {
                     </div>
                     {/* tab3 */}
                     <div className={styles['tabItem']}>
-                        已驳回
+                        <div className={styles['scroll']}>
+                            {
+                                dataList.map(
+                                    (item, index) =>
+                                        <InfoItem
+                                            key={index}
+                                            upload={() => { this.getList() }}
+                                            showImg={(isShowImg, showImgSrc) => {
+                                                this.setState({ isShowImg, showImgSrc })
+                                            }}
+                                            roleId={roleId}
+                                            type={type}
+                                            title={item.title}
+                                            show_time={item.show_time}
+                                            desc={item.desc}
+                                            createtime={item.createtime}
+                                            id={item.id}
+                                        />
+                                )
+                            }
+                            <div className={styles['noMoreData']}>
+                                无跟多数据
+                            </div>
+                        </div>
                     </div>
                 </Tabs>
             </div>

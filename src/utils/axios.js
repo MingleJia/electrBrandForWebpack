@@ -12,7 +12,8 @@ if(env === 'development'){
 axios.defaults.withCredentials = true;
 function getItem(key){
     if(window.location.href.indexOf("phone")!=-1){
-        return 'VGxFOVBRPT07TmpBME1EWXhNRE0wOzU1';
+        // return 'VGxFOVBRPT07TmpBME1EWXhNRE0wOzU1';
+        return 'VFZSWlBRPT07S0NBaklpZ2hJQ1VqOzE2MTY=';
     }else{
         return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(key).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
     }
