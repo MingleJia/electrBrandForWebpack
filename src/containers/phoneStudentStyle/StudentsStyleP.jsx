@@ -40,7 +40,7 @@ class StudentsStyleP extends Component {
             audit_status: this.state.type,
 
         }).then((json) => {
-            console.log(json)
+            // console.log(json)
             this.setState({
                 dataList: json.data.data,
             })

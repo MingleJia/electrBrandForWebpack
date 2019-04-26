@@ -71,7 +71,7 @@ class InfoItem extends Component {
         axios('post', '/api/show/recall', {
             show_id: this.props.id
         }, 'form').then((json) => {
-            console.log(json);
+            // console.log(json);
             if (json.code == 1) {
                 // 刷新列表
                 this.props.upload && this.props.upload()
@@ -99,7 +99,7 @@ class InfoItem extends Component {
             show_id: this.props.id,
             audit_status: n
         }, 'form').then((json) => {
-            console.log(json);
+            // console.log(json);
             if (json.code == 1) {
                 // 刷新列表
                 this.props.upload && this.props.upload()
@@ -108,7 +108,7 @@ class InfoItem extends Component {
     }
     render() {
         let operationMode = this.getOperationMode();
-        console.log(this.props.roleId, this.props.type, this.props.id)
+        // console.log(this.props.roleId, this.props.type, this.props.id)
         return <Fragment>
             <div className={styles['box']}>
                 <div className={styles['top']}>

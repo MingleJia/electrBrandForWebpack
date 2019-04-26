@@ -52,7 +52,7 @@ class StudentsStyleP extends Component {
     getClassInfo() {
         axios('get', '/api/show/classes', {
         }).then((json) => {
-            console.log(json.data)
+            // console.log(json.data)
             this.setState({
                 teacher_province: json.data.map(item => ({
                     label: item.className,
@@ -90,7 +90,7 @@ class StudentsStyleP extends Component {
         axios('get', '/api/show/read', {
             show_id
         }).then((json) => {
-            console.log(json);
+            // console.log(json);
             this.setState({
                 teacher_student: [json.data.class_id, json.data.student_id],
                 title: json.data.title,
@@ -105,7 +105,7 @@ class StudentsStyleP extends Component {
     getStudentInfoParents() {
         axios('get', '/api/show/parentchildes', {
         }).then((json) => {
-            console.log(json.data)
+            // console.log(json.data)
             this.setState({
                 resourceData: json.data,
                 parents_province: json.data.map(item => ({
@@ -125,7 +125,7 @@ class StudentsStyleP extends Component {
         axios('get', '/api/show/read', {
             show_id
         }).then((json) => {
-            console.log(json);
+            // console.log(json);
             this.setState({
                 parents_student: [json.data.student_id],
                 title: json.data.title,
@@ -160,9 +160,9 @@ class StudentsStyleP extends Component {
             if (show_id) {
                 submintData.show_id = show_id;
             }
-            axios('post', '/api/show/parentaddshow', submintData, 'form').then((json) => {
+            axios('post', '/api/show/parentaddshow', submintData, 'form').then(() => {
                 // 处理提交成功
-                console.log(json);
+                // console.log(json);
             })
         }
         if (role_id == 103) {
@@ -185,9 +185,9 @@ class StudentsStyleP extends Component {
             if (show_id) {
                 submintData.show_id = show_id;
             }
-            axios('post', '/api/show/teacheraddshow', submintData, 'form').then((json) => {
+            axios('post', '/api/show/teacheraddshow', submintData, 'form').then(() => {
                 // 处理提交成功
-                console.log(json);
+                // console.log(json);
             })
         }
     }
@@ -206,7 +206,7 @@ class StudentsStyleP extends Component {
                             <Picker
                                 data={parents_province}
                                 value={this.state.parents_student}
-                                onChange={(v) => { console.log(v); this.setOneKV('parents_student', v) }}
+                                onChange={(v) => { this.setOneKV('parents_student', v) }}
                                 cols={1}
                             >
                                 <List.Item arrow="horizontal">学生姓名</List.Item>
@@ -219,7 +219,7 @@ class StudentsStyleP extends Component {
                             <Picker
                                 data={teacher_province}
                                 value={this.state.teacher_student}
-                                onChange={(v) => { console.log(v); this.setOneKV('teacher_student', v) }}
+                                onChange={(v) => {  this.setOneKV('teacher_student', v) }}
                                 // onPickerChange={(v) => { console.log(v) }}
                                 cols={2}
                             >
