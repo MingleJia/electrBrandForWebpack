@@ -27,36 +27,24 @@
             }
 
         }
+        .am-list-item .am-input-label.am-input-label-5{
+            font-size: 4vw;
+            color:#5a5a5a;
+            padding-right: 4vw;
+            width: 12vw;
+        }
+        .am-list-item .am-input-control input,.am-list-item .am-input-extra{
+            font-size: 4vw;
+            max-height: 13vw;
+            color:#5a5a5a;
+        }
     }
     .top{
         padding: 0 4vw 0 4vw;
         background-color: white;
         .row{
             position: relative;
-            .title{
-                width: 12vw;
-                float: left;
-                font-size: 4vw;
-                height: 13vw;
-                line-height: 13vw;
-                border-bottom:  1px solid #dbdbdb ;
-                color:#5a5a5a;
-                padding-right: 4vw;
-            }
-            .textareaWrap{
-                width: 84vw;
-            }
-            .count{
-                position: absolute;
-                width: 8vw;
-                height: 13vw;
-                right: 0;
-                top: 0;
-                border-bottom:  1px solid #dbdbdb ;
-                font-size: 4vw;
-                color:#999;
-                line-height: 13vw;
-            }
+            
         }
     }
 }
