@@ -8,6 +8,16 @@ class Main extends Component {
 		super(props);
 	}
 
+	componentDidMount () {
+		let UA = navigator.userAgent;
+        let isAndroid = /android|adr/gi.test(UA), isIos = /iphone|ipod|ipad/gi.test(UA) && !isAndroid;
+        if (isIos) {
+            require('https://diag.leke.cn/scripts/common/mobile/cordova/cordova-ios.js');
+        } else {
+            require('https://diag.leke.cn/scripts/common/mobile/cordova/cordova-android.js');
+        }
+	}
+
 	render() {
 		return (
 			<Fragment>
