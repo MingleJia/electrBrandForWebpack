@@ -4,7 +4,7 @@ import styles from './StudentsStyleP.scss';
 import { Tabs } from 'antd-mobile';
 import InfoItem from '../../components/phone_infoItem/InfoItem';
 import axios from 'UTILS/axios';
-import DeleteDialog from 'COMPONENTS/phoneDialog/deleteDialog';
+// import DeleteDialog from 'COMPONENTS/phoneDialog/deleteDialog';
 class StudentsStyleP extends Component {
     constructor(props) {
         super(props);
@@ -56,7 +56,12 @@ class StudentsStyleP extends Component {
         // console.log(offsetHeight, scrollHeight, scrollTop)
     }
     onChange = (tab, index) => {
-        this.setState({ type: index })
+        this.setState({
+            type: index,
+            dataList: [],
+        }, () => {
+            this.getList();
+        })
         // console.log(tab, index)
     }
     render() {
@@ -72,7 +77,7 @@ class StudentsStyleP extends Component {
                 { title: '已驳回', value: 2 },
             ];
         return <Fragment>
-        <DeleteDialog/>
+            {/* <DeleteDialog/> */}
             <div
                 className={styles['box']}
             >
@@ -116,6 +121,7 @@ class StudentsStyleP extends Component {
                                             show_time={item.show_time}
                                             desc={item.desc}
                                             createtime={item.createtime}
+                                            id={item.id}
                                         />
                                 )
                             }
@@ -127,20 +133,22 @@ class StudentsStyleP extends Component {
                     {/* tab2 */}
                     <div className={styles['tabItem']}>
                         <div className={styles['scroll']}>
-                            <InfoItem
-                                showImg={(isShowImg, showImgSrc) => {
-                                    this.setState({ isShowImg, showImgSrc })
-                                }}
-                                roleId={roleId}
-                                type={type}
-                            />
-                            <InfoItem
-
-                            />
-                            <InfoItem
-                            />
-                            <InfoItem
-                            />
+                            {
+                                dataList.map(
+                                    (item, index) =>
+                                        <InfoItem
+                                            showImg={(isShowImg, showImgSrc) => {
+                                                this.setState({ isShowImg, showImgSrc })
+                                            }}
+                                            roleId={roleId}
+                                            type={type}
+                                            title={item.title}
+                                            show_time={item.show_time}
+                                            desc={item.desc}
+                                            createtime={item.createtime}
+                                        />
+                                )
+                            }
                             <div className={styles['noMoreData']}>
                                 无跟多数据
                             </div>
