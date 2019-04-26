@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import styles from './InfoItem.scss';
 import { WhiteSpace, } from 'antd-mobile';
 import deletImg from '../../assets/phone/delet.png';
+import moment from 'moment';
 class InfoItem extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +37,13 @@ class InfoItem extends Component {
     showImg(showImgSrc) {
         this.props.showImg && this.props.showImg(true, showImgSrc)
     }
+    ope(str) {
+        if (this.props.roleId == 102) {
+            if (str == '修改') {
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id;
+            }
+        }
+    }
     render() {
         let operationMode = this.getOperationMode();
         // console.log(this.props.roleId, this.props.type)
@@ -49,21 +57,21 @@ class InfoItem extends Component {
                     <div className={styles['textWrap']}>
                         <div className={styles['title']}>标题:</div>
                         <div className={styles['text']}>
-                            <p>{this.props.title||''}</p>
+                            <p>{this.props.title || ''}</p>
                         </div>
                     </div>
                     <WhiteSpace size="sm" />
                     <div className={styles['textWrap']}>
                         <div className={styles['title']}>时间:</div>
                         <div className={styles['text']}>
-                            <p>sdfsdfsdf sdf sdf sdsdfsd sd</p>
+                            <p>{this.props.show_time ? moment(this.props.show_time).format('YYYY-MM-DD') : ''}</p>
                         </div>
                     </div>
                     <WhiteSpace size="sm" />
                     <div className={styles['textWrap']}>
                         <div className={styles['title']}>描述:</div>
                         <div className={styles['text']}>
-                            <p>sdfsdfsdf sdf sdf sdsdfsd sd双方的的风格覆盖的风格的风格的风格的风格的风格的风格覆盖覆盖豆腐干风格的法国队复古风格覆盖的风格地方地方</p>
+                            <p>{this.props.desc || ''}</p>
                         </div>
                     </div>
                     <WhiteSpace size="sm" />
@@ -74,12 +82,15 @@ class InfoItem extends Component {
                         </div>
                     </div>
                     <WhiteSpace size="sm" />
-                    <div className={styles['textWrap']}>
-                        <div className={styles['title']}>申请时间:</div>
-                        <div className={styles['text']}>
-                            <p>sdfsdfsdf sdf sdf sdsdfsd sd</p>
+                    {
+
+                        this.props.createtime && <div className={styles['textWrap']}>
+                            <div className={styles['title']}>申请时间:</div>
+                            <div className={styles['text']}>
+                                <p>{moment(this.props.createtime).format('YYYY-MM-DD HH:mm:ss')}</p>
+                            </div>
                         </div>
-                    </div>
+                    }
                     <WhiteSpace size="sm" />
                     <div className={styles['imgWrap']}>
                         <div className={styles['imgItem']}>
@@ -106,8 +117,14 @@ class InfoItem extends Component {
                 </div>
                 <div className={styles['bottom']}>
                     <p>审批时间2019-04-29 23:00
-                        <span className={styles['l1']}>{operationMode[1]}</span>
-                        <span className={styles['l2']}>{operationMode[0]}</span>
+                        <span
+                            onClick={() => { this.ope(operationMode[1]) }}
+                            className={styles['l1']}
+                        >{operationMode[1]}</span>
+                        <span
+                            onClick={() => { this.ope(operationMode[0]) }}
+                            className={styles['l2']}
+                        >{operationMode[0]}</span>
                     </p>
                 </div>
             </div>
