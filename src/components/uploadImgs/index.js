@@ -7,20 +7,29 @@ export default class UploadImgs extends React.Component{
         super();
         this.state = {
             maxImgNum: 5,
-            uploadImgs: [
-                'https://file.leke.cn/group1/M00/13/1C/wKgURFmDDjaActh9AABi2hBMypg601.jpg',
-                'https://file.leke.cn/group1/M00/13/1C/wKgURFmDDjaActh9AABi2hBMypg601.jpg',
-                'https://file.leke.cn/group1/M00/13/1C/wKgURFmDDjaActh9AABi2hBMypg601.jpg',
-                'https://file.leke.cn/group1/M00/13/1C/wKgURFmDDjaActh9AABi2hBMypg601.jpg',
-                'https://file.leke.cn/group1/M00/13/1C/wKgURFmDDjaActh9AABi2hBMypg601.jpg',
-            ]
+            uploadImgs: []  //  拿到的图片的信息
         }
     }
 
+    //  删除照片
     delImg = (index) => {
         let {uploadImgs} = this.state;
         uploadImgs.splice(index, 1);
         this.setState({uploadImgs})
+    }
+
+    //  上传照片
+    addImg = () => {
+        let {uploadImgs} = this.state;
+        window.takePicture = (info)=>{
+            if (info.path) {
+                uploadImgs.push(info.path); 
+            } else {
+                window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'showToast', [{'content': '图片上传失败'}]);
+            }
+            this.setState({uploadImgs});
+        }; 
+        window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'takePicture', []);
     }
 
     render() {
@@ -31,7 +40,7 @@ export default class UploadImgs extends React.Component{
                 {
                     uploadImgs.map((item, index) => {
                         return (
-                            <span className={`${styles.imgItem} ${styles.showImg}`} key={index}>
+                            <span className={`${styles.imgItem} ${styles.showImg}`} key={item}>
                                 <img className={styles.showImgItem} src={item}/>
                                 <img className={styles.deleteImg} src={deleteImg} onClick={() => {this.delImg(index)}} />
                             </span>
@@ -40,7 +49,7 @@ export default class UploadImgs extends React.Component{
                 }
                 {
                     uploadImgs.length < maxImgNum ? 
-                    <span className={`${styles.imgItem} ${styles.uploadImg}`}>
+                    <span className={`${styles.imgItem} ${styles.uploadImg}`} onClick={this.addImg}>
                         <img src={cameraIcon}/>
                         <p>上传</p>
                     </span> : ''
