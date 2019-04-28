@@ -1,14 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import styles from './InfoItem.scss';
 import { WhiteSpace, } from 'antd-mobile';
-import deletImg from '../../assets/phone/delet.png';
 import moment from 'moment';
 import axios from 'UTILS/axios';
 class InfoItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShowImg: false
+
         }
     }
 
@@ -36,13 +35,10 @@ class InfoItem extends Component {
         }
         return ['', ''];
     }
-    showImg(showImgSrc) {
-        this.props.showImg && this.props.showImg(true, showImgSrc)
-    }
     ope(str) {
         if (this.props.roleId == 102) {
             if (str == '修改') {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id;
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id + '&ticket=' + this.props.ticket;
             }
             if (str == '撤回') {
                 this.withdraw();
@@ -53,7 +49,8 @@ class InfoItem extends Component {
         }
         if (this.props.roleId == 103) {
             if (str == '修改') {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id;
+                // console.log(this.props.ticket)
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket;
             }
             if (str == '撤下') {
                 this.goDown();
@@ -63,6 +60,9 @@ class InfoItem extends Component {
             }
             if (str == '同意') {
                 this.check(1);
+            }
+            if (str == '删除') {
+                this.delete();
             }
         }
     }
@@ -92,6 +92,16 @@ class InfoItem extends Component {
     }
     //删除消息
     delete() {
+        axios('post', '/api/show/del', {
+            show_id: this.props.id,
+        }, 'form').then((json) => {
+            // console.log(json);
+            if (json.code == 1) {
+                // console.log(json)
+                // 刷新列表
+                this.props.upload && this.props.upload()
+            }
+        })
     }
     //审核: 1同意 2驳回
     check(n) {
@@ -105,6 +115,10 @@ class InfoItem extends Component {
                 this.props.upload && this.props.upload()
             }
         })
+    }
+    //查看大图
+    showImg = (path) => {
+        window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'openPicture', [{ 'path': path }]);
     }
     render() {
         let operationMode = this.getOperationMode();
@@ -126,7 +140,7 @@ class InfoItem extends Component {
                     <div className={styles['textWrap']}>
                         <div className={styles['title']}>时间:</div>
                         <div className={styles['text']}>
-                            <p>{this.props.show_time ? moment(this.props.show_time).format('YYYY-MM-DD') : ''}</p>
+                            <p>{this.props.show_time ? moment(this.props.show_time * 1000).format('YYYY-MM-DD') : ''}</p>
                         </div>
                     </div>
                     <WhiteSpace size="sm" />
@@ -156,25 +170,17 @@ class InfoItem extends Component {
                     <WhiteSpace size="sm" />
                     <div className={styles['imgWrap']}>
                         <div className={styles['imgItem']}>
-                            <img className={styles['delet']} src={deletImg} alt="" />
                             <img onClick={() => { this.showImg('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg') }} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg" alt="" />
                         </div>
-                        <div className={styles['imgItem']}>
-                            <img className={styles['delet']} src={deletImg} alt="" />
-                            <img src="" alt="" />
-                        </div>
-                        <div className={styles['imgItem']}>
-                            <img className={styles['delet']} src={deletImg} alt="" />
-                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg" alt="" />
-                        </div>
-                        <div className={styles['imgItem']}>
-                            <img className={styles['delet']} src={deletImg} alt="" />
-                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg" alt="" />
-                        </div>
-                        <div className={styles['imgItem']} style={{ marginRight: 0 }}>
-                            <img className={styles['delet']} src={deletImg} alt="" />
-                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg" alt="" />
-                        </div>
+                        {
+                            (this.props.images || []).map(
+                                (item,index) => <div key={index} className={styles['imgItem']}>
+                                    <img
+                                        onClick={() => { this.showImg(item) }}
+                                        src={item} alt="" />
+                                </div>
+                            )
+                        }
                     </div>
                 </div>
                 <div className={styles['bottom']}>

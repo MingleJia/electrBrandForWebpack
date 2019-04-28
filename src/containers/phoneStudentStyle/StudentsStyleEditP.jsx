@@ -22,6 +22,7 @@ class StudentsStyleP extends Component {
             desc: '',
             comment: '',
             show_days: ['7'],
+            images: []
         }
     }
     //获取地址栏信息
@@ -36,6 +37,7 @@ class StudentsStyleP extends Component {
         //role_id 是角色信息 102是家长 show_id是获取详情用的
         const show_id = this.getHerfInfo('show_id');
         const role_id = this.getHerfInfo('role_id');
+        //隐藏发布按钮
         if (role_id == 102) {
             this.getStudentInfoParents();
             show_id && this.getDefaultDataParenr(show_id);
@@ -95,7 +97,7 @@ class StudentsStyleP extends Component {
                 teacher_student: [json.data.class_id, json.data.student_id],
                 title: json.data.title,
                 desc: json.data.desc,
-                show_time: new Date(json.data.updatetime),
+                show_time: new Date(json.data.updatetime * 1000),
                 comment: json.data.comment,
                 show_days: [json.data.show_days + '']
             })
@@ -130,7 +132,7 @@ class StudentsStyleP extends Component {
                 parents_student: [json.data.student_id],
                 title: json.data.title,
                 desc: json.data.desc,
-                show_time: new Date(json.data.updatetime)
+                show_time: new Date(json.data.updatetime * 1000)
             })
         })
     }
@@ -141,7 +143,7 @@ class StudentsStyleP extends Component {
         const show_id = this.getHerfInfo('show_id');
         if (role_id == 102) {
 
-            let { show_time, title, desc, parents_student, resourceData } = this.state;
+            let { show_time, title, desc, parents_student, resourceData, images } = this.state;
             if (parents_student.length == 0) return;
             if (!title) return;
             if (!show_time) return;
@@ -156,6 +158,7 @@ class StudentsStyleP extends Component {
                 show_time,
                 class_name: '2班',
                 student_name: '男男',
+                images,
             }
             if (show_id) {
                 submintData.show_id = show_id;
@@ -166,7 +169,7 @@ class StudentsStyleP extends Component {
             })
         }
         if (role_id == 103) {
-            let { teacher_student, show_time, title, desc, comment, show_days } = this.state;
+            let { teacher_student, show_time, title, desc, comment, show_days, images } = this.state;
             show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
             if (teacher_student.length < 2) return;
             if (!title) return;
@@ -180,22 +183,30 @@ class StudentsStyleP extends Component {
                 class_id: teacher_student[0],
                 student_id: teacher_student[1],
                 show_days: show_days[0],
-                comment
+                comment,
+                images,
             }
             if (show_id) {
                 submintData.show_id = show_id;
             }
-            axios('post', '/api/show/teacheraddshow', submintData, 'form').then(() => {
+            axios('post', '/api/show/teacheraddshow', submintData, 'form').then((json) => {
                 // 处理提交成功
                 // console.log(json);
+                if (json.code == 1) {
+                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + this.getHerfInfo('ticket');
+                }
             })
         }
     }
-
+    //提示信息
+    showToast(str) {
+        window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showToast', [{ 'content': str }]);
+    }
     render() {
         let { show_time, title, desc, comment, show_days, parents_province, teacher_province } = this.state;
         const role_id = this.getHerfInfo('role_id');
         // console.log(this.getHerfInfo('role_id'))
+        // console.log(comment)
         return <Fragment>
 
             <div className={styles['box']}>
@@ -219,7 +230,7 @@ class StudentsStyleP extends Component {
                             <Picker
                                 data={teacher_province}
                                 value={this.state.teacher_student}
-                                onChange={(v) => {  this.setOneKV('teacher_student', v) }}
+                                onChange={(v) => { this.setOneKV('teacher_student', v) }}
                                 // onPickerChange={(v) => { console.log(v) }}
                                 cols={2}
                             >
@@ -241,7 +252,7 @@ class StudentsStyleP extends Component {
                         <InputItem
                             placeholder="请输入标题名称"
                             ref={el => this.inputRef = el}
-                            extra={<div>{title.length > 30 ? 30 : title.length}/30</div>}
+                            extra={<div>{(title || '').length > 30 ? 30 : (title || '').length}/30</div>}
                             value={title}
                             maxLength={30}
                             onChange={(v) => { this.setOneKV('title', v) }}
@@ -265,7 +276,7 @@ class StudentsStyleP extends Component {
                             <InputItem
                                 placeholder="请输入标题名称"
                                 ref={el => this.inputRef = el}
-                                extra={<div>{comment.length > 30 ? 30 : comment.length}/30</div>}
+                                extra={<div>{(comment || '').length > 30 ? 30 : (comment || '').length}/30</div>}
                                 value={comment}
                                 maxLength={30}
                                 onChange={(v) => { this.setOneKV('comment', v) }}
@@ -306,8 +317,11 @@ class StudentsStyleP extends Component {
                         </div>
                     </div>
                 }
-                <UploadImgs />
-                <div className={styles['btn']} onClick={() => { this.submitData() }}>
+                <UploadImgs onChange={(images) => { this.setOneKV('images', images) }} />
+                <div className={styles['btn']}
+                    onClick={() => {
+                        this.submitData();
+                    }}>
                     确定
                 </div>
             </div>

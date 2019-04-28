@@ -16,6 +16,8 @@ export default class UploadImgs extends React.Component{
         let {uploadImgs} = this.state;
         uploadImgs.splice(index, 1);
         this.setState({uploadImgs})
+        //传递uploadImgs
+        this.props.onChange && this.props.onChange(uploadImgs);
     }
 
     //  上传照片
@@ -28,6 +30,8 @@ export default class UploadImgs extends React.Component{
                 window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'showToast', [{'content': '图片上传失败'}]);
             }
             this.setState({uploadImgs});
+            //传递uploadImgs
+            this.props.onChange && this.props.onChange(uploadImgs);
         }; 
         window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'takePicture', []);
     }
@@ -66,3 +70,6 @@ export default class UploadImgs extends React.Component{
         );
     }
 }
+UploadImgs.defaultProps = {};
+UploadImgs.propTypes = function(){};
+UploadImgs.propTypes = {};

@@ -18,7 +18,8 @@ module.exports = merge(base, {
 	devtool: "eval-source-map",
 	devServer: {
 		contentBase: "./dist",
-		hot: true
+		hot: true,
+		host: '192.168.70.186'
 	},
 	plugins: [
 		new webpack.NamedModulesPlugin(),

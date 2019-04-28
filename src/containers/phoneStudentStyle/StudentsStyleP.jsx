@@ -4,23 +4,70 @@ import styles from './StudentsStyleP.scss';
 import { Tabs } from 'antd-mobile';
 import InfoItem from '../../components/phone_infoItem/InfoItem';
 import axios from 'UTILS/axios';
-// import DeleteDialog from 'COMPONENTS/phoneDialog/deleteDialog';
 class StudentsStyleP extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ticket: '',//客户端给我用来获取信息
-            isShowImg: false,
-            showImgSrc: '',
-
+            ticket: this.getHerfInfo('ticket'),//客户端给我用来获取信息
             roleId: 102,//角色id 102家长
             type: 0, //0:待审批 1:已同意 2:已驳回 showing:展示中
             dataList: []
         }
     }
-
+    //获取地址栏信息
+    getHerfInfo(str) {
+        if (window.location.href.split('?').length == 2) {
+            return (window.location.href.split('?')[1].split('&').find(item => item.indexOf(str) != -1) || '=').split('=')[1];
+        } else {
+            return '';
+        }
+    }
     componentDidMount() {
+        this.release();
         this.getInfo();
+    }
+    release() {
+        var _this = this;
+        window.addEventListener('hashchange', function () {
+            if (window.location.href.indexOf('edit') != -1) {
+                window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showMenu', [[]]);
+                return;
+            } else {
+                window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showMenu', [[
+                    {
+                        groupid: 1, //标题栏右侧按钮，一级按钮（groupid相同且数量大于1代表有二级子菜单，否则只是一个普通按钮）
+                        groupOrder: 0, //标题栏右侧按钮，一级按钮显示顺序，0表示靠右边显示，从右向左依次递增
+                        id: 1, //一级按钮或二级按钮唯一标识，用于点击按钮后回传给H5数据，H5根据唯一标识识别做了什么操作
+                        order: 0, //二级子菜单（下拉菜单）显示顺序
+                        count: 0, //未读数量显示
+                        icon: "", //按钮图片
+                        isShowNum: false, //未读数量是否显示
+                        title: "发布" //按钮标题
+                    }
+                ]]);
+            }
+        }, false);
+        window.onload = function () {
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showMenu', [[
+                {
+                    groupid: 1, //标题栏右侧按钮，一级按钮（groupid相同且数量大于1代表有二级子菜单，否则只是一个普通按钮）
+                    groupOrder: 0, //标题栏右侧按钮，一级按钮显示顺序，0表示靠右边显示，从右向左依次递增
+                    id: 1, //一级按钮或二级按钮唯一标识，用于点击按钮后回传给H5数据，H5根据唯一标识识别做了什么操作
+                    order: 0, //二级子菜单（下拉菜单）显示顺序
+                    count: 0, //未读数量显示
+                    icon: "", //按钮图片
+                    isShowNum: false, //未读数量是否显示
+                    title: "发布" //按钮标题
+                }
+            ]]);
+            window.clickMenu = (info) => {
+                if (info.id == 1) {
+                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + this.state.role_id + '&ticket=' + _this.state.ticket;
+                }
+            }
+        }
+       
+
     }
     getInfo() {
         axios('post', '/api/show/auth', {
@@ -45,9 +92,6 @@ class StudentsStyleP extends Component {
                 dataList: json.data.data,
             })
         })
-    }
-    closeShowImg = () => {
-        this.setState({ isShowImg: false, showImgSrc: '' })
     }
     onTouchMove(e) {
         e.preventDefault();
@@ -82,10 +126,6 @@ class StudentsStyleP extends Component {
             <div
                 className={styles['box']}
             >
-                {/* showImg */}
-                <div onClick={this.closeShowImg} className={styles['showImg']} style={{ display: `${this.state.isShowImg ? 'block' : 'none'}` }}>
-                    <img src={this.state.showImgSrc} alt="" />
-                </div>
                 <Tabs
                     tabBarUnderlineStyle={{ border: '1px #4ea375 solid' }}
                     tabBarActiveTextColor={'#4ea375'}
@@ -105,9 +145,6 @@ class StudentsStyleP extends Component {
                                             <InfoItem
                                                 key={index}
                                                 upload={() => { this.getList() }}
-                                                showImg={(isShowImg, showImgSrc) => {
-                                                    this.setState({ isShowImg, showImgSrc })
-                                                }}
                                                 roleId={roleId}
                                                 type={type}
                                                 title={item.title}
@@ -115,6 +152,8 @@ class StudentsStyleP extends Component {
                                                 desc={item.desc}
                                                 createtime={item.createtime}
                                                 id={item.id}
+                                                images={item.images}
+                                                ticket={this.state.ticket}
                                             />
                                     )
                                 }
@@ -132,11 +171,16 @@ class StudentsStyleP extends Component {
                     >
                         <div className={styles['scroll']}>
                             <InfoItem
-                                showImg={(isShowImg, showImgSrc) => {
-                                    this.setState({ isShowImg, showImgSrc })
-                                }}
                                 roleId={roleId}
                                 type={type}
+                                images={
+                                    [
+                                        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
+                                        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
+                                        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
+                                    ]
+                                }
+                                ticket={this.state.ticket}
                             />
                             {
                                 dataList.map(
@@ -144,9 +188,6 @@ class StudentsStyleP extends Component {
                                         <InfoItem
                                             key={index}
                                             upload={() => { this.getList() }}
-                                            showImg={(isShowImg, showImgSrc) => {
-                                                this.setState({ isShowImg, showImgSrc })
-                                            }}
                                             roleId={roleId}
                                             type={type}
                                             title={item.title}
@@ -171,9 +212,6 @@ class StudentsStyleP extends Component {
                                         <InfoItem
                                             key={index}
                                             upload={() => { this.getList() }}
-                                            showImg={(isShowImg, showImgSrc) => {
-                                                this.setState({ isShowImg, showImgSrc })
-                                            }}
                                             roleId={roleId}
                                             type={type}
                                             title={item.title}
@@ -181,6 +219,7 @@ class StudentsStyleP extends Component {
                                             desc={item.desc}
                                             createtime={item.createtime}
                                             id={item.id}
+
                                         />
                                 )
                             }
@@ -198,9 +237,6 @@ class StudentsStyleP extends Component {
                                         <InfoItem
                                             key={index}
                                             upload={() => { this.getList() }}
-                                            showImg={(isShowImg, showImgSrc) => {
-                                                this.setState({ isShowImg, showImgSrc })
-                                            }}
                                             roleId={roleId}
                                             type={type}
                                             title={item.title}
