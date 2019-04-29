@@ -165,7 +165,7 @@ class StudentsStyleP extends Component {
         // console.log(tab, index)
     }
     render() {
-        let { roleId, type, dataList, loading, idx } = this.state;
+        let { roleId, type, dataList, loading, isOver } = this.state;
         const tabs = this.state.roleId == 102 ? [
             { title: '待审批', value: 0 },
             { title: '已经同意', value: 1 },
@@ -238,7 +238,7 @@ class StudentsStyleP extends Component {
                                                 </div>
                                             </div>
                                     }
-                                    {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
+                                    {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
                                         无跟多数据
                                     </div>}
                                 </div>
@@ -252,7 +252,7 @@ class StudentsStyleP extends Component {
                             className={styles['tabItem']}
                         >
                             <div className={styles['scroll']}>
-                                <InfoItem
+                                {/* <InfoItem
                                     roleId={roleId}
                                     type={type}
                                     images={
@@ -263,7 +263,7 @@ class StudentsStyleP extends Component {
                                         ]
                                     }
                                     ticket={this.state.ticket}
-                                />
+                                /> */}
                                 {
                                     dataList.length > 0
                                         ?
@@ -292,7 +292,7 @@ class StudentsStyleP extends Component {
                                             </div>
                                         </div>
                                 }
-                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv2) => { this.bottomdiv2 = bottomdiv2 }} >
+                                {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv2) => { this.bottomdiv2 = bottomdiv2 }} >
                                     无跟多数据
                                 </div>}
                             </div>
@@ -333,7 +333,7 @@ class StudentsStyleP extends Component {
                                             </div>
                                         </div>
                                 }
-                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv3) => { this.bottomdiv3 = bottomdiv3 }}>
+                                {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv3) => { this.bottomdiv3 = bottomdiv3 }}>
                                     无跟多数据
                                 </div>}
                             </div>
@@ -373,7 +373,7 @@ class StudentsStyleP extends Component {
                                             </div>
                                         </div>
                                 }
-                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv4) => { this.bottomdiv4 = bottomdiv4 }}>
+                                {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv4) => { this.bottomdiv4 = bottomdiv4 }}>
                                     无跟多数据
                                 </div>}
                             </div>
@@ -442,7 +442,7 @@ class StudentsStyleP extends Component {
                                         </div>
                                 }
 
-                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv5) => { this.bottomdiv5 = bottomdiv5 }}>
+                                {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv5) => { this.bottomdiv5 = bottomdiv5 }}>
                                     无跟多数据
                                 </div>}
                             </div>
@@ -483,7 +483,7 @@ class StudentsStyleP extends Component {
                                             </div>
                                         </div>
                                 }
-                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv6) => { this.bottomdiv6 = bottomdiv6 }}>
+                                {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv6) => { this.bottomdiv6 = bottomdiv6 }}>
                                     无跟多数据
                                 </div>}
                             </div>
@@ -523,7 +523,7 @@ class StudentsStyleP extends Component {
                                             </div>
                                         </div>
                                 }
-                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv7) => { this.bottomdiv7 = bottomdiv7 }}>
+                                {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv7) => { this.bottomdiv7 = bottomdiv7 }}>
                                     无跟多数据
                                 </div>}
                             </div>

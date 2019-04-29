@@ -73,8 +73,7 @@ class InfoItem extends Component {
                 })
             }
             if (str == '同意') {
-                this.check(1);
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket;
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?nodecheck=1&role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket;
             }
             if (str == '删除') {
                 this.delete();
