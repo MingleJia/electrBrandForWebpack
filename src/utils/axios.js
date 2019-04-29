@@ -34,6 +34,7 @@ function reLogin(error){
 }
 function toBlank(error){
     // 如果不是接口返回的错误就去空白页
+    console.log(error.response.status)
     if(error.status == undefined){
         // window.location.href="http://www.baidu.com";
     }

@@ -211,6 +211,22 @@ class StudentsStyleP extends Component {
     showToast(str) {
         window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showToast', [{ 'content': str }]);
     }
+    //检测能否提交
+    checkSubmit() {
+        const role_id = this.getHerfInfo('role_id');
+        let { show_time, title, parents_student, teacher_student } = this.state;
+        if (role_id == 102) {
+            if (parents_student.length == 0) return false;
+            if (!title) return false;
+            if (!show_time) return false;
+        }
+        if (role_id == 103) {
+            if (teacher_student.length == 0) return false;
+            if (!title) return false;
+            if (!show_time) return false;
+        }
+        return true;
+    }
     render() {
         let { show_time, title, desc, comment, show_days, parents_province, teacher_province, class_name } = this.state;
         const role_id = this.getHerfInfo('role_id');
@@ -332,7 +348,9 @@ class StudentsStyleP extends Component {
                     </div>
                 }
                 <UploadImgs onChange={(images) => { this.setOneKV('images', images) }} />
-                <div className={styles['btn']}
+                <div
+                    className={styles['btn']}
+                    style={{ backgroundColor: `${this.checkSubmit() ? '#48bb7d' : '#dbdbdb'}` }}
                     onClick={() => {
                         this.submitData();
                     }}>

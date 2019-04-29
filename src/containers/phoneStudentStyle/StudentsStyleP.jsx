@@ -6,6 +6,7 @@ import InfoItem from '../../components/phone_infoItem/InfoItem';
 import axios from 'UTILS/axios';
 import defaultImg from '../../assets/phone/defaultImg.png';
 import loadingImg from '../../assets/phone/loading.gif';
+var lock = true;
 class StudentsStyleP extends Component {
     constructor(props) {
         super(props);
@@ -15,6 +16,8 @@ class StudentsStyleP extends Component {
             type: 0, //0:待审批 1:已同意 2:已驳回 showing:展示中
             dataList: [],
             loading: false,
+            idx: 1,//请求第几波数据
+            isOver: false,
         }
     }
     //获取地址栏信息
@@ -90,33 +93,79 @@ class StudentsStyleP extends Component {
         axios('get', '/api/show/lists', {
             is_teacher: this.state.roleId == 102 ? 0 : 1,
             audit_status: this.state.type,
-
+            page: this.state.idx,
         }).then((json) => {
             // console.log(json)
             this.setState({
-                dataList: json.data.data,
-                loading: false
+                // dataList: json.data.data,
+                dataList: [
+                    ...this.state.dataList,
+                    ...json.data.data
+                ],
+                loading: false,
+                isOver: json.data.data.length < 10 ? true : false
             })
         })
     }
-    onTouchMove(e) {
-        e.preventDefault();
-        // let offsetHeight = this.container.offsetHeight;
-        // let scrollHeight = this.container.scrollHeight;
-        // let scrollTop = this.container.scrollTop;
-        // console.log(offsetHeight, scrollHeight, scrollTop)
+    /**
+     * 
+     * @param {外部div} name string 
+     */
+    onTouchMove(name) {
+        let offsetHeight = this[name].offsetHeight;
+        let scrollHeight = this[name].scrollHeight;
+        let scrollTop = this[name].scrollTop;
+        if (offsetHeight + scrollTop > scrollHeight - 100 && !this.state.isOver && this.state.loading == false) {
+            this.setState({
+                idx: this.state.idx + 1
+            }, () => {
+                this.getList();
+            })
+        }
+    }
+    /**
+     * 
+     * @param {外部div的名字} name string
+     * @param {底部div的名字} name2 string
+     */
+    gotoBottom(name, name2) {
+        let offsetHeight = this[name].offsetHeight;
+        let scrollHeight = this[name].scrollHeight;
+        let scrollTop = this[name].scrollTop;
+        if (!this[name2]) return;
+        // 底部的东西的高
+        let scrollHeightBottomDiv = this[name2].scrollHeight;
+        // console.log(offsetHeight, scrollHeight, scrollTop);
+        // console.log(scrollHeightBottomDiv);
+        if (offsetHeight + scrollTop > scrollHeight - scrollHeightBottomDiv && lock) {
+            this.goToBottomTimer = setInterval(() => {
+                offsetHeight = this[name].offsetHeight;
+                scrollHeight = this[name].scrollHeight;
+                scrollTop = this[name].scrollTop;
+                this[name].scrollTop -= 1;
+                lock = false;
+
+                if (scrollTop + offsetHeight + scrollHeightBottomDiv - 5 <= scrollHeight) {
+                    lock = true;
+                    clearInterval(this.goToBottomTimer);
+                }
+
+
+            }, 1)
+        }
     }
     onChange = (tab) => {
         this.setState({
             type: tab.value,
             dataList: [],
+            idx: 1
         }, () => {
             this.getList();
         })
         // console.log(tab, index)
     }
     render() {
-        let { roleId, type, dataList, loading } = this.state;
+        let { roleId, type, dataList, loading, idx } = this.state;
         const tabs = this.state.roleId == 102 ? [
             { title: '待审批', value: 0 },
             { title: '已经同意', value: 1 },
@@ -152,7 +201,11 @@ class StudentsStyleP extends Component {
                         useOnPan={false}>
                         {/* 展示中 */}
                         {
-                            roleId == 103 && <div className={styles['tabItem']}>
+                            roleId == 103 && <div
+                                ref={(container) => { this.container = container }}
+                                onScroll={() => { this.onTouchMove('container') }}
+                                onTouchEnd={() => { this.gotoBottom('container', 'bottomdiv') }}
+                                className={styles['tabItem']}>
                                 <div className={styles['scroll']}>
                                     {
                                         dataList.length > 0
@@ -185,17 +238,18 @@ class StudentsStyleP extends Component {
                                                 </div>
                                             </div>
                                     }
-                                    <div className={styles['noMoreData']}>
+                                    {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
                                         无跟多数据
-                                </div>
+                                    </div>}
                                 </div>
                             </div>
                         }
-                        {/* tab1 */}
+                        {/* 待审批 */}
                         <div
+                            ref={(container2) => { this.container2 = container2 }}
+                            onScroll={() => { this.onTouchMove('container2') }}
+                            onTouchEnd={() => { this.gotoBottom('container2', 'bottomdiv2') }}
                             className={styles['tabItem']}
-                            ref={(container) => { this.container = container }}
-                            onScroll={(e) => { this.onTouchMove(e) }}
                         >
                             <div className={styles['scroll']}>
                                 <InfoItem
@@ -238,13 +292,17 @@ class StudentsStyleP extends Component {
                                             </div>
                                         </div>
                                 }
-                                <div className={styles['noMoreData']}>
+                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv2) => { this.bottomdiv2 = bottomdiv2 }} >
                                     无跟多数据
-                            </div>
+                                </div>}
                             </div>
                         </div>
-                        {/* tab2 */}
-                        <div className={styles['tabItem']}>
+                        {/* 已经同意 */}
+                        <div
+                            ref={(container3) => { this.container3 = container3 }}
+                            onScroll={() => { this.onTouchMove('container3') }}
+                            onTouchEnd={() => { this.gotoBottom('container3', 'bottomdiv3') }}
+                            className={styles['tabItem']}>
                             <div className={styles['scroll']}>
                                 {
                                     dataList.length > 0
@@ -275,13 +333,17 @@ class StudentsStyleP extends Component {
                                             </div>
                                         </div>
                                 }
-                                <div className={styles['noMoreData']}>
+                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv3) => { this.bottomdiv3 = bottomdiv3 }}>
                                     无跟多数据
-                            </div>
+                                </div>}
                             </div>
                         </div>
-                        {/* tab3 */}
-                        <div className={styles['tabItem']}>
+                        {/* 已驳回 */}
+                        <div
+                            ref={(container4) => { this.container4 = container4 }}
+                            onScroll={() => { this.onTouchMove('container4') }}
+                            onTouchEnd={() => { this.gotoBottom('container4', 'bottomdiv4') }}
+                            className={styles['tabItem']}>
                             <div className={styles['scroll']}>
                                 {
                                     dataList.length > 0
@@ -311,9 +373,9 @@ class StudentsStyleP extends Component {
                                             </div>
                                         </div>
                                 }
-                                <div className={styles['noMoreData']}>
+                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv4) => { this.bottomdiv4 = bottomdiv4 }}>
                                     无跟多数据
-                            </div>
+                                </div>}
                             </div>
                         </div>
                     </Tabs>
@@ -332,9 +394,10 @@ class StudentsStyleP extends Component {
                         useOnPan={false}>
                         {/* tab1 */}
                         <div
+                            ref={(container5) => { this.container5 = container5 }}
+                            onScroll={() => { this.onTouchMove('container5') }}
+                            onTouchEnd={() => { this.gotoBottom('container5', 'bottomdiv5') }}
                             className={styles['tabItem']}
-                            ref={(container) => { this.container = container }}
-                            onScroll={(e) => { this.onTouchMove(e) }}
                         >
                             <div className={styles['scroll']}>
                                 {/* <InfoItem
@@ -379,13 +442,17 @@ class StudentsStyleP extends Component {
                                         </div>
                                 }
 
-                                <div className={styles['noMoreData']}>
+                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv5) => { this.bottomdiv5 = bottomdiv5 }}>
                                     无跟多数据
-                                </div>
+                                </div>}
                             </div>
                         </div>
                         {/* tab2 */}
-                        <div className={styles['tabItem']}>
+                        <div
+                            ref={(container6) => { this.container6 = container6 }}
+                            onScroll={() => { this.onTouchMove('container6') }}
+                            onTouchEnd={() => { this.gotoBottom('container6', 'bottomdiv6') }}
+                            className={styles['tabItem']}>
                             <div className={styles['scroll']}>
                                 {
                                     dataList.length > 0
@@ -416,13 +483,17 @@ class StudentsStyleP extends Component {
                                             </div>
                                         </div>
                                 }
-                                <div className={styles['noMoreData']}>
+                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv6) => { this.bottomdiv6 = bottomdiv6 }}>
                                     无跟多数据
-                            </div>
+                                </div>}
                             </div>
                         </div>
                         {/* tab3 */}
-                        <div className={styles['tabItem']}>
+                        <div
+                            ref={(container7) => { this.container7 = container7 }}
+                            onScroll={() => { this.onTouchMove('container7') }}
+                            onTouchEnd={() => { this.gotoBottom('container7', 'bottomdiv7') }}
+                            className={styles['tabItem']}>
                             <div className={styles['scroll']}>
                                 {
                                     dataList.length > 0
@@ -452,9 +523,9 @@ class StudentsStyleP extends Component {
                                             </div>
                                         </div>
                                 }
-                                <div className={styles['noMoreData']}>
+                                {idx > 1 && <div className={styles['noMoreData']} ref={(bottomdiv7) => { this.bottomdiv7 = bottomdiv7 }}>
                                     无跟多数据
-                            </div>
+                                </div>}
                             </div>
                         </div>
                     </Tabs>

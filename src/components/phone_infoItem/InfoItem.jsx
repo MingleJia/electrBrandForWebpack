@@ -252,7 +252,7 @@ class InfoItem extends Component {
                                 (item, index) => <div key={index} className={styles['imgItem']}>
                                     <img
                                         onClick={() => { this.showImg(item) }}
-                                        src={item} alt="" />
+                                        src={item.image} alt="" />
                                 </div>
                             )
                         }
