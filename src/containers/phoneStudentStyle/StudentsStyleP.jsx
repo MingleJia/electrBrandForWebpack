@@ -4,6 +4,8 @@ import styles from './StudentsStyleP.scss';
 import { Tabs } from 'antd-mobile';
 import InfoItem from '../../components/phone_infoItem/InfoItem';
 import axios from 'UTILS/axios';
+import defaultImg from '../../assets/phone/defaultImg.png';
+import loadingImg from '../../assets/phone/loading.gif';
 class StudentsStyleP extends Component {
     constructor(props) {
         super(props);
@@ -11,7 +13,8 @@ class StudentsStyleP extends Component {
             ticket: this.getHerfInfo('ticket'),//客户端给我用来获取信息
             roleId: 102,//角色id 102家长
             type: 0, //0:待审批 1:已同意 2:已驳回 showing:展示中
-            dataList: []
+            dataList: [],
+            loading: false,
         }
     }
     //获取地址栏信息
@@ -66,15 +69,16 @@ class StudentsStyleP extends Component {
                 }
             }
         }
-       
+
 
     }
     getInfo() {
+        this.setState({ loading: true })
         axios('post', '/api/show/auth', {
         }, 'form').then((json) => {
             this.setState({
                 roleId: json.data.roleId,
-                type: 'showing'
+                type: json.data.roleId == 102 ? 0 : 'showing'
             }, () => {
                 this.getList()
             }
@@ -82,6 +86,7 @@ class StudentsStyleP extends Component {
         })
     }
     getList() {
+        this.setState({ loading: true })
         axios('get', '/api/show/lists', {
             is_teacher: this.state.roleId == 102 ? 0 : 1,
             audit_status: this.state.type,
@@ -90,6 +95,7 @@ class StudentsStyleP extends Component {
             // console.log(json)
             this.setState({
                 dataList: json.data.data,
+                loading: false
             })
         })
     }
@@ -110,7 +116,7 @@ class StudentsStyleP extends Component {
         // console.log(tab, index)
     }
     render() {
-        let { roleId, type, dataList } = this.state;
+        let { roleId, type, dataList, loading } = this.state;
         const tabs = this.state.roleId == 102 ? [
             { title: '待审批', value: 0 },
             { title: '已经同意', value: 1 },
@@ -123,136 +129,336 @@ class StudentsStyleP extends Component {
             ];
         return <Fragment>
             {/* <DeleteDialog/> */}
+            {
+
+                loading && <div className={styles['loading']}>
+                    <img src={loadingImg} alt="" />
+                </div>
+            }
             <div
                 className={styles['box']}
             >
-                <Tabs
-                    tabBarUnderlineStyle={{ border: '1px #4ea375 solid' }}
-                    tabBarActiveTextColor={'#4ea375'}
-                    // onTabClick={(tab, index) => { console.log(tab, index) }}
-                    onChange={this.onChange}
-                    tabs={tabs}
-                    initialPage={this.state.type}
-                    animated={true}
-                    useOnPan={false}>
-                    {/* 展示中 */}
-                    {
-                        roleId == 103 && <div className={styles['tabItem']}>
+                {/* 老师 */}
+                {
+                    roleId == 103 && <Tabs
+                        tabBarUnderlineStyle={{ border: '1px #4ea375 solid' }}
+                        tabBarActiveTextColor={'#4ea375'}
+                        // onTabClick={(tab, index) => { console.log(tab, index) }}
+                        swipeable={false}
+                        onChange={this.onChange}
+                        tabs={tabs}
+                        initialPage={this.state.type}
+                        animated={true}
+                        useOnPan={false}>
+                        {/* 展示中 */}
+                        {
+                            roleId == 103 && <div className={styles['tabItem']}>
+                                <div className={styles['scroll']}>
+                                    {
+                                        dataList.length > 0
+                                            ?
+                                            dataList.map(
+                                                (item, index) =>
+                                                    <InfoItem
+                                                        key={index}
+                                                        upload={() => { this.getList() }}
+                                                        roleId={roleId}
+                                                        showTop={false}
+                                                        type={type}
+                                                        title={item.title}
+                                                        show_time={item.show_time}
+                                                        show_days={item.show_days}
+                                                        desc={item.desc}
+                                                        id={item.id}
+                                                        images={item.images}
+                                                        comment={item.comment}
+                                                        class_name={item.class_name}
+                                                        student_name={item.student_name}
+                                                        ticket={this.state.ticket}
+                                                    />
+                                            )
+                                            :
+                                            <div className={styles['noData']}>
+                                                <div className={styles['defaultShow']}>
+                                                    <img src={defaultImg} alt="" />
+                                                    <p>暂无展示</p>
+                                                </div>
+                                            </div>
+                                    }
+                                    <div className={styles['noMoreData']}>
+                                        无跟多数据
+                                </div>
+                                </div>
+                            </div>
+                        }
+                        {/* tab1 */}
+                        <div
+                            className={styles['tabItem']}
+                            ref={(container) => { this.container = container }}
+                            onScroll={(e) => { this.onTouchMove(e) }}
+                        >
+                            <div className={styles['scroll']}>
+                                <InfoItem
+                                    roleId={roleId}
+                                    type={type}
+                                    images={
+                                        [
+                                            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
+                                            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
+                                            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
+                                        ]
+                                    }
+                                    ticket={this.state.ticket}
+                                />
+                                {
+                                    dataList.length > 0
+                                        ?
+                                        dataList.map(
+                                            (item, index) =>
+                                                <InfoItem
+                                                    showTop={true}
+                                                    student_name={item.student_name}
+                                                    class_name={item.class_name}
+                                                    key={index}
+                                                    upload={() => { this.getList() }}
+                                                    roleId={roleId}
+                                                    type={type}
+                                                    title={item.title}
+                                                    show_time={item.show_time}
+                                                    desc={item.desc}
+                                                    createtime={item.createtime}
+                                                    id={item.id}
+                                                />
+                                        )
+                                        :
+                                        <div className={styles['noData']}>
+                                            <div className={styles['defaultShow']}>
+                                                <img src={defaultImg} alt="" />
+                                                <p>暂无展示</p>
+                                            </div>
+                                        </div>
+                                }
+                                <div className={styles['noMoreData']}>
+                                    无跟多数据
+                            </div>
+                            </div>
+                        </div>
+                        {/* tab2 */}
+                        <div className={styles['tabItem']}>
                             <div className={styles['scroll']}>
                                 {
-                                    dataList.map(
-                                        (item, index) =>
-                                            <InfoItem
-                                                key={index}
-                                                upload={() => { this.getList() }}
-                                                roleId={roleId}
-                                                type={type}
-                                                title={item.title}
-                                                show_time={item.show_time}
-                                                desc={item.desc}
-                                                createtime={item.createtime}
-                                                id={item.id}
-                                                images={item.images}
-                                                ticket={this.state.ticket}
-                                            />
-                                    )
+                                    dataList.length > 0
+                                        ?
+                                        dataList.map(
+                                            (item, index) =>
+                                                <InfoItem
+                                                    showTop={true}
+                                                    student_name={item.student_name}
+                                                    class_name={item.class_name}
+                                                    key={index}
+                                                    upload={() => { this.getList() }}
+                                                    roleId={roleId}
+                                                    type={type}
+                                                    title={item.title}
+                                                    show_time={item.show_time}
+                                                    desc={item.desc}
+                                                    createtime={item.createtime}
+                                                    id={item.id}
+
+                                                />
+                                        )
+                                        :
+                                        <div className={styles['noData']}>
+                                            <div className={styles['defaultShow']}>
+                                                <img src={defaultImg} alt="" />
+                                                <p>暂无展示</p>
+                                            </div>
+                                        </div>
                                 }
+                                <div className={styles['noMoreData']}>
+                                    无跟多数据
+                            </div>
+                            </div>
+                        </div>
+                        {/* tab3 */}
+                        <div className={styles['tabItem']}>
+                            <div className={styles['scroll']}>
+                                {
+                                    dataList.length > 0
+                                        ?
+                                        dataList.map(
+                                            (item, index) =>
+                                                <InfoItem
+                                                    showTop={true}
+                                                    student_name={item.student_name}
+                                                    class_name={item.class_name}
+                                                    key={index}
+                                                    upload={() => { this.getList() }}
+                                                    roleId={roleId}
+                                                    type={type}
+                                                    title={item.title}
+                                                    show_time={item.show_time}
+                                                    desc={item.desc}
+                                                    createtime={item.createtime}
+                                                    id={item.id}
+                                                />
+                                        )
+                                        :
+                                        <div className={styles['noData']}>
+                                            <div className={styles['defaultShow']}>
+                                                <img src={defaultImg} alt="" />
+                                                <p>暂无展示</p>
+                                            </div>
+                                        </div>
+                                }
+                                <div className={styles['noMoreData']}>
+                                    无跟多数据
+                            </div>
+                            </div>
+                        </div>
+                    </Tabs>
+                }
+                {/* 家长 */}
+                {
+                    roleId == 102 && <Tabs
+                        tabBarUnderlineStyle={{ border: '1px #4ea375 solid' }}
+                        tabBarActiveTextColor={'#4ea375'}
+                        // onTabClick={(tab, index) => { console.log(tab, index) }}
+                        swipeable={false}
+                        onChange={this.onChange}
+                        tabs={tabs}
+                        initialPage={this.state.type}
+                        animated={true}
+                        useOnPan={false}>
+                        {/* tab1 */}
+                        <div
+                            className={styles['tabItem']}
+                            ref={(container) => { this.container = container }}
+                            onScroll={(e) => { this.onTouchMove(e) }}
+                        >
+                            <div className={styles['scroll']}>
+                                {/* <InfoItem
+                                    roleId={roleId}
+                                    type={type}
+                                    images={
+                                        [
+                                            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
+                                            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
+                                            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
+                                        ]
+                                    }
+                                    ticket={this.state.ticket}
+                                /> */}
+                                {
+                                    dataList.length > 0
+                                        ?
+                                        dataList.map(
+                                            (item, index) =>
+                                                <InfoItem
+                                                    showTop={true}
+                                                    student_name={item.student_name}
+                                                    class_name={item.class_name}
+                                                    key={index}
+                                                    upload={() => { this.getList() }}
+                                                    roleId={roleId}
+                                                    type={type}
+                                                    title={item.title}
+                                                    show_time={item.show_time}
+                                                    desc={item.desc}
+                                                    createtime={item.createtime}
+                                                    id={item.id}
+                                                    ticket={this.state.ticket}
+                                                />
+                                        )
+                                        :
+                                        <div className={styles['noData']}>
+                                            <div className={styles['defaultShow']}>
+                                                <img src={defaultImg} alt="" />
+                                                <p>暂无展示</p>
+                                            </div>
+                                        </div>
+                                }
+
                                 <div className={styles['noMoreData']}>
                                     无跟多数据
                                 </div>
                             </div>
                         </div>
-                    }
-                    {/* tab1 */}
-                    <div
-                        className={styles['tabItem']}
-                        ref={(container) => { this.container = container }}
-                        onScroll={(e) => { this.onTouchMove(e) }}
-                    >
-                        <div className={styles['scroll']}>
-                            <InfoItem
-                                roleId={roleId}
-                                type={type}
-                                images={
-                                    [
-                                        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
-                                        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
-                                        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg",
-                                    ]
+                        {/* tab2 */}
+                        <div className={styles['tabItem']}>
+                            <div className={styles['scroll']}>
+                                {
+                                    dataList.length > 0
+                                        ?
+                                        dataList.map(
+                                            (item, index) =>
+                                                <InfoItem
+                                                    showTop={true}
+                                                    student_name={item.student_name}
+                                                    class_name={item.class_name}
+                                                    key={index}
+                                                    upload={() => { this.getList() }}
+                                                    roleId={roleId}
+                                                    type={type}
+                                                    title={item.title}
+                                                    show_time={item.show_time}
+                                                    desc={item.desc}
+                                                    createtime={item.createtime}
+                                                    id={item.id}
+                                                    ticket={this.state.ticket}
+                                                />
+                                        )
+                                        :
+                                        <div className={styles['noData']}>
+                                            <div className={styles['defaultShow']}>
+                                                <img src={defaultImg} alt="" />
+                                                <p>暂无展示</p>
+                                            </div>
+                                        </div>
                                 }
-                                ticket={this.state.ticket}
-                            />
-                            {
-                                dataList.map(
-                                    (item, index) =>
-                                        <InfoItem
-                                            key={index}
-                                            upload={() => { this.getList() }}
-                                            roleId={roleId}
-                                            type={type}
-                                            title={item.title}
-                                            show_time={item.show_time}
-                                            desc={item.desc}
-                                            createtime={item.createtime}
-                                            id={item.id}
-                                        />
-                                )
-                            }
-                            <div className={styles['noMoreData']}>
-                                无跟多数据
+                                <div className={styles['noMoreData']}>
+                                    无跟多数据
+                            </div>
                             </div>
                         </div>
-                    </div>
-                    {/* tab2 */}
-                    <div className={styles['tabItem']}>
-                        <div className={styles['scroll']}>
-                            {
-                                dataList.map(
-                                    (item, index) =>
-                                        <InfoItem
-                                            key={index}
-                                            upload={() => { this.getList() }}
-                                            roleId={roleId}
-                                            type={type}
-                                            title={item.title}
-                                            show_time={item.show_time}
-                                            desc={item.desc}
-                                            createtime={item.createtime}
-                                            id={item.id}
-
-                                        />
-                                )
-                            }
-                            <div className={styles['noMoreData']}>
-                                无跟多数据
+                        {/* tab3 */}
+                        <div className={styles['tabItem']}>
+                            <div className={styles['scroll']}>
+                                {
+                                    dataList.length > 0
+                                        ?
+                                        dataList.map(
+                                            (item, index) =>
+                                                <InfoItem
+                                                    showTop={true}
+                                                    student_name={item.student_name}
+                                                    class_name={item.class_name}
+                                                    key={index}
+                                                    upload={() => { this.getList() }}
+                                                    roleId={roleId}
+                                                    type={type}
+                                                    title={item.title}
+                                                    show_time={item.show_time}
+                                                    desc={item.desc}
+                                                    createtime={item.createtime}
+                                                    id={item.id}
+                                                />
+                                        )
+                                        :
+                                        <div className={styles['noData']}>
+                                            <div className={styles['defaultShow']}>
+                                                <img src={defaultImg} alt="" />
+                                                <p>暂无展示</p>
+                                            </div>
+                                        </div>
+                                }
+                                <div className={styles['noMoreData']}>
+                                    无跟多数据
+                            </div>
                             </div>
                         </div>
-                    </div>
-                    {/* tab3 */}
-                    <div className={styles['tabItem']}>
-                        <div className={styles['scroll']}>
-                            {
-                                dataList.map(
-                                    (item, index) =>
-                                        <InfoItem
-                                            key={index}
-                                            upload={() => { this.getList() }}
-                                            roleId={roleId}
-                                            type={type}
-                                            title={item.title}
-                                            show_time={item.show_time}
-                                            desc={item.desc}
-                                            createtime={item.createtime}
-                                            id={item.id}
-                                        />
-                                )
-                            }
-                            <div className={styles['noMoreData']}>
-                                无跟多数据
-                            </div>
-                        </div>
-                    </div>
-                </Tabs>
+                    </Tabs>
+                }
             </div>
         </Fragment>
     }

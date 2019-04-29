@@ -22,7 +22,10 @@ class StudentsStyleP extends Component {
             desc: '',
             comment: '',
             show_days: ['7'],
-            images: []
+            images: [],
+            class_name: '',
+            student_name: '',
+
         }
     }
     //获取地址栏信息
@@ -63,43 +66,45 @@ class StudentsStyleP extends Component {
                 }))
             }, () => {
                 //循环请求了
-                json.data.map(item => this.getStudentInfoTeacher(item.classId))
+                // json.data.map(item => this.getStudentInfoTeacher(item.classId))
             })
         })
     }
-    getStudentInfoTeacher(class_id) {
-        axios('get', '/api/show/classstudents', {
-            class_id,
-        }).then((json) => {
-            this.setState({
-                teacher_province: this.state.teacher_province.map(item => {
-                    if (item.value == class_id) {
-                        return {
-                            ...item,
-                            children: json.data.map(_item => ({
-                                label: _item.userName,
-                                value: _item.userId
-                            }))
-                        }
-                    } else {
-                        return { ...item }
-                    }
-                })
-            })
-        })
-    }
+    // getStudentInfoTeacher(class_id) {
+    //     axios('get', '/api/show/classstudents', {
+    //         class_id,
+    //     }).then((json) => {
+    //         this.setState({
+    //             teacher_province: this.state.teacher_province.map(item => {
+    //                 if (item.value == class_id) {
+    //                     return {
+    //                         ...item,
+    //                         children: json.data.map(_item => ({
+    //                             label: _item.userName,
+    //                             value: _item.userId
+    //                         }))
+    //                     }
+    //                 } else {
+    //                     return { ...item }
+    //                 }
+    //             })
+    //         })
+    //     })
+    // }
     getDefaultDataTeacher(show_id) {
         axios('get', '/api/show/read', {
             show_id
         }).then((json) => {
             // console.log(json);
             this.setState({
-                teacher_student: [json.data.class_id, json.data.student_id],
+                teacher_student: [json.data.class_id],
                 title: json.data.title,
                 desc: json.data.desc,
                 show_time: new Date(json.data.updatetime * 1000),
                 comment: json.data.comment,
-                show_days: [json.data.show_days + '']
+                show_days: [json.data.show_days + ''],
+                class_name: json.data.class_name,
+                student_name: json.data.student_name
             })
         })
     }
@@ -132,7 +137,9 @@ class StudentsStyleP extends Component {
                 parents_student: [json.data.student_id],
                 title: json.data.title,
                 desc: json.data.desc,
-                show_time: new Date(json.data.updatetime * 1000)
+                show_time: new Date(json.data.updatetime * 1000),
+                class_name: json.data.class_name,
+                student_name: json.data.student_name
             })
         })
     }
@@ -163,15 +170,17 @@ class StudentsStyleP extends Component {
             if (show_id) {
                 submintData.show_id = show_id;
             }
-            axios('post', '/api/show/parentaddshow', submintData, 'form').then(() => {
+            axios('post', '/api/show/parentaddshow', submintData, 'form').then((json) => {
                 // 处理提交成功
-                // console.log(json);
+                if (json.code == 1) {
+                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + this.getHerfInfo('ticket');
+                }
             })
         }
         if (role_id == 103) {
             let { teacher_student, show_time, title, desc, comment, show_days, images } = this.state;
             show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
-            if (teacher_student.length < 2) return;
+            if (teacher_student.length == 0) return;
             if (!title) return;
             if (!show_time) return;
             let submintData = {
@@ -203,7 +212,7 @@ class StudentsStyleP extends Component {
         window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showToast', [{ 'content': str }]);
     }
     render() {
-        let { show_time, title, desc, comment, show_days, parents_province, teacher_province } = this.state;
+        let { show_time, title, desc, comment, show_days, parents_province, teacher_province, class_name } = this.state;
         const role_id = this.getHerfInfo('role_id');
         // console.log(this.getHerfInfo('role_id'))
         // console.log(comment)
@@ -226,19 +235,30 @@ class StudentsStyleP extends Component {
                     }
                     {/* 老师 */}
                     {
-                        role_id == 103 && <div className={styles['row']}>
+                        (role_id == 103 && !this.getHerfInfo('show_id')) && <div className={styles['row']}>
                             <Picker
                                 data={teacher_province}
                                 value={this.state.teacher_student}
                                 onChange={(v) => { this.setOneKV('teacher_student', v) }}
                                 // onPickerChange={(v) => { console.log(v) }}
-                                cols={2}
+                                cols={1}
                             >
-                                <List.Item arrow="horizontal">学生姓名</List.Item>
+                                <List.Item arrow="horizontal">选择班级</List.Item>
                             </Picker>
                         </div>
                     }
-
+                    {
+                        (role_id == 103 && this.getHerfInfo('show_id')) && <div className={styles['row']}>
+                            <InputItem
+                                placeholder="请输入标题名称"
+                                ref={el => this.inputRef = el}
+                                value={class_name}
+                                maxLength={30}
+                                onChange={(v) => { this.setOneKV('title', v) }}
+                                disabled
+                            >班级</InputItem>
+                        </div>
+                    }
 
                     <div className={styles['row']}>
                         <DatePicker
@@ -289,24 +309,18 @@ class StudentsStyleP extends Component {
                                         label: '1天',
                                         value: '1',
                                     }, {
-                                        label: '2天',
-                                        value: '2',
-                                    }, {
                                         label: '3天',
                                         value: '3',
                                     }, {
-                                        label: '4天',
-                                        value: '4',
-                                    }, {
-                                        label: '5天',
-                                        value: '5',
-                                    }, {
-                                        label: '6天',
-                                        value: '6',
-                                    }, {
                                         label: '7天',
                                         value: '7',
-                                    },
+                                    }, {
+                                        label: '15天',
+                                        value: '15',
+                                    }, {
+                                        label: '30天',
+                                        value: '30',
+                                    }
                                 ]}
                                 cols={1}
                                 value={show_days}

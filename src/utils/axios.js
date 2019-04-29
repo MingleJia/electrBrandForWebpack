@@ -4,8 +4,8 @@ import { message } from 'antd';
 let baseURL = '';
 const env = process.env.NODE_ENV;
 if(env === 'development'){
-    // baseURL = 'http://eboard.leke.cn';
-    baseURL = 'http://local.leke-eboard.cc';
+    baseURL = 'http://eboard.leke.cn';//线上
+    // baseURL = 'http://local.leke-eboard.cc';//php本地
 }
 
 // axios defaults
@@ -32,6 +32,12 @@ function reLogin(error){
         },3000)
     }
 }
+function toBlank(error){
+    // 如果不是接口返回的错误就去空白页
+    if(error.status == undefined){
+        // window.location.href="http://www.baidu.com";
+    }
+}
 let toastLock = true;
 function axiosRequest(method, url, params, type){
     switch (method) {
@@ -49,6 +55,7 @@ function axiosRequest(method, url, params, type){
                 }).then((json)=>{
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{
+                    toBlank(error);
                     if(error.message.indexOf('timeout') !== -1 && toastLock){
                         message.info('网络不给力',10);
                         toastLock = false;
@@ -70,6 +77,7 @@ function axiosRequest(method, url, params, type){
                 }).then((json)=>{
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{
+                    toBlank(error);
                     if(error.message.indexOf('timeout') !== -1 && toastLock){
                         message.info('网络不给力',10);
                         toastLock = false;
