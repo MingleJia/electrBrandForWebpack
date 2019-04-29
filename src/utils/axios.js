@@ -34,9 +34,8 @@ function reLogin(error){
 }
 function toBlank(error){
     // 如果不是接口返回的错误就去空白页
-    // console.log(error.response.status)
-    if(error.status == undefined){
-        // window.location.href="http://www.baidu.com";
+    if(error.message.indexOf('timeout') !== -1||error.response.status == 500 || error.response.status == 404||error.response.status == 501 || error.response.status == 502 ||error.response.status == 503 ){
+        window.location.href = window.location.href.split('phone')[0]+'phone/blank';
     }
 }
 let toastLock = true;

@@ -67,4 +67,9 @@ export const routerConfig = [
         component: config.StudentsStyleEditP,    // 学生风采
         exact: true
     },
+    {
+        path:'/phone/blank',
+        component: config.BlankP,    // 空白页
+        exact: true
+    },
 ]

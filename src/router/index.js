@@ -83,3 +83,9 @@ export const StudentsStyleEditP = Loadable({
 	loading: Loading,
 	timeout: timeout
 });
+//手机空白页
+export const BlankP = Loadable({
+	loader: () => import("CONTAINERS/phoneBlank/BlankP"),
+	loading: Loading,
+	timeout: timeout
+});
