@@ -179,12 +179,12 @@ class StudentsStyleP extends Component {
         let { roleId, type, dataList, loading, isOver } = this.state;
         const tabs = this.state.roleId == 102 ? [
             { title: '待审批', value: 0 },
-            { title: '已经同意', value: 1 },
+            { title: '已同意', value: 1 },
             { title: '已驳回', value: 2 },
         ] : [
                 { title: '展示中', value: 'showing' },
                 { title: '待审批', value: 0 },
-                { title: '已经同意', value: 1 },
+                { title: '已同意', value: 1 },
                 { title: '已驳回', value: 2 },
             ];
         return <Fragment>

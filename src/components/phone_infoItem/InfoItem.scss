@@ -77,6 +77,18 @@
         line-height: 11vw;
         padding: 0 4vw 0 3vw;
         color: #666666;
+        position: relative;
+        .point{
+            position: absolute;
+            width: 1vw;
+            height: 1vw;
+            background-color: #48bb7d;
+            border-radius: 50%;
+            top: 5vw;
+        }
+        p{
+            padding-left: 2vw;
+        }
         .l1{
             color: #48bb7d;
             float: right;

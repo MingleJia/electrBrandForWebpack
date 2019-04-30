@@ -3,6 +3,22 @@ import styles from './InfoItem.scss';
 import moment from 'moment';
 import axios from 'UTILS/axios';
 import Dialog from '../../components/phoneDialog/dialog';
+/**
+ *  @param {回调函数组件执行操作操作后给父级使用} upload Function
+ *  @param {角色信息 102是家长 103是班主任} roleId String
+ *  @param {是否展示顶部} showTop Boolean
+ *  @param {tab栏型号 showing:展示中 0待审批 1已同意 2已驳回} type String
+ *  @param {标题} title String
+ *  @param {发生时间} show_time String
+ *  @param {展示天数} show_days String
+ *  @param {描述} desc String
+ *  @param {图片数组} images Array
+ *  @param {教师评价} comment String
+ *  @param {班级名称} class_name String
+ *  @param {学生姓名} student_name String
+ *  @param {类似于token用来识别账号请求数据} ticket String
+ *  @param {是否展示申请时间} isShowApprovalTime Boolean
+ */
 class InfoItem extends Component {
     constructor(props) {
         super(props);
@@ -258,6 +274,7 @@ class InfoItem extends Component {
                     </div>
                 </div>
                 <div className={styles['bottom']}>
+                        <div className={styles['point']}></div>
                     <p>
                         {this.props.isShowApprovalTime && <span>审批时间2019-04-29 23:00</span>}
                         <span
