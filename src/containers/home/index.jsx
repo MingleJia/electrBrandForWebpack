@@ -43,9 +43,9 @@ class Home extends Component {
                     {
                         this.state.isShowStudentStyle
                             ?
-                            <StudentStyle />
-                            :
                             <IncentiveRank />
+                            :
+                            <StudentStyle />
                     }
                     <div>
                         <TodayLessonSchedule />
@@ -53,6 +53,7 @@ class Home extends Component {
                     </div>
                 </div>
                 <Tab getTabList={(tabList) => {
+                    console.log(tabList);
                     let isShowStudentStyle = !!tabList.find(item => item.base_name == '学生风采');
                     this.setState({
                         isShowStudentStyle
