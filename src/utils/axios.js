@@ -10,10 +10,22 @@ if(env === 'development'){
 
 // axios defaults
 axios.defaults.withCredentials = true;
+//获取地址栏信息
+/**
+ * 
+ * @param {要获取的地址栏参数名} str string 
+ */
+function getHerfInfo(str) {
+    if (window.location.href.split('?').length == 2) {
+        return (window.location.href.split('?')[1].split('&').find(item => item.indexOf(str) != -1) || '=').split('=')[1];
+    } else {
+        return '';
+    }
+}
 function getItem(key){
     if(window.location.href.indexOf("phone")!=-1){
-        return 'VGxFOVBRPT07TmpBME1EWXhNRE0wOzU1';
-        // return 'VFZSWlBRPT07S0NBaklpZ2hJQ1VqOzE2MTY=';
+        // return 'VGxFOVBRPT07TmpBME1EWXhNRE0wOzU1';
+        return getHerfInfo('ticket')||'VFZSWlBRPT07S0NBaklpZ2hJQ1VqOzE2MTY=';
     }else{
         return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(key).replace(/[-.+*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
     }
@@ -36,7 +48,8 @@ function toBlank(error){
     // 如果不是接口返回的错误就去空白页
     if(window.location.href.indexOf('phone')!=-1){
         if(error.message.indexOf('timeout') !== -1||error.response.status == 500 || error.response.status == 404||error.response.status == 501 || error.response.status == 502 ||error.response.status == 503 ){
-            window.location.href = window.location.href.split('phone')[0]+'phone/blank';
+            // window.location.href = window.location.href.split('phone')[0]+'phone/blank';
+            window.cordova.exec(function() {}, function() {}, "LeTalkCorePlugin", "showToast", [{"content":"出错啦"}])
         }
     }
 }

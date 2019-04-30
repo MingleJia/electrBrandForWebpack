@@ -52,14 +52,16 @@
         .am-textarea-count{
             font-size: 4vw;
             color:#5a5a5a;
+            padding-right: 3vw;
             span{
                 color:#5a5a5a;
             }
         }
     }
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     background-color: #f5f7f8;
+    padding-bottom: 3vw;
     .top{
         padding: 0 4vw 0 4vw;
         background-color: white;
@@ -99,7 +101,7 @@
         font-size: 5vw;
         text-align: center;
         line-height: 11vw;
-        margin: 0 auto;
+        margin: 3vw auto 0;
         color:white;
         border-radius: 5px;
     }

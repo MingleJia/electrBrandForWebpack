@@ -5,7 +5,7 @@ import { Tabs } from 'antd-mobile';
 import InfoItem from '../../components/phone_infoItem/InfoItem';
 import axios from 'UTILS/axios';
 import defaultImg from '../../assets/phone/defaultImg.png';
-import loadingImg from '../../assets/phone/loading.gif';
+import loadingImg from '../../assets/phone/ld.gif';
 var lock = true;
 class StudentsStyleP extends Component {
     constructor(props) {
@@ -33,7 +33,9 @@ class StudentsStyleP extends Component {
         this.getInfo();
     }
     release() {
+        document.title = '学生风采'
         var _this = this;
+        //路由变化函数
         window.addEventListener('hashchange', function () {
             if (window.location.href.indexOf('edit') != -1) {
                 window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showMenu', [[]]);
@@ -68,17 +70,18 @@ class StudentsStyleP extends Component {
             ]]);
             window.clickMenu = (info) => {
                 if (info.id == 1) {
-                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + this.state.role_id + '&ticket=' + _this.state.ticket;
+                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + _this.state.roleId + '&ticket=' + _this.state.ticket;
                 }
             }
         }
-
-
     }
     getInfo() {
         this.setState({ loading: true })
         axios('post', '/api/show/auth', {
         }, 'form').then((json) => {
+            if (json.code == 0) {
+                window.cordova.exec(function () { }, function () { }, "LeTalkCorePlugin", "showToast", [{ "content": json.msg }])
+            }
             this.setState({
                 roleId: json.data.roleId,
                 type: json.data.roleId == 102 ? 0 : 'showing'
@@ -164,6 +167,14 @@ class StudentsStyleP extends Component {
         })
         // console.log(tab, index)
     }
+    //跟新列表
+    upload() {
+        this.setState({
+            dataList: []
+        }, () => {
+            this.getList();
+        })
+    }
     render() {
         let { roleId, type, dataList, loading, isOver } = this.state;
         const tabs = this.state.roleId == 102 ? [
@@ -214,7 +225,7 @@ class StudentsStyleP extends Component {
                                                 (item, index) =>
                                                     <InfoItem
                                                         key={index}
-                                                        upload={() => { this.getList() }}
+                                                        upload={() => { this.upload() }}
                                                         roleId={roleId}
                                                         showTop={false}
                                                         type={type}
@@ -228,6 +239,7 @@ class StudentsStyleP extends Component {
                                                         class_name={item.class_name}
                                                         student_name={item.student_name}
                                                         ticket={this.state.ticket}
+                                                        isShowApprovalTime={true}
                                                     />
                                             )
                                             :
@@ -274,7 +286,7 @@ class StudentsStyleP extends Component {
                                                     student_name={item.student_name}
                                                     class_name={item.class_name}
                                                     key={index}
-                                                    upload={() => { this.getList() }}
+                                                    upload={() => { this.upload() }}
                                                     roleId={roleId}
                                                     type={type}
                                                     title={item.title}
@@ -282,6 +294,8 @@ class StudentsStyleP extends Component {
                                                     desc={item.desc}
                                                     createtime={item.createtime}
                                                     id={item.id}
+                                                    ticket={this.state.ticket}
+                                                    isShowApprovalTime={false}
                                                 />
                                         )
                                         :
@@ -314,7 +328,7 @@ class StudentsStyleP extends Component {
                                                     student_name={item.student_name}
                                                     class_name={item.class_name}
                                                     key={index}
-                                                    upload={() => { this.getList() }}
+                                                    upload={() => { this.upload() }}
                                                     roleId={roleId}
                                                     type={type}
                                                     title={item.title}
@@ -322,7 +336,7 @@ class StudentsStyleP extends Component {
                                                     desc={item.desc}
                                                     createtime={item.createtime}
                                                     id={item.id}
-
+                                                    isShowApprovalTime={true}
                                                 />
                                         )
                                         :
@@ -355,7 +369,7 @@ class StudentsStyleP extends Component {
                                                     student_name={item.student_name}
                                                     class_name={item.class_name}
                                                     key={index}
-                                                    upload={() => { this.getList() }}
+                                                    upload={() => { this.upload() }}
                                                     roleId={roleId}
                                                     type={type}
                                                     title={item.title}
@@ -363,6 +377,7 @@ class StudentsStyleP extends Component {
                                                     desc={item.desc}
                                                     createtime={item.createtime}
                                                     id={item.id}
+                                                    isShowApprovalTime={true}
                                                 />
                                         )
                                         :
@@ -422,7 +437,7 @@ class StudentsStyleP extends Component {
                                                     student_name={item.student_name}
                                                     class_name={item.class_name}
                                                     key={index}
-                                                    upload={() => { this.getList() }}
+                                                    upload={() => { this.upload() }}
                                                     roleId={roleId}
                                                     type={type}
                                                     title={item.title}
@@ -431,6 +446,7 @@ class StudentsStyleP extends Component {
                                                     createtime={item.createtime}
                                                     id={item.id}
                                                     ticket={this.state.ticket}
+                                                    isShowApprovalTime={false}
                                                 />
                                         )
                                         :
@@ -464,7 +480,7 @@ class StudentsStyleP extends Component {
                                                     student_name={item.student_name}
                                                     class_name={item.class_name}
                                                     key={index}
-                                                    upload={() => { this.getList() }}
+                                                    upload={() => { this.upload() }}
                                                     roleId={roleId}
                                                     type={type}
                                                     title={item.title}
@@ -473,6 +489,7 @@ class StudentsStyleP extends Component {
                                                     createtime={item.createtime}
                                                     id={item.id}
                                                     ticket={this.state.ticket}
+                                                    isShowApprovalTime={true}
                                                 />
                                         )
                                         :
@@ -505,7 +522,7 @@ class StudentsStyleP extends Component {
                                                     student_name={item.student_name}
                                                     class_name={item.class_name}
                                                     key={index}
-                                                    upload={() => { this.getList() }}
+                                                    upload={() => { this.upload() }}
                                                     roleId={roleId}
                                                     type={type}
                                                     title={item.title}
@@ -513,6 +530,7 @@ class StudentsStyleP extends Component {
                                                     desc={item.desc}
                                                     createtime={item.createtime}
                                                     id={item.id}
+                                                    isShowApprovalTime={true}
                                                 />
                                         )
                                         :

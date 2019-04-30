@@ -37,6 +37,7 @@ class StudentsStyleP extends Component {
         }
     }
     componentDidMount() {
+        window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'showTitle', ['发布']);
         //role_id 是角色信息 102是家长 show_id是获取详情用的
         const show_id = this.getHerfInfo('show_id');
         const role_id = this.getHerfInfo('role_id');
@@ -164,8 +165,8 @@ class StudentsStyleP extends Component {
                 teacher_id: resourceData.find(item => item.studentUserId == parents_student[0]).teacherUserId,
                 desc,
                 show_time,
-                class_name: '2班',
-                student_name: '男男',
+                class_name: resourceData.find(item => item.studentUserId == parents_student[0]).className,
+                student_name: resourceData.find(item => item.studentUserId == parents_student[0]).studentUserName,
                 images,
             }
             if (show_id) {
@@ -179,17 +180,18 @@ class StudentsStyleP extends Component {
             })
         }
         if (role_id == 103) {
-            let { teacher_student, show_time, title, desc, comment, show_days, images } = this.state;
+            let { teacher_student, show_time, title, desc, comment, show_days, images, class_name, student_name } = this.state;
             show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
             if (teacher_student.length == 0) return;
             if (!title) return;
             if (!show_time) return;
+            if (!comment) return;
             let submintData = {
                 title,
                 desc,
                 show_time,
-                class_name: '3班',
-                student_name: '波波',
+                class_name,
+                student_name,
                 class_id: teacher_student[0],
                 student_id: teacher_student[1],
                 show_days: show_days[0],
@@ -203,7 +205,7 @@ class StudentsStyleP extends Component {
                 // 处理提交成功
                 // console.log(json);
                 if (json.code == 1) {
-                    if(nodecheck) this.check(1);
+                    if (nodecheck) this.check(1);
                     window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + this.getHerfInfo('ticket');
                 }
             })
@@ -228,7 +230,7 @@ class StudentsStyleP extends Component {
     //检测能否提交
     checkSubmit() {
         const role_id = this.getHerfInfo('role_id');
-        let { show_time, title, parents_student, teacher_student } = this.state;
+        let { show_time, title, parents_student, teacher_student, comment } = this.state;
         if (role_id == 102) {
             if (parents_student.length == 0) return false;
             if (!title) return false;
@@ -238,6 +240,7 @@ class StudentsStyleP extends Component {
             if (teacher_student.length == 0) return false;
             if (!title) return false;
             if (!show_time) return false;
+            if (!comment) return false;
         }
         return true;
     }
@@ -294,6 +297,8 @@ class StudentsStyleP extends Component {
                         <DatePicker
                             value={show_time}
                             onChange={(date) => { this.setOneKV('show_time', new Date(date.valueOf())) }}
+                            okText={<div style={{ color: '#4ea375' }}>确定</div>}
+                            dismissText={<div style={{ color: '#4ea375' }}>取消</div>}
                         >
                             <List.Item arrow="horizontal">发生时间</List.Item>
                         </DatePicker>

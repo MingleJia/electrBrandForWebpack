@@ -258,7 +258,8 @@ class InfoItem extends Component {
                     </div>
                 </div>
                 <div className={styles['bottom']}>
-                    <p>审批时间2019-04-29 23:00
+                    <p>
+                        {this.props.isShowApprovalTime && <span>审批时间2019-04-29 23:00</span>}
                         <span
                             onClick={() => { this.ope(operationMode[1]) }}
                             className={styles['l1']}
