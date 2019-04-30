@@ -3,6 +3,7 @@ import styles from './InfoItem.scss';
 import moment from 'moment';
 import axios from 'UTILS/axios';
 import Dialog from '../../components/phoneDialog/dialog';
+import {showToast} from '../../utils/method';
 /**
  *  @param {回调函数组件执行操作操作后给父级使用} upload Function
  *  @param {角色信息 102是家长 103是班主任} roleId String
@@ -146,6 +147,8 @@ class InfoItem extends Component {
             if (json.code == 1) {
                 // 刷新列表
                 this.props.upload && this.props.upload()
+            }else{
+                showToast(json.msg)
             }
         })
     }

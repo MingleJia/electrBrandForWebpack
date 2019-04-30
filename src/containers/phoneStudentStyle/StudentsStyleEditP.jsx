@@ -4,6 +4,7 @@ import { DatePicker, Picker, List, TextareaItem, InputItem } from 'antd-mobile';
 import UploadImgs from 'COMPONENTS/uploadImgs';
 import axios from 'UTILS/axios';
 import moment from 'moment';
+import { getHerfInfo, showToast } from '../../utils/method';
 class StudentsStyleP extends Component {
     constructor(props) {
         super(props);
@@ -28,19 +29,11 @@ class StudentsStyleP extends Component {
 
         }
     }
-    //获取地址栏信息
-    getHerfInfo(str) {
-        if (window.location.href.split('?').length == 2) {
-            return (window.location.href.split('?')[1].split('&').find(item => item.indexOf(str) != -1) || '=').split('=')[1];
-        } else {
-            return '';
-        }
-    }
     componentDidMount() {
-        window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'showTitle', ['发布']);
+        window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', ['发布']);
         //role_id 是角色信息 102是家长 show_id是获取详情用的
-        const show_id = this.getHerfInfo('show_id');
-        const role_id = this.getHerfInfo('role_id');
+        const show_id = getHerfInfo('show_id');
+        const role_id = getHerfInfo('role_id');
         //隐藏发布按钮
         if (role_id == 102) {
             this.getStudentInfoParents();
@@ -147,9 +140,9 @@ class StudentsStyleP extends Component {
     //修改新增
     submitData() {
         // /api/show/parentaddshow
-        const role_id = this.getHerfInfo('role_id');
-        const show_id = this.getHerfInfo('show_id');
-        const nodecheck = this.getHerfInfo('nodecheck');
+        const role_id = getHerfInfo('role_id');
+        const show_id = getHerfInfo('show_id');
+        const nodecheck = getHerfInfo('nodecheck');
         if (role_id == 102) {
 
             let { show_time, title, desc, parents_student, resourceData, images } = this.state;
@@ -175,7 +168,9 @@ class StudentsStyleP extends Component {
             axios('post', '/api/show/parentaddshow', submintData, 'form').then((json) => {
                 // 处理提交成功
                 if (json.code == 1) {
-                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + this.getHerfInfo('ticket');
+                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket');
+                } else {
+                    showToast(json.msg)
                 }
             })
         }
@@ -206,30 +201,30 @@ class StudentsStyleP extends Component {
                 // console.log(json);
                 if (json.code == 1) {
                     if (nodecheck) this.check(1);
-                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + this.getHerfInfo('ticket');
+                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket');
+                } else {
+                    showToast(json.msg)
                 }
             })
         }
     }
-    //提示信息
-    showToast(str) {
-        window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showToast', [{ 'content': str }]);
-    }
     //审核: 1同意 2驳回
     check(n) {
         axios('post', '/api/show/audit', {
-            show_id: this.getHerfInfo('show_id'),
+            show_id: getHerfInfo('show_id'),
             audit_status: n
         }, 'form').then((json) => {
             // console.log(json);
             if (json.code == 1) {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + this.getHerfInfo('ticket');
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket');
+            } else {
+                showToast(json.msg)
             }
         })
     }
     //检测能否提交
     checkSubmit() {
-        const role_id = this.getHerfInfo('role_id');
+        const role_id = getHerfInfo('role_id');
         let { show_time, title, parents_student, teacher_student, comment } = this.state;
         if (role_id == 102) {
             if (parents_student.length == 0) return false;
@@ -246,8 +241,8 @@ class StudentsStyleP extends Component {
     }
     render() {
         let { show_time, title, desc, comment, show_days, parents_province, teacher_province, class_name } = this.state;
-        const role_id = this.getHerfInfo('role_id');
-        // console.log(this.getHerfInfo('role_id'))
+        const role_id = getHerfInfo('role_id');
+        // console.log(getHerfInfo('role_id'))
         // console.log(comment)
         return <Fragment>
 
@@ -268,7 +263,7 @@ class StudentsStyleP extends Component {
                     }
                     {/* 老师 */}
                     {
-                        (role_id == 103 && !this.getHerfInfo('show_id')) && <div className={styles['row']}>
+                        (role_id == 103 && !getHerfInfo('show_id')) && <div className={styles['row']}>
                             <Picker
                                 data={teacher_province}
                                 value={this.state.teacher_student}
@@ -281,7 +276,7 @@ class StudentsStyleP extends Component {
                         </div>
                     }
                     {
-                        (role_id == 103 && this.getHerfInfo('show_id')) && <div className={styles['row']}>
+                        (role_id == 103 && getHerfInfo('show_id')) && <div className={styles['row']}>
                             <InputItem
                                 placeholder="请输入标题名称"
                                 ref={el => this.inputRef = el}

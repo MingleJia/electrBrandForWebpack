@@ -6,26 +6,19 @@ import InfoItem from '../../components/phone_infoItem/InfoItem';
 import axios from 'UTILS/axios';
 import defaultImg from '../../assets/phone/defaultImg.png';
 import loadingImg from '../../assets/phone/ld.gif';
+import { getHerfInfo } from '../../utils/method';
 var lock = true;
 class StudentsStyleP extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            ticket: this.getHerfInfo('ticket'),//客户端给我用来获取信息
+            ticket: getHerfInfo('ticket'),//客户端给我用来获取信息
             roleId: 102,//角色id 102家长
             type: 0, //0:待审批 1:已同意 2:已驳回 showing:展示中
             dataList: [],
             loading: false,
             idx: 1,//请求第几波数据
             isOver: false,
-        }
-    }
-    //获取地址栏信息
-    getHerfInfo(str) {
-        if (window.location.href.split('?').length == 2) {
-            return (window.location.href.split('?')[1].split('&').find(item => item.indexOf(str) != -1) || '=').split('=')[1];
-        } else {
-            return '';
         }
     }
     componentDidMount() {
