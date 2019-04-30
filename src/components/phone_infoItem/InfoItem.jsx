@@ -133,7 +133,10 @@ class InfoItem extends Component {
             }
         })
     }
-    //审核: 1同意 2驳回
+    /**
+     * 审批操作
+     * @param {审批类型 1:同意 2:驳回} n Number 
+     */
     check(n) {
         axios('post', '/api/show/audit', {
             show_id: this.props.id,
@@ -146,7 +149,10 @@ class InfoItem extends Component {
             }
         })
     }
-    //查看大图
+    /**
+     * 查看大图
+     * @param {图片地址||路径} path String
+     */
     showImg = (path) => {
         window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'openPicture', [{ 'path': path }]);
     }
