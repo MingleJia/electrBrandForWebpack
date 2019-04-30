@@ -24,7 +24,7 @@ class StudentsStyle extends Component {
         axios('get', '/api/eboardshow/lists', {
         }).then((json) => {
             this.setState({
-                dataList: json.data,
+                dataList: json.data.data,
                 loading: false
             })
         })
