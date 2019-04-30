@@ -53,7 +53,6 @@ class Home extends Component {
                     </div>
                 </div>
                 <Tab getTabList={(tabList) => {
-                    console.log(tabList);
                     let isShowStudentStyle = !!tabList.find(item => item.base_name == '学生风采');
                     this.setState({
                         isShowStudentStyle
