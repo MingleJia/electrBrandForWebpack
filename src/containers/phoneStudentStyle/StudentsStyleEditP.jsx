@@ -26,7 +26,7 @@ class StudentsStyleP extends Component {
             images: [],
             class_name: '',
             student_name: '',
-
+            isChange: 0
         }
     }
     componentDidMount() {
@@ -98,7 +98,9 @@ class StudentsStyleP extends Component {
                 comment: json.data.comment,
                 show_days: [json.data.show_days + ''],
                 class_name: json.data.class_name,
-                student_name: json.data.student_name
+                student_name: json.data.student_name,
+                images: json.data.images,
+                isChange: 1
             })
         })
     }
@@ -133,7 +135,9 @@ class StudentsStyleP extends Component {
                 desc: json.data.desc,
                 show_time: new Date(json.data.updatetime * 1000),
                 class_name: json.data.class_name,
-                student_name: json.data.student_name
+                student_name: json.data.student_name,
+                images: json.data.images,
+                isChange: 1
             })
         })
     }
@@ -191,7 +195,7 @@ class StudentsStyleP extends Component {
                 student_id: teacher_student[1],
                 show_days: show_days[0],
                 comment,
-                images:JSON.stringify(images),
+                images: JSON.stringify(images),
             }
             if (show_id) {
                 submintData.show_id = show_id;
@@ -307,7 +311,7 @@ class StudentsStyleP extends Component {
                             extra={<div>{(title || '').length > 30 ? 30 : (title || '').length}/30</div>}
                             value={title}
                             maxLength={30}
-                            onChange={(v) => {this.setOneKV('title', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
+                            onChange={(v) => { this.setOneKV('title', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
                         >标题</InputItem>
                     </div>
                 </div>
@@ -363,7 +367,7 @@ class StudentsStyleP extends Component {
                         </div>
                     </div>
                 }
-                <UploadImgs onChange={(images) => { this.setOneKV('images', images) }} />
+                <UploadImgs isChange={this.state.isChange} defaultData={this.state.images} onChange={(images) => { this.setOneKV('images', images) }} />
                 <div
                     className={styles['btn']}
                     style={{ backgroundColor: `${this.checkSubmit() ? '#48bb7d' : '#dbdbdb'}` }}

@@ -1,13 +1,19 @@
 import React from 'react';
 import {deleteImg, cameraIcon} from 'ASSETS/phone'
 import styles from './index.scss'
+/**
+ * @param {是否重新渲染} isChange number 不渲染 1渲染
+ * @param {默认数据} defaultData array
+ * @param {数据改变回调函数} onChange function 
+ */
 export default class UploadImgs extends React.Component{
 
     constructor () {
         super();
         this.state = {
             maxImgNum: 5,
-            uploadImgs: []  //  拿到的图片的信息
+            uploadImgs: [],  //  拿到的图片的信息
+            isChange: 1
         }
     }
 
@@ -35,12 +41,20 @@ export default class UploadImgs extends React.Component{
         }; 
         window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'takePicture', []);
     }
-
     // 查看大图
     showImg = (path) => {
         window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'openPicture', [{'path': path}]);
     }
-
+    static getDerivedStateFromProps(props,state) {
+    //当父级传入的props发生变化的时候就执行这里 return 新的state,相当于setState
+        if(props.isChange == 1 && state.isChange == 1){
+            return {
+                uploadImgs: (props.defaultData||[]).map(item=>item.image),
+                isChange : 0
+            }
+        }
+        return null
+    }
     render() {
         let {uploadImgs, maxImgNum} = this.state;
         return (
