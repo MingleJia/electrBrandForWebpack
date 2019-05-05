@@ -46,7 +46,9 @@ class DataItem extends Component {
                     <span className={styles['time']}>{moment(this.props.item.show_time || 0).format("HH:mm:ss")}</span>
                 </div>
                 {/* 下方内容区域 */}
-                <div className={`${isOpen ? styles['detail'] : styles['detailHidden']}`}>
+                <div
+                    className={`${isOpen ? styles['detail'] : styles['detailHidden']}`}
+                    onClick={() => { this.setState({ isOpen: !isOpen }) }}>
                     <p className={styles['text']}>
                         {
                             this.props.item.desc || '暂无内容'
