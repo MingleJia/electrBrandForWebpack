@@ -73,6 +73,7 @@ class StudentsStyleP extends Component {
         axios('post', '/api/show/auth', {
         }, 'form').then((json) => {
             if (json.code == 0) {
+                this.setState({ loading: false })
                 window.cordova.exec(function () { }, function () { }, "LeTalkCorePlugin", "showToast", [{ "content": json.msg }])
             }
             this.setState({

@@ -51,7 +51,7 @@ class StudentsStyle extends Component {
                         </Link> */}
                         {
                             dataList.map((item, index) =>
-                                <Link to={`/studentsStyle/deatil?id=${index}`} key={index}>
+                                <Link to={`/studentsStyle/deatil?id=${item.id}`} key={index}>
                                     <MyCarousel desc={item.desc} title={item.title} images={item.images} styleType={'content6'} />
                                 </Link>)
                         }

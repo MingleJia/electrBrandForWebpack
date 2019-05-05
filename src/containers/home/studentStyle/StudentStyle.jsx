@@ -58,7 +58,7 @@ class StudentStyle extends Component {
                     {
                         //    <NoDataPage/> 
                         dataList.map((item, index) =>
-                            <Link to={`/studentsStyle/deatil?id=${index}`} key={index}>
+                            <Link to={`/studentsStyle/deatil?id=${item.id}`} key={index}>
                                 <MyCarousel
                                     desc={item.desc}
                                     title={item.title}
