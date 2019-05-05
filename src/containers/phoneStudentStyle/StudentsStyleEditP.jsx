@@ -51,13 +51,13 @@ class StudentsStyleP extends Component {
     getClassInfo() {
         axios('get', '/api/show/classes', {
         }).then((json) => {
-            // console.log(json.data)
             this.setState({
                 teacher_province: json.data.map(item => ({
                     label: item.className,
                     value: item.classId,
                     children: []
-                }))
+                })),
+                resourceData: json.data
             }, () => {
                 //循环请求了
                 // json.data.map(item => this.getStudentInfoTeacher(item.classId))
@@ -175,7 +175,7 @@ class StudentsStyleP extends Component {
             })
         }
         if (role_id == 103) {
-            let { teacher_student, show_time, title, desc, comment, show_days, images, class_name, student_name } = this.state;
+            let { teacher_student, show_time, title, desc, comment, show_days, images, class_name, student_name, resourceData } = this.state;
             show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
             if (teacher_student.length == 0) return;
             if (!title) return;
@@ -193,8 +193,11 @@ class StudentsStyleP extends Component {
                 comment,
                 images,
             }
+            console.log(resourceData);
             if (show_id) {
                 submintData.show_id = show_id;
+            } else {
+                submintData.class_name = resourceData.find(item => item.classId == teacher_student[0]).className
             }
             axios('post', '/api/show/teacheraddshow', submintData, 'form').then((json) => {
                 // 处理提交成功
