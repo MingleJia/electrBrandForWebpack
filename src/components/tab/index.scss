@@ -3,8 +3,9 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 0.9rem;
-    background-color: #387ef1;
+    height: 0.8rem;
+    background-color: white;
+    box-shadow: 0px -4px 12px 0px rgba(45, 196, 189, 0.1);
     display: flex;
     justify-content: center;
     a{
@@ -25,8 +26,8 @@
         }   
     }
     .tab-active{
-        background: linear-gradient(180deg,
-        rgba(255, 255, 255, 0.32) 0%,
-        #387ef1 100%);
+        background-image: linear-gradient(0deg, 
+		rgba(31, 181, 171, 0.4) 0%, 
+		rgba(45, 196, 189, 0.1) 100%);
     }
 }

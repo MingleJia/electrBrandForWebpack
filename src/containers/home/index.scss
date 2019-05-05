@@ -1,10 +1,11 @@
 .header{
     width: 100%;
-    height: 1.2rem;
-    background-color: #387ef1;
+    height: 0.88rem;
+    // background-color: #387ef1;
+    background: url(../../assets/home/top_Bg.png);
     position: relative;
     .class-info{
-        height: 1.2rem;
+        height: 0.88rem;
         display: flex;
         align-items: center;
         span, i{

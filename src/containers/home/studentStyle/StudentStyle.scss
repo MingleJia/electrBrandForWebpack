@@ -23,12 +23,11 @@
         }
         .more{
             font-size: 0.24rem;
-            color: #ffffff;
+            color: #1fb5ab;
             text-align: center;
             height: 0.52rem;
             line-height: 0.52rem;
-            background-color: #387ef1;
-            box-shadow: 0rem 0rem 0.2rem 0rem rgba(56, 126, 241, 0.5);
+            border: 1px solid #1fb5ab;
             border-radius: 0.26rem;
             display: block;
             width: 1.12rem;
@@ -40,7 +39,7 @@
                 height: 0.22rem;
                 vertical-align: middle;
                 margin-left: 0.12rem;
-                margin-bottom: .02rem;
+                margin-bottom: 0.07em;
             }
         }
     }
