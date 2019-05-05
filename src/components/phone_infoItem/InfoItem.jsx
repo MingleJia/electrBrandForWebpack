@@ -162,7 +162,6 @@ class InfoItem extends Component {
     render() {
         let { isShowDialog, isShowDialog2, dislogTitle, okText, cancelText } = this.state;
         let operationMode = this.getOperationMode();
-        // console.log(this.props.roleId, this.props.type, this.props.id)
         return <Fragment>
             <Dialog
                 isShow={isShowDialog}
@@ -275,7 +274,7 @@ class InfoItem extends Component {
                             (this.props.images || []).map(
                                 (item, index) => <div key={index} className={styles['imgItem']}>
                                     <img
-                                        onClick={() => { this.showImg(item) }}
+                                        onClick={() => { this.showImg(item.image) }}
                                         src={item.image} alt="" />
                                 </div>
                             )

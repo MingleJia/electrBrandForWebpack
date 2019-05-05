@@ -191,7 +191,7 @@ class StudentsStyleP extends Component {
                 student_id: teacher_student[1],
                 show_days: show_days[0],
                 comment,
-                images,
+                images:JSON.stringify(images),
             }
             if (show_id) {
                 submintData.show_id = show_id;

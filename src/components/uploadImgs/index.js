@@ -30,7 +30,6 @@ export default class UploadImgs extends React.Component{
                 window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'showToast', [{'content': '图片上传失败'}]);
             }
             this.setState({uploadImgs});
-            console.log(uploadImgs)
             //传递uploadImgs
             this.props.onChange && this.props.onChange(uploadImgs);
         }; 
