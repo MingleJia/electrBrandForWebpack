@@ -19,7 +19,14 @@ module.exports = merge(base, {
 	devServer: {
 		contentBase: "./dist",
 		hot: true,
-		host: '192.168.70.193'
+		host: '192.168.70.193',
+		proxy:{
+			'/api':{
+				target:'http://eboard.leke.cn',
+				changeOrigin:true,
+				secure:false
+			}
+		}
 	},
 	plugins: [
 		new webpack.NamedModulesPlugin(),

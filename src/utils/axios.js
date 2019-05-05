@@ -4,7 +4,7 @@ import { message } from 'antd';
 let baseURL = '';
 const env = process.env.NODE_ENV;
 if(env === 'development'){
-    baseURL = 'http://eboard.leke.cn';//线上
+    // baseURL = 'http://eboard.leke.cn';//线上
     // baseURL = 'http://local.leke-eboard.cc';//php本地
 }
 

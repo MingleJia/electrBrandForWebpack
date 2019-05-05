@@ -22,7 +22,7 @@ class StudentsStyleP extends Component {
             title: '',
             desc: '',
             comment: '',
-            show_days: ['7'],
+            show_days: ['3'],
             images: [],
             class_name: '',
             student_name: '',
@@ -307,7 +307,7 @@ class StudentsStyleP extends Component {
                             extra={<div>{(title || '').length > 30 ? 30 : (title || '').length}/30</div>}
                             value={title}
                             maxLength={30}
-                            onChange={(v) => { this.setOneKV('title', v) }}
+                            onChange={(v) => {this.setOneKV('title', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
                         >标题</InputItem>
                     </div>
                 </div>
@@ -319,7 +319,7 @@ class StudentsStyleP extends Component {
                         rows={6}
                         count={200}
                         value={desc}
-                        onChange={(v) => { this.setOneKV('desc', v) }}
+                        onChange={(v) => { this.setOneKV('desc', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
                     />
                 </div>
                 {
