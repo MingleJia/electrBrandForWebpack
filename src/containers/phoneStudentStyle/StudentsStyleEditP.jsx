@@ -193,7 +193,6 @@ class StudentsStyleP extends Component {
                 comment,
                 images,
             }
-            console.log(resourceData);
             if (show_id) {
                 submintData.show_id = show_id;
             } else {

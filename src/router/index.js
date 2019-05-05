@@ -54,11 +54,11 @@ export const CampusStyleDetail = Loadable({
 	timeout: timeout
 });
 //学生风采
-export const StudentsStyle = Loadable({
-	loader: () => import("CONTAINERS/studentsStyle/StudentsStyle"),
-	loading: Loading,
-	timeout: timeout
-});
+// export const StudentsStyle = Loadable({
+// 	loader: () => import("CONTAINERS/studentsStyle/StudentsStyle"),
+// 	loading: Loading,
+// 	timeout: timeout
+// });
 //更多学生风采
 export const StudentsStyleMore = Loadable({
 	loader: () => import("CONTAINERS/studentsStyle/StudentsStyleMore"),
