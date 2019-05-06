@@ -291,6 +291,7 @@ class StudentsStyleP extends Component {
                                                     id={item.id}
                                                     ticket={this.state.ticket}
                                                     isShowApprovalTime={false}
+                                                    images={item.images}
                                                 />
                                         )
                                         :
