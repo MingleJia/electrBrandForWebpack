@@ -8,9 +8,12 @@
         text-align: center;
         border-radius: 0.12rem;
         border: solid 1px #ececec;
+        overflow: hidden;
         .img{
-            height: 100%;
-            max-width: 100%;
+            display: block;
+            width: 100%;
+            height: 5.96rem;
+            object-fit: cover;
         }
     }
     .no-img-wrap{
@@ -70,9 +73,12 @@
         text-align: center;
         border-radius: 0.12rem;
         border: solid 1px #ececec;
+        overflow: hidden;
         .img{
-            height: 100%;
-            max-width: 100%;
+            display: block;
+            width: 100%;
+            height: 2.92rem;
+            object-fit: cover;
         }
     }
     .no-img-wrap{
@@ -86,6 +92,140 @@
         }
         .no-img-word{
             color: #ffffff;
+            font-size: 0.24rem;
+            line-height: 0.32rem;
+            padding-top: 0.20rem;
+        }
+    }
+    .textWrap{
+        min-height: 0.99rem;
+        .textTitle{
+            font-size: 0.24rem;
+            line-height: 0.32rem;
+            padding-top: 0.16rem;
+            color:#333333;
+            font-weight: bold;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+        .text{
+            display: block;
+            padding-top: 0.1rem;
+            color: white;
+            font-size: 0.18rem;
+            line-height: 0.28rem;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+    }
+}
+.contentM6{
+    // padding: 0 0.28rem;
+    // margin: 0 10px 0 14px;
+    margin-top: 16px;
+    width: 6.12rem;
+    float: left;
+    .v-item{
+        width: 100%;
+        height: 3.44rem;
+        text-align: center;
+        border-radius: 0.12rem;
+        border: solid 1px #ececec;
+        overflow: hidden;
+        .img{
+            display: block;
+            width: 100%;
+            height: 3.44rem;
+            object-fit: cover;
+        }
+    }
+    .no-img-wrap{
+        width: 100%;
+        height: 3.44rem;
+        text-align: center;
+        border-radius: 0.12rem;
+        border: solid 1px #ececec;
+        .no-img{
+            width: 1.2rem;
+            padding-top: 0.92rem;
+        }
+        .no-img-word{
+            color: #cccccc;
+            font-size: 0.24rem;
+            line-height: 0.32rem;
+            padding-top: 0.20rem;
+        }
+    }
+    .textWrap{
+        min-height: 0.99rem;
+        .textTitle{
+            font-size: 0.24rem;
+            line-height: 0.32rem;
+            padding-top: 0.16rem;
+            color:#333333;
+            font-weight: bold;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+        .text{
+            display: block;
+            padding-top: 0.1rem;
+            color: white;
+            font-size: 0.18rem;
+            line-height: 0.28rem;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+    }
+}
+.contentM4{
+    // padding: 0 0.28rem;
+    // margin: 0 10px 0 14px;
+    margin-top: 16px;
+    width: 9.3rem;
+    float: left;
+    .v-item{
+        width: 100%;
+        height: 3.44rem;
+        text-align: center;
+        border-radius: 0.12rem;
+        border: solid 1px #ececec;
+        overflow: hidden;
+        .img{
+            display: block;
+            width: 100%;
+            height: 3.44rem;
+            object-fit: cover;
+        }
+    }
+    .no-img-wrap{
+        width: 100%;
+        height: 3.44rem;
+        text-align: center;
+        border-radius: 0.12rem;
+        border: solid 1px #ececec;
+        .no-img{
+            width: 1.2rem;
+            padding-top: 0.92rem;
+        }
+        .no-img-word{
+            color: #cccccc;
             font-size: 0.24rem;
             line-height: 0.32rem;
             padding-top: 0.20rem;

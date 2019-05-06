@@ -77,17 +77,18 @@ class DataDetail extends Component {
             </div>
             <div className={styles['container']}>
                 <div className={styles['tab']}>
-                    <div className={styles['back']} onClick={() => this.backHome()}>
-                        <img className={styles['backimg']} src={backImg}></img><span>返回</span>
-                    </div>
+                    {/* <div className={styles['back']} onClick={() => this.backHome()}>
+                        <img className={styles['backimg']} src={backImg}></img>
+                    </div> */}
+                    <img src={backImg} className={styles['backimg']} alt="" onClick={() => this.backHome()} />
                     {
                         (canDown || canUp) && <div className={styles['btnWrap']}>
                             {
-                                canUp && <span className={styles[!canDown ? 'onlyOneBtn' : 'prevBtn']} onClick={() => this.getData('up')}>上一个</span>
+                                <span className={styles[!canUp ? 'prevBtnNo' : 'prevBtn']} onClick={() => canUp && this.getData('up')}>上一个</span>
                             }
                             {
 
-                                canDown && <span className={styles[!canUp ? 'onlyOneBtn' : 'nextBtn']} onClick={() => this.getData('down')}>下一个</span>
+                                <span className={styles[!canDown ? 'nextBtnNo' : 'nextBtn']} onClick={() => canDown && this.getData('down')}>下一个</span>
                             }
                         </div>
                     }
@@ -110,8 +111,10 @@ class DataDetail extends Component {
                                         onClick={() => { this.showImg(item.image) }}
                                         className={styles['img']}
                                         src={item.image} />
+                                        {/* src={'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg'} /> */}
                                 </div>)
                         }
+                        <div className={styles['line']}></div>
                         {
                             show.comment ? <p className={styles['text']}><span>教师评价:</span>{show.comment || '暂无内容'}</p> : null
                         }

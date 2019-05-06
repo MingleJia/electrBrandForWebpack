@@ -5,9 +5,9 @@
     // overflow-x: hidden;
     .tab{
         width: 19.2rem;
-        height: 0.92rem;
-        background-color: #387ef1;
-        box-shadow: 0rem 0.03rem 0.07rem 0rem  rgba(0, 0, 0, 0.08);
+        height: 0.88rem;
+        background-color: #1fb5ab;
+        box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.08);
         position: fixed;
         display: flex;
         z-index: 1;
@@ -24,36 +24,22 @@
             text-align: center;
             margin-left: 0.4rem;
             margin-top: 0.18rem;
-            .backimg{
-                display: inline-block;
-                width: 0.12rem;
-                height: 0.22rem;
-                transform: rotateY(180deg);
-                margin-right: 0.11rem;
-            }
+            // .backimg{
+            //     display: inline-block;
+            //     width: 0.12rem;
+            //     height: 0.22rem;
+            //     transform: rotateY(180deg);
+            //     margin-right: 0.11rem;
+            // }
         }
-        //这是老的样式不想删除
-        .btn{
-            width: 2.6rem;
-            height: 0.52rem;
-            line-height: 0.52rem;
-            background-color: #2f6aca;
-            border-radius: 0.26rem;
-            border: solid 0.02rem #9ac0ff;
-            text-align: center;
+        .backimg{
+            width: 0.19rem;
+            height: 0.34rem;
+            transform: rotateY(180deg);
+            display: block;
             position: absolute;
-            right: 0.4rem;
-            top: 0.18rem;
-            span{
-                display: inline-block;
-                width: 1.2rem; 
-                font-family: SourceHanSansCN;
-                font-size: 0.24rem;
-                color: #ffffff;
-            }
-            .prevBtn{
-                border-right: solid 0.02rem #9ac0ff;
-            }
+            left: 0.4rem;
+            top: 0.27rem;
         }
         //这是新的样式
         .btnWrap{
@@ -70,32 +56,33 @@
                 font-family: SourceHanSansCN;
                 font-size: 0.24rem;
                 color: #ffffff;
-                background-color: #2f6aca;
+                background-color: rgba(31,181,171,1);
                 width: 1.3rem;
                 height: 0.52rem;
-                border: solid 0.02rem #9ac0ff;
+                border: solid 0.02rem white;
             }
             .prevBtn{
-                // position: absolute;
-                // left: 0;
                 border-radius: 0.26rem  0 0 0.26rem;
             }
-            .onlyOneBtn{
-                border-radius: 0.26rem 0.26rem 0.26rem 0.26rem;
+            .prevBtnNo{
+                border-radius: 0.26rem  0 0 0.26rem;
+                opacity: 0.4;
             }
             .nextBtn{
-                // position: absolute;
-                // right: 0;
                 border-radius: 0 0.26rem  0.26rem 0;
+            }
+            .nextBtnNo{
+                border-radius: 0 0.26rem  0.26rem 0;
+                opacity: 0.4;
             }
         }
     }
     .content{
-        height: 10.9rem;
+        // height: 10.9rem;
         margin-bottom: 0.1rem;
         background-color: #fff;
         padding: 0 0.4rem;
-        padding-top: 0.92rem;
+        padding-top: 0.88rem;
         overflow-x: hidden;
         overflow-y: auto;
         .picture{
@@ -160,6 +147,13 @@
                 &:nth-of-type(even){
                     margin-right: 0;
                 }
+            }
+            .line{
+                width: 100%;
+                height: 1px;
+                overflow: hidden;
+                background-color: #efefef;
+                margin-bottom: 0.2rem;
             }
             .imgone{
                 width: 100%;

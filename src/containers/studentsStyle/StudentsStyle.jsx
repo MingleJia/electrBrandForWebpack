@@ -6,6 +6,7 @@ import MyCarousel from 'COMPONENTS/carousel/StuStyleCarousel.jsx';
 import styles from './StudentsStyle.scss';
 import axios from 'UTILS/axios';
 import Loading from 'COMPONENTS/loading';
+import noImg from '../../assets/campusstyle/no-img.png';
 class StudentsStyle extends Component {
     constructor(props) {
         super(props);
@@ -29,11 +30,14 @@ class StudentsStyle extends Component {
             })
         })
     }
-
+    getStyle(num) {
+        if (num <= 4) return 'contentM4';
+        return 'contentM6'
+    }
     render() {
         let { dataList } = this.state;
         return <Fragment>
-            <ToMore title={'学生风采'} toWhere={'/studentsStyle/more'} isShow={true} />
+            <ToMore title={'学生风采'} toWhere={'/studentsStyle/more'} isShow={dataList.length > 6} />
             <div>
 
             </div>
@@ -45,17 +49,23 @@ class StudentsStyle extends Component {
                     </div>
                     :
 
-                    <div className={styles['content']}>
-                        {/* <Link to={'/studentsStyle/deatil'}>
-                            <MyCarousel />
-                        </Link> */}
-                        {
-                            dataList.map((item, index) =>
-                                <Link to={`/studentsStyle/deatil?id=${item.id}`} key={index}>
-                                    <MyCarousel desc={item.desc} title={item.title} images={item.images} styleType={'content6'} />
-                                </Link>)
-                        }
-                    </div>
+                    (
+                        dataList.length > 0
+                            ?
+                            <div className={styles['content']}>
+                                {
+                                    dataList.map((item, index) =>
+                                        <Link to={`/studentsStyle/deatil?id=${item.id}`} key={index}>
+                                            <MyCarousel desc={item.desc} title={item.title} images={item.images} styleType={this.getStyle(dataList.length)} idx={index} />
+                                        </Link>)
+                                }
+                            </div>
+                            :
+                            <div className={styles['noData']}>
+                                <img src={noImg} alt="" />
+                                <p>期待谁得到表扬呢</p>
+                            </div>
+                    )
             }
             <Tab />
         </Fragment>

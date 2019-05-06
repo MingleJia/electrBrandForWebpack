@@ -28,7 +28,28 @@ class StuStyleCarousel extends Component {
         }
       }
     }
-    
+    if(styleType == 'contentM4'){
+      if(idx % 2 == 0){
+        return {
+          marginLeft:'0.19rem'
+        }
+      }else {
+        return {
+          marginLeft:'0.20rem'
+        }
+      }
+    }
+    if(styleType == 'contentM6'){
+      if(idx % 3 == 0){
+        return {
+          marginLeft:'0.20rem'
+        }
+      }else{
+        return {
+          marginLeft:'0.22rem'
+        }
+      }
+    }
     return {}
   }
   render() {
@@ -59,8 +80,8 @@ class StuStyleCarousel extends Component {
             >
               {
                 this.props.images.map((item, index) => <div key={index} className={styles['v-item']}>
-                  <img className={styles['img']} alt="example" src={item.image} />
-                  {/* <img className={styles['img']} alt="example" src={'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'} /> */}
+                  {/* <img className={styles['img']} alt="example" src={item.image} /> */}
+                  <img className={styles['img']} alt="example" src={'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'} />
                 </div>)
               }
               {/* <div className={styles['v-item']}><img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" /></div>
