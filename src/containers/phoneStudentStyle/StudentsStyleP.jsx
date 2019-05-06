@@ -26,7 +26,7 @@ class StudentsStyleP extends Component {
         this.getInfo();
     }
     release() {
-        document.title = '学生风采'
+        // document.title = '学生风采'
         var _this = this;
         //路由变化函数
         window.addEventListener('hashchange', function () {
@@ -48,7 +48,8 @@ class StudentsStyleP extends Component {
                 ]]);
             }
         }, false);
-        window.onload = function () {
+        document.addEventListener('deviceready', function () {
+            window.cordova.exec(function(){ }, function(){ }, 'LeTalkCorePlugin', 'showTitle', ['学生风采']);
             window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showMenu', [[
                 {
                     groupid: 1, //标题栏右侧按钮，一级按钮（groupid相同且数量大于1代表有二级子菜单，否则只是一个普通按钮）
@@ -61,10 +62,12 @@ class StudentsStyleP extends Component {
                     title: "发布" //按钮标题
                 }
             ]]);
-            window.clickMenu = (info) => {
-                if (info.id == 1) {
-                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + _this.state.roleId + '&ticket=' + _this.state.ticket;
-                }
+        }, false);
+        // window.onload = function () {
+        // }
+        window.clickMenu = (info) => {
+            if (info.id == 1) {
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + _this.state.roleId + '&ticket=' + _this.state.ticket;
             }
         }
     }
