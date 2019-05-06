@@ -30,7 +30,9 @@ class StudentsStyleP extends Component {
         }
     }
     componentDidMount() {
-        window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', ['发布']);
+        document.addEventListener('deviceready', function () {
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', ['发布']);
+        }, false);
         //role_id 是角色信息 102是家长 show_id是获取详情用的
         const show_id = getHerfInfo('show_id');
         const role_id = getHerfInfo('role_id');
@@ -153,7 +155,7 @@ class StudentsStyleP extends Component {
             if (parents_student.length == 0) return;
             if (!title) return;
             if (!show_time) return;
-            show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
+            show_time = moment(show_time.valueOf()).format('YYYY-MM-DD HH:mm:ss');
 
             let submintData = {
                 title,
@@ -164,7 +166,7 @@ class StudentsStyleP extends Component {
                 show_time,
                 class_name: resourceData.find(item => item.studentUserId == parents_student[0]).className,
                 student_name: resourceData.find(item => item.studentUserId == parents_student[0]).studentUserName,
-                images:JSON.stringify(images),
+                images: JSON.stringify(images),
             }
             if (show_id) {
                 submintData.show_id = show_id;
@@ -180,7 +182,7 @@ class StudentsStyleP extends Component {
         }
         if (role_id == 103) {
             let { teacher_student, show_time, title, desc, comment, show_days, images, class_name, student_name, resourceData } = this.state;
-            show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
+            show_time = moment(show_time.valueOf()).format('YYYY-MM-DD HH:mm:ss');
             if (teacher_student.length == 0) return;
             if (!title) return;
             if (!show_time) return;
@@ -261,6 +263,8 @@ class StudentsStyleP extends Component {
                                 data={parents_province}
                                 value={this.state.parents_student}
                                 onChange={(v) => { this.setOneKV('parents_student', v) }}
+                                okText={<div style={{ color: '#4ea375' }}>确定</div>}
+                                dismissText={<div style={{ color: '#4ea375' }}>取消</div>}
                                 cols={1}
                             >
                                 <List.Item arrow="horizontal">学生姓名</List.Item>
@@ -276,6 +280,8 @@ class StudentsStyleP extends Component {
                                 onChange={(v) => { this.setOneKV('teacher_student', v) }}
                                 // onPickerChange={(v) => { console.log(v) }}
                                 cols={1}
+                                okText={<div style={{ color: '#4ea375' }}>确定</div>}
+                                dismissText={<div style={{ color: '#4ea375' }}>取消</div>}
                             >
                                 <List.Item arrow="horizontal">选择班级</List.Item>
                             </Picker>
@@ -308,7 +314,7 @@ class StudentsStyleP extends Component {
                         <InputItem
                             placeholder="请输入标题名称"
                             ref={el => this.inputRef = el}
-                            extra={<div>{(title || '').length > 30 ? 30 : (title || '').length}/30</div>}
+                            extra={<div style={{ color: '#999999' }} >{(title || '').length > 30 ? 30 : (title || '').length}/30</div>}
                             value={title}
                             maxLength={30}
                             onChange={(v) => { this.setOneKV('title', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
@@ -332,7 +338,7 @@ class StudentsStyleP extends Component {
                             <InputItem
                                 placeholder="请输入标题名称"
                                 ref={el => this.inputRef = el}
-                                extra={<div>{(comment || '').length > 30 ? 30 : (comment || '').length}/30</div>}
+                                extra={<div style={{ color: '#999999' }} >{(comment || '').length > 30 ? 30 : (comment || '').length}/30</div>}
                                 value={comment}
                                 maxLength={30}
                                 onChange={(v) => { this.setOneKV('comment', v) }}

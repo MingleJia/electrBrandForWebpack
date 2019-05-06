@@ -61,9 +61,12 @@
                     right: 0;
                     opacity: 0.5;
                 }
-                    img{
-                        width: 100%;
-                    }
+                img{
+                    display: block;
+                    width: 16.5vw;
+                    height: 16.5vw;
+                    object-fit: cover;
+                }
                  
             }
        

@@ -76,7 +76,7 @@ class InfoItem extends Component {
             if (str == '撤下') {
                 this.setState({
                     isShowDialog: true,
-                    dislogTitle: '即将撤下该条学生风采?',
+                    dislogTitle: '撤下该条学生风采后，电子班牌将不展示该条信息？',
                     okText: '撤下',
                     cancelText: '取消'
                 })

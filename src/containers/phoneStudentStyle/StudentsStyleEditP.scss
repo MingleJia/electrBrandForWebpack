@@ -3,7 +3,7 @@
     :global{
         //select
         .am-list-item .am-list-line .am-list-arrow{
-            width: 2vw !important;
+            // width: 2vw !important;
             height: 4vw !important;
         }
         .am-list-item{
@@ -51,10 +51,10 @@
         }
         .am-textarea-count{
             font-size: 4vw;
-            color:#5a5a5a;
+            color:#999;
             padding-right: 3vw;
             span{
-                color:#5a5a5a;
+                color:#999;
             }
         }
     }
