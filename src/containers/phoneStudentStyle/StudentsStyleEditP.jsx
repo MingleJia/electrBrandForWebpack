@@ -29,7 +29,6 @@ class StudentsStyleP extends Component {
             isChange: 0
         }
     }
-    
     componentDidMount() {
         window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', ['发布']);
         //role_id 是角色信息 102是家长 show_id是获取详情用的

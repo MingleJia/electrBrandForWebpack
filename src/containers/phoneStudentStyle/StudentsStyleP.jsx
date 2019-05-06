@@ -63,8 +63,6 @@ class StudentsStyleP extends Component {
                 }
             ]]);
         }, false);
-        // window.onload = function () {
-        // }
         window.clickMenu = (info) => {
             if (info.id == 1) {
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + _this.state.roleId + '&ticket=' + _this.state.ticket;
