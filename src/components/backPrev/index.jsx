@@ -29,4 +29,7 @@ class BackPrevHeader extends Component{
     }
 }
 
-export default BackPrevHeader
+export default BackPrevHeader;
+BackPrevHeader.defaultProps = {};
+BackPrevHeader.propTypes = function () { };
+BackPrevHeader.propTypes = {};
