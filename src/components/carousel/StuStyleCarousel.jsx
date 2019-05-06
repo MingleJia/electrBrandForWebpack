@@ -36,8 +36,8 @@ class StuStyleCarousel extends Component {
     return <Fragment>
       <div className={styles[this.props.styleType]} style={this.specialCss(this.props.styleType,this.props.idx)} >
       {/* <div
-        className={styles['content4']}
-        style={this.specialCss('content4',this.props.idx)}> */}
+        className={styles['content1']}
+        style={this.specialCss('content1',this.props.idx)}> */}
 
         {
           this.props.images.length > 1
@@ -59,8 +59,8 @@ class StuStyleCarousel extends Component {
             >
               {
                 this.props.images.map((item, index) => <div key={index} className={styles['v-item']}>
-                  {/* <img className={styles['img']} alt="example" src={item.image} /> */}
-                  <img className={styles['img']} alt="example" src={'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'} />
+                  <img className={styles['img']} alt="example" src={item.image} />
+                  {/* <img className={styles['img']} alt="example" src={'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'} /> */}
                 </div>)
               }
               {/* <div className={styles['v-item']}><img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" /></div>

@@ -31,7 +31,7 @@ class StudentsStyleMore extends Component {
     render() {
         // console.log(this.state.dataList)
         return <Fragment>
-            <BackPrevHeader />
+            <BackPrevHeader title={'学生风采列表'} />
             {
                 this.state.loading
                     ?

@@ -47,8 +47,7 @@ class DataItem extends Component {
                 </div>
                 {/* 下方内容区域 */}
                 <div
-                    className={`${isOpen ? styles['detail'] : styles['detailHidden']}`}
-                    onClick={() => { this.setState({ isOpen: !isOpen }) }}>
+                    className={`${isOpen ? styles['detail'] : styles['detailHidden']}`}>
                     <p className={styles['text']}>
                         {
                             this.props.item.desc || '暂无内容'
@@ -66,6 +65,10 @@ class DataItem extends Component {
                                     {/* <img onClick={() => { this.showImg('https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg') }} className={styles['img']} src={'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg'} /> */}
                                 </div>
                         )
+                    }
+                    {
+
+                        this.props.item.comment && <div className={styles['line']}></div>
                     }
                     {
                         this.props.item.comment

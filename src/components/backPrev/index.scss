@@ -1,10 +1,11 @@
 .header{
     width: 100%;
-    height: 0.92rem;
-    background-color: #387ef1;
+    height: 0.88rem;
+    background-color: #1fb5ab;
     // position: fixed;
     top:0rem;
     z-index: 1;
+    text-align: center;
     .goback{
         display: inline-block;
         width: 1.12rem;
@@ -20,8 +21,8 @@
         text-align: center;
         position: relative;
         img{
-            width: 0.12rem;
-            height: 0.22rem;
+            width: 0.19rem;
+            height: 0.34rem;
             transform: rotateY(180deg);
             // margin-right: 0.11rem;
             left: 0.2rem;
@@ -34,5 +35,20 @@
         &:hover{
             background-color: #4d87e5;
         }
+    }
+    img{
+        width: 0.19rem;
+        height: 0.34rem;
+        left: 0.4rem;
+        top: 0.27rem;
+        transform: rotateY(180deg);
+        position: absolute;
+    }
+    .title{
+        font-size: 0.42rem;
+        font-weight: normal;
+        font-stretch: normal;
+        line-height: 0.88rem;
+        color: #ffffff;
     }
 }
