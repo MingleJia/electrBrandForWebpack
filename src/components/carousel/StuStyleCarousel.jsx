@@ -80,8 +80,8 @@ class StuStyleCarousel extends Component {
             >
               {
                 this.props.images.map((item, index) => <div key={index} className={styles['v-item']}>
-                  {/* <img className={styles['img']} alt="example" src={item.image} /> */}
-                  <img className={styles['img']} alt="example" src={'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'} />
+                  <img className={styles['img']} alt="example" src={item.image} />
+                  {/* <img className={styles['img']} alt="example" src={'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'} /> */}
                 </div>)
               }
               {/* <div className={styles['v-item']}><img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" /></div>
