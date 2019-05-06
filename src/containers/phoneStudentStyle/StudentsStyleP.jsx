@@ -240,7 +240,7 @@ class StudentsStyleP extends Component {
                                             <div className={styles['noData']}>
                                                 <div className={styles['defaultShow']}>
                                                     <img src={defaultImg} alt="" />
-                                                    <p>暂无展示</p>
+                                                    <p>暂无展示中</p>
                                                 </div>
                                             </div>
                                     }
@@ -296,7 +296,7 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无展示</p>
+                                                <p>暂无待审批</p>
                                             </div>
                                         </div>
                                 }
@@ -337,7 +337,7 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无展示</p>
+                                                <p>暂无已同意</p>
                                             </div>
                                         </div>
                                 }
@@ -378,7 +378,7 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无展示</p>
+                                                <p>暂无已驳回</p>
                                             </div>
                                         </div>
                                 }
@@ -447,7 +447,7 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无展示</p>
+                                                <p>暂无待审批</p>
                                             </div>
                                         </div>
                                 }
@@ -490,7 +490,7 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无展示</p>
+                                                <p>暂无已同意</p>
                                             </div>
                                         </div>
                                 }
@@ -531,7 +531,7 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无展示</p>
+                                                <p>暂无已驳回</p>
                                             </div>
                                         </div>
                                 }
