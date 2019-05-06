@@ -17,17 +17,20 @@
             width: 0.42rem;
             height: 0.42rem;
             display: block;
-            margin: 0.14rem auto 0.08rem;
+            margin: 0.12rem auto 0.04rem;
         }
         .title{
             font-size: 0.16rem;
-            color: #ffffff;
+            color: #999999;
             text-align: center;
         }   
     }
     .tab-active{
         background-image: linear-gradient(0deg, 
 		rgba(31, 181, 171, 0.4) 0%, 
-		rgba(45, 196, 189, 0.1) 100%);
+        rgba(45, 196, 189, 0.1) 100%);
+        .title{
+            color: #1fb5ab;
+        }
     }
 }

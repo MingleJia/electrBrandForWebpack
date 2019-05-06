@@ -29,7 +29,7 @@ export default class Notice extends React.Component {
     
     render() {
         return (
-            <div className={`${themeLoader(['block', 'notice'], theme, style)}`}>
+            <div className={`${themeLoader(['block', 'notice'], theme, style)}`} style={{backgroundColor:'white'}}>
                 <div className={themeLoader(['topLine'], theme, style)}>
                     <span className={style['title']}>通知</span>
                     {

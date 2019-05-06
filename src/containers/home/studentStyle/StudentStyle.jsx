@@ -34,8 +34,8 @@ class StudentStyle extends Component {
         if (len <= 1) {
             return 'content1';
         } else if (len <= 2) {
-            return 'content2';
-        } else if (len >= 4) {
+            return 'content1';
+        } else if (len >= 3) {
             return 'content4';
         }
     }
@@ -55,18 +55,19 @@ class StudentStyle extends Component {
                             更多<img className={styles['linkIcon']} src={moreImg}></img>
                         </Link>
                     </div>
-                    {
-                        //    <NoDataPage/> 
-                        dataList.map((item, index) =>
-                            <Link to={`/studentsStyle/deatil?id=${item.id}`} key={index}>
-                                <MyCarousel
-                                    desc={item.desc}
-                                    title={item.title}
-                                    images={item.images}
-                                    styleType={this.getStyleType(dataList.length)} />
-                            </Link>)
-                    }
-                </div>
+                        {
+                            //    <NoDataPage/> 
+                            dataList.map((item, index) =>
+                                <Link to={`/studentsStyle/deatil?id=${item.id}`} key={index}>
+                                    <MyCarousel
+                                        idx={index}
+                                        desc={item.desc}
+                                        title={item.title}
+                                        images={item.images}
+                                        styleType={this.getStyleType(dataList.length)} />
+                                </Link>)
+                        }
+                    </div>
             }
         </Fragment>
     }

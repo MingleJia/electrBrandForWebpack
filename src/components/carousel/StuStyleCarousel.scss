@@ -1,89 +1,34 @@
 .content1{
+    padding: 0 0.28rem;
     width: 100%;
-    padding: 0 0.28rem 0 0.28rem;
-    float: left;
-    
     .v-item{
-        height: 5.8rem;
-        min-height: 5.8rem;
         width: 100%;
+        height: 5.96rem;
         text-align: center;
-        // border-bottom: 1px solid red;
-        border-radius: 12px;
-        overflow: hidden;
-        background-color: #f8f8f8;
+        border-radius: 0.12rem;
         .img{
             height: 100%;
             max-width: 100%;
         }
+    }
+    .no-img-wrap{
+        width: 100%;
+        height: 5.96rem;
+        text-align: center;
+        border-radius: 0.12rem;
         .no-img{
-            width: 0.4rem;
-            padding-top: 2.52rem;
+            width: 2.1rem;
+            padding-top: 1.7rem;
         }
         .no-img-word{
             color: #cccccc;
             font-size: 0.24rem;
             line-height: 0.32rem;
-            padding-top: 0.16rem;
+            padding-top: 0.20rem;
         }
     }
     .textWrap{
-        .textTitle{
-            font-size: 0.24rem;
-            line-height: 0.32rem;
-            padding-top: 0.16rem;
-            color:#333333;
-            font-weight: bold;
-
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-        }
-        .text{
-            display: block;
-            padding-top: 0.1rem;
-            color: #999999;
-            font-size: 0.18rem;
-            line-height: 0.28rem;
-
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-        }
-    }
-}
-.content2{
-    width: 5.06rem;//*
-    margin-left: 0.29rem; 
-    float: left;
-    .v-item{
-        height: 5.8rem;
-        min-height: 5.8rem;
-        width: 5.06rem;
-        text-align: center;
-        border-radius: 12px;
-        overflow: hidden;
-        background-color: #f8f8f8;
-        .img{
-            height: 100%;
-            max-width: 100%;
-        }
-        .no-img{
-            width: 0.4rem;
-            padding-top: 2.52rem;
-        }
-        .no-img-word{
-            color: #cccccc;
-            font-size: 0.24rem;
-            line-height: 0.32rem;
-            padding-top: 0.16rem;
-        }
-    }
-    .textWrap{
+        min-height: 1.78rem;
         .textTitle{
             font-size: 0.24rem;
             line-height: 0.32rem;
@@ -113,39 +58,43 @@
     }
 }
 .content4{
-    width: 5.06rem;//*
-    margin-left: 0.29rem; 
+    // padding: 0 0.28rem;
+    // margin: 0 10px 0 14px;
+    width: 5.2rem;
     float: left;
     .v-item{
-        width: 5.06rem;
-        height: 2.84rem;
-        min-height: 2.84rem;
+        width: 100%;
+        height: 2.92rem;
         text-align: center;
-        border-radius: 12px;
-        overflow: hidden;
-        background-color: #f8f8f8;
+        border-radius: 0.12rem;
+        border: solid 1px #ececec;
         .img{
             height: 100%;
             max-width: 100%;
         }
+    }
+    .no-img-wrap{
+        width: 100%;
+        height: 2.92rem;
+        text-align: center;
+        border-radius: 0.12rem;
         .no-img{
-            width: 0.4rem;
-            padding-top: 1.05rem;
+            width: 1.2rem;
+            padding-top: 0.66rem;
         }
         .no-img-word{
-            color: #cccccc;
+            color: #ffffff;
             font-size: 0.24rem;
             line-height: 0.32rem;
-            padding-top: 0.16rem;
+            padding-top: 0.20rem;
         }
     }
     .textWrap{
-        margin-bottom: 0.4rem;
+        min-height: 0.99rem;
         .textTitle{
             font-size: 0.24rem;
             line-height: 0.32rem;
             padding-top: 0.16rem;
-            
             color:#333333;
             font-weight: bold;
 
@@ -156,56 +105,17 @@
             -webkit-box-orient: vertical;
         }
         .text{
-            display: none;
-        }
-    }
-}
-.content6{
-    width: 6.00rem;//*
-    margin-right: 0.13rem; 
-    margin-top: 0.31rem;
-    float: left;
-    .v-item{
-        width: 6.00rem;
-        height: 3.38rem;
-        min-height: 3.38rem;
-        text-align: center;
-        border-radius: 12px;
-        overflow: hidden;
-        background-color: #f8f8f8;
-        .img{
-            height: 100%;
-            max-width: 100%;
-        }
-        .no-img{
-            width: 0.4rem;
-            padding-top: 1.32rem;
-        }
-        .no-img-word{
-            color: #cccccc;
-            font-size: 0.24rem;
-            line-height: 0.32rem;
-            padding-top: 0.16rem;
-        }
-    }
-    .textWrap{
-        margin-bottom: 0.09rem;
-        .textTitle{
-            font-size: 0.24rem;
-            line-height: 0.32rem;
-            padding-top: 0.16rem;
-            
-            color:#333333;
-            font-weight: bold;
+            display: block;
+            padding-top: 0.1rem;
+            color: white;
+            font-size: 0.18rem;
+            line-height: 0.28rem;
 
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 1;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
-        }
-        .text{
-            display: none;
         }
     }
 }

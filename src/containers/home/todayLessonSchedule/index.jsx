@@ -29,7 +29,7 @@ export default class TodayLessonSchedule extends React.Component {
     }
     render() {
         return (
-            <div className={`${themeLoader(['block', 'schedule'], theme, style)}`}>
+            <div className={`${themeLoader(['block', 'schedule'], theme, style)}`} style={{backgroundColor:'white',height:'5.72rem'}}>
                 <div className={themeLoader(['topLine'], theme, style)}>
                     <span className={style['title']}>今日课表</span>
                     {
