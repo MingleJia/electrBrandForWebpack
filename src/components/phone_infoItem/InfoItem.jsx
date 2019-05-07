@@ -113,6 +113,7 @@ class InfoItem extends Component {
      * @param {点确定执行的函数} okFn Fn
      * @param {点取消执行的函数} noFn Fn
      * @param {弹窗标题} title str
+     * @param {弹窗文字} text str
      * @param {确定按钮文字} oktext str
      * @param {取消按钮文字} notext str
      */
