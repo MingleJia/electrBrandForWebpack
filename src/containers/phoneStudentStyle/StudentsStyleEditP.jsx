@@ -264,7 +264,7 @@ class StudentsStyleP extends Component {
                                 value={this.state.parents_student}
                                 onChange={(v) => { this.setOneKV('parents_student', v) }}
                                 okText={<div style={{ color: '#4ea375' }}>确定</div>}
-                                dismissText={<div style={{ color: '#4ea375' }}>取消</div>}
+                                dismissText={<div style={{ color: '#999999' }}>取消</div>}
                                 cols={1}
                             >
                                 <List.Item arrow="horizontal">学生姓名</List.Item>
@@ -281,7 +281,8 @@ class StudentsStyleP extends Component {
                                 // onPickerChange={(v) => { console.log(v) }}
                                 cols={1}
                                 okText={<div style={{ color: '#4ea375' }}>确定</div>}
-                                dismissText={<div style={{ color: '#4ea375' }}>取消</div>}
+                                dismissText={<div style={{ color: '#999999' }}>取消</div>}
+                                title='选择班级'
                             >
                                 <List.Item arrow="horizontal">选择班级</List.Item>
                             </Picker>
@@ -306,7 +307,8 @@ class StudentsStyleP extends Component {
                             value={show_time}
                             onChange={(date) => { this.setOneKV('show_time', new Date(date.valueOf())) }}
                             okText={<div style={{ color: '#4ea375' }}>确定</div>}
-                            dismissText={<div style={{ color: '#4ea375' }}>取消</div>}
+                            dismissText={<div style={{ color: '#999999' }}>取消</div>}
+                            title='选择发生时间'
                         >
                             <List.Item arrow="horizontal">发生时间</List.Item>
                         </DatePicker>
@@ -369,7 +371,7 @@ class StudentsStyleP extends Component {
                                 value={show_days}
                                 onChange={(v) => { this.setOneKV('show_days', v) }}
                                 okText={<div style={{ color: '#4ea375' }}>确定</div>}
-                                dismissText={<div style={{ color: '#4ea375' }}>取消</div>}
+                                dismissText={<div style={{ color: '#999999' }}>取消</div>}
                             >
                                 <List.Item arrow="horizontal">展示天数</List.Item>
                             </Picker>

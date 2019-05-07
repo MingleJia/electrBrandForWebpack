@@ -235,6 +235,7 @@ class StudentsStyleP extends Component {
                                                         student_name={item.student_name}
                                                         ticket={this.state.ticket}
                                                         isShowApprovalTime={true}
+                                                        approvalTime={item.audit_time}
                                                     />
                                             )
                                             :
@@ -333,6 +334,7 @@ class StudentsStyleP extends Component {
                                                     createtime={item.createtime}
                                                     id={item.id}
                                                     isShowApprovalTime={true}
+                                                    approvalTime={item.audit_time}
                                                 />
                                         )
                                         :
@@ -374,6 +376,7 @@ class StudentsStyleP extends Component {
                                                     createtime={item.createtime}
                                                     id={item.id}
                                                     isShowApprovalTime={true}
+                                                    approvalTime={item.audit_time}
                                                 />
                                         )
                                         :
@@ -486,6 +489,7 @@ class StudentsStyleP extends Component {
                                                     id={item.id}
                                                     ticket={this.state.ticket}
                                                     isShowApprovalTime={true}
+                                                    approvalTime={item.audit_time}
                                                 />
                                         )
                                         :
@@ -527,6 +531,7 @@ class StudentsStyleP extends Component {
                                                     createtime={item.createtime}
                                                     id={item.id}
                                                     isShowApprovalTime={true}
+                                                    approvalTime={item.audit_time}
                                                 />
                                         )
                                         :

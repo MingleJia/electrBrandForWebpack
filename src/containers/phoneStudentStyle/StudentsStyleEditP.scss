@@ -1,7 +1,46 @@
 
 :global{
+    // 选择器样式
+    .am-picker-popup-content{
+        height: 57vw !important;
+    }
+    .am-picker-popup-body{
+        height: 69vw;
+    }
+    .am-picker-col-content{
+        padding: 12vw 0 !important;
+    }
     .am-picker-col-item-selected{
         color:#4ea375 !important;
+        height: 12vw !important;
+    }
+    .am-picker-popup-item{
+        font-size: 4vw !important;
+    }
+    .am-picker-col-item{
+        color: #999999 ;
+        height: 12vw !important;
+        line-height: 12vw !important;
+    }
+    .am-picker-col-indicator{
+        z-index: 0 !important;
+        top: 12vw !important;
+        background-color: rgba(245,247,248,1);
+        height: 12vw !important;
+    }
+    .am-picker-col-indicator::after,.am-picker-col-indicator::before{
+        background-color: white !important;
+    }
+    .am-picker-popup-header{
+        background-color: #f3f3f3 !important;
+        height: 12vw !important;
+    } 
+    .am-picker-col-mask{
+        z-index: 0 !important;
+    }  
+    .am-picker-popup-header::after{
+        background-color: white !important;
+        height: 0px !important;
     }
 }
 .box{

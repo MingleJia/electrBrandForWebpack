@@ -84,7 +84,7 @@ class InfoItem extends Component {
             if (str == '驳回') {
                 this.setState({
                     isShowDialog2: true,
-                    dislogTitle: '您已驳回,确定告知家长原因?',
+                    dislogTitle: '您已驳回，是否告知家长原因?',
                     okText: '告知',
                     cancelText: '取消'
                 })
@@ -284,7 +284,7 @@ class InfoItem extends Component {
                 <div className={styles['bottom']}>
                     {this.props.isShowApprovalTime && <div className={styles['point']}></div>}
                     <p>
-                        {this.props.isShowApprovalTime && <span>审批时间2019-04-29 23:00</span>}
+                        {this.props.isShowApprovalTime && <span>审批时间{moment(this.props.approvalTime*1000).format('YYYY-MM-DD HH:mm')}</span>}
                         <span
                             onClick={() => { this.ope(operationMode[1]) }}
                             className={styles['l1']}
