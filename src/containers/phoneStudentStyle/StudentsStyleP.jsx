@@ -43,7 +43,7 @@ class StudentsStyleP extends Component {
                         count: 0, //未读数量显示
                         icon: "", //按钮图片
                         isShowNum: false, //未读数量是否显示
-                        title: "发布" //按钮标题
+                        title: _this.state.roleId == 102 ? '发布申请' : '发布' //按钮标题
                     }
                 ]]);
             }
@@ -59,7 +59,7 @@ class StudentsStyleP extends Component {
                     count: 0, //未读数量显示
                     icon: "", //按钮图片
                     isShowNum: false, //未读数量是否显示
-                    title: _this.roleId == 102 ? '发布申请' : '发布' //按钮标题
+                    title: _this.state.roleId == 102 ? '发布申请' : '发布' //按钮标题
                 }
             ]]);
         }, false);

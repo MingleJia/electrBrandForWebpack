@@ -30,12 +30,12 @@ class StudentsStyleP extends Component {
         }
     }
     componentDidMount() {
-        document.addEventListener('deviceready', function () {
-            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', ['发布']);
-        }, false);
-        //role_id 是角色信息 102是家长 show_id是获取详情用的
+        //role_id 是角色信息 102是家长103是班主任 show_id是获取详情用的
         const show_id = getHerfInfo('show_id');
         const role_id = getHerfInfo('role_id');
+        document.addEventListener('deviceready', function () {
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', [role_id==102?'发布申请':'发布']);
+        }, false);
         //隐藏发布按钮
         if (role_id == 102) {
             this.getStudentInfoParents();
