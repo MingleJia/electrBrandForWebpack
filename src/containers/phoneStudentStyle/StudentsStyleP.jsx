@@ -335,6 +335,7 @@ class StudentsStyleP extends Component {
                                                     id={item.id}
                                                     isShowApprovalTime={true}
                                                     approvalTime={item.audit_time}
+                                                    images={item.images}
                                                 />
                                         )
                                         :
@@ -377,6 +378,7 @@ class StudentsStyleP extends Component {
                                                     id={item.id}
                                                     isShowApprovalTime={true}
                                                     approvalTime={item.audit_time}
+                                                    images={item.images}
                                                 />
                                         )
                                         :
@@ -446,6 +448,7 @@ class StudentsStyleP extends Component {
                                                     id={item.id}
                                                     ticket={this.state.ticket}
                                                     isShowApprovalTime={false}
+                                                    images={item.images}
                                                 />
                                         )
                                         :
@@ -490,6 +493,7 @@ class StudentsStyleP extends Component {
                                                     ticket={this.state.ticket}
                                                     isShowApprovalTime={true}
                                                     approvalTime={item.audit_time}
+                                                    images={item.images}
                                                 />
                                         )
                                         :
@@ -532,6 +536,7 @@ class StudentsStyleP extends Component {
                                                     id={item.id}
                                                     isShowApprovalTime={true}
                                                     approvalTime={item.audit_time}
+                                                    images={item.images}
                                                 />
                                         )
                                         :
