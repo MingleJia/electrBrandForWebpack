@@ -39,8 +39,8 @@
             line-height: 0.32rem;
             padding-top: 0.16rem;
             color:#333333;
-            font-weight: bold;
-
+            // font-weight: bold;
+            font-family: SourceHanSansCN-Medium;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -53,7 +53,7 @@
             color: #999999;
             font-size: 0.18rem;
             line-height: 0.28rem;
-
+            font-family: SourceHanSansCN-Regular;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -105,7 +105,8 @@
             line-height: 0.32rem;
             padding-top: 0.16rem;
             color:#333333;
-            font-weight: bold;
+            // font-weight: bold;
+            font-family: SourceHanSansCN-Medium;
 
             overflow: hidden;
             text-overflow: ellipsis;
@@ -123,7 +124,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
         }
     }
@@ -133,10 +134,11 @@
     // margin: 0 10px 0 14px;
     margin-top: 16px;
     width: 6.12rem;
+    height: 4.43rem;
     float: left;
     .v-item{
         width: 100%;
-        height: 3.43rem;
+        height: 3.44rem;
         text-align: center;
         border-radius: 0.12rem;
         border: solid 1px #ececec;
@@ -203,7 +205,7 @@
     float: left;
     .v-item{
         width: 100%;
-        height: 3.44rem;
+        height: 5.24rem;
         text-align: center;
         border-radius: 0.12rem;
         border: solid 1px #ececec;
@@ -211,13 +213,13 @@
         .img{
             display: block;
             width: 100%;
-            height: 3.44rem;
+            height: 5.24rem;
             object-fit: cover;
         }
     }
     .no-img-wrap{
         width: 100%;
-        height: 3.44rem;
+        height: 5.24rem;
         text-align: center;
         border-radius: 0.12rem;
         border: solid 1px #ececec;
@@ -233,7 +235,7 @@
         }
     }
     .textWrap{
-        min-height: 0.99rem;
+        // min-height: 0.99rem;
         .textTitle{
             font-size: 0.24rem;
             line-height: 0.32rem;
@@ -257,7 +259,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
         }
     }

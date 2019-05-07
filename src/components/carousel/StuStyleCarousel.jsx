@@ -90,7 +90,7 @@ class StuStyleCarousel extends Component {
             :
             <div className={styles['no-img-wrap']}>
               <img className={styles['no-img']} alt="example" src={noImg} />
-              <p className={styles['no-img-word']}>暂无图片</p>
+              <p className={styles['no-img-word']}>暂未上传图片</p>
             </div>
         }
 

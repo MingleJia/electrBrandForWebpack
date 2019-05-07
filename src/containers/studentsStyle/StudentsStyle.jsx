@@ -52,7 +52,7 @@ class StudentsStyle extends Component {
                     (
                         dataList.length > 0
                             ?
-                            <div className={styles['content']}>
+                            <div className={styles['content']} style={this.getStyle(dataList.length) == 'contentM4' ? { overflow: 'scroll' } : {}} >
                                 {
                                     dataList.map((item, index) =>
                                         <Link to={`/studentsStyle/deatil?id=${item.id}`} key={index}>
@@ -68,7 +68,7 @@ class StudentsStyle extends Component {
                     )
             }
             <Tab />
-        </Fragment>
+        </Fragment >
     }
 }
 
