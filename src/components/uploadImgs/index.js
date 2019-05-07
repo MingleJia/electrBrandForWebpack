@@ -29,6 +29,12 @@ export default class UploadImgs extends React.Component{
     //  上传照片
     addImg = () => {
         let {uploadImgs} = this.state;
+        // this.setState({
+        //     uploadImgs:[
+        //         ...uploadImgs,
+        //         'http://pic1.win4000.com/wallpaper/9/5450ae2fdef8a.jpg'
+        //     ]
+        // },()=>{this.props.onChange && this.props.onChange(this.state.uploadImgs);})
         window.takePicture = (info)=>{
             if (info.path) {
                 uploadImgs.push(info.path); 
@@ -63,22 +69,23 @@ export default class UploadImgs extends React.Component{
                 {
                     uploadImgs.map((item, index) => {
                         return (
-                            <span className={`${styles.imgItem} ${styles.showImg}`} key={item}>
+                            <div className={`${styles.imgItem} ${styles.showImg}`} key={item}>
                                 <img className={styles.showImgItem} src={item} onClick={() => {this.showImg(item)}}/>
                                 <img className={styles.deleteImg} src={deleteImg} onClick={() => {this.delImg(index)}} />
-                            </span>
+                            </div>
                         )
                     })
                 }
                 {
                     uploadImgs.length < maxImgNum ? 
-                    <span className={`${styles.imgItem} ${styles.uploadImg}`} onClick={this.addImg}>
+                    <div className={`${styles.imgItem} ${styles.uploadImg}`} onClick={this.addImg}>
                         <img src={cameraIcon}/>
                         <p>上传</p>
-                    </span> : ''
+                    </div> : ''
                 }
                 
                 </div>
+                <div className={styles.div}></div>
                 <p className={styles.tips}>可不上传，若要上传最多5张，单张图片不得大于5MB，建议上传横图。</p>
             </div>
         );

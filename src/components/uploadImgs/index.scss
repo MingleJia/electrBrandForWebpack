@@ -1,11 +1,12 @@
 .wrap {
     padding: 3vw 4vw 6vw 4vw;
     .imgItem {
-        display: inline-block;
+        // display: inline-block;
         width: 16vw;
         height: 16vw;
         margin-right: 3vw;
         margin-bottom: 3vw;
+        float: left;
         overflow: hidden;
     }
     .imgItem:last-child {
@@ -37,6 +38,10 @@
             height: 6vw;
             margin-bottom: 1vw;
         }
+    }
+    .div{
+        width: 100%;
+        overflow: hidden;
     }
     .tips {
         font-size: 4vw;
