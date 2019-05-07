@@ -155,7 +155,7 @@ class StudentsStyleP extends Component {
             if (parents_student.length == 0) return;
             if (!title) return;
             if (!show_time) return;
-            show_time = moment(show_time.valueOf()).format('YYYY-MM-DD HH:mm:ss');
+            show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
 
             let submintData = {
                 title,
@@ -182,7 +182,7 @@ class StudentsStyleP extends Component {
         }
         if (role_id == 103) {
             let { teacher_student, show_time, title, desc, comment, show_days, images, class_name, student_name, resourceData } = this.state;
-            show_time = moment(show_time.valueOf()).format('YYYY-MM-DD HH:mm:ss');
+            show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
             if (teacher_student.length == 0) return;
             if (!title) return;
             if (!show_time) return;
@@ -302,6 +302,7 @@ class StudentsStyleP extends Component {
 
                     <div className={styles['row']}>
                         <DatePicker
+                            mode='date'
                             value={show_time}
                             onChange={(date) => { this.setOneKV('show_time', new Date(date.valueOf())) }}
                             okText={<div style={{ color: '#4ea375' }}>确定</div>}
