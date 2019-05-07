@@ -2,8 +2,10 @@ import React, { Component, Fragment } from 'react';
 import styles from './InfoItem.scss';
 import moment from 'moment';
 import axios from 'UTILS/axios';
-import Dialog from '../../components/phoneDialog/dialog';
+// import Dialog from '../../components/phoneDialog/dialog';
 import { showToast } from '../../utils/method';
+import { Modal } from 'antd-mobile';
+const alert = Modal.alert;
 /**
  *  @param {回调函数组件执行操作操作后给父级使用} upload Function
  *  @param {角色信息 102是家长 103是班主任} roleId String
@@ -24,12 +26,12 @@ class InfoItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShowDialog: false,
-            isShowDialog2: false,
-            isShowDialog3: false,
-            dislogTitle: '',
-            okText: '',
-            cancelText: '',
+            // isShowDialog: false,
+            // isShowDialog2: false,
+            // isShowDialog3: false,
+            // dislogTitle: '',
+            // okText: '',
+            // cancelText: '',
         }
     }
 
@@ -63,13 +65,14 @@ class InfoItem extends Component {
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id + '&ticket=' + this.props.ticket;
             }
             if (str == '撤回') {
-                this.setState({
-                    isShowDialog3: true,
-                    dislogTitle: '即将撤回该条学生风采？',
-                    okText: '撤回',
-                    cancelText: '取消'
-                })
+                // this.setState({
+                //     isShowDialog3: true,
+                //     dislogTitle: '即将撤回该条学生风采？',
+                //     okText: '撤回',
+                //     cancelText: '取消'
+                // })
                 // this.withdraw();
+                this.showAlert(() => { this.withdraw() }, () => { }, '提示', '即将撤回该条学生风采？', '撤回', '取消');
             }
             if (str == '删除') {
                 this.delete();
@@ -81,20 +84,22 @@ class InfoItem extends Component {
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket;
             }
             if (str == '撤下') {
-                this.setState({
-                    isShowDialog: true,
-                    dislogTitle: '撤下后，电子班牌将不展示该条信息？',
-                    okText: '撤下',
-                    cancelText: '取消'
-                })
+                // this.setState({
+                //     isShowDialog: true,
+                //     dislogTitle: '撤下后，电子班牌将不展示该条信息？',
+                //     okText: '撤下',
+                //     cancelText: '取消'
+                // })
+                this.showAlert(() => { this.goDown() }, () => { }, '提示', '撤下后，电子班牌将不展示该条信息？', '撤下', '取消');
             }
             if (str == '驳回') {
-                this.setState({
-                    isShowDialog2: true,
-                    dislogTitle: '您已驳回，是否告知家长原因?',
-                    okText: '告知',
-                    cancelText: '取消'
-                })
+                // this.setState({
+                //     isShowDialog2: true,
+                //     dislogTitle: '您已驳回，是否告知家长原因?',
+                //     okText: '告知',
+                //     cancelText: '取消'
+                // })
+                this.showAlert(() => { this.check(2); }, () => { this.check(2); }, '提示', '您已驳回，是否告知家长原因?', '告知', '取消');
             }
             if (str == '同意') {
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?nodecheck=1&role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket;
@@ -104,6 +109,44 @@ class InfoItem extends Component {
             }
         }
     }
+    /**
+     * @param {点确定执行的函数} okFn Fn
+     * @param {点取消执行的函数} noFn Fn
+     * @param {弹窗标题} title str
+     * @param {确定按钮文字} oktext str
+     * @param {取消按钮文字} notext str
+     */
+    showAlert = (okFn, noFn, title, text, oktext, notext) => {
+        const titleStyle = {
+            color: '#333333',
+            fontSize: '5vw',
+            fontFamily: 'PingFang-SC-Bold',
+            lineHeight: '7vw'
+        }
+        const okTextStyle = {
+            color: '#4ea375',
+            fontSize: '5vw',
+            fontFamily: 'PingFang-SC-Medium'
+        }
+        const noTextStyle = {
+            color: '#999999',
+            fontSize: '5vw',
+            fontFamily: 'PingFang-SC-Medium'
+        }
+        const textStyle = {
+            color: '#5a5a5a',
+            fontSize: '4vw',
+            fontFamily: 'PingFang-SC-Medium'
+        }
+        const alertInstance = alert(<span style={titleStyle}>{title}</span>, <span style={textStyle}>{text}</span>, [
+            { text: <span style={noTextStyle}>{notext}</span>, onPress: () => noFn() },
+            { text: <span style={okTextStyle}>{oktext}</span>, onPress: () => okFn() },
+        ]);
+        setTimeout(() => {
+            // 可以调用close方法以在外部close
+            alertInstance.close();
+        }, 500000);
+    };
     //撤回消息
     withdraw() {
         axios('post', '/api/show/recall', {
@@ -167,11 +210,11 @@ class InfoItem extends Component {
         window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'openPicture', [{ 'path': path }]);
     }
     render() {
-        let { isShowDialog, isShowDialog2, isShowDialog3, dislogTitle, okText, cancelText } = this.state;
+        // let { isShowDialog, isShowDialog2, isShowDialog3, dislogTitle, okText, cancelText } = this.state;
         let operationMode = this.getOperationMode();
         return <Fragment>
 
-            <Dialog
+            {/* <Dialog
                 isShow={isShowDialog}
                 onOk={() => {
                     this.setState({
@@ -229,7 +272,7 @@ class InfoItem extends Component {
                 dislogTitle={dislogTitle}
                 okText={okText}
                 cancelText={cancelText}
-            />
+            /> */}
             <div className={styles['box']}>
                 {
                     this.props.showTop && <div className={styles['top']}>
