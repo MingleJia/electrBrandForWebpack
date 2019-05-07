@@ -41,10 +41,10 @@ class Home extends Component {
                 </div>
                 <div className={styles['container']}>
                     {
-                        // this.state.isShowStudentStyle
-                        //     ?
-                        //     <IncentiveRank />
-                        //     :
+                        this.state.isShowStudentStyle
+                            ?
+                            <IncentiveRank />
+                            :
                             <StudentStyle />
                     }
                     <div>
