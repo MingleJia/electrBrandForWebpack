@@ -53,13 +53,20 @@ class StudentsStyleP extends Component {
     getClassInfo() {
         axios('get', '/api/show/classes', {
         }).then((json) => {
+            const show_id = getHerfInfo('show_id');
+            let myJson = {};
+            // 如果是新增进来就默认选择第一个
+            if(!show_id){
+                myJson.teacher_student = [json.data[0].classId]
+            }
             this.setState({
                 teacher_province: json.data.map(item => ({
                     label: item.className,
                     value: item.classId,
                     children: []
                 })),
-                resourceData: json.data
+                resourceData: json.data,
+                ...myJson
             }, () => {
                 //循环请求了
                 // json.data.map(item => this.getStudentInfoTeacher(item.classId))
