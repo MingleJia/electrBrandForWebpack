@@ -26,6 +26,7 @@ class InfoItem extends Component {
         this.state = {
             isShowDialog: false,
             isShowDialog2: false,
+            isShowDialog3: false,
             dislogTitle: '',
             okText: '',
             cancelText: '',
@@ -62,7 +63,13 @@ class InfoItem extends Component {
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id + '&ticket=' + this.props.ticket;
             }
             if (str == '撤回') {
-                this.withdraw();
+                this.setState({
+                    isShowDialog3: true,
+                    dislogTitle: '即将撤回该条学生风采？',
+                    okText: '撤回',
+                    cancelText: '取消'
+                })
+                // this.withdraw();
             }
             if (str == '删除') {
                 this.delete();
@@ -76,7 +83,7 @@ class InfoItem extends Component {
             if (str == '撤下') {
                 this.setState({
                     isShowDialog: true,
-                    dislogTitle: '撤下该条学生风采后，电子班牌将不展示该条信息？',
+                    dislogTitle: '撤下后，电子班牌将不展示该条信息？',
                     okText: '撤下',
                     cancelText: '取消'
                 })
@@ -160,9 +167,10 @@ class InfoItem extends Component {
         window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'openPicture', [{ 'path': path }]);
     }
     render() {
-        let { isShowDialog, isShowDialog2, dislogTitle, okText, cancelText } = this.state;
+        let { isShowDialog, isShowDialog2, isShowDialog3, dislogTitle, okText, cancelText } = this.state;
         let operationMode = this.getOperationMode();
         return <Fragment>
+
             <Dialog
                 isShow={isShowDialog}
                 onOk={() => {
@@ -202,6 +210,25 @@ class InfoItem extends Component {
                 okText={okText}
                 cancelText={cancelText}
                 left={'100vw'}
+            />
+            <Dialog
+                isShow={isShowDialog3}
+                onOk={() => {
+                    this.setState({
+                        isShowDialog3: false
+                    }, () => {
+                        // this.goDown();
+                        this.withdraw();
+                    })
+                }}
+                onCancel={() => {
+                    this.setState({
+                        isShowDialog3: false
+                    })
+                }}
+                dislogTitle={dislogTitle}
+                okText={okText}
+                cancelText={cancelText}
             />
             <div className={styles['box']}>
                 {
@@ -284,7 +311,7 @@ class InfoItem extends Component {
                 <div className={styles['bottom']}>
                     {this.props.isShowApprovalTime && <div className={styles['point']}></div>}
                     <p>
-                        {this.props.isShowApprovalTime && <span>审批时间{moment(this.props.approvalTime*1000).format('YYYY-MM-DD HH:mm')}</span>}
+                        {this.props.isShowApprovalTime && <span>审批时间&nbsp;&nbsp;{moment(this.props.approvalTime * 1000).format('YYYY-MM-DD HH:mm')}</span>}
                         <span
                             onClick={() => { this.ope(operationMode[1]) }}
                             className={styles['l1']}

@@ -86,7 +86,7 @@ export default class UploadImgs extends React.Component{
                 
                 </div>
                 <div className={styles.div}></div>
-                <p className={styles.tips}>可不上传，若要上传最多5张，单张图片不得大于5MB，建议上传横图。</p>
+                <p className={styles.tips}>图片可不上传，若要上传最多5张，单张图片小于5MB，建议上传横图</p>
             </div>
         );
     }

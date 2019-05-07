@@ -110,7 +110,12 @@ class StudentsStyleP extends Component {
     getStudentInfoParents() {
         axios('get', '/api/show/parentchildes', {
         }).then((json) => {
-            // console.log(json.data)
+            const show_id = getHerfInfo('show_id');
+            let myJson = {};
+            // 如果是新增进来就默认选择第一个
+            if(!show_id){
+                myJson.parents_student = [json.data[0].studentUserId]
+            }
             this.setState({
                 resourceData: json.data,
                 parents_province: json.data.map(item => ({
@@ -121,7 +126,9 @@ class StudentsStyleP extends Component {
                     //     teacherUserId: item.teacherUserId,
                     // })
                     value: item.studentUserId,
-                }))
+                })),
+                ...myJson,
+                // parents_student
             })
         })
     }
@@ -297,6 +304,7 @@ class StudentsStyleP extends Component {
                                 maxLength={30}
                                 onChange={(v) => { this.setOneKV('title', v) }}
                                 disabled
+                                style={{ textAlign: 'right' }}
                             >班级</InputItem>
                         </div>
                     }
@@ -307,21 +315,21 @@ class StudentsStyleP extends Component {
                             value={show_time}
                             onChange={(date) => { this.setOneKV('show_time', new Date(date.valueOf())) }}
                             okText={<div style={{ color: '#4ea375' }}>确定</div>}
-                            dismissText={<div style={{ color: '#999999' }}>取消</div>}
+                            dismissText={<div style={{ color: '#bbb' }}>取消</div>}
                             title='选择发生时间'
                         >
                             <List.Item arrow="horizontal">发生时间</List.Item>
                         </DatePicker>
                     </div>
-                    <div className={styles['row']}>
+                    <div className={styles['row']} style={{ left: '-4px' }}>
                         <InputItem
                             placeholder="请输入标题名称"
                             ref={el => this.inputRef = el}
-                            extra={<div style={{ color: '#999999' }} >{(title || '').length > 30 ? 30 : (title || '').length}/30</div>}
+                            extra={<div style={{ color: '#bbb' }} >&nbsp;{(title || '').length > 30 ? 30 : (title || '').length}/30</div>}
                             value={title}
                             maxLength={30}
                             onChange={(v) => { this.setOneKV('title', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
-                        >标题</InputItem>
+                        ></InputItem>
                     </div>
                 </div>
                 <div className={styles['textAreaWrap']}>
@@ -337,15 +345,15 @@ class StudentsStyleP extends Component {
                 </div>
                 {
                     role_id == 103 && <div className={styles['teachersWrap']}>
-                        <div className={styles['row']}>
+                        <div className={styles['row']} style={{ left: '-4px', paddingRight: '5vw' }}>
                             <InputItem
-                                placeholder="请输入标题名称"
+                                placeholder="请输入教师点评"
                                 ref={el => this.inputRef = el}
-                                extra={<div style={{ color: '#999999' }} >{(comment || '').length > 30 ? 30 : (comment || '').length}/30</div>}
+                                extra={<div style={{ color: '#bbb' }} >{(comment || '').length > 30 ? 30 : (comment || '').length}/30</div>}
                                 value={comment}
                                 maxLength={30}
                                 onChange={(v) => { this.setOneKV('comment', v) }}
-                            >教师点评</InputItem>
+                            ></InputItem>
                         </div>
                         <div className={styles['row']}>
                             <Picker

@@ -6,40 +6,47 @@
     margin:3vw auto 0px;
     border-radius: 5px;
     .top{
-        height: 11vw;
-        line-height: 14vw;
-        padding: 0 2vw 0 3vw;
+        height: 12vw;
+        // line-height: 11vw;
+        padding: 5vw 2vw 0 3vw;
         .left{
             float: left;
-            font-size: 5vw;
+            font-size: 4vw;
             color:'#444444';
             font-family: PingFang-SC-Bold;
         }
         .right{
             float: right;
-            font-size: 4vw;
+            font-size: 3vw;
             color:#999;
+            font-family: PingFang-SC-Bold;
+            padding-right: 3.5vw;
         }
     }
     .content{
         // border-top: 1px solid #eee;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #f2f2f2;
         padding: 3vw 3vw 0 3vw;
         .textWrap{
             width: 100%;
             overflow: hidden;
-            line-height: 6vw;
+            // line-height: 6vw;
+            padding-bottom: 2vw;
             .title{
                 width: 18vw;
                 float: left;
-                font-size: 4vw;
+                font-size: 3vw;
                 color:#666;
+                line-height: 6vw;
+                font-family: PingFang-SC-Medium;
             }
             .text{
                 width: 70vw;
                 color:#333;
-                font-size: 4vw;
+                font-size: 3vw;
                 float: left;
+                line-height: 6vw;
+                font-family: PingFang-SC-Medium;
             }
         }
         .imgWrap{
@@ -76,7 +83,7 @@
         width: 100%;
         height: 11vw;
         font-family: MicrosoftYaHei;
-        font-size: 4vw;
+        font-size: 3vw;
         line-height: 11vw;
         padding: 0 4vw 0 3vw;
         color: #666666;
@@ -99,7 +106,7 @@
         .l2{
             color: #48bb7d;
             float: right;
-            padding-right: 9vw;
+            padding-right: 6vw;
         }
     }
 }
