@@ -1,4 +1,9 @@
 
+:global{
+    .am-picker-col-item-selected{
+        color:#4ea375 !important;
+    }
+}
 .box{
     :global{
         //select
