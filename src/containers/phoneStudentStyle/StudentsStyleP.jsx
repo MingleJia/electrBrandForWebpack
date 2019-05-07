@@ -321,7 +321,7 @@ class StudentsStyleP extends Component {
                                         dataList.map(
                                             (item, index) =>
                                                 <InfoItem
-                                                    showTop={true}
+                                                    showTop={false}
                                                     student_name={item.student_name}
                                                     class_name={item.class_name}
                                                     key={index}
