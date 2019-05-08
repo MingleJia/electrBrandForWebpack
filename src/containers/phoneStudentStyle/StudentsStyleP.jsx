@@ -7,6 +7,7 @@ import axios from 'UTILS/axios';
 import defaultImg from '../../assets/phone/defaultImg.png';
 import loadingImg from '../../assets/phone/ld.gif';
 import { getHerfInfo } from '../../utils/method';
+// import { PullToRefresh } from 'antd-mobile';
 // var lock = true;
 class StudentsStyleP extends Component {
     constructor(props) {
@@ -212,43 +213,60 @@ class StudentsStyleP extends Component {
                                 onScroll={() => { this.onTouchMove('container') }}
                                 // onTouchEnd={() => { this.gotoBottom('container', 'bottomdiv') }}
                                 className={styles['tabItem']}>
+
+
                                 <div className={styles['scroll']}>
-                                    {
-                                        dataList.length > 0
-                                            ?
-                                            dataList.map(
-                                                (item, index) =>
-                                                    <InfoItem
-                                                        key={index}
-                                                        upload={() => { this.upload() }}
-                                                        roleId={roleId}
-                                                        showTop={false}
-                                                        type={type}
-                                                        title={item.title}
-                                                        show_time={item.show_time}
-                                                        show_days={item.show_days}
-                                                        desc={item.desc}
-                                                        id={item.id}
-                                                        images={item.images}
-                                                        comment={item.comment}
-                                                        class_name={item.class_name}
-                                                        student_name={item.student_name}
-                                                        ticket={this.state.ticket}
-                                                        isShowApprovalTime={true}
-                                                        approvalTime={item.audit_time}
-                                                    />
-                                            )
-                                            :
-                                            <div className={styles['noData']}>
-                                                <div className={styles['defaultShow']}>
-                                                    <img src={defaultImg} alt="" />
-                                                    <p>暂无展示中</p>
+                                    {/* <PullToRefresh
+                                        damping={60}
+                                        ref={el => this.ptr = el}
+                                        style={{
+                                            height: document.documentElement.clientHeight,
+                                            overflow: 'auto',
+                                        }}
+                                        indicator={{}}
+                                        direction={'down'}
+                                        onRefresh={() => {
+
+                                        }}
+                                    > */}
+                                        {
+                                            dataList.length > 0
+                                                ?
+                                                dataList.map(
+                                                    (item, index) =>
+                                                        <InfoItem
+                                                            key={index}
+                                                            upload={() => { this.upload() }}
+                                                            roleId={roleId}
+                                                            showTop={false}
+                                                            type={type}
+                                                            title={item.title}
+                                                            show_time={item.show_time}
+                                                            show_days={item.show_days}
+                                                            desc={item.desc}
+                                                            id={item.id}
+                                                            images={item.images}
+                                                            comment={item.comment}
+                                                            class_name={item.class_name}
+                                                            student_name={item.student_name}
+                                                            ticket={this.state.ticket}
+                                                            isShowApprovalTime={true}
+                                                            approvalTime={item.audit_time}
+                                                        />
+                                                )
+                                                :
+                                                <div className={styles['noData']}>
+                                                    <div className={styles['defaultShow']}>
+                                                        <img src={defaultImg} alt="" />
+                                                        <p>暂无展示中</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                    }
-                                    {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
-                                        无更多数据
-                                    </div>}
+                                        }
+                                        {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
+                                            无更多数据
+                                        </div>}
+
+                                    {/* </PullToRefresh> */}
                                 </div>
                             </div>
                         }

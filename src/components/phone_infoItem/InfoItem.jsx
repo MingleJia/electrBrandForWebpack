@@ -305,12 +305,12 @@ class InfoItem extends Component {
                             <p>{this.props.show_time ? moment(this.props.show_time * 1000).format('YYYY-MM-DD') : ''}</p>
                         </div>
                     </div>
-                    <div className={styles['textWrap']}>
+                    {this.props.desc && <div className={styles['textWrap']}>
                         <div className={styles['title']}>描述:</div>
                         <div className={styles['text']}>
                             <p>{this.props.desc || ''}</p>
                         </div>
-                    </div>
+                    </div>}
                     {
 
                         this.props.comment && < div className={styles['textWrap']}>
@@ -334,11 +334,11 @@ class InfoItem extends Component {
                         this.props.createtime && <div className={styles['textWrap']}>
                             <div className={styles['title']}>申请时间:</div>
                             <div className={styles['text']}>
-                                <p>{moment(this.props.createtime * 1000).format('YYYY-MM-DD HH:mm:ss')}</p>
+                                <p>{moment(this.props.createtime * 1000).format('YYYY-MM-DD HH:mm')}</p>
                             </div>
                         </div>
                     }
-                    <div className={styles['imgWrap']}>
+                    {this.props.images.length > 0 && <div className={styles['imgWrap']}>
                         {/* <div className={styles['imgItem']}>
                             <img onClick={() => { this.showImg('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg') }} src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556164033133&di=875e6d5d90ca9cbe6976ef2356612d21&imgtype=0&src=http%3A%2F%2Fbbsfiles.vivo.com.cn%2Fvivobbs%2Fattachment%2Fforum%2F201701%2F18%2F185139a51jyj1ylf2z168h.jpg" alt="" />
                         </div> */}
@@ -351,7 +351,8 @@ class InfoItem extends Component {
                                 </div>
                             )
                         }
-                    </div>
+                    </div>}
+                    <div className={styles['blank']}></div>
                 </div>
                 <div className={styles['bottom']}>
                     {this.props.isShowApprovalTime && <div className={styles['point']}></div>}

@@ -34,7 +34,7 @@ class StudentsStyleP extends Component {
         const show_id = getHerfInfo('show_id');
         const role_id = getHerfInfo('role_id');
         document.addEventListener('deviceready', function () {
-            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', [role_id == 102 ? '发布申请' : '发布']);
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', [role_id == 102 ? '发布' : '发布']);
         }, false);
         //隐藏发布按钮
         if (role_id == 102) {
@@ -282,6 +282,7 @@ class StudentsStyleP extends Component {
                                 okText={<div style={{ color: '#4ea375' }}>确定</div>}
                                 dismissText={<div style={{ color: '#999999' }}>取消</div>}
                                 cols={1}
+                                title='选择学生'
                             >
                                 <List.Item arrow="horizontal">学生姓名</List.Item>
                             </Picker>
@@ -400,7 +401,7 @@ class StudentsStyleP extends Component {
                     <div
                         className={styles['btn']}
                         // style={{ backgroundColor: `${this.checkSubmit() ? '#48bb7d' : '#dbdbdb'}` }}
-                        style={this.checkSubmit() ? { backgroundColor: '#48bb7d',color:'white' } : { backgroundColor: '#dbdbdb',color:'#999' }}
+                        style={this.checkSubmit() ? { backgroundColor: '#48bb7d',color:'white' } : { backgroundColor: '#dbdbdb',color:'#bbb' }}
                         onClick={() => {
                             this.submitData();
                         }}>
