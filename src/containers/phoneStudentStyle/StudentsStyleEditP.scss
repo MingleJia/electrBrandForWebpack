@@ -106,7 +106,8 @@
     width: 100vw;
     min-height: 100vh;
     background-color: #f5f7f8;
-    padding-bottom: 3vw;
+    // padding-bottom: 3vw;
+    padding-bottom: 14vw;
     .top{
         padding: 0 0vw 0 4vw;
         background-color: white;
@@ -140,15 +141,23 @@
             border-bottom:  0px solid #f2f2f2 ;
         }
     }
-    .btn{
-        width: 91vw;
-        height: 11vw;
-        background-color: #48bb7d;
-        font-size: 5vw;
-        text-align: center;
-        line-height: 11vw;
-        margin: 3vw auto 0;
-        color:white;
-        border-radius: 5px;
+    .btnWrap{
+        width: 100%;
+        height: 14vw;
+        position: fixed;
+        padding-bottom: 3vw;
+        bottom: 0vw;
+        background-color: #f5f7f8;
+        .btn{
+            width: 91vw;
+            height: 11vw;
+            background-color: #48bb7d;
+            font-size: 5vw;
+            text-align: center;
+            line-height: 11vw;
+            margin: 0 auto 0;
+            color:white;
+            border-radius: 5px;
+        }
     }
 }

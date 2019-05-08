@@ -172,6 +172,7 @@ class StudentsStyleP extends Component {
             show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
 
             let submintData = {
+                is_parent: 1,
                 title,
                 class_id: resourceData.find(item => item.studentUserId == parents_student[0]).classId,
                 student_id: resourceData.find(item => item.studentUserId == parents_student[0]).studentUserId,
@@ -261,6 +262,7 @@ class StudentsStyleP extends Component {
         }
         return true;
     }
+
     render() {
         let { show_time, title, desc, comment, show_days, parents_province, teacher_province, class_name } = this.state;
         const role_id = getHerfInfo('role_id');
@@ -268,7 +270,7 @@ class StudentsStyleP extends Component {
         // console.log(comment)
         return <Fragment>
 
-            <div className={styles['box']}>
+            <div className={styles['box']} ref={(box) => { this.box = box }}>
                 <div className={styles['top']}>
                     {/* 家长 */}
                     {
@@ -320,7 +322,7 @@ class StudentsStyleP extends Component {
                         <DatePicker
                             mode='date'
                             value={show_time}
-                            onChange={(date) => {this.setOneKV('show_time', new Date(date.valueOf())) }}
+                            onChange={(date) => { this.setOneKV('show_time', new Date(date.valueOf())) }}
                             okText={<div style={{ color: '#4ea375' }}>确定</div>}
                             dismissText={<div style={{ color: '#bbb' }}>取消</div>}
                             title='选择发生时间'
@@ -394,13 +396,15 @@ class StudentsStyleP extends Component {
                     </div>
                 }
                 <UploadImgs isChange={this.state.isChange} defaultData={this.state.images} onChange={(images) => { this.setOneKV('images', images) }} />
-                <div
-                    className={styles['btn']}
-                    style={{ backgroundColor: `${this.checkSubmit() ? '#48bb7d' : '#dbdbdb'}` }}
-                    onClick={() => {
-                        this.submitData();
-                    }}>
-                    确定
+                <div className={styles['btnWrap']}>
+                    <div
+                        className={styles['btn']}
+                        style={{ backgroundColor: `${this.checkSubmit() ? '#48bb7d' : '#dbdbdb'}` }}
+                        onClick={() => {
+                            this.submitData();
+                        }}>
+                        确定
+                    </div>
                 </div>
             </div>
         </Fragment >
