@@ -359,7 +359,7 @@ class StudentsStyleP extends Component {
                                 extra={<div style={{ color: '#bbb' }} >{(comment || '').length > 30 ? 30 : (comment || '').length}/30</div>}
                                 value={comment}
                                 maxLength={30}
-                                onChange={(v) => { this.setOneKV('comment', v) }}
+                                onChange={(v) => { this.setOneKV('comment', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
                             ></InputItem>
                         </div>
                         <div className={styles['row']}>
