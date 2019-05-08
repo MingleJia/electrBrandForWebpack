@@ -14,7 +14,7 @@ class StudentsStyleP extends Component {
         super(props);
         this.state = {
             ticket: getHerfInfo('ticket'),//客户端给我用来获取信息
-            roleId: 102,//角色id 102家长
+            roleId: null,//角色id 102家长
             type: 0, //0:待审批 1:已同意 2:已驳回 showing:展示中
             dataList: [],
             loading: false,
@@ -66,7 +66,7 @@ class StudentsStyleP extends Component {
         }, false);
         window.clickMenu = (info) => {
             if (info.id == 1) {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + _this.state.roleId + '&ticket=' + _this.state.ticket;
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + _this.state.roleId + '&ticket=' + _this.state.ticket+'&type=' + _this.state.type;
             }
         }
     }
@@ -204,6 +204,7 @@ class StudentsStyleP extends Component {
                         onChange={this.onChange}
                         tabs={tabs}
                         initialPage={this.state.type}
+                        // page={this.state.type}
                         animated={true}
                         useOnPan={false}>
                         {/* 展示中 */}
@@ -229,41 +230,41 @@ class StudentsStyleP extends Component {
 
                                         }}
                                     > */}
-                                        {
-                                            dataList.length > 0
-                                                ?
-                                                dataList.map(
-                                                    (item, index) =>
-                                                        <InfoItem
-                                                            key={index}
-                                                            upload={() => { this.upload() }}
-                                                            roleId={roleId}
-                                                            showTop={false}
-                                                            type={type}
-                                                            title={item.title}
-                                                            show_time={item.show_time}
-                                                            show_days={item.show_days}
-                                                            desc={item.desc}
-                                                            id={item.id}
-                                                            images={item.images}
-                                                            comment={item.comment}
-                                                            class_name={item.class_name}
-                                                            student_name={item.student_name}
-                                                            ticket={this.state.ticket}
-                                                            isShowApprovalTime={true}
-                                                            approvalTime={item.audit_time}
-                                                        />
-                                                )
-                                                :
-                                                <div className={styles['noData']}>
-                                                    <div className={styles['defaultShow']}>
-                                                        <img src={defaultImg} alt="" />
-                                                        <p>暂无展示中</p>
-                                                    </div>
+                                    {
+                                        dataList.length > 0
+                                            ?
+                                            dataList.map(
+                                                (item, index) =>
+                                                    <InfoItem
+                                                        key={index}
+                                                        upload={() => { this.upload() }}
+                                                        roleId={roleId}
+                                                        showTop={false}
+                                                        type={type}
+                                                        title={item.title}
+                                                        show_time={item.show_time}
+                                                        show_days={item.show_days}
+                                                        desc={item.desc}
+                                                        id={item.id}
+                                                        images={item.images}
+                                                        comment={item.comment}
+                                                        class_name={item.class_name}
+                                                        student_name={item.student_name}
+                                                        ticket={this.state.ticket}
+                                                        isShowApprovalTime={true}
+                                                        approvalTime={item.audit_time}
+                                                    />
+                                            )
+                                            :
+                                            <div className={styles['noData']}>
+                                                <div className={styles['defaultShow']}>
+                                                    <img src={defaultImg} alt="" />
+                                                    <p>暂无展示中</p>
                                                 </div>
-                                        }
-                                        {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
-                                            无更多数据
+                                            </div>
+                                    }
+                                    {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
+                                        无更多数据
                                         </div>}
 
                                     {/* </PullToRefresh> */}

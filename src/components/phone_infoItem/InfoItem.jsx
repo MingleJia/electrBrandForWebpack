@@ -62,7 +62,7 @@ class InfoItem extends Component {
     ope(str) {
         if (this.props.roleId == 102) {
             if (str == '修改') {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id + '&ticket=' + this.props.ticket;
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id + '&ticket=' + this.props.ticket +'&type=' + this.props.type;
             }
             if (str == '撤回') {
                 // this.setState({
@@ -72,7 +72,7 @@ class InfoItem extends Component {
                 //     cancelText: '取消'
                 // })
                 // this.withdraw();
-                this.showAlert(() => { this.withdraw() }, () => { }, '提示', '即将撤回该条学生风采？', '撤回', '取消');
+                this.showAlert(() => { this.withdraw() }, () => { }, '提示', '是否撤回该条信息？', '撤回', '取消');
             }
             if (str == '删除') {
                 this.delete();
@@ -81,7 +81,7 @@ class InfoItem extends Component {
         if (this.props.roleId == 103) {
             if (str == '修改') {
                 // console.log(this.props.ticket)
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket;
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket +'&type=' + this.props.type;
             }
             if (str == '撤下') {
                 // this.setState({
@@ -90,7 +90,7 @@ class InfoItem extends Component {
                 //     okText: '撤下',
                 //     cancelText: '取消'
                 // })
-                this.showAlert(() => { this.goDown() }, () => { }, '提示', '撤下后，电子班牌将不展示该条信息？', '撤下', '取消');
+                this.showAlert(() => { this.goDown() }, () => { }, '提示', '是否撤下该条信息？', '撤下', '取消');
             }
             if (str == '驳回') {
                 // this.setState({
@@ -102,7 +102,7 @@ class InfoItem extends Component {
                 this.showAlert(() => { this.check(2); }, () => { this.check(2); }, '提示', '您已驳回，是否告知家长原因?', '告知', '取消');
             }
             if (str == '同意') {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?nodecheck=1&role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket;
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?nodecheck=1&role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket +'&type=' + this.props.type;
             }
             if (str == '删除') {
                 this.delete();
