@@ -127,8 +127,10 @@
         left: 50%;
         transform: translate(-50%,-50%);
         display: block;
-        width: 90%;
-        height: 900px;
-        object-fit: cover;
+        // width: 90%;
+        // height: 900px;
+        // object-fit: cover;
+        max-width: 1500px;
+        max-height: 900px;
     }
 }

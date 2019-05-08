@@ -184,9 +184,11 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
+        max-width: 1500px;
+        max-height: 900px;
         display: block;
-        width: 90%;
-        height: 900px;
-        object-fit: cover;
+        // width: 90%;
+        // height: 900px;
+        // object-fit: cover;
     }
 }
