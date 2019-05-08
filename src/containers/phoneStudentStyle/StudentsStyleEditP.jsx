@@ -189,7 +189,7 @@ class StudentsStyleP extends Component {
             axios('post', '/api/show/parentaddshow', submintData, 'form').then((json) => {
                 // 处理提交成功
                 if (json.code == 1) {
-                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&type=' + getHerfInfo('type');
+                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&page=' + getHerfInfo('page');
                 } else {
                     showToast(json.msg)
                 }
@@ -224,7 +224,7 @@ class StudentsStyleP extends Component {
                 // console.log(json);
                 if (json.code == 1) {
                     if (nodecheck) this.check(1);
-                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&type=' + getHerfInfo('type');
+                    window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&page=' + getHerfInfo('page');
                 } else {
                     showToast(json.msg)
                 }
@@ -239,7 +239,7 @@ class StudentsStyleP extends Component {
         }, 'form').then((json) => {
             // console.log(json);
             if (json.code == 1) {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&type=' + getHerfInfo('type');
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&page=' + getHerfInfo('page');
             } else {
                 showToast(json.msg)
             }

@@ -15,16 +15,46 @@ class StudentsStyleP extends Component {
         this.state = {
             ticket: getHerfInfo('ticket'),//客户端给我用来获取信息
             roleId: null,//角色id 102家长
-            type: 0, //0:待审批 1:已同意 2:已驳回 showing:展示中
+            type: 0, //0:待审批 1:已同意 2:已驳回 showing:展示中  用来请求数据用的
             dataList: [],
             loading: false,
             idx: 1,//请求第几波数据
             isOver: false,
+            page: 0, //用来记录返回操作tab
         }
+    }
+    getType() {
+        if (getHerfInfo('role_id') == 103) {
+            if (getHerfInfo('page') == 0) {
+                return 'showing'
+            }
+            if (getHerfInfo('page') == 1) {
+                return '0'
+            }
+            if (getHerfInfo('page') == 2) {
+                return '1'
+            }
+        }
+        if (getHerfInfo('role_id') == 102) {
+            if (getHerfInfo('page') == 0) {
+                return '0'
+            }
+        }
+        return '0'
     }
     componentDidMount() {
         this.release();
-        this.getInfo();
+        if (getHerfInfo('role_id')) {
+            this.setState({
+                page: getHerfInfo('page'),
+                type: this.getType(),
+                roleId: getHerfInfo('role_id'),
+            }, () => {
+                this.getList();
+            })
+        } else {
+            this.getInfo();
+        }
     }
     release() {
         // document.title = '学生风采'
@@ -66,7 +96,7 @@ class StudentsStyleP extends Component {
         }, false);
         window.clickMenu = (info) => {
             if (info.id == 1) {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + _this.state.roleId + '&ticket=' + _this.state.ticket+'&type=' + _this.state.type;
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + _this.state.roleId + '&ticket=' + _this.state.ticket + '&page=' + _this.state.page;
             }
         }
     }
@@ -80,7 +110,8 @@ class StudentsStyleP extends Component {
             }
             this.setState({
                 roleId: json.data.roleId,
-                type: json.data.roleId == 102 ? 0 : 'showing'
+                type: json.data.roleId == 102 ? 0 : 'showing',
+                page: 0
             }, () => {
                 this.getList()
             }
@@ -155,6 +186,7 @@ class StudentsStyleP extends Component {
     // }
     onChange = (tab) => {
         this.setState({
+            page: tab.page,
             type: tab.value,
             dataList: [],
             idx: 1
@@ -172,16 +204,16 @@ class StudentsStyleP extends Component {
         })
     }
     render() {
-        let { roleId, type, dataList, loading, isOver } = this.state;
+        let { roleId, type, dataList, loading, isOver, page } = this.state;
         const tabs = this.state.roleId == 102 ? [
-            { title: '待审批', value: 0 },
-            { title: '已同意', value: 1 },
-            { title: '已驳回', value: 2 },
+            { title: '待审批', value: 0, page: 0 },
+            { title: '已同意', value: 1, page: 1 },
+            { title: '已驳回', value: 2, page: 2 },
         ] : [
-                { title: '展示中', value: 'showing' },
-                { title: '待审批', value: 0 },
-                { title: '已同意', value: 1 },
-                { title: '已驳回', value: 2 },
+                { title: '展示中', value: 'showing', page: 0 },
+                { title: '待审批', value: 0, page: 1 },
+                { title: '已同意', value: 1, page: 2 },
+                { title: '已驳回', value: 2, page: 3 },
             ];
         return <Fragment>
             {/* <DeleteDialog/> */}
@@ -203,8 +235,8 @@ class StudentsStyleP extends Component {
                         swipeable={false}
                         onChange={this.onChange}
                         tabs={tabs}
-                        initialPage={this.state.type}
-                        // page={this.state.type}
+                        initialPage={JSON.parse(this.state.page || 0)}
+                        // page={this.state.page}
                         animated={true}
                         useOnPan={false}>
                         {/* 展示中 */}
@@ -217,19 +249,6 @@ class StudentsStyleP extends Component {
 
 
                                 <div className={styles['scroll']}>
-                                    {/* <PullToRefresh
-                                        damping={60}
-                                        ref={el => this.ptr = el}
-                                        style={{
-                                            height: document.documentElement.clientHeight,
-                                            overflow: 'auto',
-                                        }}
-                                        indicator={{}}
-                                        direction={'down'}
-                                        onRefresh={() => {
-
-                                        }}
-                                    > */}
                                     {
                                         dataList.length > 0
                                             ?
@@ -253,6 +272,7 @@ class StudentsStyleP extends Component {
                                                         ticket={this.state.ticket}
                                                         isShowApprovalTime={true}
                                                         approvalTime={item.audit_time}
+                                                        page={page}
                                                     />
                                             )
                                             :
@@ -266,8 +286,6 @@ class StudentsStyleP extends Component {
                                     {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
                                         无更多数据
                                         </div>}
-
-                                    {/* </PullToRefresh> */}
                                 </div>
                             </div>
                         }
@@ -312,6 +330,7 @@ class StudentsStyleP extends Component {
                                                     ticket={this.state.ticket}
                                                     isShowApprovalTime={false}
                                                     images={item.images}
+                                                    page={page}
                                                 />
                                         )
                                         :
@@ -355,6 +374,7 @@ class StudentsStyleP extends Component {
                                                     isShowApprovalTime={true}
                                                     approvalTime={item.audit_time}
                                                     images={item.images}
+                                                    page={page}
                                                 />
                                         )
                                         :
@@ -398,6 +418,7 @@ class StudentsStyleP extends Component {
                                                     isShowApprovalTime={true}
                                                     approvalTime={item.audit_time}
                                                     images={item.images}
+                                                    page={page}
                                                 />
                                         )
                                         :
@@ -424,7 +445,8 @@ class StudentsStyleP extends Component {
                         swipeable={false}
                         onChange={this.onChange}
                         tabs={tabs}
-                        initialPage={this.state.type}
+                        // initialPage={this.state.type}
+                        initialPage={JSON.parse(this.state.page || 0)}
                         animated={true}
                         useOnPan={false}>
                         {/* tab1 */}
@@ -468,6 +490,7 @@ class StudentsStyleP extends Component {
                                                     ticket={this.state.ticket}
                                                     isShowApprovalTime={false}
                                                     images={item.images}
+                                                    page={page}
                                                 />
                                         )
                                         :
@@ -513,6 +536,7 @@ class StudentsStyleP extends Component {
                                                     isShowApprovalTime={true}
                                                     approvalTime={item.audit_time}
                                                     images={item.images}
+                                                    page={page}
                                                 />
                                         )
                                         :
@@ -556,6 +580,7 @@ class StudentsStyleP extends Component {
                                                     isShowApprovalTime={true}
                                                     approvalTime={item.audit_time}
                                                     images={item.images}
+                                                    page={page}
                                                 />
                                         )
                                         :
