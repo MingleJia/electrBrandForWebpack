@@ -154,12 +154,7 @@ class InfoItem extends Component {
         axios('post', '/api/show/recall', {
             show_id: this.props.id
         }, 'form').then((json) => {
-            // console.log(json);
-            if (json.code == 1) {
-                // 刷新列表
-            }else{
-                showToast(json.msg)
-            }
+            showToast(json.msg)
             this.props.upload && this.props.upload()
         })
     }
@@ -168,12 +163,7 @@ class InfoItem extends Component {
         axios('post', '/api/show/withdraw', {
             show_id: this.props.id
         }, 'form').then((json) => {
-            // console.log(json);
-            if (json.code == 1) {
-                // 刷新列表
-            }else{
-                showToast(json.msg)
-            }
+            showToast(json.msg)
             this.props.upload && this.props.upload()
         })
     }
@@ -182,13 +172,7 @@ class InfoItem extends Component {
         axios('post', '/api/show/del', {
             show_id: this.props.id,
         }, 'form').then((json) => {
-            // console.log(json);
-            if (json.code == 1) {
-                // console.log(json)
-                // 刷新列表
-            }else{
-                showToast(json.msg)
-            }
+            showToast(json.msg)
             this.props.upload && this.props.upload()
         })
     }
@@ -201,12 +185,7 @@ class InfoItem extends Component {
             show_id: this.props.id,
             audit_status: n
         }, 'form').then((json) => {
-            // console.log(json);
-            if (json.code == 1) {
-            } else {
-                showToast(json.msg)
-            }
-            // 刷新列表
+            showToast(json.msg)
             this.props.upload && this.props.upload()
         })
     }
