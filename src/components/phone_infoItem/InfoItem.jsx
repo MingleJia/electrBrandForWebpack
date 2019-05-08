@@ -71,8 +71,8 @@ class InfoItem extends Component {
                 //     okText: '撤回',
                 //     cancelText: '取消'
                 // })
-                // this.withdraw();
-                this.showAlert(() => { this.withdraw() }, () => { }, '提示', '是否撤回该条信息？', '撤回', '取消');
+                this.withdraw();
+                this.showAlert(() => { }, () => { }, '提示', '是否撤回该条信息？', '撤回', '取消');
             }
             if (str == '删除') {
                 this.delete();
