@@ -122,7 +122,8 @@ class InfoItem extends Component {
             color: '#333333',
             fontSize: '5vw',
             fontFamily: 'PingFang-SC-Bold',
-            lineHeight: '7vw'
+            lineHeight: '7vw',
+            fontWeight: 'bold'
         }
         const okTextStyle = {
             color: '#4ea375',

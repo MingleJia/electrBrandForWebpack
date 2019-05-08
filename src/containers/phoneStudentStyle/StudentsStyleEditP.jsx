@@ -399,7 +399,8 @@ class StudentsStyleP extends Component {
                 <div className={styles['btnWrap']}>
                     <div
                         className={styles['btn']}
-                        style={{ backgroundColor: `${this.checkSubmit() ? '#48bb7d' : '#dbdbdb'}` }}
+                        // style={{ backgroundColor: `${this.checkSubmit() ? '#48bb7d' : '#dbdbdb'}` }}
+                        style={this.checkSubmit() ? { backgroundColor: '#48bb7d',color:'white' } : { backgroundColor: '#dbdbdb',color:'#999' }}
                         onClick={() => {
                             this.submitData();
                         }}>
