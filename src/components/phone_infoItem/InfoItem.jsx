@@ -157,8 +157,10 @@ class InfoItem extends Component {
             // console.log(json);
             if (json.code == 1) {
                 // 刷新列表
-                this.props.upload && this.props.upload()
+            }else{
+                showToast(json.msg)
             }
+            this.props.upload && this.props.upload()
         })
     }
     // 撤下展示
@@ -169,8 +171,10 @@ class InfoItem extends Component {
             // console.log(json);
             if (json.code == 1) {
                 // 刷新列表
-                this.props.upload && this.props.upload()
+            }else{
+                showToast(json.msg)
             }
+            this.props.upload && this.props.upload()
         })
     }
     //删除消息
@@ -182,8 +186,10 @@ class InfoItem extends Component {
             if (json.code == 1) {
                 // console.log(json)
                 // 刷新列表
-                this.props.upload && this.props.upload()
+            }else{
+                showToast(json.msg)
             }
+            this.props.upload && this.props.upload()
         })
     }
     /**
@@ -197,11 +203,11 @@ class InfoItem extends Component {
         }, 'form').then((json) => {
             // console.log(json);
             if (json.code == 1) {
-                // 刷新列表
-                this.props.upload && this.props.upload()
             } else {
                 showToast(json.msg)
             }
+            // 刷新列表
+            this.props.upload && this.props.upload()
         })
     }
     /**
