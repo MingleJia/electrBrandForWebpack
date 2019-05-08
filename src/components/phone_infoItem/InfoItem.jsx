@@ -355,7 +355,8 @@ class InfoItem extends Component {
                 <div className={styles['bottom']}>
                     {this.props.isShowApprovalTime && <div className={styles['point']}></div>}
                     <p>
-                        {this.props.isShowApprovalTime && <span className={styles['approvalTitle']}>审批时间</span>}{moment(this.props.approvalTime * 1000).format('YYYY-MM-DD HH:mm')}
+                        {this.props.isShowApprovalTime && <span className={styles['approvalTitle']}>审批时间</span>}
+                        {this.props.isShowApprovalTime ? moment(this.props.approvalTime * 1000).format('YYYY-MM-DD HH:mm') : ''}
                         <span
                             onClick={() => { this.ope(operationMode[1]) }}
                             className={styles['l1']}
