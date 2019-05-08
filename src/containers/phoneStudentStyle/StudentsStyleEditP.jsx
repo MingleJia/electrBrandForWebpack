@@ -354,7 +354,7 @@ class StudentsStyleP extends Component {
                 </div>
                 {
                     role_id == 103 && <div className={styles['teachersWrap']}>
-                        <div className={styles['row']} style={{ left: '-4px', paddingRight: '5vw' }}>
+                        <div className={styles['row']} style={{ left: '-4px', paddingRight: '3vw' }}>
                             <InputItem
                                 placeholder="请输入教师点评"
                                 ref={el => this.inputRef = el}
