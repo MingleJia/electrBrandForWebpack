@@ -34,7 +34,7 @@ class StudentsStyleP extends Component {
         const show_id = getHerfInfo('show_id');
         const role_id = getHerfInfo('role_id');
         document.addEventListener('deviceready', function () {
-            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', [role_id==102?'发布申请':'发布']);
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', [role_id == 102 ? '发布申请' : '发布']);
         }, false);
         //隐藏发布按钮
         if (role_id == 102) {
@@ -56,7 +56,7 @@ class StudentsStyleP extends Component {
             const show_id = getHerfInfo('show_id');
             let myJson = {};
             // 如果是新增进来就默认选择第一个
-            if(!show_id){
+            if (!show_id) {
                 myJson.teacher_student = [json.data[0].classId]
             }
             this.setState({
@@ -103,7 +103,7 @@ class StudentsStyleP extends Component {
                 teacher_student: [json.data.class_id],
                 title: json.data.title,
                 desc: json.data.desc,
-                show_time: new Date(json.data.updatetime * 1000),
+                show_time: new Date(json.data.show_time * 1000),
                 comment: json.data.comment,
                 show_days: [json.data.show_days + ''],
                 class_name: json.data.class_name,
@@ -120,7 +120,7 @@ class StudentsStyleP extends Component {
             const show_id = getHerfInfo('show_id');
             let myJson = {};
             // 如果是新增进来就默认选择第一个
-            if(!show_id){
+            if (!show_id) {
                 myJson.parents_student = [json.data[0].studentUserId]
             }
             this.setState({
@@ -149,7 +149,7 @@ class StudentsStyleP extends Component {
                 parents_student: [json.data.student_id],
                 title: json.data.title,
                 desc: json.data.desc,
-                show_time: new Date(json.data.updatetime * 1000),
+                show_time: new Date(json.data.show_time * 1000),
                 class_name: json.data.class_name,
                 student_name: json.data.student_name,
                 images: json.data.images,
@@ -320,7 +320,7 @@ class StudentsStyleP extends Component {
                         <DatePicker
                             mode='date'
                             value={show_time}
-                            onChange={(date) => { this.setOneKV('show_time', new Date(date.valueOf())) }}
+                            onChange={(date) => {this.setOneKV('show_time', new Date(date.valueOf())) }}
                             okText={<div style={{ color: '#4ea375' }}>确定</div>}
                             dismissText={<div style={{ color: '#bbb' }}>取消</div>}
                             title='选择发生时间'
