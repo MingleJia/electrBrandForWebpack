@@ -32,7 +32,7 @@ class StudentsStyle extends Component {
     }
     getStyle(num) {
         if (num <= 4) return 'contentM4';
-        return 'contentM4'
+        return 'contentM6'
     }
     render() {
         let { dataList } = this.state;
