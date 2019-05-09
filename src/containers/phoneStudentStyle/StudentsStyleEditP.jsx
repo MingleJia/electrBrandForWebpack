@@ -181,6 +181,7 @@ class StudentsStyleP extends Component {
                 show_time,
                 class_name: resourceData.find(item => item.studentUserId == parents_student[0]).className,
                 student_name: resourceData.find(item => item.studentUserId == parents_student[0]).studentUserName,
+                school_id: resourceData.find(item => item.studentUserId == parents_student[0]).schoolId,
                 images: JSON.stringify(images),
             }
             if (show_id) {
