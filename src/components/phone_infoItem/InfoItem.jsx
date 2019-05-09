@@ -62,7 +62,7 @@ class InfoItem extends Component {
     ope(str) {
         if (this.props.roleId == 102) {
             if (str == '修改') {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id + '&ticket=' + this.props.ticket +'&page=' + this.props.page;
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id + '&ticket=' + this.props.ticket + '&page=' + this.props.page;
             }
             if (str == '撤回') {
                 // this.setState({
@@ -80,7 +80,7 @@ class InfoItem extends Component {
         if (this.props.roleId == 103) {
             if (str == '修改') {
                 // console.log(this.props.ticket)
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket +'&page=' + this.props.page;
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket + '&page=' + this.props.page;
             }
             if (str == '撤下') {
                 // this.setState({
@@ -101,7 +101,7 @@ class InfoItem extends Component {
                 this.showAlert(() => { this.check(2); }, () => { this.check(2); }, '提示', '您已驳回，是否告知家长原因?', '告知', '取消');
             }
             if (str == '同意') {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?nodecheck=1&role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket +'&page=' + this.props.page;
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?nodecheck=1&role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket + '&page=' + this.props.page;
             }
             if (str == '删除') {
                 this.delete();
@@ -153,7 +153,9 @@ class InfoItem extends Component {
         axios('post', '/api/show/recall', {
             show_id: this.props.id
         }, 'form').then((json) => {
-            showToast(json.msg)
+            if (json.code != 1) {
+                showToast(json.msg)
+            }
             this.props.upload && this.props.upload()
         })
     }
@@ -162,7 +164,9 @@ class InfoItem extends Component {
         axios('post', '/api/show/withdraw', {
             show_id: this.props.id
         }, 'form').then((json) => {
-            showToast(json.msg)
+            if (json.code != 1) {
+                showToast(json.msg)
+            }
             this.props.upload && this.props.upload()
         })
     }
@@ -171,7 +175,9 @@ class InfoItem extends Component {
         axios('post', '/api/show/del', {
             show_id: this.props.id,
         }, 'form').then((json) => {
-            showToast(json.msg)
+            if (json.code != 1) {
+                showToast(json.msg)
+            }
             this.props.upload && this.props.upload()
         })
     }
