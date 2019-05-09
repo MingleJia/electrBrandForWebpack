@@ -71,7 +71,7 @@ class InfoItem extends Component {
                 //     okText: '撤回',
                 //     cancelText: '取消'
                 // })
-                this.showAlert(() => { this.withdraw(); }, () => { }, '提示', '是否撤回该条信息？', '撤回', '取消');
+                this.showAlert(() => { this.withdraw(); }, () => { }, '提示', '确定要撤回该信息吗？', '撤回', '取消');
             }
             if (str == '删除') {
                 this.delete();
@@ -89,7 +89,7 @@ class InfoItem extends Component {
                 //     okText: '撤下',
                 //     cancelText: '取消'
                 // })
-                this.showAlert(() => { this.goDown() }, () => { }, '提示', '是否撤下该条信息？', '撤下', '取消');
+                this.showAlert(() => { this.goDown() }, () => { }, '提示', '要撤下该信息吗？', '撤下', '取消');
             }
             if (str == '驳回') {
                 // this.setState({
@@ -98,7 +98,8 @@ class InfoItem extends Component {
                 //     okText: '告知',
                 //     cancelText: '取消'
                 // })
-                this.check(2);
+                this.showAlert(() => {  this.check(2);}, () => {  }, '提示', '确定要驳回该信息吗？', '驳回', '取消');
+                
                 
             }
             if (str == '同意') {
@@ -192,7 +193,7 @@ class InfoItem extends Component {
             audit_status: n
         }, 'form').then((json) => {
             if(json.code == 1){
-                this.showAlert(() => {  }, () => {  }, '提示', '您已驳回，是否告知家长原因?', '告知', '取消');
+                
             }else{
                 showToast(json.msg);
             }
