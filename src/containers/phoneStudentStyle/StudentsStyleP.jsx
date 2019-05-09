@@ -184,6 +184,21 @@ class StudentsStyleP extends Component {
     //         }, 1)
     //     }
     // }
+    changeURLArg(url, arg, arg_val) {
+        var pattern = arg + '=([^&]*)';
+        var replaceText = arg + '=' + arg_val;
+        if (url.match(pattern)) {
+            var tmp = '/(' + arg + '=)([^&]*)/gi';
+            tmp = url.replace(eval(tmp), replaceText);
+            return tmp;
+        } else {
+            if (url.indexOf('?') != -1) {
+                return url + '&' + replaceText;
+            } else {
+                return url + '?' + replaceText;
+            }
+        }
+    }
     onChange = (tab) => {
         this.setState({
             page: tab.page,
@@ -191,6 +206,7 @@ class StudentsStyleP extends Component {
             dataList: [],
             idx: 1
         }, () => {
+            window.location.href = this.changeURLArg(this.changeURLArg(window.location.href, 'page', this.state.page), 'role_id', this.state.roleId)
             this.getList();
         })
         // console.log(tab, index)
@@ -232,7 +248,7 @@ class StudentsStyleP extends Component {
                         tabBarUnderlineStyle={{ border: '1px #4ea375 solid' }}
                         tabBarActiveTextColor={'#4ea375'}
                         // onTabClick={(tab, index) => { console.log(tab, index) }}
-                        swipeable={false}
+                        swipeable={true}
                         onChange={this.onChange}
                         tabs={tabs}
                         initialPage={JSON.parse(this.state.page || 0)}
@@ -442,7 +458,7 @@ class StudentsStyleP extends Component {
                         tabBarUnderlineStyle={{ border: '1px #4ea375 solid' }}
                         tabBarActiveTextColor={'#4ea375'}
                         // onTabClick={(tab, index) => { console.log(tab, index) }}
-                        swipeable={false}
+                        swipeable={true}
                         onChange={this.onChange}
                         tabs={tabs}
                         // initialPage={this.state.type}

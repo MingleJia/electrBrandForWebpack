@@ -394,6 +394,7 @@ class StudentsStyleP extends Component {
                                 onChange={(v) => { this.setOneKV('show_days', v) }}
                                 okText={<div style={{ color: '#4ea375' }}>确定</div>}
                                 dismissText={<div style={{ color: '#999999' }}>取消</div>}
+                                title='展示天数'
                             >
                                 <List.Item arrow="horizontal">展示天数</List.Item>
                             </Picker>
