@@ -61,7 +61,7 @@ class StuStyleCarousel extends Component {
         style={this.specialCss('content1',this.props.idx)}> */}
 
         {
-          this.props.images.length > 1
+          this.props.images.length > 0
             ?
             <Carousel
               autoplay={false}
