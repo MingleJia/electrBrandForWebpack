@@ -1,7 +1,8 @@
 .tab{
     width: 19.2rem;
     height: 0.88rem;
-    background-color: #1fb5ab;
+    // background-color: #1fb5ab;
+    background-image: url(../../assets//home/top_Bg.png);
     box-shadow: 0rem 0.03rem 0.07rem 0rem  rgba(0, 0, 0, 0.08);
     // position: fixed;
     // display: flex;
@@ -30,20 +31,21 @@
         top: 0.18rem;
         font-family: SourceHanSansCN-Regular;
         font-size: 0.24rem;
-        color: #1fb5ab;
+        background-color: #29ab9a;
+        color: white;
         .more {
             display: inline-block;
             width: 0.12rem;
             height: 0.22rem;
-            background-color: #ffffff;
-            background: url('ASSETS/campusstyle/more.png');
+            // background-color: #ffffff;
+            background: url('../../assets/campusstyle/newMore.png');
             background-size: 100%;
             margin-left: 0.11rem;
             position: relative;
             top: 2px;
         }
     }
-    .btnMore:active{
-        background-color: #d0fff7;
-    }       
+    // .btnMore:active{
+    //     background-color: #e3fffa;
+    // }       
 }

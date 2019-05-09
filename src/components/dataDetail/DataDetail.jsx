@@ -96,10 +96,10 @@ class DataDetail extends Component {
                 <div className={styles['content']}>
                     <div className={styles['title']}>
                         <span className={styles['titlename']}>{show.title || '暂无标题'}</span>
-                        <span className={styles['time']}>{moment(show.show_time * 1000).format('YYYY-MM-DD')}</span>
+                        <span className={styles['time']}>发布时间：{moment(show.audit_time * 1000).format('YYYY-MM-DD  HH:mm')}</span>
                     </div>
                     <div className={styles['detail']}>
-                        <p className={styles['text']}>{show.desc || '暂无内容'}</p>
+                        {show.desc?<p className={styles['text']}>{ moment(show.show_time*1000 || 0).format("M月D日 ")+','}{show.desc}</p>:<p>暂无内容</p>}
 
                         {
                             //https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg

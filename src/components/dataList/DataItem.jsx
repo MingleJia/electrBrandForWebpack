@@ -43,16 +43,19 @@ class DataItem extends Component {
                         }
                     </div>
                     <span className={styles['titlename']}>{this.props.item.title || '暂无标题'}</span>
-                    <span className={styles['time']}>{moment(this.props.item.show_time*1000 || 0).format("YYYY-MM-DD")}</span>
+                    <span className={styles['time']}>发布时间：{moment(this.props.item.audit_time * 1000 || 0).format("YYYY-MM-DD HH:mm ")}</span>
                 </div>
                 {/* 下方内容区域 */}
                 <div
                     className={`${isOpen ? styles['detail'] : styles['detailHidden']}`}>
-                    <p className={styles['text']}>
+                    {this.props.item.desc ? <p className={styles['text']}>
                         {
-                            this.props.item.desc || '暂无内容'
+                            moment(this.props.item.show_time * 1000 || 0).format("M月D日 ") + ','
                         }
-                    </p>
+                        {
+                            this.props.item.desc
+                        }
+                    </p> : <p>暂无内容</p>}
                     {/* 图片区域 https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg */}
                     {
                         this.props.item.images.map(
