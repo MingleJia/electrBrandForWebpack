@@ -5,9 +5,9 @@ import { Tabs } from 'antd-mobile';
 import InfoItem from '../../components/phone_infoItem/InfoItem';
 import axios from 'UTILS/axios';
 import defaultImg from '../../assets/phone/defaultImg.png';
-import loadingImg from '../../assets/phone/ld.gif';
+// import loadingImg from '../../assets/phone/ld.gif';
 import { getHerfInfo } from '../../utils/method';
-// import { PullToRefresh } from 'antd-mobile';
+import { Icon } from 'antd';
 // var lock = true;
 class StudentsStyleP extends Component {
     constructor(props) {
@@ -220,7 +220,7 @@ class StudentsStyleP extends Component {
         })
     }
     render() {
-        let { roleId, type, dataList, loading, isOver, page } = this.state;
+        let { roleId, type, dataList, loading, isOver, page, idx } = this.state;
         const tabs = this.state.roleId == 102 ? [
             { title: '待审批', value: 0, page: 0 },
             { title: '已同意', value: 1, page: 1 },
@@ -235,8 +235,9 @@ class StudentsStyleP extends Component {
             {/* <DeleteDialog/> */}
             {
 
-                loading && <div className={styles['loading']}>
-                    <img src={loadingImg} alt="" />
+                (loading && idx == 1) && <div className={styles['loading']}>
+                    {/* <img src={loadingImg} alt="" /> */}
+                    <Icon className={styles['loadingIcon']} type="loading" style={{ color: '#48bb7d' }} />
                 </div>
             }
             <div
@@ -295,13 +296,19 @@ class StudentsStyleP extends Component {
                                             <div className={styles['noData']}>
                                                 <div className={styles['defaultShow']}>
                                                     <img src={defaultImg} alt="" />
-                                                    <p>暂无展示中</p>
+                                                    <p>暂无数据</p>
                                                 </div>
                                             </div>
                                     }
                                     {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
-                                        无更多数据
-                                        </div>}
+                                        {
+                                            loading
+                                                ?
+                                                < Icon className={styles['loadingIcon']} type="loading" style={{ color: '#48bb7d' }} />
+                                                :
+                                                '没有更多了'
+                                        }
+                                    </div>}
                                 </div>
                             </div>
                         }
@@ -353,12 +360,18 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无待审批</p>
+                                                <p>暂无数据</p>
                                             </div>
                                         </div>
                                 }
                                 {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv2) => { this.bottomdiv2 = bottomdiv2 }} >
-                                    无更多数据
+                                    {
+                                        loading
+                                            ?
+                                            < Icon className={styles['loadingIcon']} type="loading" style={{ color: '#48bb7d' }} />
+                                            :
+                                            '没有更多了'
+                                    }
                                 </div>}
                             </div>
                         </div>
@@ -397,12 +410,18 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无已同意</p>
+                                                <p>暂无数据</p>
                                             </div>
                                         </div>
                                 }
                                 {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv3) => { this.bottomdiv3 = bottomdiv3 }}>
-                                    无更多数据
+                                    {
+                                        loading
+                                            ?
+                                            < Icon className={styles['loadingIcon']} type="loading" style={{ color: '#48bb7d' }} />
+                                            :
+                                            '没有更多了'
+                                    }
                                 </div>}
                             </div>
                         </div>
@@ -441,12 +460,18 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无已驳回</p>
+                                                <p>暂无数据</p>
                                             </div>
                                         </div>
                                 }
                                 {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv4) => { this.bottomdiv4 = bottomdiv4 }}>
-                                    无更多数据
+                                    {
+                                        loading
+                                            ?
+                                            < Icon className={styles['loadingIcon']} type="loading" style={{ color: '#48bb7d' }} />
+                                            :
+                                            '没有更多了'
+                                    }
                                 </div>}
                             </div>
                         </div>
@@ -513,13 +538,19 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无待审批</p>
+                                                <p>暂无数据</p>
                                             </div>
                                         </div>
                                 }
 
                                 {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv5) => { this.bottomdiv5 = bottomdiv5 }}>
-                                    无更多数据
+                                    {
+                                        loading
+                                            ?
+                                            < Icon className={styles['loadingIcon']} type="loading" style={{ color: '#48bb7d' }} />
+                                            :
+                                            '没有更多了'
+                                    }
                                 </div>}
                             </div>
                         </div>
@@ -559,12 +590,18 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无已同意</p>
+                                                <p>暂无数据</p>
                                             </div>
                                         </div>
                                 }
                                 {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv6) => { this.bottomdiv6 = bottomdiv6 }}>
-                                    无更多数据
+                                    {
+                                        loading
+                                            ?
+                                            < Icon className={styles['loadingIcon']} type="loading" style={{ color: '#48bb7d' }} />
+                                            :
+                                            '没有更多了'
+                                    }
                                 </div>}
                             </div>
                         </div>
@@ -603,12 +640,18 @@ class StudentsStyleP extends Component {
                                         <div className={styles['noData']}>
                                             <div className={styles['defaultShow']}>
                                                 <img src={defaultImg} alt="" />
-                                                <p>暂无已驳回</p>
+                                                <p>暂无数据</p>
                                             </div>
                                         </div>
                                 }
                                 {(isOver && dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv7) => { this.bottomdiv7 = bottomdiv7 }}>
-                                    无更多数据
+                                    {
+                                        loading
+                                            ?
+                                            < Icon className={styles['loadingIcon']} type="loading" style={{ color: '#48bb7d' }} />
+                                            :
+                                            '没有更多了'
+                                    }
                                 </div>}
                             </div>
                         </div>

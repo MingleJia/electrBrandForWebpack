@@ -12,13 +12,22 @@
     height: 100%;
     background-color: white;
     z-index: 9;
-    img{
+    
+    .loadingIcon{
         position: absolute;
         left: 50%;
         top:50%;
         transform: translate(-50%,-50%);
-        width: 10vw;
+        width: 20vw;
+        height: 20vw; 
     }
+    // img{
+    //     position: absolute;
+    //     left: 50%;
+    //     top:50%;
+    //     transform: translate(-50%,-50%);
+    //     width: 10vw;
+    // }
 }
 .box{
     width: 100%;

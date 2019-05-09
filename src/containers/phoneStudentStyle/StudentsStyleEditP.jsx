@@ -410,7 +410,7 @@ class StudentsStyleP extends Component {
                         onClick={() => {
                             this.submitData();
                         }}>
-                        确定
+                        提交
                     </div>
                 </div>
             </div>
