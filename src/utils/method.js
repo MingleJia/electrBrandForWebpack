@@ -1,3 +1,5 @@
+import { func } from "prop-types";
+
 /**
  * toast提示
  * @param {提示内容} str String 
@@ -16,4 +18,10 @@ function getHerfInfo(str) {
         return '';
     }
 }
-export {showToast ,getHerfInfo}
+
+function isOnLine(){
+    if(navigator.onLine){
+        window.cordova.exec(function() {}, function() {}, "LeTalkCorePlugin", "showToast", [{"content":"网络断开"}])
+    }
+}
+export {showToast ,getHerfInfo, isOnLine}

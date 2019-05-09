@@ -3,7 +3,7 @@ import styles from './InfoItem.scss';
 import moment from 'moment';
 import axios from 'UTILS/axios';
 // import Dialog from '../../components/phoneDialog/dialog';
-import { showToast } from '../../utils/method';
+import { showToast, isOnLine } from '../../utils/method';
 import { Modal } from 'antd-mobile';
 const alert = Modal.alert;
 /**
@@ -98,9 +98,9 @@ class InfoItem extends Component {
                 //     okText: '告知',
                 //     cancelText: '取消'
                 // })
-                this.showAlert(() => {  this.check(2);}, () => {  }, '提示', '确定要驳回该信息吗？', '驳回', '取消');
-                
-                
+                this.showAlert(() => { this.check(2); }, () => { }, '提示', '确定要驳回该信息吗？', '驳回', '取消');
+
+
             }
             if (str == '同意') {
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?nodecheck=1&role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket + '&page=' + this.props.page;
@@ -152,6 +152,7 @@ class InfoItem extends Component {
     };
     //撤回消息
     withdraw() {
+        isOnLine();
         axios('post', '/api/show/recall', {
             show_id: this.props.id
         }, 'form').then((json) => {
@@ -163,6 +164,7 @@ class InfoItem extends Component {
     }
     // 撤下展示
     goDown() {
+        isOnLine();
         axios('post', '/api/show/withdraw', {
             show_id: this.props.id
         }, 'form').then((json) => {
@@ -174,6 +176,7 @@ class InfoItem extends Component {
     }
     //删除消息
     delete() {
+        isOnLine();
         axios('post', '/api/show/del', {
             show_id: this.props.id,
         }, 'form').then((json) => {
@@ -188,13 +191,14 @@ class InfoItem extends Component {
      * @param {审批类型 1:同意 2:驳回} n Number 
      */
     check(n) {
+        isOnLine();
         axios('post', '/api/show/audit', {
             show_id: this.props.id,
             audit_status: n
         }, 'form').then((json) => {
-            if(json.code == 1){
-                
-            }else{
+            if (json.code == 1) {
+
+            } else {
                 showToast(json.msg);
             }
             this.props.upload && this.props.upload()

@@ -6,7 +6,7 @@ import InfoItem from '../../components/phone_infoItem/InfoItem';
 import axios from 'UTILS/axios';
 import defaultImg from '../../assets/phone/defaultImg.png';
 // import loadingImg from '../../assets/phone/ld.gif';
-import { getHerfInfo } from '../../utils/method';
+import { getHerfInfo, isOnLine } from '../../utils/method';
 import { Icon } from 'antd';
 // var lock = true;
 class StudentsStyleP extends Component {
@@ -101,6 +101,7 @@ class StudentsStyleP extends Component {
         }
     }
     getInfo() {
+        isOnLine();
         this.setState({ loading: true })
         axios('post', '/api/show/auth', {
         }, 'form').then((json) => {
@@ -119,6 +120,7 @@ class StudentsStyleP extends Component {
         })
     }
     getList() {
+        isOnLine();
         this.setState({ loading: true })
         axios('get', '/api/show/lists', {
             is_teacher: this.state.roleId == 102 ? 0 : 1,

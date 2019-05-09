@@ -4,7 +4,7 @@ import { DatePicker, Picker, List, TextareaItem, InputItem } from 'antd-mobile';
 import UploadImgs from 'COMPONENTS/uploadImgs';
 import axios from 'UTILS/axios';
 import moment from 'moment';
-import { getHerfInfo, showToast } from '../../utils/method';
+import { getHerfInfo, showToast, isOnLine } from '../../utils/method';
 class StudentsStyleP extends Component {
     constructor(props) {
         super(props);
@@ -51,6 +51,7 @@ class StudentsStyleP extends Component {
     }
     //老师获取列表信息
     getClassInfo() {
+        isOnLine();
         axios('get', '/api/show/classes', {
         }).then((json) => {
             const show_id = getHerfInfo('show_id');
@@ -95,6 +96,7 @@ class StudentsStyleP extends Component {
     //     })
     // }
     getDefaultDataTeacher(show_id) {
+        isOnLine();
         axios('get', '/api/show/read', {
             show_id
         }).then((json) => {
@@ -115,6 +117,7 @@ class StudentsStyleP extends Component {
     }
     //家长获取列表信息
     getStudentInfoParents() {
+        isOnLine();
         axios('get', '/api/show/parentchildes', {
         }).then((json) => {
             const show_id = getHerfInfo('show_id');
@@ -141,6 +144,7 @@ class StudentsStyleP extends Component {
     }
     //获取默认数据
     getDefaultDataParenr(show_id) {
+        isOnLine();
         axios('get', '/api/show/read', {
             show_id
         }).then((json) => {
@@ -187,6 +191,7 @@ class StudentsStyleP extends Component {
             if (show_id) {
                 submintData.show_id = show_id;
             }
+            isOnLine();
             axios('post', '/api/show/parentaddshow', submintData, 'form').then((json) => {
                 // 处理提交成功
                 if (json.code == 1) {
@@ -220,6 +225,7 @@ class StudentsStyleP extends Component {
             } else {
                 submintData.class_name = resourceData.find(item => item.classId == teacher_student[0]).className
             }
+            isOnLine();
             axios('post', '/api/show/teacheraddshow', submintData, 'form').then((json) => {
                 // 处理提交成功
                 // console.log(json);
