@@ -71,8 +71,14 @@ function axiosRequest(method, url, params, type){
                     json.status === 200 && resolve(json.data);
                 }).catch((error)=>{
                     toBlank(error);
+                    //请求超时
                     if(error.message.indexOf('timeout') !== -1 && toastLock){
-                        message.info('网络不给力',10);
+
+                        if(window.location.href.indexOf("phone")!=-1){
+                            window.cordova.exec(function() {}, function() {}, "LeTalkCorePlugin", "showToast", [{"content":"网络不给力"}])
+                        }else{
+                            message.info('网络不给力',10);
+                        }
                         toastLock = false;
                     }
                     setTimeout(() => {
@@ -94,7 +100,11 @@ function axiosRequest(method, url, params, type){
                 }).catch((error)=>{
                     toBlank(error);
                     if(error.message.indexOf('timeout') !== -1 && toastLock){
-                        message.info('网络不给力',10);
+                        if(window.location.href.indexOf("phone")!=-1){
+                            window.cordova.exec(function() {}, function() {}, "LeTalkCorePlugin", "showToast", [{"content":"网络不给力"}])
+                        }else{
+                            message.info('网络不给力',10);
+                        }
                         toastLock = false;
                     }
                     setTimeout(() => {
