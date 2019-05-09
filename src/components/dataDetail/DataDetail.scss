@@ -183,14 +183,17 @@
     top: 0px;
     z-index: 999;
     overflow: hidden;
+    text-align: center;
+    line-height: 1080px;
     img{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
+        // vertical-align: middle;
+        // position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%,-50%);
         max-width: 1500px;
         max-height: 900px;
-        display: block;
+        // display: block;
         // width: 90%;
         // height: 900px;
         // object-fit: cover;
