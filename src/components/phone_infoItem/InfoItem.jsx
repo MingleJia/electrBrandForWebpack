@@ -98,7 +98,8 @@ class InfoItem extends Component {
                 //     okText: '告知',
                 //     cancelText: '取消'
                 // })
-                this.showAlert(() => { this.check(2); }, () => { this.check(2); }, '提示', '您已驳回，是否告知家长原因?', '告知', '取消');
+                this.check(2);
+                
             }
             if (str == '同意') {
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?nodecheck=1&role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket + '&page=' + this.props.page;
@@ -190,7 +191,11 @@ class InfoItem extends Component {
             show_id: this.props.id,
             audit_status: n
         }, 'form').then((json) => {
-            showToast(json.msg)
+            if(json.code == 1){
+                this.showAlert(() => {  }, () => {  }, '提示', '您已驳回，是否告知家长原因?', '告知', '取消');
+            }else{
+                showToast(json.msg);
+            }
             this.props.upload && this.props.upload()
         })
     }
