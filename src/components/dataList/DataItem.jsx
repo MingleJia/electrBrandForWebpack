@@ -43,7 +43,7 @@ class DataItem extends Component {
                         }
                     </div>
                     <span className={styles['titlename']}>{this.props.item.title || '暂无标题'}</span>
-                    <span className={styles['time']}>{moment(this.props.item.show_time || 0).format("HH:mm:ss")}</span>
+                    <span className={styles['time']}>{moment(this.props.item.show_time*1000 || 0).format("YYYY-MM-DD")}</span>
                 </div>
                 {/* 下方内容区域 */}
                 <div
