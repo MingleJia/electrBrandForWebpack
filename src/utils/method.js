@@ -1,10 +1,8 @@
-import { func } from "prop-types";
-
 /**
  * toast提示
  * @param {提示内容} str String 
  */
-function showToast(str){
+function showToast(str) {
     window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showToast', [{ 'content': str }]);
 }
 /**
@@ -19,9 +17,11 @@ function getHerfInfo(str) {
     }
 }
 
-function isOnLine(){
-    if(navigator.onLine){
-        window.cordova.exec(function() {}, function() {}, "LeTalkCorePlugin", "showToast", [{"content":"网络断开"}])
+function isOnLine() {
+    if (navigator.onLine) {
+        document.addEventListener('deviceready', function () {
+            window.cordova.exec(function () { }, function () { }, "LeTalkCorePlugin", "showToast", [{ "content": "网络断开" }])
+        })
     }
 }
-export {showToast ,getHerfInfo, isOnLine}
+export { showToast, getHerfInfo, isOnLine }

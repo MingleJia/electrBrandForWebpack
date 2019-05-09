@@ -1,6 +1,7 @@
 import React from 'react';
 import {deleteImg, cameraIcon} from 'ASSETS/phone'
 import styles from './index.scss'
+import { isOnLine } from '../../utils/method';
 /**
  * @param {是否重新渲染} isChange number 不渲染 1渲染
  * @param {默认数据} defaultData array
@@ -35,6 +36,7 @@ export default class UploadImgs extends React.Component{
         //         'http://pic1.win4000.com/wallpaper/9/5450ae2fdef8a.jpg'
         //     ]
         // },()=>{this.props.onChange && this.props.onChange(this.state.uploadImgs);})
+        isOnLine();
         window.takePicture = (info)=>{
             if (info.path) {
                 uploadImgs.push(info.path); 

@@ -196,11 +196,9 @@ class InfoItem extends Component {
             show_id: this.props.id,
             audit_status: n
         }, 'form').then((json) => {
-            if (json.code == 1) {
-
-            } else {
+            if (json.code != 1) {
                 showToast(json.msg);
-            }
+            } 
             this.props.upload && this.props.upload()
         })
     }
