@@ -307,15 +307,18 @@ class StudentsStyleP extends Component {
                     }
                     {
                         (role_id == 103 && getHerfInfo('show_id')) && <div className={styles['row']}>
-                            <InputItem
+                            {/* <InputItem
                                 placeholder="请输入标题名称"
                                 ref={el => this.inputRef = el}
                                 value={class_name}
                                 maxLength={30}
                                 onChange={(v) => { this.setOneKV('title', v) }}
-                                disabled
+                                // disabled
                                 style={{ textAlign: 'right', color: '#5a5a5a' }}
-                            >班级</InputItem>
+                            >班级</InputItem> */}
+                            <div className={styles['specialIntput']}>
+                                班级<span>{class_name}</span>
+                            </div>
                         </div>
                     }
 

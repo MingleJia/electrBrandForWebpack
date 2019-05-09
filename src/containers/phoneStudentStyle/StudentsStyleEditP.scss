@@ -108,7 +108,6 @@
     background-color: #f5f7f8;
     // padding-bottom: 3vw;
     padding-bottom: 14vw;
-    position: relative;
     .top{
         padding: 0 0vw 0 4vw;
         background-color: white;
@@ -118,6 +117,15 @@
             position: relative;
             border-bottom:  1px solid #f2f2f2 ;
             padding-right: 4vw;
+            .specialIntput{
+                height: 13vw;
+                line-height: 13vw;
+                font-size: 4vw;
+                color:#5a5a5a;
+                span{
+                    float: right;
+                }
+            }
             
         }
         .row:nth-child(3){
