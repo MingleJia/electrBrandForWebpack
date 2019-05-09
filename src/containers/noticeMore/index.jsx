@@ -191,7 +191,7 @@ class Notice extends Component {
         )
         const notice = (
             <Fragment>
-                <BackPrevHeader />
+                <BackPrevHeader title={'通知列表'} />
                 {
                     loading ? <div className={styles['loading']}>
                         <img src={loadingImg} />
