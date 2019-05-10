@@ -82,7 +82,7 @@ class DataDetail extends Component {
                     </div> */}
                     <img src={backImg} className={styles['backimg']} alt="" onClick={() => this.backHome()} />
                     {
-                        (canDown || canUp) && <div className={styles['btnWrap']}>
+                        (canDown || canUp) ? <div className={styles['btnWrap']}>
                             {
                                 <span className={styles[!canUp ? 'prevBtnNo' : 'prevBtn']} onClick={() => canUp && this.getData('up')}>上一个</span>
                             }
@@ -90,7 +90,7 @@ class DataDetail extends Component {
 
                                 <span className={styles[!canDown ? 'nextBtnNo' : 'nextBtn']} onClick={() => canDown && this.getData('down')}>下一个</span>
                             }
-                        </div>
+                        </div> : null
                     }
                 </div>
                 <div className={styles['content']}>
@@ -99,7 +99,7 @@ class DataDetail extends Component {
                         <span className={styles['time']}>发布时间：{moment(show.audit_time * 1000).format('YYYY-MM-DD  HH:mm')}</span>
                     </div>
                     <div className={styles['detail']}>
-                        {show.desc?<p className={styles['text']}>{ moment(show.show_time*1000 || 0).format("M月D日 ")+','}{show.desc}</p>:<p>暂无内容</p>}
+                        {show.desc ? <p className={styles['text']}>{moment(show.show_time * 1000 || 0).format("M月D日 ") + ','}{show.desc}</p> : <p>暂无内容</p>}
 
                         {
                             //https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg
@@ -111,7 +111,7 @@ class DataDetail extends Component {
                                         onClick={() => { this.showImg(item.image) }}
                                         className={styles['img']}
                                         src={item.image} />
-                                        {/* src={'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg'} /> */}
+                                    {/* src={'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg'} /> */}
                                 </div>)
                         }
                         <div className={styles['line']}></div>

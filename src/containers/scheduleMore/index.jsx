@@ -77,7 +77,7 @@ class Schedule extends Component{
         )
         const schedule = (
             <Fragment>
-                <BackPrevHeader />
+                <BackPrevHeader title={'课程表'} />
                 <div className={styles['container']}>
                     { scheduleTab }
                     { loading ? <Loading/> : schedulecontent}
