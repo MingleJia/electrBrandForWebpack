@@ -1,6 +1,7 @@
 import React,{Component, Fragment} from 'react';
 import styles from './index.scss';
 import { flowerImg, creditImg, firstImg, secondImg, thirdImg, goodImg } from 'ASSETS/home';
+import noImg from '../../assets/campusstyle/no-img.png';
 // import { flowerImg, creditImg, firstImg, secondImg, thirdImg, tipsWhiteImg, goodImg } from 'ASSETS/home';
 import { backImg } from 'ASSETS/header';
 import axios from 'UTILS/axios';
@@ -98,7 +99,11 @@ class IncentiveMonth extends Component{
                                     }
                                    
                                 </Fragment> : 
-                                <p className={styles['no-data']}>本月排名暂未产生<br/>敬请期待明日公布</p>
+                                <div className={styles['no-data-wrap']}>
+                                    <img src={noImg} alt=""/>
+                                    <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                                </div>
+                                // <p className={styles['no-data']}>本月排名暂未产生<br/>敬请期待明日公布</p>
                             }
                         </div>
                     </div>
@@ -129,7 +134,11 @@ class IncentiveMonth extends Component{
                                     }
                                     
                                 </Fragment> : 
-                                <p className={styles['no-data']}>本月排名暂未产生<br/>敬请期待明日公布</p>
+                                // <p className={styles['no-data']}>本月排名暂未产生<br/>敬请期待明日公布</p>
+                                <div className={styles['no-data-wrap']}>
+                                    <img src={noImg} alt=""/>
+                                    <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                                </div>
                             }
                         </div>
                     </div>
@@ -139,16 +148,18 @@ class IncentiveMonth extends Component{
         )
         const incentiveMonth = (
             <Fragment>
-                <div className={styles['title']}>
-                    <div className={styles['back']} onClick={() => this.backHome()}>
-                        <img className={styles['backimg']} src={ backImg }></img><span>返回</span>
+                <div className={styles['box']}>
+                    <div className={styles['title']}>
+                        {/* <div className={styles['back']} onClick={() => this.backHome()}> */}
+                            <img className={styles['backimg']} src={ backImg } onClick={() => this.backHome()}></img>
+                        {/* </div> */}
+                        <span>
+                            本月激励排行榜
+                        </span>
                     </div>
-                    <span>
-                        本月激励排行榜
-                    </span>
+
+                    { loading? <Loading/> : rankcontent  }
                 </div>
-                
-                { loading? <Loading/> : rankcontent  }
             </Fragment>
         )
         return incentiveMonth;
