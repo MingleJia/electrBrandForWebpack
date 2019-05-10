@@ -15,7 +15,7 @@ class StudentsStyleMore extends Component {
     }
     render() {
         return <Fragment>
-            <BackPrevHeader title={'学生风采列表'} />
+            <BackPrevHeader style={{position:'fixed'}} title={'学生风采列表'} />
             {
                 this.state.loading
                     ?

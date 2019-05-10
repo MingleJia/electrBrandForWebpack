@@ -1,7 +1,7 @@
 import React,{Component,Fragment} from 'react';
 import { message } from 'antd';
 import styles from './index.scss';
-import { campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
+import { campusImg, noImg } from 'ASSETS/campusstyle';
 // import { detailsImg, campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
 import PropTypes from 'prop-types';
 import Tab from 'COMPONENTS/tab';
@@ -103,7 +103,8 @@ class CampusStyle extends Component{
                             <li className={styles['list']} key={index} onClick={ ()=>this.campusDetail(index) }>
                                 <div className={styles['images']}>
                                     {
-                                        item.images ? this.renderCarouselImg(item.images) : this.renderDefaultImg()
+                                        // item.images ? this.renderCarouselImg(item.images) : this.renderDefaultImg()
+                                        item.images ? this.renderCarouselImg(item.images) : null
                                     }
                                 </div>
                                 <div className={styles['title']}>
@@ -127,7 +128,8 @@ class CampusStyle extends Component{
                         campusList.length
                         ?
                         <div className={styles['btnMore']} onClick={ ()=>this.campusMore() }>
-                        <span>更多</span><img className={styles['more']} src={ moreImg } />
+                            更多<span></span>
+                            {/* <img className={styles['more']} src={ moreImg } /> */}
                         </div>
                         :
                         <div></div>

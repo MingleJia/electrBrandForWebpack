@@ -2,6 +2,7 @@ import React,{Component, Fragment} from 'react';
 import {Popover} from 'antd';
 import styles from './index.scss';
 import { tipsImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg, } from 'ASSETS/home';
+import noImg from '../../../assets/campusstyle/no-img.png';
 import { Link } from 'react-router-dom';
 import axios from 'UTILS/axios';
 import Loading from 'COMPONENTS/loading';
@@ -128,7 +129,10 @@ class Rank extends Component{
                                     ''
                                 }
                             </Fragment> : 
-                            <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                            <div className={styles['no-data-wrap']}>
+                                <img src={noImg} alt=""/>
+                                <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                            </div>
                         }
                     </div>
                 </div>
@@ -160,7 +164,10 @@ class Rank extends Component{
                                     ''
                                 }
                             </Fragment> : 
-                            <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                            <div className={styles['no-data-wrap']}>
+                                <img src={noImg} alt=""/>
+                                <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                            </div>
                         }
                     </div>
                 </div>

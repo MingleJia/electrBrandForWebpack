@@ -4,6 +4,6 @@ import expandImg from './expand.png';
 import detailsImg from './details.png';
 import campusImg from './campusImg.png';
 import noImg from './no-img.png';
-import moreImg from './more.png';
+import moreImg from './newMore.png';
 
 export { defaultImg, collapseImg, expandImg, detailsImg, campusImg, noImg, moreImg}

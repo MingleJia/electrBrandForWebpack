@@ -69,6 +69,7 @@
                 color: #444444;
                 margin-top: 0.26rem;
                 padding-bottom: 0.2rem;
+                font-weight: bold;
             }
             .rank-list{
                 height: 3.4rem;
@@ -115,11 +116,20 @@
                         }
                     }
                 }
-                .no-data{
-                    font-family: SourceHanSansCN-Regular;
-                    font-size: 0.4rem;
-                    color: #cccccc;
-                    margin-top: 0.79rem;
+                .no-data-wrap{
+                    text-align: center;
+                    margin-top: 0.6rem;
+                    img{
+                        width: 1.2rem;
+                        height: 1.21rem;
+                    }
+                    .no-data{
+                        font-family: SourceHanSansCN-Regular;
+                        font-size: 0.24rem;
+                        line-height: 0.32rem;
+                        color: #cccccc;
+                        margin-top: 0.2rem;
+                    }
                 }
             }
         }
