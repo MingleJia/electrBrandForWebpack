@@ -18,7 +18,7 @@ function getHerfInfo(str) {
 }
 
 function isOnLine() {
-    if (navigator.onLine) {
+    if (!navigator.onLine) {
         document.addEventListener('deviceready', function () {
             window.cordova.exec(function () { }, function () { }, "LeTalkCorePlugin", "showToast", [{ "content": "网络断开" }])
         })
