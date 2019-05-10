@@ -33,12 +33,13 @@ class StudentsStyleDetail extends Component {
 
                 this.state.loading
                     ?
-                    <div style={{ width: '100%', height: '100%' }}>
+                    <div style={{ width: '100%', height: '100%', position: 'fixed', backgroundColor: 'white', zIndex: 1 }}>
                         <Loading />
                     </div>
                     :
-                    <DataDetail dataList={this.state.dataList} id={this.state.id} a={1} />
+                    null
             }
+            <DataDetail dataList={this.state.dataList} id={this.state.id} a={1} />
             {/* <Tab /> */}
         </Fragment>;
     }

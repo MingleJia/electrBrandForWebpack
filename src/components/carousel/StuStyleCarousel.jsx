@@ -64,7 +64,7 @@ class StuStyleCarousel extends Component {
           this.props.images.length > 0
             ?
             <Carousel
-              autoplay={false}
+              autoplay={true}
               infinite
               selectedIndex={0}
               autoplayInterval={3000}
