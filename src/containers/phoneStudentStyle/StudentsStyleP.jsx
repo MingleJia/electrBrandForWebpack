@@ -43,6 +43,7 @@ class StudentsStyleP extends Component {
         return '0'
     }
     componentDidMount() {
+        document.title = '学生风采';
         this.release();
         if (getHerfInfo('role_id')) {
             this.setState({
@@ -202,6 +203,9 @@ class StudentsStyleP extends Component {
         }
     }
     onChange = (tab) => {
+        document.addEventListener('deviceready', function () {
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', ['学生风采']);
+        })
         this.setState({
             page: tab.page,
             type: tab.value,

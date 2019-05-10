@@ -82,13 +82,13 @@ export default class UploadImgs extends React.Component{
                     uploadImgs.length < maxImgNum ? 
                     <div className={`${styles.imgItem} ${styles.uploadImg}`} onClick={this.addImg}>
                         <img src={cameraIcon}/>
-                        <p>上传</p>
+                        <p>上传图片</p>
                     </div> : ''
                 }
                 
                 </div>
                 <div className={styles.div}></div>
-                <p className={styles.tips}>图片可不上传，若上传最多5张，单张图片小于5MB，建议上传横图</p>
+                <p className={styles.tips}>图片可不上传，若上传最多5张，建议上传横图</p>
             </div>
         );
     }

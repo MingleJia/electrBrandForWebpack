@@ -98,6 +98,7 @@
             font-size: 4vw;
             color:#bbb;
             padding-right: 3vw;
+            margin-right: -2px;
             span{
                 color:#bbb;
             }
@@ -111,12 +112,12 @@
     .top{
         padding: 0 0vw 0 4vw;
         background-color: white;
-        border-bottom: 1px solid #f2f2f2 ;
+        border-bottom: 0px solid #f2f2f2 ;
         
         .row{
             position: relative;
             border-bottom:  1px solid #f2f2f2 ;
-            padding-right: 4vw;
+            padding-right: 3vw;
             .specialIntput{
                 height: 13vw;
                 line-height: 13vw;
@@ -139,7 +140,7 @@
         margin-top: 3vw;
         padding: 0 0vw 0 4vw;
         background-color: white;
-        border-bottom: 1px solid #f2f2f2 ;
+        border-bottom: 0px solid #f2f2f2 ;
         
         .row{
             position: relative;

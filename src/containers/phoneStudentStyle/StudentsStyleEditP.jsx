@@ -166,7 +166,7 @@ class StudentsStyleP extends Component {
         // /api/show/parentaddshow
         const role_id = getHerfInfo('role_id');
         const show_id = getHerfInfo('show_id');
-        const nodecheck = getHerfInfo('nodecheck');
+        // const nodecheck = getHerfInfo('nodecheck');
         if (role_id == 102) {
 
             let { show_time, title, desc, parents_student, resourceData, images } = this.state;
@@ -230,7 +230,7 @@ class StudentsStyleP extends Component {
                 // 处理提交成功
                 // console.log(json);
                 if (json.code == 1) {
-                    if (nodecheck) this.check(1);
+                    // if (nodecheck) this.check(1);
                     window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&page=' + getHerfInfo('page');
                 } else {
                     showToast(json.msg)
@@ -239,19 +239,19 @@ class StudentsStyleP extends Component {
         }
     }
     //审核: 1同意 2驳回
-    check(n) {
-        axios('post', '/api/show/audit', {
-            show_id: getHerfInfo('show_id'),
-            audit_status: n
-        }, 'form').then((json) => {
-            // console.log(json);
-            if (json.code == 1) {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&page=' + getHerfInfo('page');
-            } else {
-                showToast(json.msg)
-            }
-        })
-    }
+    // check(n) {
+    //     axios('post', '/api/show/audit', {
+    //         show_id: getHerfInfo('show_id'),
+    //         audit_status: n
+    //     }, 'form').then((json) => {
+    //         // console.log(json);
+    //         if (json.code == 1) {
+    //             window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&page=' + getHerfInfo('page');
+    //         } else {
+    //             showToast(json.msg)
+    //         }
+    //     })
+    // }
     //检测能否提交
     checkSubmit() {
         const role_id = getHerfInfo('role_id');
