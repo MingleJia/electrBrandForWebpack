@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import styles from './StudentsStyleP.scss';
 // import axios from 'UTILS/axios';
-import { Tabs } from 'antd-mobile';
+import { Tabs, Badge } from 'antd-mobile';
 import InfoItem from '../../components/phone_infoItem/InfoItem';
 import axios from 'UTILS/axios';
 import defaultImg from '../../assets/phone/defaultImg.png';
@@ -225,6 +225,10 @@ class StudentsStyleP extends Component {
             this.getList();
         })
     }
+    getBadgeNum(n) {
+        if (n <= 0) return '';
+        if (n > 99) return '99+';
+    }
     render() {
         let { roleId, type, dataList, loading, isOver, page, idx } = this.state;
         const tabs = this.state.roleId == 102 ? [
@@ -233,7 +237,7 @@ class StudentsStyleP extends Component {
             { title: '已驳回', value: 2, page: 2 },
         ] : [
                 { title: '展示中', value: 'showing', page: 0 },
-                { title: '待审批', value: 0, page: 1 },
+                { title: <Badge text={'888+'}>待审批</Badge>, value: 0, page: 1, },
                 { title: '已同意', value: 1, page: 2 },
                 { title: '已驳回', value: 2, page: 3 },
             ];

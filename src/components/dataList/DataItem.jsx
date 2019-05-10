@@ -34,11 +34,11 @@ class DataItem extends Component {
                             isOpen
                                 ?
                                 <Fragment>
-                                    <span>收起</span><img src={collapseImg} className={styles['collapse']} />
+                                    <span>收起</span><img src={expandImg} className={styles['collapse']} />
                                 </Fragment>
                                 :
                                 <Fragment>
-                                    <span>展开</span><img src={expandImg} className={styles['expand']} />
+                                    <span>展开</span><img src={collapseImg} className={styles['expand']} />
                                 </Fragment>
                         }
                     </div>

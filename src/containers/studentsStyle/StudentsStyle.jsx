@@ -17,6 +17,16 @@ class StudentsStyle extends Component {
     }
 
     componentDidMount() {
+        //定时刷新
+        var _this = this;
+        window.addEventListener('hashchange', function () {
+            if(window.location.href.indexOf('studentsStyle') == -1){
+                clearInterval(_this.getListTimer);
+            }
+        });
+        this.getListTimer = setInterval(function(){
+            _this.getDataList();
+        },60000)
         this.getDataList()
     }
 
