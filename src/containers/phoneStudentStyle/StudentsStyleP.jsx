@@ -21,6 +21,7 @@ class StudentsStyleP extends Component {
             idx: 1,//请求第几波数据
             isOver: false,
             page: 0, //用来记录返回操作tab
+            badgeNum: 0, //待审批数量
         }
     }
     getType() {
@@ -56,6 +57,21 @@ class StudentsStyleP extends Component {
         } else {
             this.getInfo();
         }
+    }
+    //获取待审批数量
+    getBadgeNum() {
+        axios('post', '/api/show/noauditcount', {
+        }, 'form').then((json) => {
+            this.setState({
+                badgeNum: json.data
+            })
+        })
+    }
+    getShowBadgeNum(n) {
+        if (!n) return '';
+        if (n <= 0) return '';
+        if (n > 99) return '99+';
+        return n + '';
     }
     release() {
         // document.title = '学生风采'
@@ -120,9 +136,13 @@ class StudentsStyleP extends Component {
             )
         })
     }
+    //获取列表和未审批数量
     getList() {
         isOnLine();
-        this.setState({ loading: true })
+        this.setState({ loading: true });
+        if (this.state.roleId == 103) {
+            this.getBadgeNum();
+        }
         axios('get', '/api/show/lists', {
             is_teacher: this.state.roleId == 102 ? 0 : 1,
             audit_status: this.state.type,
@@ -225,19 +245,16 @@ class StudentsStyleP extends Component {
             this.getList();
         })
     }
-    getBadgeNum(n) {
-        if (n <= 0) return '';
-        if (n > 99) return '99+';
-    }
+
     render() {
-        let { roleId, type, dataList, loading, isOver, page, idx } = this.state;
+        let { roleId, type, dataList, loading, isOver, page, idx, badgeNum } = this.state;
         const tabs = this.state.roleId == 102 ? [
             { title: '待审批', value: 0, page: 0 },
             { title: '已同意', value: 1, page: 1 },
             { title: '已驳回', value: 2, page: 2 },
         ] : [
                 { title: '展示中', value: 'showing', page: 0 },
-                { title: <Badge text={'888+'}>待审批</Badge>, value: 0, page: 1, },
+                { title: <Badge text={this.getShowBadgeNum(badgeNum)}>待审批</Badge>, value: 0, page: 1, },
                 { title: '已同意', value: 1, page: 2 },
                 { title: '已驳回', value: 2, page: 3 },
             ];
