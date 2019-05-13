@@ -71,7 +71,7 @@ class Datalist extends Component {
         }
     }
     render() {
-        let { dataList , isOver } = this.state;
+        let { dataList, isOver } = this.state;
         return <Fragment>
             <ul
                 className={styles['list']}
@@ -80,7 +80,7 @@ class Datalist extends Component {
                 onScroll={() => { this.onTouchMove('container') }}>
                 {
                     dataList.map(
-                        (item, index) => <DataItem key={index} isOpen={false} item={item} />
+                        (item, index) => <DataItem key={index} isOpen={index == 0 ? true : false} item={item} />
                     )
                 }
                 {

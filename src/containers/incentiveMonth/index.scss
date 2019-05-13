@@ -63,7 +63,7 @@
             justify-content: space-between;
             margin-top: 0.4rem;
             ul{
-                flex: 1;
+                // flex: 1;
                 text-align: center;
                 li{
                     height: 0.52rem;
@@ -102,6 +102,7 @@
                         font-weight: 550;
                         color: #1fb5ab;;
                         vertical-align: middle;
+                        position: absolute;
                     }
                 }
             }

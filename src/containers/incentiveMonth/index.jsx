@@ -116,7 +116,7 @@ class IncentiveMonth extends Component{
                             {
                                 scoreRank.length !== 0 ?
                                 <Fragment>
-                                    <ul id='original'>
+                                    <ul id='original' style={scoreRank.length<=10?{position:'relative',left:'142px'}:{}}>
                                         { 
                                             scoreRank.slice(0,10).map((item, index)=>{
                                                 return this.listItem(item, index);
