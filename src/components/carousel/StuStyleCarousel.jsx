@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import styles from './StuStyleCarousel.scss';
 import { Carousel } from 'antd-mobile';
-import noImg from '../../assets/campusstyle/no-img.png';
+// import noImg from '../../assets/campusstyle/no-img.png';
+import noImg2 from '../../assets/smbj.png';
+
 /**
  * styleType: 选择轮播图的样式 1张展示content1  2张展示content2  content4   content6  type:String
  */
@@ -18,35 +20,35 @@ class StuStyleCarousel extends Component {
   }
   specialCss(styleType, idx) {
     if (styleType == 'content4') {
-      if(idx % 2 == 0){
+      if (idx % 2 == 0) {
         return {
-          marginLeft:'0.28rem'
+          marginLeft: '0.28rem'
         }
-      }else {
+      } else {
         return {
-          marginLeft:'0.2rem'
-        }
-      }
-    }
-    if(styleType == 'contentM4'){
-      if(idx % 2 == 0){
-        return {
-          marginLeft:'0.19rem'
-        }
-      }else {
-        return {
-          marginLeft:'0.20rem'
+          marginLeft: '0.2rem'
         }
       }
     }
-    if(styleType == 'contentM6'){
-      if(idx % 3 == 0){
+    if (styleType == 'contentM4') {
+      if (idx % 2 == 0) {
         return {
-          marginLeft:'0.20rem'
+          marginLeft: '0.19rem'
         }
-      }else{
+      } else {
         return {
-          marginLeft:'0.22rem'
+          marginLeft: '0.20rem'
+        }
+      }
+    }
+    if (styleType == 'contentM6') {
+      if (idx % 3 == 0) {
+        return {
+          marginLeft: '0.20rem'
+        }
+      } else {
+        return {
+          marginLeft: '0.22rem'
         }
       }
     }
@@ -55,8 +57,8 @@ class StuStyleCarousel extends Component {
   render() {
 
     return <Fragment>
-      <div className={styles[this.props.styleType]} style={this.specialCss(this.props.styleType,this.props.idx)} >
-      {/* <div
+      <div className={styles[this.props.styleType]} style={this.specialCss(this.props.styleType, this.props.idx)} >
+        {/* <div
         className={styles['content1']}
         style={this.specialCss('content1',this.props.idx)}> */}
 
@@ -64,18 +66,21 @@ class StuStyleCarousel extends Component {
           this.props.images.length > 0
             ?
             <Carousel
+              dots={this.props.images.length > 1 ? true : false}
               autoplay={true}
               infinite
               selectedIndex={0}
               autoplayInterval={3000}
               dotStyle={{
-                backgroundColor: 'white'
+                backgroundColor: 'rgba(255,255,255,0.8)',
+                marginBottom: '8px'
               }}
               dotActiveStyle={{
                 width: '12px',
-                height: '6px',
+                // height: '6px',
                 borderRadius: '3px',
-                backgroundColor: 'white'
+                backgroundColor: 'white',
+                marginBottom: '8px'
               }}
             >
               {
@@ -89,8 +94,8 @@ class StuStyleCarousel extends Component {
             </Carousel>
             :
             <div className={styles['no-img-wrap']}>
-              <img className={styles['no-img']} alt="example" src={noImg} />
-              <p className={styles['no-img-word']}>暂未上传图片</p>
+              <img className={styles['no-img']} alt="example" src={noImg2} />
+              {/* <p className={styles['no-img-word']}>暂未上传图片</p> */}
             </div>
         }
 

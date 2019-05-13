@@ -65,8 +65,18 @@ class Rank extends Component{
         axios('get', '/api/index/congratulation').then((json)=>{
             let arrCongratulations = [];
             for (let i in json.data) {
-                arrCongratulations.push(json.data[i]); 
+                // arrCongratulations.push(json.data[i]); 
+                // console.log(i)
+                if(json.data[i].type==3){
+                    arrCongratulations.push(json.data[i].content)
+                }
             }
+
+            // json.data.forEach((item)=>{
+            //     if(item.type==1){
+            //         arrCongratulations.push(item.content)
+            //     }
+            // })
             this.setState({ congratulations: arrCongratulations });
         })
     }

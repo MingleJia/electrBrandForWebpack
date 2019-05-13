@@ -29,8 +29,8 @@
         // height: 0.52rem;
         line-height: 0.52rem;
         background-color: white;
-        box-shadow: 0px 0px 20px 0px rgba(45, 196, 189, 0.5);
-        border: solid 2px #1fb5ab;
+        // box-shadow: 0px 0px 20px 0px rgba(45, 196, 189, 0.5);
+        border: solid 2px #79d3cd;
         border-radius: 0.26rem;
         display: block;
         float: right;
@@ -89,10 +89,10 @@
                             width: 0.4rem;
                             height: 0.4rem;
                             line-height: 0.4rem;
-                            background-color: #d7e8ff;
+                            background-color: #f8f8f8;
                             font-size: 0.24rem;
-                            // color: #4663c2;
-                            color: #1fb5ab;
+                            color: #999999;
+                            // color: #1fb5ab;
                             text-align: center;
                             border-radius: 50%;
                             vertical-align: middle;
@@ -136,11 +136,11 @@
         }
     }
     .congratulations{
-        font-size: 0.6rem;
-        font-weight: 550;
+        font-size: 0.42rem;
+        // font-weight: 550;
         color: #1fb5ab;
         text-align: center;
-        margin-top: 0.44rem;
+        margin-top: 0.40rem;
         width: 100%;
         position: absolute;
         bottom: 0.56rem;
