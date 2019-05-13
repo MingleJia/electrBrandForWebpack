@@ -112,7 +112,9 @@
             }
         }
         .detailHidden{
-            display: none;
+            // display: none;
+            height: 0px;
+            overflow: hidden;
         }
 }
 .showImg{

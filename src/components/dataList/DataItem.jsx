@@ -61,6 +61,7 @@ class DataItem extends Component {
                         this.props.item.images.map(
                             (item, index) =>
                                 <div
+                                    // style={{ backgroundImage: `url(${item})`  }}
                                     style={{ width: `${(index == this.props.item.images.length - 1 && index % 2 == 0) ? '9.1rem' : '9.1rem'}` }}
                                     key={index}
                                     className={styles['imgWarp']} >
