@@ -36,6 +36,10 @@ class InfoItem extends Component {
     }
 
     componentDidMount() {
+        // string=string.replace(/\r\n/g,"<br>")  
+        // string=string.replace(/\n/g,"<br>");
+        // console.log('我的字符串1\n\n\n\n我的字符串2\n')
+        // console.log(this.props.desc)
     }
     //设置操作节点
     getOperationMode() {
@@ -198,7 +202,7 @@ class InfoItem extends Component {
         }, 'form').then((json) => {
             if (json.code != 1) {
                 showToast(json.msg);
-            } 
+            }
             this.props.upload && this.props.upload()
         })
     }
@@ -306,7 +310,11 @@ class InfoItem extends Component {
                     {this.props.desc && <div className={styles['textWrap']}>
                         <div className={styles['title']}>描述:</div>
                         <div className={styles['text']}>
-                            <p>{this.props.desc || ''}</p>
+                            {/* <p>{this.props.desc ? this.props.desc.replace(/\r\n/g,"<br>").replace(/\n/g,"</br>") : ''}</p> */}
+                            {
+                                this.props.desc ? this.props.desc.split('\n').map((item, index) => <p key={index}>{item}</p>) : null
+                            }
+                            {/* <p>{this.props.desc ? this.props.desc.replace(/\r\n/g,"<br>").replace(/\n/g,"</br>") : ''}</p> */}
                         </div>
                     </div>}
                     {

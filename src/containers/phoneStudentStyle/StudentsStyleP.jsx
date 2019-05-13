@@ -117,11 +117,28 @@ class StudentsStyleP extends Component {
                     title: _this.state.roleId == 102 ? '发布' : '发布' //按钮标题
                 }
             ]]);
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'customBack', ['custom']);
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'customClose', ['custom']);
+
+
+
         }, false);
+        //点击返回 (此方法必须customClose执行后)
         window.clickMenu = (info) => {
             if (info.id == 1) {
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + _this.state.roleId + '&ticket=' + _this.state.ticket + '&page=' + _this.state.page;
             }
+        }
+        // 点击关闭(此方法必须customBack执行后)
+        window.clickBack = () => {
+            if (window.location.href.indexOf('edit') == -1) {
+                window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'close', [null]);
+            } else {
+                window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'back', [null]);
+            }
+        }
+        window.clickClose = () => {
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'close', [null]);
         }
     }
     getInfo() {

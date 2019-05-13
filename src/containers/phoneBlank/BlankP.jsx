@@ -18,7 +18,7 @@ class InfoItem extends Component {
             <div className={styles['blank']}>
                 <div className={styles['defaultData']}>
                     <img src={defaultImg} alt=""/>
-                    <p>出现错误啦!</p>
+                    <p>哎呀，出错了!</p>
                 </div>
             </div>
         </Fragment >
