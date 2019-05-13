@@ -18,10 +18,23 @@ function getHerfInfo(str) {
 }
 
 function isOnLine() {
-    if (!navigator.onLine) {
-        document.addEventListener('deviceready', function () {
-            window.cordova.exec(function () { }, function () { }, "LeTalkCorePlugin", "showToast", [{ "content": "网络断开" }])
-        })
+    function onLine(callback) {
+        var img = new Image();
+        img.src = 'https://www.baidu.com/favicon.ico?_t=' + Date.now();
+        img.onload = function () {
+            if (callback) callback(true)
+        };
+        img.onerror = function () {
+            if (callback) callback(false)
+        };
     }
+    onLine(function (flag) {
+        if (flag) {
+            // console.log('网络畅通')
+        } else {
+            window.cordova.exec(function () { }, function () { }, "LeTalkCorePlugin", "showToast", [{ "content": "网络断开" }])
+            // console.log('网络故障')
+        }
+    })
 }
 export { showToast, getHerfInfo, isOnLine }

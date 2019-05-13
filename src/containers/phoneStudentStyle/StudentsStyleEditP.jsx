@@ -5,6 +5,7 @@ import UploadImgs from 'COMPONENTS/uploadImgs';
 import axios from 'UTILS/axios';
 import moment from 'moment';
 import { getHerfInfo, showToast, isOnLine } from '../../utils/method';
+var height = document.body.clientHeight;
 class StudentsStyleP extends Component {
     constructor(props) {
         super(props);
@@ -277,7 +278,7 @@ class StudentsStyleP extends Component {
         // console.log(comment)
         return <Fragment>
 
-            <div className={styles['box']} ref={(box) => { this.box = box }}>
+            <div className={styles['box']} ref={(box) => { this.box = box }} style={{ minHeight: height }}>
                 <div className={styles['top']}>
                     {/* 家长 */}
                     {
