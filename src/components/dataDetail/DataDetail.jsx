@@ -81,6 +81,7 @@ class DataDetail extends Component {
                         <img className={styles['backimg']} src={backImg}></img>
                     </div> */}
                     <img src={backImg} className={styles['backimg']} alt="" onClick={() => this.backHome()} />
+                    <span className={styles['title']}>学生风采详情</span>
                     {
                         (canDown || canUp) ? <div className={styles['btnWrap']}>
                             {
@@ -99,7 +100,7 @@ class DataDetail extends Component {
                         <span className={styles['time']}>发布时间：{moment(show.audit_time * 1000).format('YYYY-MM-DD  HH:mm')}</span>
                     </div>
                     <div className={styles['detail']}>
-                        {show.desc ? <p className={styles['text']}>{moment(show.show_time * 1000 || 0).format("M月D日 ") + ','}{show.desc}</p> : <p>暂无内容</p>}
+                        {show.desc ? <p className={styles['text']}>{moment(show.show_time * 1000 || 0).format("M月D日 ") + '，'}{show.desc}</p> : <p>暂无内容</p>}
 
                         {
                             //https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2161359683,1444613409&fm=26&gp=0.jpg

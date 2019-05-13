@@ -77,7 +77,7 @@ export default class TableMain extends React.Component {
                         subName.map((ele,nameKey) =>{
                            return  <span className={style['subName-words']} key={nameKey}>
                                 {ele}
-                                <span className={style['moreClass']}>({classType[nameKey] === '选修班' ? classType[nameKey] : ''})</span>
+                                <span className={style['moreClass']}>{classType[nameKey] === '选修班' ? '(' + classType[nameKey] + ')' : ''}</span>
                             </span>
                         }
                         )

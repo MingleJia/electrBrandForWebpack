@@ -46,7 +46,7 @@ class ClassTable extends Component {
                     <span className={styles['lessonname']}>
                         {subjectInfo[lessonId].subName}
                     </span>
-                    <span className={` ${subjectInfo[lessonId].classType === 2 ? styles['elective'] : styles['electivehidden']} `}>选修班</span>
+                    <div className={` ${subjectInfo[lessonId].classType === 2 ? styles['elective'] : styles['electivehidden']} `}>选修班</div>
                 </div>
                 <div className={` ${styles['time']} ${subjectInfo.length > 1 ? styles['timeSm'] : ''}`}>
                     {subjectInfo[lessonId].classTime}

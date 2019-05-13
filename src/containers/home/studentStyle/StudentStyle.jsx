@@ -25,7 +25,7 @@ class StudentStyle extends Component {
         });
         this.getListTimer = setInterval(function(){
             _this.getDataList();
-        },60000)
+        },600000)
         this.getDataList();
     }
     getDataList() {

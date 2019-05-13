@@ -112,7 +112,7 @@ class CampusMore extends Component {
         )
         const campusMore = (
             <Fragment>
-                <BackPrevHeader />
+                <BackPrevHeader title={'校园风采列表'} />
                     { loading ? <Loading/> : campusList.length === 0 ? defaultPage : campusContent}
             </Fragment>
         )

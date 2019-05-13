@@ -23,7 +23,7 @@ class Notice extends Component {
             isOver: false,//下拉是否已经到最底部
             lock: true,//正在加载中,未来可以用来设置loading
             loading: true,//正在加载中,未来可以用来设置loading
-            firstTime : true, //是否是第一次进入
+            firstTime: true, //是否是第一次进入
         }
     }
 
@@ -53,8 +53,8 @@ class Notice extends Component {
             //默认数据展示,根据首页点击的通知展示，否则默认展示第一条
             let { arrExpan } = this.state;
             if (idx == 1) {
-                arrExpan.push(json.data.dataList[this.props.root.noticeNum].id);
-                this.getNoticeContent(json.data.dataList[this.props.root.noticeNum].id);
+                json.data.dataList.length > 0 && arrExpan.push(json.data.dataList[this.props.root.noticeNum].id);
+                json.data.dataList.length > 0 && this.getNoticeContent(json.data.dataList[this.props.root.noticeNum].id);
             }
             // let noticeList=json.data.dataList;
             this.setState({
@@ -66,12 +66,12 @@ class Notice extends Component {
                 lock: true,
                 loading: true
             })
-            
+
         }).then(() => {
             this.setState({
                 loading: false
             })
-            
+
         })
     }
     //展开收起
@@ -80,7 +80,7 @@ class Notice extends Component {
         arrExpan.includes(value) ? arrExpan.splice(arrExpan.indexOf(value), 1) : arrExpan.push(value) && this.getNoticeContent(value);
         this.setState({
             arrExpan: arrExpan,
-            firstTime:false,
+            firstTime: false,
         })
     }
 
@@ -94,11 +94,11 @@ class Notice extends Component {
             this.setState({
                 contents
             })
-        }).then(()=>{
+        }).then(() => {
             let offsetList = document.getElementById('contentList');
             let ulList = document.getElementById('wrapList');
-            if(ulList.scrollHeight > 988 && this.state.firstTime ){
-                offsetList.scrollTop = 100*this.props.root.noticeNum;
+            if (ulList.scrollHeight > 988 && this.state.firstTime) {
+                offsetList.scrollTop = 100 * this.props.root.noticeNum;
             }
         })
     }
@@ -106,8 +106,8 @@ class Notice extends Component {
     //渲染展开通知内容
     renderContent = (id) => {
         return (
-            <div className={`${this.state.arrExpan.includes(id) ? styles['detail'] : styles['detailHidden']}`} dangerouslySetInnerHTML = {{ __html: `${this.state.contents[id]}` }}>
-            
+            <div className={`${this.state.arrExpan.includes(id) ? styles['detail'] : styles['detailHidden']}`} dangerouslySetInnerHTML={{ __html: `${this.state.contents[id]}` }}>
+
             </div>
         )
     }
@@ -132,7 +132,7 @@ class Notice extends Component {
         let scrollHeight = this.container.scrollHeight;
         let scrollTop = this.container.scrollTop;
         //必须没有数据且拉到底部,且整体高度大于898,且消息长度大于8条
-        if (this.state.isOver && scrollTop + offsetHeight > scrollHeight - 90 && scrollHeight > 898 &&this.state.noticeList.length > 8 ) {
+        if (this.state.isOver && scrollTop + offsetHeight > scrollHeight - 90 && scrollHeight > 898 && this.state.noticeList.length > 8) {
             this.backTimer = setInterval(() => {
                 offsetHeight = this.container.offsetHeight;
                 scrollHeight = this.container.scrollHeight;
@@ -157,12 +157,12 @@ class Notice extends Component {
                 onTouchEnd={() => { this.goToBottom() }}
                 onScroll={(e) => { this.onTouchMove(e) }}
                 id="contentList"
-                >
+            >
                 <ul className={styles['list']} id="wrapList">
                     {
                         noticeList.length !== 0 && noticeList.map((item, index) => {
                             return (
-                                <li className={styles['content']} key={index}  onClick={() => this.checkStatus(item.id)}>
+                                <li className={styles['content']} key={index} onClick={() => this.checkStatus(item.id)}>
                                     <div className={styles['title']}>
                                         <div className={styles['clickexpand']}>
                                             {

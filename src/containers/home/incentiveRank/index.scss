@@ -45,9 +45,9 @@
             vertical-align: middle;
             margin-left: 0.12rem;
         }
-        &:hover{
-            background-color: #3271d8;
-        }
+        // &:hover{
+        //     background-color: #3271d8;
+        // }
     }
     .container{
         display: flex;
@@ -91,7 +91,8 @@
                             line-height: 0.4rem;
                             background-color: #d7e8ff;
                             font-size: 0.24rem;
-                            color: #4663c2;
+                            // color: #4663c2;
+                            color: #1fb5ab;
                             text-align: center;
                             border-radius: 50%;
                             vertical-align: middle;
@@ -111,7 +112,7 @@
                         .number{
                             font-size: 0.32rem;
                             font-weight: 550;
-                            color: #1377ff;
+                            color: #1fb5ab;
                             vertical-align: middle;
                         }
                     }

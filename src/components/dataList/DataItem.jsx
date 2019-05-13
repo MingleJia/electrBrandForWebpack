@@ -50,7 +50,7 @@ class DataItem extends Component {
                     className={`${isOpen ? styles['detail'] : styles['detailHidden']}`}>
                     {this.props.item.desc ? <p className={styles['text']}>
                         {
-                            moment(this.props.item.show_time * 1000 || 0).format("M月D日 ") + ','
+                            moment(this.props.item.show_time * 1000 || 0).format("M月D日 ") + '，'
                         }
                         {
                             this.props.item.desc

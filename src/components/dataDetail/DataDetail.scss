@@ -11,6 +11,7 @@
         position: fixed;
         display: flex;
         z-index: 1;
+        text-align: center;
         .back{          
             width: 1.12rem;
             height: 0.52rem;
@@ -79,6 +80,15 @@
                 background-color: #1ca49b;
                 opacity: 0.4;
             }
+        }
+        .title{
+            position: absolute;
+            font-size: 0.42rem;
+            color:white;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+
         }
     }
     .content{
@@ -182,6 +192,7 @@
     background: rgba(0,0,0,0.6);
     top: 0px;
     z-index: 999;
+    text-align: center;
     img{
         // vertical-align: middle;
         position: absolute;
