@@ -11,7 +11,7 @@ class StudentsStyleP extends Component {
         super(props);
         this.state = {
             resourceData: [],//原始数据
-            //家长
+            // 1家长
             parents_province: [],//可供选择器使用数据
             parents_student: [],//选的数据 信息都在这里
             //老师
