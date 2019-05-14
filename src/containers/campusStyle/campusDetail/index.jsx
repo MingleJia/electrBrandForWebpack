@@ -100,7 +100,11 @@ class CampusDetail extends Component {
                         <span className={styles['time']}>{moment(compusContent.createtime * 1000).format('YYYY-MM-DD HH:mm')}</span>
                     </div>
                     <div className={styles['detail']}>
-                        <p className={styles['text']}>{compusContent.content}</p>
+                        {/* <p className={styles['text']}>{compusContent.content}</p> */}
+                        {
+                            compusContent.content ? compusContent.content.split('\n').map((item,index) => <p key={index} className={styles['text']}>{item}</p>) : null
+                        }
+
                         {
                             compusContent.images
                                 ?
