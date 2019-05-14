@@ -14,12 +14,15 @@
     z-index: 9;
     
     .loadingIcon{
-        position: absolute;
-        left: 50%;
-        top:50%;
-        transform: translate(-50%,-50%);
+        // position: absolute;
+        // left: 50%;
+        // top:50%;
+        // transform: translate(-50%,-50%);
         width: 20vw;
         height: 20vw; 
+        margin: 40vh auto 0;
+        display: block;
+    
     }
     // img{
     //     position: absolute;
