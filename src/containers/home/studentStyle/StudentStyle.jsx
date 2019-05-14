@@ -5,6 +5,7 @@ import styles from './StudentStyle.scss';
 import { moreImg } from 'ASSETS/home';
 import axios from 'UTILS/axios';
 import Loading from 'COMPONENTS/loading';
+import moment from 'moment';
 // import NoDataPage from '../../../components/noDataPage/NoDataPage';
 class StudentStyle extends Component {
     constructor(props) {
@@ -70,6 +71,7 @@ class StudentStyle extends Component {
                             dataList.map((item, index) =>
                                 <Link to={`/studentsStyle/deatil?id=${item.id}`} key={index}>
                                     <MyCarousel
+                                        showTime={moment(item.show_time * 1000 || 0).format("M月D日 ")+'，'}
                                         idx={index}
                                         desc={item.desc}
                                         title={item.title}

@@ -101,7 +101,7 @@ class StuStyleCarousel extends Component {
 
         <div className={styles['textWrap']}>
           <p className={styles['textTitle']}>{this.props.title || ''}</p>
-          <span className={styles['text']}>{this.props.desc || ''}</span>
+          <span className={styles['text']}>{this.props.desc ? this.props.showTime + this.props.desc : ''}</span>
         </div>
       </div>
     </Fragment>;
