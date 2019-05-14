@@ -358,7 +358,7 @@ class StudentsStyleP extends Component {
                 <div className={styles['textAreaWrap']}>
                     <TextareaItem
                         placeholder="请输入描述(选填)"
-                        autoHeight
+                        // autoHeight
                         ref={el => this.customFocusInst = el}
                         rows={6}
                         count={200}
