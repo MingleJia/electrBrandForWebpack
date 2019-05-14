@@ -175,6 +175,7 @@ class StudentsStyleP extends Component {
             if (parents_student.length == 0) return;
             if (!title) return;
             if (!show_time) return;
+            if (images.length == 0) return;
             show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
 
             let submintData = {
@@ -211,6 +212,7 @@ class StudentsStyleP extends Component {
             if (!title) return;
             if (!show_time) return;
             if (!comment) return;
+            if (images.length == 0) return;
             let submintData = {
                 title,
                 desc,
@@ -259,17 +261,19 @@ class StudentsStyleP extends Component {
     //检测能否提交
     checkSubmit() {
         const role_id = getHerfInfo('role_id');
-        let { show_time, title, parents_student, teacher_student, comment } = this.state;
+        let { show_time, title, parents_student, teacher_student, comment, images } = this.state;
         if (role_id == 102) {
             if (parents_student.length == 0) return false;
             if (!title) return false;
             if (!show_time) return false;
+            if (images.length == 0) return false;
         }
         if (role_id == 103) {
             if (teacher_student.length == 0) return false;
             if (!title) return false;
             if (!show_time) return false;
             if (!comment) return false;
+            if (images.length == 0) return false;
         }
         return true;
     }

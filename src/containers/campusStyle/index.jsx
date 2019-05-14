@@ -127,10 +127,11 @@ class CampusStyle extends Component{
                     {
                         campusList.length
                         ?
-                        <div className={styles['btnMore']} onClick={ ()=>this.campusMore() }>
-                            更多<span></span>
-                            {/* <img className={styles['more']} src={ moreImg } /> */}
-                        </div>
+                        // <div className={styles['btnMore']} onClick={ ()=>this.campusMore() }>
+                        //     更多<span></span>
+                        //     {/* <img className={styles['more']} src={ moreImg } /> */}
+                        // </div>
+                        null
                         :
                         <div></div>
                     }
