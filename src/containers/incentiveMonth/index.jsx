@@ -64,7 +64,7 @@ class IncentiveMonth extends Component{
         const { flowerRank, scoreRank,congratulations,loading } = this.state;
         const encouragement = (
             <div className={styles['encouragement']}>
-                <img src={ goodImg }></img>
+                {/* <img src={ goodImg }></img> */}
                 <span>
                     { flowerRank.length!==0 || scoreRank.length!==0 && congratulations.length !== 0 ? congratulations[Math.floor(Math.random() * congratulations.length)] : '' }
                 </span>
