@@ -11,7 +11,6 @@ import { Icon } from 'antd';
 // var lock = true;
 class StudentsStyleP extends Component {
     constructor(props) {
-        document.title = '学生风采';
         super(props);
         this.state = {
             ticket: getHerfInfo('ticket'),//客户端给我用来获取信息
@@ -248,6 +247,7 @@ class StudentsStyleP extends Component {
         }
     }
     onChange = (tab) => {
+        document.title = '学生风采';
         document.addEventListener('deviceready', function () {
             window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', ['学生风采']);
         })
