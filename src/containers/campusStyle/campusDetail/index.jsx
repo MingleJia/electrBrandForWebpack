@@ -85,11 +85,11 @@ class CampusDetail extends Component {
                         <div className={styles['btnWrap']}>
                             {
                                 // this.state.idx == 0 ? '' :
-                                <span className={styles[idx == 0 ? 'prevBtnNo' : 'prevBtn']} onClick={() => idx != 0 && this.prevBtn()}>上一个</span>
+                                <span style={idx == campusList.length - 1?{borderRight: 'solid 0.02rem white'}:{}} className={styles[idx == 0 ? 'prevBtnNo' : 'prevBtn']} onClick={() => idx != 0 && this.prevBtn()}>上一个</span>
                             }
                             {
                                 // this.state.idx == campusList.length - 1 ? '' : 
-                                <span className={styles[idx == campusList.length - 1 ? 'nextBtnNo' : 'nextBtn']} onClick={() => idx != campusList.length - 1 && this.nextBtn()}>下一个</span>
+                                <span style={idx == 0?{borderLeft: 'solid 0.02rem white'}:{}} className={styles[idx == campusList.length - 1 ? 'nextBtnNo' : 'nextBtn']} onClick={() => idx != campusList.length - 1 && this.nextBtn()}>下一个</span>
                             }
                         </div>
                     }

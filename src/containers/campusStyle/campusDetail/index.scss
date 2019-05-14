@@ -47,20 +47,24 @@
             .prevBtn{
                 border-radius: 0.26rem  0 0 0.26rem;
                 background-color: #1a9890;
+                // border-right: 0px;
             }
             .nextBtn{
                 border-radius: 0 0.26rem  0.26rem 0;
                 background-color: #1a9890;
+                border-left: 0px;
             }
             .prevBtnNo{
                 border-radius: 0.26rem  0 0 0.26rem;
                 background-color: #1ca49b;
                 opacity: 0.4;
+                border-right: 0px;
             }
             .nextBtnNo{
                 border-radius: 0 0.26rem  0.26rem 0;
                 background-color: #1ca49b;
                 opacity: 0.4;
+                border-left: 0px;
             }
             // .btn{
             //     right: 0;

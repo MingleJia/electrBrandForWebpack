@@ -85,11 +85,11 @@ class DataDetail extends Component {
                     {
                         (canDown || canUp) ? <div className={styles['btnWrap']}>
                             {
-                                <span className={styles[!canUp ? 'prevBtnNo' : 'prevBtn']} onClick={() => canUp && this.getData('up')}>上一个</span>
+                                <span style={!canDown?{ borderRight: 'solid 0.02rem white' }:{}} className={styles[!canUp ? 'prevBtnNo' : 'prevBtn']} onClick={() => canUp && this.getData('up')}>上一个</span>
                             }
                             {
 
-                                <span className={styles[!canDown ? 'nextBtnNo' : 'nextBtn']} onClick={() => canDown && this.getData('down')}>下一个</span>
+                                <span style={!canUp?{ borderLeft: 'solid 0.02rem white' }:{}} className={styles[!canDown ? 'nextBtnNo' : 'nextBtn']} onClick={() => canDown && this.getData('down')}>下一个</span>
                             }
                         </div> : null
                     }
