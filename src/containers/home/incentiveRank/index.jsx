@@ -67,7 +67,7 @@ class Rank extends Component{
             for (let i in json.data) {
                 // arrCongratulations.push(json.data[i]); 
                 // console.log(i)
-                if(json.data[i].type==3){
+                if(json.data[i].type==1){
                     arrCongratulations.push(json.data[i].content)
                 }
             }

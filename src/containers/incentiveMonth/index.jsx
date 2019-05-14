@@ -36,7 +36,7 @@ class IncentiveMonth extends Component{
         axios('get', '/api/index/congratulation').then((json)=>{
             let arrCongratulations = [];
             for (let i in json.data) {
-                if(json.data[i].type == 3){
+                if(json.data[i].type == 2){
                     arrCongratulations.push(json.data[i].content); 
                 }
             }
