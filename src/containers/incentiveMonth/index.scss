@@ -3,8 +3,8 @@
     height: 10.8rem;
     background: url(../../assets/home/rank_Bg.png) no-repeat 0 100% white;
 .title{
-    height: 0.92rem;
-    line-height: 0.92rem;
+    height: 0.88rem;
+    line-height: 0.88rem;
 	background-color: #1fb5ab;
 	box-shadow: 0rem 0.03rem 0.07rem 0rem 
         rgba(0, 0, 0, 0.08);
@@ -12,12 +12,22 @@
     color: #ffffff;
     text-align: center;
     .backimg{
-        width: 0.19rem;
-        height: 0.34rem;
-        left: 0.4rem;
-        top: 0.27rem;
+        // width: 0.19rem;
+        // height: 0.34rem;
         transform: rotateY(180deg);
+        // position: absolute;
+        // left: 0.4rem;
+        // top: 0.27rem;
+        width: 92px;
+        height: 88px;
         position: absolute;
+        display: block;
+        background: url(../../assets/header/back.png) no-repeat;
+        background-size: 19px 34px;
+        background-position: 40px 27px;
+    }
+    .backimg:hover{
+        background-color: rgba(0,0,0,0.2);
     }
     span{
         margin-left: 0.2rem;

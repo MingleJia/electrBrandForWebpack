@@ -9,15 +9,24 @@
         position: fixed;
         display: flex;
         z-index: 1;
-            .backimg{
-                width: 0.19rem;
-                height: 0.34rem;
-                transform: rotateY(180deg);
-                display: block;
-                position: absolute;
-                left: 0.4rem;
-                top: 0.27rem;
-            }
+        .backimg{
+            // width: 0.19rem;
+            // height: 0.34rem;
+            transform: rotateY(180deg);
+            // position: absolute;
+            // left: 0.4rem;
+            // top: 0.27rem;
+            width: 92px;
+            height: 88px;
+            position: absolute;
+            display: block;
+            background: url(../../../assets/header/back.png) no-repeat;
+            background-size: 19px 34px;
+            background-position: 40px 27px;
+        }
+        .backimg:hover{
+            background-color: rgba(0,0,0,0.2);
+        }
             // span{
             //     // margin-left: 0.2rem;
             // }

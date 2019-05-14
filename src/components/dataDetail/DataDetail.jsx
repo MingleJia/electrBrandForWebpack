@@ -4,7 +4,7 @@ import React, { Component, Fragment } from 'react';
 // import Tab from 'COMPONENTS/tab';
 import moment from 'moment';
 import styles from './DataDetail.scss';
-import { backImg } from 'ASSETS/header';
+// import { backImg } from 'ASSETS/header';
 import axios from 'UTILS/axios';
 class DataDetail extends Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class DataDetail extends Component {
             show_id: this.getId(),
             show: {},
             canDown: 0,
-            canUp: 0
+            canUp: 0,
         }
     }
     //返回首页
@@ -80,16 +80,17 @@ class DataDetail extends Component {
                     {/* <div className={styles['back']} onClick={() => this.backHome()}>
                         <img className={styles['backimg']} src={backImg}></img>
                     </div> */}
-                    <img src={backImg} className={styles['backimg']} alt="" onClick={() => this.backHome()} />
+                    {/* <img src={backImg} className={styles['backimg']} onClick={() => this.backHome()} alt=""/> */}
+                    <div className={styles['backimg']} onClick={() => this.backHome()}></div>
                     <span className={styles['title']}>学生风采详情</span>
                     {
                         (canDown || canUp) ? <div className={styles['btnWrap']}>
                             {
-                                <span style={!canDown?{ borderRight: 'solid 0.02rem white' }:{}} className={styles[!canUp ? 'prevBtnNo' : 'prevBtn']} onClick={() => canUp && this.getData('up')}>上一个</span>
+                                <span style={!canDown ? { borderRight: 'solid 0.02rem white' } : {}} className={styles[!canUp ? 'prevBtnNo' : 'prevBtn']} onClick={() => canUp && this.getData('up')}>上一个</span>
                             }
                             {
 
-                                <span style={!canUp?{ borderLeft: 'solid 0.02rem white' }:{}} className={styles[!canDown ? 'nextBtnNo' : 'nextBtn']} onClick={() => canDown && this.getData('down')}>下一个</span>
+                                <span style={!canUp ? { borderLeft: 'solid 0.02rem white' } : {}} className={styles[!canDown ? 'nextBtnNo' : 'nextBtn']} onClick={() => canDown && this.getData('down')}>下一个</span>
                             }
                         </div> : null
                     }

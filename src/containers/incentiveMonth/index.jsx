@@ -154,7 +154,8 @@ class IncentiveMonth extends Component{
                 <div className={styles['box']}>
                     <div className={styles['title']}>
                         {/* <div className={styles['back']} onClick={() => this.backHome()}> */}
-                            <img className={styles['backimg']} src={ backImg } onClick={() => this.backHome()}></img>
+                            {/* <img className={styles['backimg']} src={ backImg } onClick={() => this.backHome()}></img> */}
+                            <div className={styles['backimg']} onClick={() => this.backHome()}></div>
                         {/* </div> */}
                         <span>
                             本月激励排行榜

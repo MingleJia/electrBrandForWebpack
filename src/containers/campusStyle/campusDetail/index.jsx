@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { message } from 'antd';
 import styles from './index.scss';
-import { backImg } from 'ASSETS/header';
+// import { backImg } from 'ASSETS/header';
 import { connect } from 'react-redux';
 import { setCampusStyle, setPreviewImg } from 'MODULES/root/actions';
 import PropTypes from 'prop-types';
@@ -76,7 +76,8 @@ class CampusDetail extends Component {
             <div className={styles['container']}>
                 <PreviewImg />
                 <div className={styles['tab']}>
-                    <img onClick={() => { this.backHome() }} className={styles['backimg']} src={backImg}></img>
+                    {/* <img onClick={() => { this.backHome() }} className={styles['backimg']} src={backImg}></img> */}
+                    <div className={styles['backimg']} onClick={() => this.backHome()}></div>
                     {
                         // campusList.length !== 0 && campusList.length < 2
                         //     ?
