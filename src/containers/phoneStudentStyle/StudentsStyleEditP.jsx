@@ -27,7 +27,8 @@ class StudentsStyleP extends Component {
             images: [],
             class_name: '',
             student_name: '',
-            isChange: 0
+            isChange: 0,
+            canSubmit: true,
         }
     }
     componentDidMount() {
@@ -274,7 +275,7 @@ class StudentsStyleP extends Component {
     }
 
     render() {
-        let { show_time, title, desc, comment, show_days, parents_province, teacher_province, class_name } = this.state;
+        let { show_time, title, desc, comment, show_days, parents_province, teacher_province, class_name, canSubmit } = this.state;
         const role_id = getHerfInfo('role_id');
         // console.log(getHerfInfo('role_id'))
         // console.log(comment)
@@ -415,9 +416,18 @@ class StudentsStyleP extends Component {
                     <div
                         className={styles['btn']}
                         // style={{ backgroundColor: `${this.checkSubmit() ? '#48bb7d' : '#dbdbdb'}` }}
-                        style={this.checkSubmit() ? { backgroundColor: '#48bb7d', color: 'white' } : { backgroundColor: '#dbdbdb', color: '#bbb' }}
+                        style={(this.checkSubmit() && canSubmit) ? { backgroundColor: '#48bb7d', color: 'white' } : { backgroundColor: '#dbdbdb', color: '#bbb' }}
                         onClick={() => {
-                            this.submitData();
+                            if (canSubmit) {
+                                this.setState({
+                                    canSubmit: false
+                                }, () => {
+                                    this.submitData();
+                                })
+                                setTimeout(() => {
+                                    this.setState({ canSubmit: true })
+                                }, 3000)
+                            }
                         }}>
                         提交
                     </div>

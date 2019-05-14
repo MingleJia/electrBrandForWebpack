@@ -48,7 +48,8 @@ function reLogin(error){
 function toBlank(error){
     // 如果不是接口返回的错误就去空白页
     if(window.location.href.indexOf('phone')!=-1){
-        if(error.message.indexOf('timeout') !== -1||error.response.status == 500 || error.response.status == 404||error.response.status == 501 || error.response.status == 502 ||error.response.status == 503 ){
+        //error.message.indexOf('timeout') !== -1||
+        if(error.response.status == 500 || error.response.status == 404||error.response.status == 501 || error.response.status == 502 || error.response.status == 503 ){
             window.location.href = window.location.href.split('phone')[0]+'phone/blank';
             window.cordova.exec(function() {}, function() {}, "LeTalkCorePlugin", "showToast", [{"content":"出错啦"}])
         }
