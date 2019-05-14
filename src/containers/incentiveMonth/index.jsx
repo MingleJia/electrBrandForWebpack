@@ -1,6 +1,6 @@
 import React,{Component, Fragment} from 'react';
 import styles from './index.scss';
-import { flowerImg, creditImg, firstImg, secondImg, thirdImg, goodImg } from 'ASSETS/home';
+import { flowerImg, creditImg, firstImg, secondImg, thirdImg } from 'ASSETS/home';
 import noImg from '../../assets/campusstyle/no-img.png';
 // import { flowerImg, creditImg, firstImg, secondImg, thirdImg, tipsWhiteImg, goodImg } from 'ASSETS/home';
 import { backImg } from 'ASSETS/header';

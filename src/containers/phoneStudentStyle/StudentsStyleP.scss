@@ -50,10 +50,12 @@
                 text-align: center;
                 z-index: 9;
                 .defaultShow{
-                    position: absolute;
-                    left: 50%;
-                    top:50%;
-                    transform: translate(-50%,-50%);
+                    // position: absolute;
+                    // left: 50%;
+                    // top:50%;
+                    // transform: translate(-50%,-50%);
+                    margin-top: 26vw;
+                    text-align: center;
                     img{
                         width: 47vw;
                     }
