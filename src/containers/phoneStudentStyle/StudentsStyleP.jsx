@@ -346,12 +346,18 @@ class StudentsStyleP extends Component {
                                                     />
                                             )
                                             :
-                                            <div className={styles['noData']}>
-                                                <div className={styles['defaultShow']}>
-                                                    <img src={defaultImg} alt="" />
-                                                    <p>暂无数据</p>
-                                                </div>
-                                            </div>
+                                            (
+                                                loading
+                                                    ?
+                                                    null
+                                                    :
+                                                    <div className={styles['noData']}>
+                                                        <div className={styles['defaultShow']}>
+                                                            <img src={defaultImg} alt="" />
+                                                            <p>暂无数据</p>
+                                                        </div>
+                                                    </div>
+                                            )
                                     }
                                     {(dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
                                         {
@@ -398,12 +404,24 @@ class StudentsStyleP extends Component {
                                                 />
                                         )
                                         :
-                                        <div className={styles['noData']}>
-                                            <div className={styles['defaultShow']}>
-                                                <img src={defaultImg} alt="" />
-                                                <p>暂无数据</p>
-                                            </div>
-                                        </div>
+                                        (
+                                            loading
+                                                ?
+                                                null
+                                                :
+                                                (
+                                                    loading
+                                                        ?
+                                                        null
+                                                        :
+                                                        <div className={styles['noData']}>
+                                                            <div className={styles['defaultShow']}>
+                                                                <img src={defaultImg} alt="" />
+                                                                <p>暂无数据</p>
+                                                            </div>
+                                                        </div>
+                                                )
+                                        )
                                 }
                                 {(dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
                                     {
@@ -448,12 +466,18 @@ class StudentsStyleP extends Component {
                                                 />
                                         )
                                         :
-                                        <div className={styles['noData']}>
-                                            <div className={styles['defaultShow']}>
-                                                <img src={defaultImg} alt="" />
-                                                <p>暂无数据</p>
-                                            </div>
-                                        </div>
+                                        (
+                                            loading
+                                                ?
+                                                null
+                                                :
+                                                <div className={styles['noData']}>
+                                                    <div className={styles['defaultShow']}>
+                                                        <img src={defaultImg} alt="" />
+                                                        <p>暂无数据</p>
+                                                    </div>
+                                                </div>
+                                        )
                                 }
                                 {(dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
                                     {
@@ -498,12 +522,18 @@ class StudentsStyleP extends Component {
                                                 />
                                         )
                                         :
-                                        <div className={styles['noData']}>
-                                            <div className={styles['defaultShow']}>
-                                                <img src={defaultImg} alt="" />
-                                                <p>暂无数据</p>
-                                            </div>
-                                        </div>
+                                        (
+                                            loading
+                                                ?
+                                                null
+                                                :
+                                                <div className={styles['noData']}>
+                                                    <div className={styles['defaultShow']}>
+                                                        <img src={defaultImg} alt="" />
+                                                        <p>暂无数据</p>
+                                                    </div>
+                                                </div>
+                                        )
                                 }
                                 {(dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
                                     {
@@ -577,12 +607,18 @@ class StudentsStyleP extends Component {
                                                 />
                                         )
                                         :
-                                        <div className={styles['noData']}>
-                                            <div className={styles['defaultShow']}>
-                                                <img src={defaultImg} alt="" />
-                                                <p>暂无数据</p>
-                                            </div>
-                                        </div>
+                                        (
+                                            loading
+                                                ?
+                                                null
+                                                :
+                                                <div className={styles['noData']}>
+                                                    <div className={styles['defaultShow']}>
+                                                        <img src={defaultImg} alt="" />
+                                                        <p>暂无数据</p>
+                                                    </div>
+                                                </div>
+                                        )
                                 }
 
                                 {(dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
@@ -629,12 +665,18 @@ class StudentsStyleP extends Component {
                                                 />
                                         )
                                         :
-                                        <div className={styles['noData']}>
-                                            <div className={styles['defaultShow']}>
-                                                <img src={defaultImg} alt="" />
-                                                <p>暂无数据</p>
-                                            </div>
-                                        </div>
+                                        (
+                                            loading
+                                                ?
+                                                null
+                                                :
+                                                <div className={styles['noData']}>
+                                                    <div className={styles['defaultShow']}>
+                                                        <img src={defaultImg} alt="" />
+                                                        <p>暂无数据</p>
+                                                    </div>
+                                                </div>
+                                        )
                                 }
                                 {(dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
                                     {
@@ -679,12 +721,18 @@ class StudentsStyleP extends Component {
                                                 />
                                         )
                                         :
-                                        <div className={styles['noData']}>
-                                            <div className={styles['defaultShow']}>
-                                                <img src={defaultImg} alt="" />
-                                                <p>暂无数据</p>
-                                            </div>
-                                        </div>
+                                        (
+                                            loading
+                                                ?
+                                                null
+                                                :
+                                                <div className={styles['noData']}>
+                                                    <div className={styles['defaultShow']}>
+                                                        <img src={defaultImg} alt="" />
+                                                        <p>暂无数据</p>
+                                                    </div>
+                                                </div>
+                                        )
                                 }
                                 {(dataList.length > 2) && <div className={styles['noMoreData']} ref={(bottomdiv) => { this.bottomdiv = bottomdiv }}>
                                     {
