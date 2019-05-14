@@ -337,6 +337,7 @@ class StudentsStyleP extends Component {
                         <DatePicker
                             mode='date'
                             value={show_time}
+                            maxDate={new Date(Date.now())}
                             onChange={(date) => { this.setOneKV('show_time', new Date(date.valueOf())) }}
                             okText={<div style={{ color: '#4ea375' }}>确定</div>}
                             dismissText={<div style={{ color: '#bbb' }}>取消</div>}
