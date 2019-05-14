@@ -6,35 +6,53 @@
     top:0rem;
     z-index: 1;
     text-align: center;
-    .goback{
-        display: inline-block;
-        width: 1.12rem;
-        height: 0.52rem;
-        line-height: 0.52rem;
-        background-color: #5696ff;
-        box-shadow: 0rem 0rem 0.2rem 0rem 
-            rgba(30, 105, 229, 0.5);
-        border-radius: 0.26rem;
-        margin: 0.2rem 0 0 0.4rem;
-        font-size: 0.24rem;
-        color: #ffffff;
-        text-align: center;
-        position: relative;
-        img{
-            width: 0.19rem;
-            height: 0.34rem;
-            transform: rotateY(180deg);
-            // margin-right: 0.11rem;
-            left: 0.2rem;
-            top: 0.15rem;
-            position: absolute;
-        }
-        .backtext{
-            margin-left: 0.15rem;
-        }
-        &:hover{
-            background-color: #4d87e5;
-        }
+    // .goback{
+    //     display: inline-block;
+    //     width: 1.12rem;
+    //     height: 0.52rem;
+    //     line-height: 0.52rem;
+    //     background-color: #5696ff;
+    //     box-shadow: 0rem 0rem 0.2rem 0rem 
+    //         rgba(30, 105, 229, 0.5);
+    //     border-radius: 0.26rem;
+    //     margin: 0.2rem 0 0 0.4rem;
+    //     font-size: 0.24rem;
+    //     color: #ffffff;
+    //     text-align: center;
+    //     position: relative;
+    //     img{
+    //         width: 0.19rem;
+    //         height: 0.34rem;
+    //         transform: rotateY(180deg);
+    //         // margin-right: 0.11rem;
+    //         left: 0.2rem;
+    //         top: 0.15rem;
+    //         position: absolute;
+    //     }
+    //     .backtext{
+    //         margin-left: 0.15rem;
+    //     }
+    //     &:hover{
+    //         background-color: #4d87e5;
+    //     }
+    // }
+    .backimg{
+        // width: 0.19rem;
+        // height: 0.34rem;
+        transform: rotateY(180deg);
+        // position: absolute;
+        // left: 0.4rem;
+        // top: 0.27rem;
+        width: 92px;
+        height: 88px;
+        position: absolute;
+        display: block;
+        background: url(../../assets/header/back.png) no-repeat;
+        background-size: 19px 34px;
+        background-position: 40px 27px;
+    }
+    .backimg:hover{
+        background-color: rgba(0,0,0,0.2);
     }
     img{
         width: 0.19rem;

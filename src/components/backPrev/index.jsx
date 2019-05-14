@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import { message } from 'antd';
 import styles from './index.scss';
-import { backImg } from 'ASSETS/header';
+// import { backImg } from 'ASSETS/header';
 
 class BackPrevHeader extends Component{
     constructor(props){
@@ -20,7 +20,8 @@ class BackPrevHeader extends Component{
         const header = (
             <div className={styles['header']} style={this.props.style||{}}>
                 {/* <span className={styles['goback']} onClick={ this.backPrev }> */}
-                    <img src={ backImg } onClick={ this.backPrev }></img>
+                    {/* <img src={ backImg } onClick={ this.backPrev }></img> */}
+                    <div className={styles['backimg']} onClick={this.backPrev}></div>
                     <span className={styles['title']}>{this.props.title||''}</span>
                 {/* </span> */}
             </div>
