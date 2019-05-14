@@ -81,7 +81,8 @@ class IncentiveMonth extends Component{
                             {
                                 flowerRank.length !== 0 ?
                                 <Fragment>
-                                    <ul id='original'>
+                                    {/* 这个left的样式根据牌子来调的电脑显示不对 */}
+                                    <ul id='original' style={flowerRank.length<=10?{position:'relative',left:'100px'}:{}}>
                                         { 
                                             flowerRank.slice(0,10).map((item, index)=>{
                                                 return this.listItem(item, index);
@@ -116,7 +117,7 @@ class IncentiveMonth extends Component{
                             {
                                 scoreRank.length !== 0 ?
                                 <Fragment>
-                                    <ul id='original' style={scoreRank.length<=10?{position:'relative',left:'142px'}:{}}>
+                                    <ul id='original' style={scoreRank.length<=10?{position:'relative',left:'100px'}:{}}>
                                         { 
                                             scoreRank.slice(0,10).map((item, index)=>{
                                                 return this.listItem(item, index);
