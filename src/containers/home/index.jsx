@@ -34,7 +34,7 @@ class Home extends Component {
                 <div className={styles['header']}>
                     <span className={styles['class-info']}>
                         <span className={styles['school-name']}>{schoolName}</span>
-                        <i></i>
+                        {schoolName?<i></i>:null}
                         <span className={styles['class-name']}>{className}</span>
                     </span>
                     <Clock />

@@ -305,6 +305,7 @@ class StudentsStyleP extends Component {
                         onChange={this.onChange}
                         tabs={tabs}
                         initialPage={JSON.parse(this.state.page || 0)}
+                        distanceToChangeTab={0.7}
                         // page={this.state.page}
                         animated={true}
                         useOnPan={false}>
@@ -528,6 +529,7 @@ class StudentsStyleP extends Component {
                         tabs={tabs}
                         // initialPage={this.state.type}
                         initialPage={JSON.parse(this.state.page || 0)}
+                        distanceToChangeTab={0.7}
                         animated={true}
                         useOnPan={false}>
                         {/* tab1 */}
