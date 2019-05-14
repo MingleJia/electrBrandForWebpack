@@ -11,6 +11,7 @@ import { Icon } from 'antd';
 // var lock = true;
 class StudentsStyleP extends Component {
     constructor(props) {
+        document.title = '学生风采';
         super(props);
         this.state = {
             ticket: getHerfInfo('ticket'),//客户端给我用来获取信息
