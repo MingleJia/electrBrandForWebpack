@@ -23,7 +23,7 @@ class StudentsStyleP extends Component {
             page: 0, //用来记录返回操作tab
             badgeNum: 0, //待审批数量
             canCommit: 0, //能否发布
-            canUpdate: 0, //能否修改
+            // canUpdate: 0, //能否修改
         }
     }
     getType() {
@@ -85,15 +85,15 @@ class StudentsStyleP extends Component {
             })
         })
     }
-    canUpdate(id) {
-        axios('get', '/api/show/canUpdate', {
-            show_id: id
-        }, 'form').then((json) => {
-            this.setState({
-                canUpdate: json.code
-            })
-        })
-    }
+    // canUpdate(id) {
+    //     axios('get', '/api/show/canUpdate', {
+    //         show_id: id
+    //     }, 'form').then((json) => {
+    //         this.setState({
+    //             canUpdate: json.code
+    //         })
+    //     })
+    // }
     getShowBadgeNum(n) {
         if (!n) return '';
         if (n <= 0) return '';
@@ -207,8 +207,8 @@ class StudentsStyleP extends Component {
                 isOver: json.data.data.length < 10 ? true : false
             }, () => {
                 if (this.state.roleId) {
-                    let id = json.data.data[0] ? json.data.data[0].id : ''
-                    this.canUpdate(id);
+                    // let id = json.data.data[0] ? json.data.data[0].id : ''
+                    // this.canUpdate(id);
                 }
             })
         })
@@ -301,7 +301,7 @@ class StudentsStyleP extends Component {
     }
 
     render() {
-        let { roleId, type, dataList, loading, isOver, page, idx, badgeNum, canUpdate } = this.state;
+        let { roleId, type, dataList, loading, isOver, page, idx, badgeNum } = this.state;
         const tabs = this.state.roleId == 102 ? [
             { title: '待审批', value: 0, page: 0 },
             { title: '已同意', value: 1, page: 1 },
