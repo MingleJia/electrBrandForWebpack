@@ -247,7 +247,7 @@ class StudentsStyleP extends Component {
             dataList: [],
             idx: 1
         }, () => {
-            window.location.href = this.changeURLArg(this.changeURLArg(window.location.href, 'page', this.state.page), 'role_id', this.state.roleId)
+            // window.location.href = this.changeURLArg(this.changeURLArg(window.location.href, 'page', this.state.page), 'role_id', this.state.roleId)
             this.getList();
         })
         // console.log(tab, index)
