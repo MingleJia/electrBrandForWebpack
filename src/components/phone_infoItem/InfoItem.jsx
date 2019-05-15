@@ -66,7 +66,11 @@ class InfoItem extends Component {
     ope(str) {
         if (this.props.roleId == 102) {
             if (str == '修改') {
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id + '&ticket=' + this.props.ticket + '&page=' + this.props.page;
+                // if(this.props.canUpdate == 0 ){
+                //     showToast('已审批，无法修改');
+                //     return ;
+                // }
+                this.canUpdate();
             }
             if (str == '撤回') {
                 // this.setState({
@@ -154,6 +158,19 @@ class InfoItem extends Component {
             alertInstance.close();
         }, 500000);
     };
+    //检测家长能否修改
+    canUpdate() {
+        axios('get', '/api/show/canUpdate', {
+            show_id: this.props.id
+        }, 'form').then((json) => {
+            if(json.code == 1){
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=102&show_id=' + this.props.id + '&ticket=' + this.props.ticket + '&page=' + this.props.page;
+            }else{
+                this.props.upload && this.props.upload()
+                showToast('已审批，无法修改')
+            }
+        })
+    }
     //撤回消息
     withdraw() {
         isOnLine();
@@ -217,66 +234,6 @@ class InfoItem extends Component {
         // let { isShowDialog, isShowDialog2, isShowDialog3, dislogTitle, okText, cancelText } = this.state;
         let operationMode = this.getOperationMode();
         return <Fragment>
-
-            {/* <Dialog
-                isShow={isShowDialog}
-                onOk={() => {
-                    this.setState({
-                        isShowDialog: false
-                    }, () => {
-                        this.goDown();
-                    })
-                }}
-                onCancel={() => {
-                    this.setState({
-                        isShowDialog: false
-                    })
-                }}
-                dislogTitle={dislogTitle}
-                okText={okText}
-                cancelText={cancelText}
-            />
-            <Dialog
-                isShow={isShowDialog2}
-                onOk={() => {
-                    this.setState({
-                        isShowDialog2: false
-                    }, () => {
-                        this.check(2);
-                        //告知家长
-                    })
-                }}
-                onCancel={() => {
-                    this.setState({
-                        isShowDialog2: false
-                    }, () => {
-                        this.check(2);
-                    })
-                }}
-                dislogTitle={dislogTitle}
-                okText={okText}
-                cancelText={cancelText}
-                left={'100vw'}
-            />
-            <Dialog
-                isShow={isShowDialog3}
-                onOk={() => {
-                    this.setState({
-                        isShowDialog3: false
-                    }, () => {
-                        // this.goDown();
-                        this.withdraw();
-                    })
-                }}
-                onCancel={() => {
-                    this.setState({
-                        isShowDialog3: false
-                    })
-                }}
-                dislogTitle={dislogTitle}
-                okText={okText}
-                cancelText={cancelText}
-            /> */}
             <div className={styles['box']}>
                 {
                     this.props.showTop && <div className={styles['top']}>

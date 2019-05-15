@@ -6,7 +6,7 @@ import InfoItem from '../../components/phone_infoItem/InfoItem';
 import axios from 'UTILS/axios';
 import defaultImg from '../../assets/phone/defaultImg.png';
 // import loadingImg from '../../assets/phone/ld.gif';
-import { getHerfInfo, isOnLine } from '../../utils/method';
+import { getHerfInfo, isOnLine, showToast } from '../../utils/method';
 import { Icon } from 'antd';
 // var lock = true;
 class StudentsStyleP extends Component {
@@ -22,6 +22,8 @@ class StudentsStyleP extends Component {
             isOver: false,
             page: 0, //用来记录返回操作tab
             badgeNum: 0, //待审批数量
+            canCommit: 0, //能否发布
+            canUpdate: 0, //能否修改
         }
     }
     getType() {
@@ -74,6 +76,24 @@ class StudentsStyleP extends Component {
             })
         })
     }
+    //获取家长能否修改和能否发布
+    canCommit() {
+        axios('get', '/api/show/canCommit', {
+        }, 'form').then((json) => {
+            this.setState({
+                canCommit: json.code
+            })
+        })
+    }
+    canUpdate(id) {
+        axios('get', '/api/show/canUpdate', {
+            show_id: id
+        }, 'form').then((json) => {
+            this.setState({
+                canUpdate: json.code
+            })
+        })
+    }
     getShowBadgeNum(n) {
         if (!n) return '';
         if (n <= 0) return '';
@@ -119,13 +139,14 @@ class StudentsStyleP extends Component {
             ]]);
             window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'customBack', ['custom']);
             window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'customClose', ['custom']);
-
-
-
         }, false);
         //点击返回 (此方法必须customClose执行后)
         window.clickMenu = (info) => {
             if (info.id == 1) {
+                if (_this.state.canCommit == 0) {
+                    showToast('当无法发布，请等待审批');
+                    return
+                }
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + _this.state.roleId + '&ticket=' + _this.state.ticket + '&page=' + _this.state.page;
             }
         }
@@ -167,6 +188,9 @@ class StudentsStyleP extends Component {
         if (this.state.roleId == 103) {
             this.getBadgeNum();
         }
+        if (this.state.roleId == 102) {
+            this.canCommit();
+        }
         axios('get', '/api/show/lists', {
             is_teacher: this.state.roleId == 102 ? 0 : 1,
             audit_status: this.state.type,
@@ -181,6 +205,11 @@ class StudentsStyleP extends Component {
                 ],
                 loading: false,
                 isOver: json.data.data.length < 10 ? true : false
+            }, () => {
+                if (this.state.roleId) {
+                    let id = json.data.data[0] ? json.data.data[0].id : ''
+                    this.canUpdate(id);
+                }
             })
         })
     }
@@ -272,7 +301,7 @@ class StudentsStyleP extends Component {
     }
 
     render() {
-        let { roleId, type, dataList, loading, isOver, page, idx, badgeNum } = this.state;
+        let { roleId, type, dataList, loading, isOver, page, idx, badgeNum, canUpdate } = this.state;
         const tabs = this.state.roleId == 102 ? [
             { title: '待审批', value: 0, page: 0 },
             { title: '已同意', value: 1, page: 1 },
@@ -604,6 +633,7 @@ class StudentsStyleP extends Component {
                                                     isShowApprovalTime={false}
                                                     images={item.images}
                                                     page={page}
+
                                                 />
                                         )
                                         :
