@@ -391,7 +391,7 @@ class StudentsStyleP extends Component {
                             extra={<div style={{ color: '#bbb' }} >&nbsp;{(title || '').length > 30 ? 30 : (title || '').length}/30</div>}
                             value={title}
                             maxLength={30}
-                            onChange={(v) => { this.setOneKV('title', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
+                            onChange={(v) => { this.setOneKV('title', v.replace(/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|[\A9|\AE]\u3030|\uA9|\uAE|\u3030/ig, '')) }}
                         >标题名称</InputItem>
                     </div>
                 </div>
@@ -406,7 +406,7 @@ class StudentsStyleP extends Component {
                         rows={6}
                         count={200}
                         value={desc}
-                        onChange={(v) => { this.setOneKV('desc', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
+                        onChange={(v) => { this.setOneKV('desc', v.replace(/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|[\A9|\AE]\u3030|\uA9|\uAE|\u3030/ig, '')) }}
                     />
                 </div>
                 <UploadImgs isChange={this.state.isChange} defaultData={this.state.images} onChange={(images) => { this.setOneKV('images', images) }} />
@@ -449,7 +449,7 @@ class StudentsStyleP extends Component {
                                 extra={<div style={{ color: '#bbb' }} >{(comment || '').length > 30 ? 30 : (comment || '').length}/30</div>}
                                 value={comment}
                                 maxLength={30}
-                                onChange={(v) => { this.setOneKV('comment', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
+                                onChange={(v) => { this.setOneKV('comment', v.replace(/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|[\A9|\AE]\u3030|\uA9|\uAE|\u3030/ig, '')) }}
                             >教师点评</InputItem>
                         </div>
 
