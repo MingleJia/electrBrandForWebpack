@@ -5,6 +5,8 @@ import UploadImgs from 'COMPONENTS/uploadImgs';
 import axios from 'UTILS/axios';
 import moment from 'moment';
 import { getHerfInfo, showToast, isOnLine } from '../../utils/method';
+import { Modal } from 'antd-mobile';
+const alert = Modal.alert;
 var height = document.body.clientHeight;
 class StudentsStyleP extends Component {
     constructor(props) {
@@ -36,6 +38,44 @@ class StudentsStyleP extends Component {
         const show_id = getHerfInfo('show_id');
         const role_id = getHerfInfo('role_id');
         const nodecheck = getHerfInfo('nodecheck');
+        // 返回二次确认
+        window.clickBack = () => {
+            const showAlert = (okFn, noFn, title, text, oktext, notext) => {
+                const titleStyle = {
+                    color: '#333333',
+                    fontSize: '5vw',
+                    fontFamily: 'PingFang-SC-Bold',
+                    lineHeight: '7vw',
+                    fontWeight: 'bold'
+                }
+                const okTextStyle = {
+                    color: '#4ea375',
+                    fontSize: '5vw',
+                    // fontFamily: 'PingFang-SC-Medium'
+                }
+                const noTextStyle = {
+                    color: '#999999',
+                    fontSize: '5vw',
+                    // fontFamily: 'PingFang-SC-Medium'
+                }
+                const textStyle = {
+                    color: '#5a5a5a',
+                    fontSize: '4vw',
+                    fontFamily: 'PingFang-SC-Medium'
+                }
+                const alertInstance = alert(<span style={titleStyle}>{title}</span>, <span style={textStyle}>{text}</span>, [
+                    { text: <span style={noTextStyle}>{notext}</span>, onPress: () => noFn() },
+                    { text: <span style={okTextStyle}>{oktext}</span>, onPress: () => okFn() },
+                ]);
+                setTimeout(() => {
+                    // 可以调用close方法以在外部close
+                    alertInstance.close();
+                }, 500000);
+            };
+            showAlert(()=>{
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&page=' + getHerfInfo('page');
+            },()=>{},'提示','确定要返回吗？','确定','取消');
+        }
         document.addEventListener('deviceready', function () {
             window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', [nodecheck == 1 ? '审批' : '发布']);
         }, false);
@@ -77,27 +117,6 @@ class StudentsStyleP extends Component {
             })
         })
     }
-    // getStudentInfoTeacher(class_id) {
-    //     axios('get', '/api/show/classstudents', {
-    //         class_id,
-    //     }).then((json) => {
-    //         this.setState({
-    //             teacher_province: this.state.teacher_province.map(item => {
-    //                 if (item.value == class_id) {
-    //                     return {
-    //                         ...item,
-    //                         children: json.data.map(_item => ({
-    //                             label: _item.userName,
-    //                             value: _item.userId
-    //                         }))
-    //                     }
-    //                 } else {
-    //                     return { ...item }
-    //                 }
-    //             })
-    //         })
-    //     })
-    // }
     getDefaultDataTeacher(show_id) {
         isOnLine();
         axios('get', '/api/show/read', {
@@ -273,21 +292,6 @@ class StudentsStyleP extends Component {
             })
         }
     }
-    //审核: 1同意 2驳回
-    // check(n) {
-    //     axios('post', '/api/show/audit', {
-    //         show_id: getHerfInfo('show_id'),
-    //         audit_status: n
-    //     }, 'form').then((json) => {
-    //         // console.log(json);
-    //         if (json.code == 1) {
-    //             window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&page=' + getHerfInfo('page');
-    //         } else {
-    //             showToast(json.msg)
-    //         }
-    //     })
-    // }
-    //检测能否提交
     checkSubmit() {
         const role_id = getHerfInfo('role_id');
         let { show_time, title, parents_student, teacher_student, comment, images } = this.state;

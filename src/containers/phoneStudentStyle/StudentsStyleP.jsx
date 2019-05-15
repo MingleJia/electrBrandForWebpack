@@ -85,15 +85,6 @@ class StudentsStyleP extends Component {
             })
         })
     }
-    // canUpdate(id) {
-    //     axios('get', '/api/show/canUpdate', {
-    //         show_id: id
-    //     }, 'form').then((json) => {
-    //         this.setState({
-    //             canUpdate: json.code
-    //         })
-    //     })
-    // }
     getShowBadgeNum(n) {
         if (!n) return '';
         if (n <= 0) return '';
@@ -155,6 +146,7 @@ class StudentsStyleP extends Component {
             if (window.location.href.indexOf('edit') == -1) {
                 window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'close', [null]);
             } else {
+                
                 window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'back', [null]);
             }
         }
@@ -229,37 +221,6 @@ class StudentsStyleP extends Component {
             })
         }
     }
-    /**
-     * 
-     * @param {外部div的名字} name string
-     * @param {底部div的名字} name2 string
-     */
-    // gotoBottom(name, name2) {
-    //     let offsetHeight = this[name].offsetHeight;
-    //     let scrollHeight = this[name].scrollHeight;
-    //     let scrollTop = this[name].scrollTop;
-    //     if (!this[name2]) return;
-    //     // 底部的东西的高
-    //     let scrollHeightBottomDiv = this[name2].scrollHeight;
-    //     // console.log(offsetHeight, scrollHeight, scrollTop);
-    //     // console.log(scrollHeightBottomDiv);
-    //     if (offsetHeight + scrollTop > scrollHeight - scrollHeightBottomDiv && lock) {
-    //         this.goToBottomTimer = setInterval(() => {
-    //             offsetHeight = this[name].offsetHeight;
-    //             scrollHeight = this[name].scrollHeight;
-    //             scrollTop = this[name].scrollTop;
-    //             this[name].scrollTop -= 1;
-    //             lock = false;
-
-    //             if (scrollTop + offsetHeight + scrollHeightBottomDiv - 5 <= scrollHeight) {
-    //                 lock = true;
-    //                 clearInterval(this.goToBottomTimer);
-    //             }
-
-
-    //         }, 1)
-    //     }
-    // }
     changeURLArg(url, arg, arg_val) {
         var pattern = arg + '=([^&]*)';
         var replaceText = arg + '=' + arg_val;
@@ -586,11 +547,10 @@ class StudentsStyleP extends Component {
                         swipeable={true}
                         onChange={this.onChange}
                         tabs={tabs}
-                        useOnPan={true}
                         distanceToChangeTab={0.8}
                         // initialPage={this.state.type}
                         initialPage={JSON.parse(this.state.page || 0)}
-                        distanceToChangeTab={0.7}
+                        // distanceToChangeTab={0.7}
                         animated={true}
                         useOnPan={false}>
                         {/* tab1 */}

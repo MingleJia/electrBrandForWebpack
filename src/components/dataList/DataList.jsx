@@ -80,7 +80,7 @@ class Datalist extends Component {
                 onScroll={() => { this.onTouchMove('container') }}>
                 {
                     dataList.map(
-                        (item, index) => <DataItem key={index} isOpen={index == 0 ? true : false} item={item} />
+                        (item, index) => <DataItem isLast={index == dataList.length - 1} key={index} isOpen={index == 0 ? true : false} item={item} />
                     )
                 }
                 {
