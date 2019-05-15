@@ -27,7 +27,7 @@ class DataItem extends Component {
             <div onClick={() => { this.showImg() }} style={{ display: `${this.state.visible ? 'block' : 'none'}` }} className={styles['showImg']}>
                 <img src={this.state.showImgSrc} alt="" />
             </div>
-            <li className={styles['content']} >
+            <li className={styles['content']} style={this.props.isLast ? { marginBottom: '0.5rem' } : {}}>
                 <div className={styles['title']} onClick={() => { this.setState({ isOpen: !isOpen }) }}>
                     <div className={styles['clickexpand']} >
                         {
