@@ -35,8 +35,9 @@ class StudentsStyleP extends Component {
         //role_id 是角色信息 102是家长103是班主任 show_id是获取详情用的
         const show_id = getHerfInfo('show_id');
         const role_id = getHerfInfo('role_id');
+        const nodecheck = getHerfInfo('nodecheck');
         document.addEventListener('deviceready', function () {
-            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', [role_id == 102 ? '发布' : '发布']);
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', [nodecheck == 1 ? '审批' : '发布']);
         }, false);
         //隐藏发布按钮
         if (role_id == 102) {
@@ -172,10 +173,23 @@ class StudentsStyleP extends Component {
         if (role_id == 102) {
 
             let { show_time, title, desc, parents_student, resourceData, images } = this.state;
-            if (parents_student.length == 0) return;
-            if (!title) return;
-            if (!show_time) return;
-            if (images.length == 0) return;
+            if (parents_student.length == 0) {
+                // showToast('请选择孩子')
+                return;
+            }
+            if (!title) {
+                showToast('请填写标题')
+                return;
+            }
+            if (!show_time) {
+                // showToast('请选择时间')
+                return;
+            }
+
+            if (images.length == 0) {
+                showToast('请上传图片')
+                return;
+            }
             show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
 
             let submintData = {
@@ -208,11 +222,26 @@ class StudentsStyleP extends Component {
         if (role_id == 103) {
             let { teacher_student, show_time, title, desc, comment, show_days, images, class_name, student_name, resourceData } = this.state;
             show_time = moment(show_time.valueOf()).format('YYYY-MM-DD');
-            if (teacher_student.length == 0) return;
-            if (!title) return;
-            if (!show_time) return;
-            if (!comment) return;
-            if (images.length == 0) return;
+            if (teacher_student.length == 0) {
+                // showToast('请选择班级')
+                return;
+            }
+            if (!title) {
+                showToast('请填写标题')
+                return
+            }
+            if (!show_time) {
+                // showToast('请选择时间')
+                return;
+            }
+            if (!comment) {
+                showToast('请填写教师点评')
+                return;
+            }
+            if (images.length == 0) {
+                showToast('请上传图片')
+                return;
+            }
             let submintData = {
                 title,
                 desc,
@@ -281,6 +310,7 @@ class StudentsStyleP extends Component {
     render() {
         let { show_time, title, desc, comment, show_days, parents_province, teacher_province, class_name, canSubmit } = this.state;
         const role_id = getHerfInfo('role_id');
+        const nodecheck = getHerfInfo('nodecheck');
         // console.log(getHerfInfo('role_id'))
         // console.log(comment)
         return <Fragment>
@@ -421,7 +451,8 @@ class StudentsStyleP extends Component {
                     <div
                         className={styles['btn']}
                         // style={{ backgroundColor: `${this.checkSubmit() ? '#48bb7d' : '#dbdbdb'}` }}
-                        style={(this.checkSubmit() && canSubmit) ? { backgroundColor: '#48bb7d', color: 'white' } : { backgroundColor: '#dbdbdb', color: '#bbb' }}
+                        // style={(this.checkSubmit() && canSubmit) ? { backgroundColor: '#48bb7d', color: 'white' } : { backgroundColor: '#dbdbdb', color: '#bbb' }}
+                        style={(this.checkSubmit() && canSubmit) ? { backgroundColor: '#48bb7d', color: 'white' } : { backgroundColor: '#48bb7d', color: 'white' }}
                         onClick={() => {
                             if (canSubmit) {
                                 this.setState({
@@ -434,7 +465,7 @@ class StudentsStyleP extends Component {
                                 }, 3000)
                             }
                         }}>
-                        提交
+                        {nodecheck == 1 ? '发布' : '提交'}
                     </div>
                 </div>
             </div>

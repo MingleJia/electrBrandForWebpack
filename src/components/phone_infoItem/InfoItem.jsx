@@ -52,7 +52,7 @@ class InfoItem extends Component {
             }
         } else {
             if (this.props.type == 0) {
-                return ['驳回', '同意']
+                return ['驳回', '审批']
             }
             if (this.props.type == 1 || this.props.type == 2) {
                 return ['', '']
@@ -106,7 +106,7 @@ class InfoItem extends Component {
 
 
             }
-            if (str == '同意') {
+            if (str == '审批') {
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?nodecheck=1&role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket + '&page=' + this.props.page;
             }
             if (str == '删除') {
@@ -133,12 +133,12 @@ class InfoItem extends Component {
         const okTextStyle = {
             color: '#4ea375',
             fontSize: '5vw',
-            fontFamily: 'PingFang-SC-Medium'
+            // fontFamily: 'PingFang-SC-Medium'
         }
         const noTextStyle = {
             color: '#999999',
             fontSize: '5vw',
-            fontFamily: 'PingFang-SC-Medium'
+            // fontFamily: 'PingFang-SC-Medium'
         }
         const textStyle = {
             color: '#5a5a5a',
