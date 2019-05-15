@@ -135,7 +135,7 @@ class StudentsStyleP extends Component {
         window.clickMenu = (info) => {
             if (info.id == 1) {
                 if (_this.state.canCommit == 0) {
-                    showToast('当无法发布，请等待审批');
+                    showToast('当前无法发布，请等待审批');
                     return
                 }
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?isUpload=1&role_id=' + _this.state.roleId + '&ticket=' + _this.state.ticket + '&page=' + _this.state.page;
@@ -247,7 +247,7 @@ class StudentsStyleP extends Component {
             dataList: [],
             idx: 1
         }, () => {
-            window.location.href = this.changeURLArg(this.changeURLArg(window.location.href, 'page', this.state.page), 'role_id', this.state.roleId)
+            // window.location.href = this.changeURLArg(this.changeURLArg(window.location.href, 'page', this.state.page), 'role_id', this.state.roleId)
             this.getList();
         })
         // console.log(tab, index)

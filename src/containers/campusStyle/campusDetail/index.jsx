@@ -78,6 +78,7 @@ class CampusDetail extends Component {
                 <div className={styles['tab']}>
                     {/* <img onClick={() => { this.backHome() }} className={styles['backimg']} src={backImg}></img> */}
                     <div className={styles['backimg']} onClick={() => this.backHome()}></div>
+                    <span className={styles['title']}>校园风采详情</span>
                     {
                         // campusList.length !== 0 && campusList.length < 2
                         //     ?

@@ -43,13 +43,16 @@
         // position: absolute;
         // left: 0.4rem;
         // top: 0.27rem;
-        width: 92px;
-        height: 88px;
+        // overflow: hidden;
+        width: 0.92rem;
+        height: 0.88rem;
         position: absolute;
         display: block;
-        background: url(../../assets/header/back.png) no-repeat;
-        background-size: 19px 34px;
-        background-position: 40px 27px;
+        // background-color: red;
+        background: url(../../assets//header/back.png) no-repeat;
+        // background-image: url(../../assets/header/back.png);
+        background-size: 0.19rem 0.34rem;
+        background-position: 0.4rem 0.3rem;
     }
     .backimg:hover{
         background-color: rgba(0,0,0,0.2);
