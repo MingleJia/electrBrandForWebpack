@@ -92,13 +92,13 @@
             color: #5a5a5a;
         }
         .am-textarea-control {
-            padding: 5vw 4vw 8vw 4vw;
+            padding: 13vw 4vw 8vw 4vw;
         }
         .am-textarea-count{
             font-size: 4vw;
             color:#bbb;
             padding-right: 3vw;
-            margin-right: -2px;
+            margin-right: -6px;
             span{
                 color:#bbb;
             }
@@ -135,6 +135,17 @@
         }
     }
     .textAreaWrap{
+        position: relative;
+        .title{
+            position: absolute;
+            z-index: 9;
+            top:8.5vw;
+            left:4vw;
+            font-size: 4vw;
+            color: #5a5a5a;
+            line-height: 2vw;
+
+        }
         padding-top: 3vw;
     }
     .teachersWrap{
