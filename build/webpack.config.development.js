@@ -18,7 +18,15 @@ module.exports = merge(base, {
 	devtool: "eval-source-map",
 	devServer: {
 		contentBase: "./dist",
-		hot: true
+		hot: true,
+		host: '192.168.70.203',
+		proxy:{
+			'/api':{
+				target:'http://eboard.leke.cn',
+				changeOrigin:true,
+				secure:false
+			}
+		}
 	},
 	plugins: [
 		new webpack.NamedModulesPlugin(),

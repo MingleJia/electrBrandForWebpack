@@ -2,16 +2,16 @@
     overflow-x: hidden;
     overflow-y: auto;
     width: 100%;
-    margin-top: .24rem;
+    margin-top: .27rem;
     height: 1.8rem;
     position: relative;
     .defaultImg{
         width: 100%;
-        margin-top: .16rem;
+        margin-top: -0.16rem;
         text-align: center;
         img{
-            width: 0.42rem;
-	        height: 0.46rem;
+            width: 1.2rem;
+	        height: 1.2rem;
         }
         .text{
             margin-top: 0.12rem;
@@ -19,44 +19,55 @@
             color: #cccccc;
         }
     }
-    .line{
-        .lineStyle{
-            font-size: .24rem;
-            line-height: .32rem;
-            letter-spacing: 0px;
-            color: #333333;
-            padding: 0.141rem .3rem;
-            display: flex;
-            width: 100%;
-            position: relative;
-            .title {
-                overflow: hidden;
-                word-break: keep-all;
-                text-overflow: ellipsis;
-                width: 4.56rem;
+    .noticeList{
+        .line{
+            display: block;
+            .lineStyle{
+                font-size: .24rem;
+                line-height: .32rem;
+                letter-spacing: 0px;
+                color: #333333;
+                padding: 0.141rem .3rem;
+                display: flex;
+                width: 100%;
+                position: relative;
+                .title {
+                    overflow: hidden;
+                    word-break: keep-all;
+                    // text-overflow: ellipsis;
+                    width: 4.56rem;
+                    font-size: 0.24rem;
+                    font-weight: bold;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                }
+                .start {
+                    font-size: 0.2rem;
+                    color: #999999;
+                    position: absolute;
+                    right: 0.3rem;
+                }
             }
-            .start {
-                font-size: 0.2rem;
-                color: #999999;
-                position: absolute;
-                right: 0.3rem;
+            &:nth-child(odd) {
+                background-color: #f3fcfa; ;
             }
-        }
-        &:nth-child(odd) {
-            background-color: #f6f8ff; 
         }
     }
+    
     .detail{
-        padding:0.141rem 0.3rem 0 0.3rem;
+        // text-indent: 2em;
+        padding:0.141rem 0.3rem 0 0.25rem;
         background-color: #fff;
         font-size: 0.2rem;
+        line-height: 0.30rem;
         color: #999;
         overflow: hidden;
         margin-bottom: 0.1rem;
         height: 1rem;
         overflow: hidden;
-        font-size: 0.24rem;
-        color: #666666;
         position: relative;
         margin-left: 0.06rem;
         text-overflow: ellipsis;

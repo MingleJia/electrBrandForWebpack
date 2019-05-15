@@ -1,10 +1,11 @@
 .tab{
     width: 19.2rem;
-    height: 0.92rem;
-    background-color: #387ef1;
+    height: 0.88rem;
+    // background-color: #1fb5ab;
+    background-image: url(../../assets//home/top_Bg.png);
     box-shadow: 0rem 0.03rem 0.07rem 0rem  rgba(0, 0, 0, 0.08);
-    position: fixed;
-    display: flex;
+    // position: fixed;
+    // display: flex;
     .title{
         font-family: SourceHanSansCN-Medium;
         font-size: 0.42rem;
@@ -14,31 +15,37 @@
         color: #ffffff;
         line-height: 0.92rem;
         height: 0.92rem;;
-        margin-left: 0.4rem;
+        // margin-left: 0.4rem;
+        text-align: center;
     }
     .btnMore{
         width: 1.12rem;
         height: 0.52rem;
         line-height: 0.52rem;
-        background-color: #2f6aca;
+        background-color: white;
         border-radius: 0.26rem;
-        border: solid 0.02rem #9ac0ff;
+        border: solid 0.01rem #ffffff;
         text-align: center;
         position: absolute;
         right: 0.4rem;
         top: 0.18rem;
         font-family: SourceHanSansCN-Regular;
         font-size: 0.24rem;
-        color: #ffffff;
+        background-color: #29ab9a;
+        color: white;
         .more {
             display: inline-block;
             width: 0.12rem;
             height: 0.22rem;
-            background-color: #ffffff;
-            background: url('ASSETS/campusstyle/more.png');
+            // background-color: #ffffff;
+            background: url('../../assets/campusstyle/newMore.png');
             background-size: 100%;
             margin-left: 0.11rem;
+            position: relative;
+            top: 2px;
         }
-              
     }
+    // .btnMore:active{
+    //     background-color: #e3fffa;
+    // }       
 }

@@ -1,9 +1,26 @@
 .content{
-    margin-bottom: 0.1rem;
+    // margin-bottom: 0.1rem;
     background-color: #fff;
-    height: 8.98rem;
+    height: 9.92rem;
     width: 100%;
-    padding: 0 0.4rem 0 0.4rem;
-    margin-top: 0.79rem;
-    overflow-y: auto;
+    // padding: 0 0.4rem 0 0.4rem;
+    // margin-top: 0.79rem;
+    // overflow-y: auto;
+    overflow: hidden;
+}
+.noData{
+    width: 100%;
+    height: 8.98rem;
+    margin-bottom: 0.1rem;
+    overflow: hidden;
+    text-align: center;
+    img{
+        width:2.1rem;
+        padding-top: 3.24rem;
+    }
+    p{
+        font-size: 0.24rem;
+        margin-top: 0.2rem;
+        color:#ccc;
+    }
 }

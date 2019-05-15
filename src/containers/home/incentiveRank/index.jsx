@@ -2,6 +2,7 @@ import React,{Component, Fragment} from 'react';
 import {Popover} from 'antd';
 import styles from './index.scss';
 import { tipsImg, moreImg, flowerImg, creditImg, firstImg, secondImg, thirdImg, } from 'ASSETS/home';
+import noImg from '../../../assets/campusstyle/no-img.png';
 import { Link } from 'react-router-dom';
 import axios from 'UTILS/axios';
 import Loading from 'COMPONENTS/loading';
@@ -64,8 +65,18 @@ class Rank extends Component{
         axios('get', '/api/index/congratulation').then((json)=>{
             let arrCongratulations = [];
             for (let i in json.data) {
-                arrCongratulations.push(json.data[i]); 
+                // arrCongratulations.push(json.data[i]); 
+                // console.log(i)
+                if(json.data[i].type==1){
+                    arrCongratulations.push(json.data[i].content)
+                }
             }
+
+            // json.data.forEach((item)=>{
+            //     if(item.type==1){
+            //         arrCongratulations.push(item.content)
+            //     }
+            // })
             this.setState({ congratulations: arrCongratulations });
         })
     }
@@ -128,7 +139,10 @@ class Rank extends Component{
                                     ''
                                 }
                             </Fragment> : 
-                            <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                            <div className={styles['no-data-wrap']}>
+                                <img src={noImg} alt=""/>
+                                <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                            </div>
                         }
                     </div>
                 </div>
@@ -160,7 +174,10 @@ class Rank extends Component{
                                     ''
                                 }
                             </Fragment> : 
-                            <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                            <div className={styles['no-data-wrap']}>
+                                <img src={noImg} alt=""/>
+                                <p className={styles['no-data']}>本周排名暂未产生<br/>敬请期待明日公布</p>
+                            </div>
                         }
                     </div>
                 </div>

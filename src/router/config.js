@@ -43,7 +43,7 @@ export const routerConfig = [
     },
     {
         path:'/studentsStyle',
-        component: config.StudentsStyle,    // 校园风采详情
+        component: config.StudentsStyle,    // 学生风采
         exact: true
     },
     {
@@ -54,6 +54,22 @@ export const routerConfig = [
     {
         path:'/studentsStyle/deatil',
         component: config.StudentsStyleDetail,    // 学生风采详情
+        exact: true
+    },
+    //手机端页面
+    {
+        path:'/phone/studentsStyle',
+        component: config.StudentsStyleP,    // 学生风采
+        exact: true
+    },
+    {
+        path:'/phone/studentsStyle/edit',
+        component: config.StudentsStyleEditP,    // 学生风采
+        exact: true
+    },
+    {
+        path:'/phone/blank',
+        component: config.BlankP,    // 空白页
         exact: true
     },
 ]

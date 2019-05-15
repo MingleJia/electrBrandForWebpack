@@ -71,3 +71,21 @@ export const StudentsStyleDetail = Loadable({
 	loading: Loading,
 	timeout: timeout
 });
+// 手机端页面
+export const StudentsStyleP = Loadable({
+	loader: () => import("CONTAINERS/phoneStudentStyle/StudentsStyleP"),
+	loading: Loading,
+	timeout: timeout
+});
+//编辑
+export const StudentsStyleEditP = Loadable({
+	loader: () => import("CONTAINERS/phoneStudentStyle/StudentsStyleEditP"),
+	loading: Loading,
+	timeout: timeout
+});
+//手机空白页
+export const BlankP = Loadable({
+	loader: () => import("CONTAINERS/phoneBlank/BlankP"),
+	loading: Loading,
+	timeout: timeout
+});

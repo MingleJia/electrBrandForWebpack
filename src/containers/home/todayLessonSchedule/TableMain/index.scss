@@ -14,7 +14,7 @@ $oddLine-color: #f6f8ff;
         display: flex;
         width: 100%;
         .indexName {
-            width: 1.4rem;
+            width: 2.08rem;
             margin: auto 0;
         }
         .mutiLine {
@@ -28,11 +28,17 @@ $oddLine-color: #f6f8ff;
             }
         }
         .classTime {
-            margin-right: .86rem;
+            // margin-right: .86rem;
+            width: 2.85rem;
         }
         .subName {
-            width: 1.4rem;
-            margin-right: 0.2rem;
+            .moreClass{
+                color:#666;
+                font-size: 0.18rem;
+                font-family: SourceHanSansCN-Regular;
+            }
+            width: 2.21rem;
+            // margin-right: 0.2rem;
         }
         .classType {
             span{
@@ -43,15 +49,15 @@ $oddLine-color: #f6f8ff;
             
         }
         &:nth-child(odd) {
-            background-color: #f6f8ff; 
+            background-color: #f3fcfa; 
         }
     }
     .noTableData{
         margin-top: 1.5rem;
         text-align: center;
         .noTableDataImg{
-            width: 0.38rem;
-	        height: 0.41rem;
+            width: 1.2rem;
+	        height: 1.2rem;
             padding-bottom: 0.1rem;
         }
         .noTableDataWord{

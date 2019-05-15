@@ -10,10 +10,10 @@
                 width: 0.76rem;
                 height: 0.32rem;
                 line-height: 0.31rem;
-                margin-top: 0.34rem;
+                margin-top: 0.32rem;
                 margin-right: 0.25rem;
                 border-radius: 0.04rem;
-                border: solid 0.01rem #f16338;
+                border: solid 0.02rem #f16338;
                 font-size: 0.18rem;
                 color: #f16438;
                 float: left;
@@ -21,11 +21,11 @@
                 padding-left: 0.08rem;
                 .expand{
                     float: left;
-                    width: 0.1rem;
-                    height: 0.17rem;                     
+                    width: 0.18rem;
+	                // height: 0.17rem;
                     position: absolute;
-                    right: 0.12rem;
-                    top: 0.07rem; 
+                    right: 0.06rem;
+                    top: 0.1rem; 
                 }
                 .collapse{
                     width: 0.18rem;
@@ -63,6 +63,17 @@
                 color: #666666;
                 padding-bottom: 0.24rem;
                 word-break: break-all;
+                span{
+                    font-weight: bold;
+                }
+            }
+            .line{
+                width: 100%;
+                height: 1px;
+                background-color: #efefef;
+                margin-bottom: 0.2rem;
+                margin-top: 0.1rem;
+                overflow: hidden;
             }
             .imgWarp{
                 text-align: center;
@@ -74,12 +85,18 @@
                 overflow: hidden;
                 position: relative;
                 .img{
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%,-50%);
-                    max-height: 5.12rem;
-                    max-width: 100%;
+                    // position: absolute;
+                    // top: 50%;
+                    // left: 50%;
+                    // transform: translate(-50%,-50%);
+                    // min-width: 9.1rem;
+                    // min-height: 5.12rem;
+                    width: 9.1rem;
+                    height: 5.12rem;
+                    object-fit: cover;
+                    display: block;
+                    // max-height: 5.12rem;
+                    // max-width: 100%;
                 }
                 &:nth-of-type(even){
                     margin-right: 0;
@@ -95,6 +112,28 @@
             }
         }
         .detailHidden{
-            display: none;
+            // display: none;
+            height: 0px;
+            overflow: hidden;
         }
+}
+.showImg{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    top: 0px;
+    z-index: 999;
+    img{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        display: block;
+        // width: 90%;
+        // height: 900px;
+        // object-fit: cover;
+        max-width: 100%;
+        max-height: 100%;
+    }
 }

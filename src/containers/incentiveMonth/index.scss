@@ -1,12 +1,40 @@
+.box{
+    width: 100%;
+    height: 10.8rem;
+    background: url(../../assets/home/rank_Bg.png) no-repeat 0 100% white;
 .title{
-    height: 0.92rem;
-    line-height: 0.92rem;
-	background-color: #387ef1;
+    height: 0.88rem;
+    line-height: 0.88rem;
+	background-color: #1fb5ab;
 	box-shadow: 0rem 0.03rem 0.07rem 0rem 
         rgba(0, 0, 0, 0.08);
     font-size: 0.42rem;
     color: #ffffff;
     text-align: center;
+    .backimg{
+        // width: 0.19rem;
+        // height: 0.34rem;
+        transform: rotateY(180deg);
+        // position: absolute;
+        // left: 0.4rem;
+        // top: 0.27rem;
+        width: 92px;
+        height: 88px;
+        position: absolute;
+        display: block;
+        background: url(../../assets/header/back.png) no-repeat;
+        background-size: 19px 34px;
+        background-position: 40px 27px;
+    }
+    .backimg:hover{
+        background-color: rgba(0,0,0,0.2);
+    }
+    span{
+        margin-left: 0.2rem;
+    }
+    &:hover{
+        background-color: #1fb5ab;
+    }
     span{
         position: relative;
         img{
@@ -34,9 +62,10 @@
             margin: 0 auto;
         }
         .item-title{
-            font-size: 0.24rem;
+            font-size: 0.28rem;
             color: #444444;
             text-align: center;
+            font-weight: bold;
             margin: 0.22rem 0 0.44rem;
         }
         .list{
@@ -44,6 +73,8 @@
             justify-content: space-between;
             margin-top: 0.4rem;
             ul{
+                // flex: 1;
+                text-align: center;
                 li{
                     height: 0.52rem;
                     line-height: 0.52rem;
@@ -57,9 +88,9 @@
                         width: 0.36rem;
                         height: 0.36rem;
                         line-height: 0.36rem;
-                        background-color: #d7e8ff;
+                        background-color: #f8f8f8;
                         font-size: 0.24rem;
-                        color: #4663c2;
+                        color: #999;;
                         text-align: center;
                         border-radius: 50%;
                         vertical-align: middle;
@@ -79,16 +110,27 @@
                     .number{
                         font-size: 0.22rem;
                         font-weight: 550;
-                        color: #1377ff;
+                        color: #1fb5ab;;
                         vertical-align: middle;
+                        position: absolute;
                     }
                 }
             }
-            .no-data{
-                font-family: SourceHanSansCN-Regular;
-                font-size: 0.62rem;
-                color: #cccccc;
-                margin-top: 1rem;
+            
+            .no-data-wrap{
+                text-align: center;
+                margin: 0.6rem auto 0;
+                img{
+                    width: 1.2rem;
+                    height: 1.21rem;
+                }
+
+                .no-data{
+                    font-family: SourceHanSansCN-Regular;
+                    font-size: 0.24rem;
+                    color: #cccccc;
+                    margin-top: 0.2rem;
+                }
             }
         }
     }
@@ -96,25 +138,29 @@
 
 .encouragement{
     position: absolute;
-    top: 1.2rem;
-    right: 0.39rem;
-    img, span{
-        display: inline-block;
-        vertical-align: middle;
-        height: 0.64rem;
-    }
-    img{
-        width: 0.62rem;
-        height: 0.64rem;
-        margin-right: 0.15rem;
-    }
+    width: 100%;
+    bottom: 0.66rem;
+    text-align: center;
+    // top: 1.2rem;
+    // right: 0.39rem;
+    // img, span{
+    //     display: inline-block;
+    //     vertical-align: middle;
+    //     height: 0.64rem;
+    // }
+    // img{
+    //     width: 0.62rem;
+    //     height: 0.64rem;
+    //     margin-right: 0.15rem;
+    // }
     span{
-        font-size: 0.24rem;
+        font-size: 0.60rem;
         color: #333333;
-        line-height: 0.36rem;
-        display: inline-block;
-        width: 2.5rem;
-        word-break: break-all;
+        line-height: 0.32rem;
+        color: #1fb5ab;
+        // display: inline-block;
+        // width: 2.5rem;
+        // word-break: break-all;
     }
 }
 .tips{
@@ -124,11 +170,4 @@
         color: #4664c2;   
     }
 }
-:global{
-    .monthRank.ant-popover-placement-bottomLeft > .ant-popover-content > .ant-popover-arrow{
-        border-top: 0.04rem solid  #fff;
-        border-left: 0.04rem solid #fff;
-        left: 14px;
-        top: 7px;
-    }
 }

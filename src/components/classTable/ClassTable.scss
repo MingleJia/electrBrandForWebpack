@@ -1,6 +1,6 @@
 .containerLesson{
     width: 100%;
-    height: 8rem;
+    height: 8.8rem;
     overflow: hidden;
     .tabsList{
         width: 100%;
@@ -19,7 +19,7 @@
                 font-weight: normal;
             }
             .tab-active{
-                color: #387ef1;
+                color: #1fb5ab;
                 position: relative;
                 text-decoration: none;
                 font-weight: bold;
@@ -59,7 +59,7 @@
         overflow-y: auto;
         .scheduleHead{
             // width: 100%;
-            width: 19rem;
+            width: 19.2rem;
             height: 1.08rem;
             background-color: #f8f8f8;
             display: flex;
@@ -96,7 +96,7 @@
     }
     .contentSchedule{
         width: 100%;
-        height: 6.82rem;
+        height: 7.72rem;
         overflow-x: hidden;
         overflow-y: auto;
         background-color: #f8f8f8;
@@ -110,7 +110,7 @@
                 padding-bottom: 0.1rem;
                 .subjectname{
                     flex: 1;
-                    min-height: 0.92rem;
+                    // min-height: 0.92rem;
                     float: left;
                     margin: auto;
                     text-align: center;
@@ -123,7 +123,7 @@
                     }
                     .lesson{
                         .name{
-                            color: #387ef1;
+                            color: #1fb5ab;
                             font-size: 0.3rem;
                             margin-top: 0.12rem;
                             .lessonname{
@@ -140,7 +140,7 @@
                                 line-height: 0.31rem;
                                 background-color: #fff;
                                 border-radius: 0.04rem;
-                                border: solid 0.01rem #f16338;
+                                border: solid 0.02rem #f16338;
                                 display: inline-block;
                                 position: absolute;
                                 font-size: 0.18rem;

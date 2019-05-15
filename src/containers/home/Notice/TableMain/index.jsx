@@ -1,11 +1,16 @@
-import React from 'react';
+import React,{Component} from 'react';
 import style from './index.scss';
 import Polling from 'UTILS/polling';
 import axios from 'UTILS/axios';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { noNoticeImg } from 'ASSETS/home';
 import Loading from 'COMPONENTS/loading';
-export default class TableMain extends React.Component {
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { setNotice } from 'MODULES/root/actions';
+
+class TableMain extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,6 +24,13 @@ export default class TableMain extends React.Component {
         });
         this.timer = timer;
     }
+
+    static propTypes = {
+        history: PropTypes.object,
+        setNotice: PropTypes.func,
+        root: PropTypes.object,
+    }
+
     componentDidMount() {
         // TODO: 开启定时器
         this.timer.loop();
@@ -58,9 +70,16 @@ export default class TableMain extends React.Component {
         })
     }
 
-    renderTableLine = ({ title, start }, index) => {
+    jumpDetailNotice = (index,id) => {
+        this.props.setNotice({
+            noticeId: id,
+            noticeNum: index,
+        })
+    }
+
+    renderTableLine = ({ title, start,id }, index) => {
         return(
-            <div className={style['line']} key={index}>
+            <Link to='/noticemore'iv className={style['line']} key={index} onClick={ ()=> this.jumpDetailNotice(index,id) }>
                 <div className={style['lineStyle']}>
                     <span className={style['title']}>{title}</span>
                     <span className={style['start']}>{moment(start).format('YYYY-MM-DD HH:mm')}</span>
@@ -68,7 +87,7 @@ export default class TableMain extends React.Component {
                 {
                     this.state.content !== '' ? this.renderContent() : ''
                 }
-            </div>
+            </Link>
         )
     }
     //只有一条通知时渲染内容区
@@ -88,13 +107,13 @@ export default class TableMain extends React.Component {
             </div>
         )
         const noticeContent = (
-            <ul>
+            <div className={style['noticeList']}>
                 {
                     noticeList.slice(0,3).map((ele,index) => 
                         this.renderTableLine(ele,index)
                     )
                 }
-            </ul>  
+            </div>  
         )
         return (
             <div className={style['tableContent']}>
@@ -106,3 +125,9 @@ export default class TableMain extends React.Component {
 TableMain.defaultProps = {};
 TableMain.propTypes = function(){};
 TableMain.propTypes = {};
+
+export default connect(
+    ({ root }) => ({
+        root: root,
+    }), { setNotice }
+)(TableMain)

@@ -71,20 +71,25 @@ export default class TableMain extends React.Component {
                             )
                     }
                 </span>
+                {/* 选修班 */}
                 <span className={`${style['subName']} ${style['mutiLine']}`}>
                     {
-                        subName.map((ele,nameKey) =>
-                            <span className={style['subName-words']} key={nameKey}>{ele}</span>
+                        subName.map((ele,nameKey) =>{
+                           return  <span className={style['subName-words']} key={nameKey}>
+                                {ele}
+                                <span className={style['moreClass']}>{classType[nameKey] === '选修班' ? '(' + classType[nameKey] + ')' : ''}</span>
+                            </span>
+                        }
                         )
                     }
                 </span>
-                <span className={`${style['classType']} ${style['mutiLine']}`}>
+                {/* <span className={`${style['classType']} ${style['mutiLine']}`}>
                     {
                         classType.map((ele,typeKey) =>
                             <span key={typeKey}>{ele === '选修班' ? ele : ''}</span>
                         )
                     }
-                </span>
+                </span> */}
             </div>
         )
     }

@@ -69,6 +69,11 @@ class Tab extends Component {
             }
         }, 59000);
         this.getNavBar();
+        // this.props.getTabList && this.props.getTabList( [{
+        //     "base_name": "学生风采",
+        //     "url": "/studentsStyle",
+        //     "icon": studentStyle
+        // },]);
     }
     getNavBar() {
         axios('get', '/api/index/nav').then(json => {
@@ -82,7 +87,7 @@ class Tab extends Component {
                 window.localStorage.setItem("tabList", JSON.stringify(this.state.tabList));
             })
 
-            this.props.getTabList && this.props.getTabList(tabList);
+            this.props.getTabList && this.props.getTabList(tabList || []);
         })
     }
     render() {

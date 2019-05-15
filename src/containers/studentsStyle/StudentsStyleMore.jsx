@@ -1,27 +1,33 @@
 import React, { Component, Fragment } from 'react';
 import BackPrevHeader from 'COMPONENTS/backPrev';
 import DataList from 'COMPONENTS/dataList/DataList';
-import Tab from 'COMPONENTS/tab';
-// import styles from './StuStyleCarousel.scss';
-// import { Carousel } from 'antd-mobile';
+import Loading from 'COMPONENTS/loading';
 class StudentsStyleMore extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            dataList: [],
+            loading: false,
         }
     }
 
     componentDidMount() {
-
     }
-
     render() {
-
         return <Fragment>
-            <BackPrevHeader />
-            <DataList />
-            <Tab />
-        </Fragment>;
+            <BackPrevHeader style={{position:'fixed'}} title={'学生风采列表'} />
+            {
+                this.state.loading
+                    ?
+                    <div style={{ width: '100%', height: '100%' }}>
+                        <Loading />
+                    </div>
+                    :
+                    <DataList />
+            }
+
+            {/* <Tab /> */}
+        </Fragment>
     }
 }
 

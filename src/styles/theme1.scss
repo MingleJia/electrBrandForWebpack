@@ -4,10 +4,10 @@
 
 // 首页-模块
 .block_blue {
-    box-shadow: 0rem 0rem 0.2rem 0rem 
-		rgba(70, 99, 194, 0.3);
+    box-shadow: 0px 0px 20px 0px rgba(45, 196, 189, 0.3);
     border-radius: 0.16rem;
     margin: 0.2rem 0.2rem 0 0;
+    background-color: white;
 }
 
 
@@ -18,23 +18,20 @@
       float: right;
       margin-top: 0.24rem;
       margin-right: 0.28rem;
-      // .words {
-      //     font-size: .24rem;
-      //     line-height: .32rem;
-      //     color: #ffffff;
-      // }
-      &:hover{
-        background-color: #3271d8;
-    }
+  }
+  .more:active{
+    background-color: #eafffa;
   }
   .linkBtn {
       font-size: 0.24rem;
-      color: #ffffff;
+      color: #1fb5ab;
+      border: solid 2px #79d3cd;
+      // box-shadow: 0px 0px 10px 0px rgba(45, 196, 189, 0.5);
       text-align: center;
     //   height: 0.52rem;
       line-height: 0.52rem;
-      background-color: #387ef1;
-      box-shadow: 0rem 0rem 0.2rem 0rem rgba(56, 126, 241, 0.5);
+      // background-color: #387ef1;
+      // box-shadow: 0rem 0rem 0.2rem 0rem rgba(56, 126, 241, 0.5);
       border-radius: 0.26rem;
       display: block;
   }
@@ -45,12 +42,13 @@
       color: #333333;
       display: inline-block;
       margin: .33rem .29rem 0;
+      // font-weight: bold;
   }
   .linkIcon {
       width: 0.12rem;
       height: 0.22rem;
       vertical-align: middle;
       margin-left: 0.12rem;
-      margin-bottom: .02rem;
+      margin-bottom: .07rem;
   }
 } 

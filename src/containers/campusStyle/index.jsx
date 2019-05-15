@@ -1,6 +1,8 @@
 import React,{Component,Fragment} from 'react';
+import { message } from 'antd';
 import styles from './index.scss';
-import { detailsImg, campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
+import { campusImg, noImg } from 'ASSETS/campusstyle';
+// import { detailsImg, campusImg, moreImg, noImg } from 'ASSETS/campusstyle';
 import PropTypes from 'prop-types';
 import Tab from 'COMPONENTS/tab';
 import axios from 'UTILS/axios';
@@ -27,7 +29,6 @@ class CampusStyle extends Component{
             this.props.setCampusStyle({
                 campusList : json.data,
             })
-        }).then(()=>{
             this.setState({
                 loading:false
             })    
@@ -36,7 +37,12 @@ class CampusStyle extends Component{
 
     //点击更多
     campusMore = () =>{
-        this.props.history.push('campusstyle/more');
+        if( window.navigator.onLine === true ){
+            this.props.history.push('campusstyle/more');
+        }else{
+            message.warning('网络不可用',20);
+            message.config({ maxCount:1,});
+        }
     }
     //点击内容到校园风采详情页
     campusDetail = (value) => {
@@ -45,7 +51,12 @@ class CampusStyle extends Component{
             campusDetailId : value,
             campusList
         })
-        this.props.history.push('campusstyle/detail');
+        if( window.navigator.onLine === true ){
+            this.props.history.push('campusstyle/detail');
+        }else{
+            message.warning('网络不可用',10);
+            message.config({ maxCount:1,});
+        }
     }
     //
     renderCarouselImg = (images) => {
@@ -89,17 +100,15 @@ class CampusStyle extends Component{
                 {
                     campusList.length !== 0 && campusList.map((item,index)=>{
                         return(
-                            <li className={styles['list']} key={index}>
+                            <li className={styles['list']} key={index} onClick={ ()=>this.campusDetail(index) }>
                                 <div className={styles['images']}>
                                     {
-                                        item.images ? this.renderCarouselImg(item.images) : this.renderDefaultImg()
+                                        // item.images ? this.renderCarouselImg(item.images) : this.renderDefaultImg()
+                                        item.images ? this.renderCarouselImg(item.images) : null
                                     }
                                 </div>
                                 <div className={styles['title']}>
                                     <span className={styles['titlename']}>{item.title}</span>
-                                    <div className={styles['detailborder']}  onClick={ ()=>this.campusDetail(index) } >
-                                        <img className={styles['detailImg']} src={ detailsImg }></img><span>详情</span>
-                                    </div>
                                 </div>
                                 <div className={styles['detail']}>         
                                     { item.content }                                            
@@ -118,9 +127,11 @@ class CampusStyle extends Component{
                     {
                         campusList.length
                         ?
-                        <div className={styles['btnMore']} onClick={ ()=>this.campusMore() }>
-                        <span>更多</span><img className={styles['more']} src={ moreImg } />
-                        </div>
+                        // <div className={styles['btnMore']} onClick={ ()=>this.campusMore() }>
+                        //     更多<span></span>
+                        //     {/* <img className={styles['more']} src={ moreImg } /> */}
+                        // </div>
+                        null
                         :
                         <div></div>
                     }

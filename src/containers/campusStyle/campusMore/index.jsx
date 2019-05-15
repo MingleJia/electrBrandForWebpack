@@ -1,11 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import BackPrevHeader from 'COMPONENTS/backPrev';
-import Tab from 'COMPONENTS/tab';
 import styles from './index.scss';
 import { collapseImg, expandImg, campusImg } from 'ASSETS/campusstyle';
 import axios from 'UTILS/axios';
 import moment from 'moment';
 import Loading from 'COMPONENTS/loading';
+import PreviewImg from 'COMPONENTS/previewImg';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { setPreviewImg } from 'MODULES/root/actions';
 class CampusMore extends Component {
     constructor(props) {
         super(props);
@@ -14,6 +17,11 @@ class CampusMore extends Component {
             campusList: [],
             loading : true, 
         }
+    }
+
+    static propTypes = {
+        setPreviewImg: PropTypes.func,
+        root: PropTypes.object,
     }
 
     componentDidMount() {
@@ -38,6 +46,14 @@ class CampusMore extends Component {
         })
     }
 
+    //点击图片放大查看
+    previewImg = (img) => {
+        this.props.setPreviewImg({
+            displayImg:true,
+            previewImg: img,
+        })
+    }
+
     render() {
         let { arrExpan, campusList,loading } = this.state;
 
@@ -50,22 +66,23 @@ class CampusMore extends Component {
 
         const campusContent = (
             <div className={styles['container']}>
+                <PreviewImg/>
                 <ul className={styles['list']}>
                     {
                         campusList.length !== 0 && campusList.map((item, index) => {
                             return (
-                                <li className={styles['content']} key={index}>
-                                    <div className={styles['title']}>
-                                        <div className={styles['clickexpand']} onClick={() => this.checkStatus(index)}>
+                                <li className={styles['content']} key={index} >
+                                    <div className={styles['title']} onClick={() => this.checkStatus(index)}>
+                                        <div className={styles['clickexpand']}>
                                             {
                                                 arrExpan.includes(index) 
                                                 ?
                                                     <Fragment>
-                                                        <span>收起</span><img src={ collapseImg } className={styles['collapse']} />
+                                                        <span>收起</span><img src={ expandImg } className={styles['collapse']} />
                                                     </Fragment>
                                                 :
                                                     <Fragment>
-                                                        <span>展开</span><img src={ expandImg } className={styles['expand']} />
+                                                        <span>展开</span><img src={ collapseImg } className={styles['expand']} />
                                                     </Fragment>
                                             }
                                         </div>
@@ -80,7 +97,7 @@ class CampusMore extends Component {
                                             item.images && item.images.split(',').map((img, index) => {
                                                 return (
                                                     <div key={index} className={styles['imgWarp']} >
-                                                        <img className={styles['img']} src={img} key={index} />
+                                                        <img className={styles['img']} src={img} key={index} onClick={ ()=>this.previewImg(img) } />
                                                     </div>
                                                 )
                                             })
@@ -95,13 +112,16 @@ class CampusMore extends Component {
         )
         const campusMore = (
             <Fragment>
-                <BackPrevHeader />
+                <BackPrevHeader title={'校园风采列表'} />
                     { loading ? <Loading/> : campusList.length === 0 ? defaultPage : campusContent}
-                <Tab />
             </Fragment>
         )
         return campusMore;
     }
 }
 
-export default CampusMore
+export default connect(
+    ({ root }) => ({
+        root: root,
+    }), { setPreviewImg }
+)(CampusMore)

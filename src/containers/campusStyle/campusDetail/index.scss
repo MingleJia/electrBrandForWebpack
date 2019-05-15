@@ -1,50 +1,41 @@
 .container{
     width: 100%;
-    // height: 13.18rem;
-    // overflow-y: auto;
-    // overflow-x: hidden;
+    height: 10.8rem;
     .tab{
         width: 19.2rem;
-        height: 0.92rem;
-        background-color: #387ef1;
-        box-shadow: 0rem 0.03rem 0.07rem 0rem  rgba(0, 0, 0, 0.08);
+        height: 0.88rem;
+        background-color: #1fb5ab;
+        box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.08);
         position: fixed;
         display: flex;
         z-index: 1;
-        .back{          
-            width: 1.12rem;
-            height: 0.52rem;
-            line-height: 0.5rem;
-            background-color: #5696ff;
-            box-shadow: 0rem 0rem 0.2rem 0rem  rgba(30, 105, 229, 0.5);
-            border-radius: 0.26rem;
-            font-family: MicrosoftYaHei;
-            font-size: 0.24rem;
-            color: #ffffff;
-            text-align: center;
-            margin-left: 0.4rem;
-            margin-top: 0.18rem;
-            position: relative;
-            .backimg{
-                display: inline-block;
-                width: 0.12rem;
-                height: 0.22rem;
-                transform: rotateY(180deg);
-                margin-right: 0.11rem;
-                position: absolute;
-                left: 0.2rem;
-                top: 0.15rem;
-            }
-            span{
-                margin-left: 0.2rem;
-            }
-            &:hover{
-                background-color: #4d87e5;
-            }
+        .backimg{
+            // width: 0.19rem;
+            // height: 0.34rem;
+            transform: rotateY(180deg);
+            // position: absolute;
+            // left: 0.4rem;
+            // top: 0.27rem;
+            width: 92px;
+            height: 88px;
+            position: absolute;
+            display: block;
+            background: url(../../../assets/header/back.png) no-repeat;
+            background-size: 19px 34px;
+            background-position: 40px 27px;
         }
+        .backimg:hover{
+            background-color: rgba(0,0,0,0.2);
+        }
+            // span{
+            //     // margin-left: 0.2rem;
+            // }
+            &:hover{
+                background-color: #1fb5ab;
+            }
         //这是新的样式
         .btnWrap{
-            line-height: 0.48rem;
+            line-height: 0.52rem;
             text-align: center;
             position: absolute;
             right: 0.4rem;
@@ -57,25 +48,42 @@
                 font-family: SourceHanSansCN;
                 font-size: 0.24rem;
                 color: #ffffff;
-                background-color: #2f6aca;
+                background-color: rgba(31,181,171,1);
                 width: 1.3rem;
                 height: 0.52rem;
-                border: solid 0.02rem #9ac0ff;
+                border: solid 0.02rem white;
             }
             .prevBtn{
-                position: absolute;
-                left: 0;
                 border-radius: 0.26rem  0 0 0.26rem;
+                background-color: #1a9890;
+                // border-right: 0px;
             }
             .nextBtn{
-                position: absolute;
-                right: 0;
                 border-radius: 0 0.26rem  0.26rem 0;
+                background-color: #1a9890;
+                border-left: 0px;
             }
+            .prevBtnNo{
+                border-radius: 0.26rem  0 0 0.26rem;
+                background-color: #1ca49b;
+                opacity: 0.4;
+                border-right: 0px;
+            }
+            .nextBtnNo{
+                border-radius: 0 0.26rem  0.26rem 0;
+                background-color: #1ca49b;
+                opacity: 0.4;
+                border-left: 0px;
+            }
+            // .btn{
+            //     right: 0;
+            //     border-radius: 0.26rem;
+            //     position: absolute;
+            // }
         }
     }
     .content{
-        height: 9.9rem;
+        height: 10.7rem;
         margin-bottom: 0.1rem;
         background-color: #fff;
         padding: 0 0.4rem;
@@ -113,12 +121,13 @@
                 line-height: 0.36rem;
                 letter-spacing: 0.01rem;
                 color: #666666;
-                padding-bottom: 0.24rem;
+                // padding-bottom: 0.24rem;
                 word-break: break-all;
             }
             .imgWarp{
                 text-align: center;
                 width: 9rem;
+                margin-top: 0.24rem;
                 margin-right: 0.2rem;
                 margin-bottom: 0.2rem;
                 height: 5.12rem;
@@ -127,9 +136,10 @@
                 position: relative;
                 background-color: #f8f8f8;
                 .img{
-                    max-height: 5.12rem;
-                    max-width: 100%;
+                    height: 5.12rem;
+                    width: 100%;
                     position: absolute;
+                    object-fit: cover;
                     top:50%;
                     left: 50%;
                     transform: translate(-50%,-50%);

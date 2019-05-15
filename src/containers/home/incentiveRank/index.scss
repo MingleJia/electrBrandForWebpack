@@ -1,12 +1,12 @@
 .rank{
-    width: 10.96rem;
-	height: 8.3rem;
-	box-shadow: 0rem 0rem 0.2rem 0rem 
-		rgba(70, 99, 194, 0.3);
+    width: 11.16rem;
+	height: 8.72rem;
+	box-shadow: 0px 0px 20px 0px rgba(45, 196, 189, 0.3);
     border-radius: 0.16rem;
-    background: url('ASSETS/home/rank-bg.png');
+    background: url('ASSETS/home/rank-bg.png') white no-repeat;
+    background-position-y: 100%;
     background-size: 100%;
-    margin: 0.2rem 0.2rem 0.2rem 0.4rem;
+    margin: 0.2rem 0.2rem 0.2rem 0.2rem;
     position: relative;
     .top{
         .title{
@@ -26,27 +26,28 @@
     }
     .more{
         width: 1.6rem;
-        height: 0.52rem;
+        // height: 0.52rem;
         line-height: 0.52rem;
-        background-color: #387ef1;
-        box-shadow: 0rem 0rem 0.2rem 0rem 
-            rgba(56, 126, 241, 0.5);
+        background-color: white;
+        // box-shadow: 0px 0px 20px 0px rgba(45, 196, 189, 0.5);
+        border: solid 2px #79d3cd;
         border-radius: 0.26rem;
         display: block;
         float: right;
         margin-top: 0.24rem;
         margin-right: 0.28rem;
         font-size: 0.24rem;
-        color: #ffffff;
+        color: #1fb5ab;
         text-align: center;
         img{
             width: 0.12rem;
             height: 0.22rem;
             vertical-align: middle;
             margin-left: 0.12rem;
+            margin-bottom: 0.04rem;
         }
         &:hover{
-            background-color: #3271d8;
+            background-color: #e3fffa;
         }
     }
     .container{
@@ -69,6 +70,7 @@
                 color: #444444;
                 margin-top: 0.26rem;
                 padding-bottom: 0.2rem;
+                font-weight: bold;
             }
             .rank-list{
                 height: 3.4rem;
@@ -88,9 +90,10 @@
                             width: 0.4rem;
                             height: 0.4rem;
                             line-height: 0.4rem;
-                            background-color: #d7e8ff;
+                            background-color: #f8f8f8;
                             font-size: 0.24rem;
-                            color: #4663c2;
+                            color: #999999;
+                            // color: #1fb5ab;
                             text-align: center;
                             border-radius: 50%;
                             vertical-align: middle;
@@ -110,26 +113,35 @@
                         .number{
                             font-size: 0.32rem;
                             font-weight: 550;
-                            color: #1377ff;
+                            color: #1fb5ab;
                             vertical-align: middle;
                         }
                     }
                 }
-                .no-data{
-                    font-family: SourceHanSansCN-Regular;
-                    font-size: 0.4rem;
-                    color: #cccccc;
-                    margin-top: 0.79rem;
+                .no-data-wrap{
+                    text-align: center;
+                    margin-top: 0.6rem;
+                    img{
+                        width: 1.2rem;
+                        height: 1.21rem;
+                    }
+                    .no-data{
+                        font-family: SourceHanSansCN-Regular;
+                        font-size: 0.24rem;
+                        line-height: 0.32rem;
+                        color: #cccccc;
+                        margin-top: 0.2rem;
+                    }
                 }
             }
         }
     }
     .congratulations{
-        font-size: 0.6rem;
-        font-weight: 550;
-        color: #577cf3;
+        font-size: 0.42rem;
+        // font-weight: 550;
+        color: #1fb5ab;
         text-align: center;
-        margin-top: 0.44rem;
+        margin-top: 0.40rem;
         width: 100%;
         position: absolute;
         bottom: 0.56rem;
@@ -139,7 +151,7 @@
     p{
         font-size: 0.18rem;
         line-height: 0.3rem;
-        color: #4664c2;   
+        color: #1fb5ab;   
     }
 }
 :global{
@@ -148,13 +160,13 @@
     }
     .ant-popover-inner{
         box-shadow: 0rem 0.03rem 0.06rem 0rem  rgba(0, 0, 0, 0.18);
-        border: solid 0.01rem #4664c2;
+        border: solid 0.01rem #1fb5ab;
     }
     .ant-popover-placement-bottomLeft > .ant-popover-content > .ant-popover-arrow{
         border-right-color: #fff;
         border-bottom-color: #fff;
-        border-top: solid 0.01rem #4664c2;
-        border-left: solid 0.01rem #4664c2;
+        border-top: solid 0.01rem #1fb5ab;
+        border-left: solid 0.01rem #1fb5ab;
         left: 10px;
     }
 }
