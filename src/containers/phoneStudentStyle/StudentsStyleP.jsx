@@ -22,7 +22,7 @@ class StudentsStyleP extends Component {
             isOver: false,
             page: 0, //用来记录返回操作tab
             badgeNum: 0, //待审批数量
-            canCommit: 0, //能否发布
+            canCommit: 1, //能否发布
             // canUpdate: 0, //能否修改
         }
     }
@@ -334,7 +334,7 @@ class StudentsStyleP extends Component {
                         onChange={this.onChange}
                         tabs={tabs}
                         initialPage={JSON.parse(this.state.page || 0)}
-                        distanceToChangeTab={1.9}
+                        distanceToChangeTab={0.8}
                         // page={this.state.page}
                         animated={true}
                         useOnPan={false}>
@@ -586,6 +586,8 @@ class StudentsStyleP extends Component {
                         swipeable={true}
                         onChange={this.onChange}
                         tabs={tabs}
+                        useOnPan={true}
+                        distanceToChangeTab={0.8}
                         // initialPage={this.state.type}
                         initialPage={JSON.parse(this.state.page || 0)}
                         distanceToChangeTab={0.7}

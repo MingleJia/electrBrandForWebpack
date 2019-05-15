@@ -380,7 +380,7 @@ class StudentsStyleP extends Component {
                             <List.Item arrow="horizontal">发生时间</List.Item>
                         </DatePicker>
                     </div>
-                    <div className={styles['row']} style={{ left: '-4px' }}>
+                    <div className={styles['row']} style={{ left: '0px' }}>
                         <InputItem
                             placeholder="请输入标题名称"
                             ref={el => this.inputRef = el}
@@ -388,11 +388,14 @@ class StudentsStyleP extends Component {
                             value={title}
                             maxLength={30}
                             onChange={(v) => { this.setOneKV('title', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
-                        ></InputItem>
+                        >标题名称</InputItem>
                     </div>
                 </div>
                 <div className={styles['textAreaWrap']}>
+                    <div className={styles['title']}>描述（选填）</div>
                     <TextareaItem
+                        // title={'描述（选填）'}
+                        style={{ height: '32vw' }}
                         placeholder="请输入描述(选填)"
                         // autoHeight
                         ref={el => this.customFocusInst = el}
@@ -402,18 +405,9 @@ class StudentsStyleP extends Component {
                         onChange={(v) => { this.setOneKV('desc', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
                     />
                 </div>
+                <UploadImgs isChange={this.state.isChange} defaultData={this.state.images} onChange={(images) => { this.setOneKV('images', images) }} />
                 {
                     role_id == 103 && <div className={styles['teachersWrap']}>
-                        <div className={styles['row']} style={{ left: '-4px', paddingRight: '3vw' }}>
-                            <InputItem
-                                placeholder="请输入教师点评"
-                                ref={el => this.inputRef = el}
-                                extra={<div style={{ color: '#bbb' }} >{(comment || '').length > 30 ? 30 : (comment || '').length}/30</div>}
-                                value={comment}
-                                maxLength={30}
-                                onChange={(v) => { this.setOneKV('comment', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
-                            ></InputItem>
-                        </div>
                         <div className={styles['row']}>
                             <Picker
                                 data={[
@@ -444,9 +438,20 @@ class StudentsStyleP extends Component {
                                 <List.Item arrow="horizontal">展示天数</List.Item>
                             </Picker>
                         </div>
+                        <div className={styles['row']} style={{ paddingRight: '3vw' }}>
+                            <InputItem
+                                placeholder="请输入教师点评"
+                                ref={el => this.inputRef = el}
+                                extra={<div style={{ color: '#bbb' }} >{(comment || '').length > 30 ? 30 : (comment || '').length}/30</div>}
+                                value={comment}
+                                maxLength={30}
+                                onChange={(v) => { this.setOneKV('comment', v.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g, "")) }}
+                            >教师点评</InputItem>
+                        </div>
+
                     </div>
                 }
-                <UploadImgs isChange={this.state.isChange} defaultData={this.state.images} onChange={(images) => { this.setOneKV('images', images) }} />
+
                 <div className={styles['btnWrap']}>
                     <div
                         className={styles['btn']}
