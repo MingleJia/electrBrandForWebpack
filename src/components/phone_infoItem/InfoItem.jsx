@@ -88,7 +88,9 @@ class InfoItem extends Component {
         if (this.props.roleId == 103) {
             if (str == '修改') {
                 // console.log(this.props.ticket)
-                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket + '&page=' + this.props.page;
+                this.canTeacherUpdate();
+                // return;
+                // window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket + '&page=' + this.props.page;
             }
             if (str == '撤下') {
                 // this.setState({
@@ -168,6 +170,19 @@ class InfoItem extends Component {
             }else{
                 this.props.upload && this.props.upload()
                 showToast('已审批，无法修改')
+            }
+        })
+    }
+    // 检测老师能否修改
+    canTeacherUpdate() {
+        axios('get', '/api/show/isnotdelete', {
+            show_id: this.props.id
+        }, 'form').then((json) => {
+            if(json.code == 1){
+                window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle/edit?role_id=103&show_id=' + this.props.id + '&ticket=' + this.props.ticket + '&page=' + this.props.page;
+            }else{
+                this.props.upload && this.props.upload();
+                showToast('学生风采已被删除');
             }
         })
     }

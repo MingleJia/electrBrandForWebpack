@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styles from './StudentsStyleEditP.scss';
-import { DatePicker, Picker, List, TextareaItem, InputItem } from 'antd-mobile';
+import { DatePicker, Picker, List, TextareaItem } from 'antd-mobile';
 import UploadImgs from 'COMPONENTS/uploadImgs';
 import axios from 'UTILS/axios';
 import moment from 'moment';
@@ -33,18 +33,18 @@ class StudentsStyleP extends Component {
             canSubmit: true,
         }
     }
-    getTitle(){
+    getTitle() {
         // const role_id = getHerfInfo('role_id');
         const nodecheck = getHerfInfo('nodecheck');
         const show_id = getHerfInfo('show_id');
-        if(nodecheck == 1 ){
+        if (nodecheck == 1) {
             return '审批'
         }
-        if(show_id){
+        if (show_id) {
             return '修改'
         }
         return '发布'
-        
+
     }
     componentDidMount() {
         //role_id 是角色信息 102是家长103是班主任 show_id是获取详情用的
@@ -211,7 +211,7 @@ class StudentsStyleP extends Component {
                 return;
             }
             if (!title) {
-                showToast('请填写标题')
+                showToast('请输入标题名称')
                 return;
             }
             if (!show_time) {
@@ -260,19 +260,19 @@ class StudentsStyleP extends Component {
                 return;
             }
             if (!title) {
-                showToast('请填写标题')
+                showToast('请填写标题名称')
                 return
             }
             if (!show_time) {
                 // showToast('请选择时间')
                 return;
             }
-            if (!comment) {
-                showToast('请填写教师点评')
-                return;
-            }
             if (images.length == 0) {
                 showToast('请上传图片')
+                return;
+            }
+            if (!comment) {
+                showToast('请填写教师点评')
                 return;
             }
             let submintData = {
@@ -399,7 +399,8 @@ class StudentsStyleP extends Component {
                             <List.Item arrow="horizontal">发生时间</List.Item>
                         </DatePicker>
                     </div>
-                    <div className={styles['row']} style={{ left: '0px' }}>
+
+                    {/* <div className={styles['row']} style={{ left: '0px' }}>
                         <InputItem
                             // style={{ overflow: 'scroll' }}
                             placeholder="请输入标题名称"
@@ -409,14 +410,30 @@ class StudentsStyleP extends Component {
                             maxLength={30}
                             onChange={(v) => { this.setOneKV('title', v.replace(/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|\u3030/ig, '')) }}
                         >标题名称</InputItem>
-                    </div>
+                    </div> */}
+
                 </div>
+
+                <div className={styles['textAreaWrap']} style={{ paddingTop: 0 }}>
+                    <div className={styles['title']} style={{ top: '5.6vw' }}>标题名称</div>
+                    <TextareaItem
+                        style={{ height: '10vw' }}
+                        placeholder="请填写标题名称"
+                        // autoHeight
+                        ref={el => this.customFocusInst = el}
+                        rows={2}
+                        count={30}
+                        value={title}
+                        onChange={(v) => { this.setOneKV('title', v.replace(/(\r\n)|(\n)/g,'').replace(/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|\u3030/ig, '')) }}
+                    />
+                </div>
+
                 <div className={styles['textAreaWrap']}>
                     <div className={styles['title']}>描述（选填）</div>
                     <TextareaItem
                         // title={'描述（选填）'}
                         style={{ height: '32vw' }}
-                        placeholder="请输入描述(选填)"
+                        placeholder="请填写描述"
                         // autoHeight
                         ref={el => this.customFocusInst = el}
                         rows={6}
@@ -458,7 +475,7 @@ class StudentsStyleP extends Component {
                                 <List.Item arrow="horizontal">展示天数</List.Item>
                             </Picker>
                         </div>
-                        <div className={styles['row']} style={{ paddingRight: '3vw' }}>
+                        {/* <div className={styles['row']} style={{ paddingRight: '3vw' }}>
                             <InputItem
                                 placeholder="请输入教师点评"
                                 ref={el => this.inputRef = el}
@@ -467,10 +484,23 @@ class StudentsStyleP extends Component {
                                 maxLength={30}
                                 onChange={(v) => { this.setOneKV('comment', v.replace(/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|\u3030/ig, '')) }}
                             >教师点评</InputItem>
-                        </div>
-
+                        </div> */}
                     </div>
                 }
+
+                <div className={styles['textAreaWrap']} style={{ paddingTop: 0, marginBottom: '8vw' }}>
+                    <div className={styles['title']} style={{ top: '5.6vw' }}>教师点评</div>
+                    <TextareaItem
+                        style={{ height: '10vw' }}
+                        placeholder="请填写教师点评"
+                        // autoHeight
+                        ref={el => this.customFocusInst = el}
+                        rows={2}
+                        count={30}
+                        value={comment}
+                        onChange={(v) => { this.setOneKV('comment', v.replace(/(\r\n)|(\n)/g,'').replace(/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|\u3030/ig, '')) }}
+                    />
+                </div>
 
                 <div className={styles['btnWrap']}>
                     <div

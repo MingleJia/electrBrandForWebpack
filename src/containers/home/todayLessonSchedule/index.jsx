@@ -37,7 +37,7 @@ export default class TodayLessonSchedule extends React.Component {
                         Object.keys(this.state.tableData).length
                             ?
                         <Link to='/schedulemore' className={`${style['more']} ${style['linkBtn']}`} onClick={ this.jumpMore }>
-                            更多<img  className={style['linkIcon']} src={ moreImg }></img>
+                            <span>更多</span><img  className={style['linkIcon']} src={ moreImg }></img>
                         </Link>
                             :
                         <div></div>

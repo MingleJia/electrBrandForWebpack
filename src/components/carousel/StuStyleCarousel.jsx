@@ -72,12 +72,14 @@ class StuStyleCarousel extends Component {
               selectedIndex={0}
               autoplayInterval={3000}
               dotStyle={{
-                backgroundColor: 'rgba(255,255,255,0.8)',
+                backgroundColor: 'rgba(255,255,255,0.4)',
+                width:'6px',
+                height:'6px',
                 marginBottom: '8px'
               }}
               dotActiveStyle={{
                 width: '12px',
-                // height: '6px',
+                height: '6px',
                 borderRadius: '3px',
                 backgroundColor: 'white',
                 marginBottom: '8px'

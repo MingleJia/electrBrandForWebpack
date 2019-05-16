@@ -36,7 +36,7 @@ export default class Notice extends React.Component {
                         this.state.noticeList.length
                         ?
                         <Link to='/noticemore' className={`${style['more']} ${style['linkBtn']}`}  onClick={ this.jumpMore }>
-                            更多<img  className={style['linkIcon']} src={ moreImg }></img>
+                            <span>更多</span><img  className={style['linkIcon']} src={ moreImg }></img>
                         </Link>
                         :
                         <div></div>
