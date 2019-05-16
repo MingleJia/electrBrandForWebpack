@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import styles from './StudentsStyleEditP.scss';
-import { DatePicker, Picker, List, TextareaItem, InputItem } from 'antd-mobile';
+import { DatePicker, Picker, List, TextareaItem } from 'antd-mobile';
 import UploadImgs from 'COMPONENTS/uploadImgs';
 import axios from 'UTILS/axios';
 import moment from 'moment';
