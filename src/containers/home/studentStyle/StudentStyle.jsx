@@ -64,7 +64,7 @@ class StudentStyle extends Component {
                         <span className={styles['title']}>学生风采</span>
                         {
 
-                            dataList.length > 4
+                            (dataList.length > 4 && dataList.length != 2)
                                 ?
                                 <Link to='/studentsStyle/more' className={`${styles['more']} ${styles['linkBtn']}`}>
                                     更多<img className={styles['linkIcon']} src={moreImg}></img>

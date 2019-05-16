@@ -211,7 +211,7 @@ class StudentsStyleP extends Component {
                 return;
             }
             if (!title) {
-                showToast('请填写标题')
+                showToast('请填写标题名称')
                 return;
             }
             if (!show_time) {
@@ -260,19 +260,19 @@ class StudentsStyleP extends Component {
                 return;
             }
             if (!title) {
-                showToast('请填写标题')
+                showToast('请填写标题名称')
                 return
             }
             if (!show_time) {
                 // showToast('请选择时间')
                 return;
             }
-            if (!comment) {
-                showToast('请填写教师点评')
-                return;
-            }
             if (images.length == 0) {
                 showToast('请上传图片')
+                return;
+            }
+            if (!comment) {
+                showToast('请填写教师点评')
                 return;
             }
             let submintData = {
