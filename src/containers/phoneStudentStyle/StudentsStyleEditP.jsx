@@ -33,12 +33,26 @@ class StudentsStyleP extends Component {
             canSubmit: true,
         }
     }
+    getTitle(){
+        // const role_id = getHerfInfo('role_id');
+        const nodecheck = getHerfInfo('nodecheck');
+        const show_id = getHerfInfo('show_id');
+        if(nodecheck == 1 ){
+            return '审批'
+        }
+        if(show_id){
+            return '修改'
+        }
+        return '发布'
+        
+    }
     componentDidMount() {
         //role_id 是角色信息 102是家长103是班主任 show_id是获取详情用的
         const show_id = getHerfInfo('show_id');
         const role_id = getHerfInfo('role_id');
-        const nodecheck = getHerfInfo('nodecheck');
+        // const nodecheck = getHerfInfo('nodecheck');
         // 返回二次确认
+        var _this = this;
         window.clickBack = () => {
             const showAlert = (okFn, noFn, title, text, oktext, notext) => {
                 const titleStyle = {
@@ -72,12 +86,12 @@ class StudentsStyleP extends Component {
                     alertInstance.close();
                 }, 500000);
             };
-            showAlert(()=>{
+            showAlert(() => {
                 window.location.href = window.location.href.split('phone')[0] + 'phone/studentsStyle?ticket=' + getHerfInfo('ticket') + '&role_id=' + getHerfInfo('role_id') + '&page=' + getHerfInfo('page');
-            },()=>{},'提示','确定要返回吗？','确定','取消');
+            }, () => { }, '提示', '确定要返回吗？', '确定', '取消');
         }
         document.addEventListener('deviceready', function () {
-            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', [nodecheck == 1 ? '审批' : '发布']);
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', [_this.getTitle()]);
         }, false);
         //隐藏发布按钮
         if (role_id == 102) {
@@ -314,7 +328,7 @@ class StudentsStyleP extends Component {
     render() {
         let { show_time, title, desc, comment, show_days, parents_province, teacher_province, class_name, canSubmit } = this.state;
         const role_id = getHerfInfo('role_id');
-        const nodecheck = getHerfInfo('nodecheck');
+        // const nodecheck = getHerfInfo('nodecheck');
         // console.log(getHerfInfo('role_id'))
         // console.log(comment)
         return <Fragment>
@@ -366,7 +380,8 @@ class StudentsStyleP extends Component {
                                 style={{ textAlign: 'right', color: '#5a5a5a' }}
                             >班级</InputItem> */}
                             <div className={styles['specialIntput']}>
-                                班级<span>{class_name}</span>
+                                <span className={styles['left']}>班级</span>
+                                <span className={styles['right']}>{class_name}</span>
                             </div>
                         </div>
                     }
@@ -386,6 +401,7 @@ class StudentsStyleP extends Component {
                     </div>
                     <div className={styles['row']} style={{ left: '0px' }}>
                         <InputItem
+                            // style={{ overflow: 'scroll' }}
                             placeholder="请输入标题名称"
                             ref={el => this.inputRef = el}
                             extra={<div style={{ color: '#bbb' }} >&nbsp;{(title || '').length > 30 ? 30 : (title || '').length}/30</div>}
@@ -474,7 +490,7 @@ class StudentsStyleP extends Component {
                                 }, 3000)
                             }
                         }}>
-                        {nodecheck == 1 ? '发布' : '提交'}
+                        {role_id == 103 ? '发布' : '提交'}
                     </div>
                 </div>
             </div>

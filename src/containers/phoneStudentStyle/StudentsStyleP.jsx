@@ -115,7 +115,7 @@ class StudentsStyleP extends Component {
             }
         }, false);
         document.addEventListener('deviceready', function () {
-            // window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', ['学生风采']);
+            window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showTitle', ['学生风采']);
             window.cordova.exec(function () { }, function () { }, 'LeTalkCorePlugin', 'showMenu', [[
                 {
                     groupid: 1, //标题栏右侧按钮，一级按钮（groupid相同且数量大于1代表有二级子菜单，否则只是一个普通按钮）
