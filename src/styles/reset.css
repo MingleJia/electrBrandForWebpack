@@ -26,3 +26,6 @@ body{
 p{
 	margin-bottom: 0!important;
 }
+.ant-message .anticon{
+	color:#ff6666 !important;
+}
