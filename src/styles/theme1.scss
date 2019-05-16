@@ -15,9 +15,14 @@
 //   overflow: hidden;
   .more {
       width: 1.12rem;
+      height: 0.52rem;
       float: right;
       margin-top: 0.24rem;
       margin-right: 0.28rem;
+      span{
+        position: relative;
+        top: -1px;
+      }
   }
   .more:active{
     background-color: #eafffa;
