@@ -59,15 +59,21 @@
                 .am-list-content{
                     font-size: 4vw;
                     width: 20vw;
-                    color: #5a5a5a;
+                    color: #777;
                     flex:none;
+                    -webkit-touch-callout:none;
+                    -webkit-user-select:none;
+                    -khtml-user-select:none;
+                    -moz-user-select:none;
+                    -ms-user-select:none;
+                    user-select:none;
                 }
                 .am-list-extra{
                     // display: none;
                     font-size: 4vw;
                     width: 81vw;
                     flex-basis: 100%;
-                    color: #5a5a5a;
+                    color: #444;
                 }
                 
             }
@@ -76,20 +82,26 @@
         //input
         .am-list-item .am-input-label.am-input-label-5{
             font-size: 4vw;
-            color:#5a5a5a;
+            color:#777;
             padding-right: 4vw;
             width: 19vw;
+            -webkit-touch-callout:none;
+            -webkit-user-select:none;
+            -khtml-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
         }
         .am-list-item .am-input-control input,.am-list-item .am-input-extra{
             font-size: 4vw;
             max-height: 13vw;
-            color:#5a5a5a;
+            color:#444;
         }
         // textarea
         .am-textarea-control textarea{
             font-size: 4vw;
             line-height: 5vw;
-            color: #5a5a5a;
+            color: #444;
         }
         .am-textarea-control {
             padding: 13vw 4vw 8vw 4vw;
@@ -123,8 +135,17 @@
                 height: 13vw;
                 line-height: 13vw;
                 font-size: 4vw;
-                color:#5a5a5a;
-                span{
+                color:#444;
+                .left{
+                    color: #777;
+                    -webkit-touch-callout:none;
+                    -webkit-user-select:none;
+                    -khtml-user-select:none;
+                    -moz-user-select:none;
+                    -ms-user-select:none;
+                    user-select:none;
+                }
+                .right{
                     float: right;
                 }
             }
@@ -137,12 +158,18 @@
     .textAreaWrap{
         position: relative;
         .title{
+            -webkit-touch-callout:none;
+            -webkit-user-select:none;
+            -khtml-user-select:none;
+            -moz-user-select:none;
+            -ms-user-select:none;
+            user-select:none;
             position: absolute;
             z-index: 9;
             top:8.5vw;
             left:4vw;
             font-size: 4vw;
-            color: #5a5a5a;
+            color: #777;
             line-height: 2vw;
 
         }
@@ -153,7 +180,7 @@
         padding: 0 0vw 0 4vw;
         background-color: white;
         border-bottom: 0px solid #f2f2f2 ;
-        
+        margin-bottom: 4vw;
         .row{
             position: relative;
             border-bottom:  1px solid #f2f2f2 ;
@@ -165,9 +192,10 @@
     }
     .btnWrap{
         width: 100%;
-        height: 14vw;
-        position: absolute;
+        height: 17vw;
+        position: fixed;
         padding-bottom: 3vw;
+        padding-top: 3vw;
         bottom: 0vw;
         background-color: #f5f7f8;
         .btn{
@@ -180,6 +208,7 @@
             margin: 0 auto 0;
             color:white;
             border-radius: 5px;
+            // margin-top: 3vw;
         }
         .btn:active{
             background-color: #4ea375 !important;

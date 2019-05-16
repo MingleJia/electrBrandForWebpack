@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import MyCarousel from 'COMPONENTS/carousel/StuStyleCarousel.jsx';
 import styles from './StudentStyle.scss';
-import { moreImg } from 'ASSETS/home';
+import { moreImg, noNoticeImg } from 'ASSETS/home';
 import axios from 'UTILS/axios';
 import Loading from 'COMPONENTS/loading';
 import moment from 'moment';
@@ -20,13 +20,13 @@ class StudentStyle extends Component {
         // 定时刷新
         var _this = this;
         window.addEventListener('hashchange', function () {
-            if(window.location.href.indexOf('home') == -1){
+            if (window.location.href.indexOf('home') == -1) {
                 clearInterval(_this.getListTimer);
             }
         });
-        this.getListTimer = setInterval(function(){
+        this.getListTimer = setInterval(function () {
             _this.getDataList();
-        },600000)
+        }, 600000)
         this.getDataList();
     }
     getDataList() {
@@ -62,24 +62,41 @@ class StudentStyle extends Component {
                     }
                     <div className={styles['topBar']}>
                         <span className={styles['title']}>学生风采</span>
-                        <Link to='/studentsStyle/more' className={`${styles['more']} ${styles['linkBtn']}`}>
-                            更多<img className={styles['linkIcon']} src={moreImg}></img>
-                        </Link>
-                    </div>
                         {
-                            //    <NoDataPage/> 
+
+                            dataList.length > 4
+                                ?
+                                <Link to='/studentsStyle/more' className={`${styles['more']} ${styles['linkBtn']}`}>
+                                    更多<img className={styles['linkIcon']} src={moreImg}></img>
+                                </Link>
+                                :
+                                null
+                        }
+                    </div>
+                    {
+                        //    <NoDataPage/> 
+                        dataList.length > 0
+                            ?
                             dataList.map((item, index) =>
                                 <Link to={`/studentsStyle/deatil?id=${item.id}`} key={index}>
                                     <MyCarousel
-                                        showTime={moment(item.show_time * 1000 || 0).format("M月D日 ")+'，'}
+                                        showTime={moment(item.show_time * 1000 || 0).format("M月D日 ") + '，'}
                                         idx={index}
                                         desc={item.desc}
                                         title={item.title}
                                         images={item.images}
                                         styleType={this.getStyleType(dataList.length)} />
                                 </Link>)
-                        }
-                    </div>
+                            :
+                            <div className={styles['noData']}>
+                                {/* <div styles={styles['noDataWrap']}> */}
+                                <img src={noNoticeImg} alt="" />
+                                <p>期待得到谁的表扬呢</p>
+                                {/* </div> */}
+                            </div>
+                    }
+
+                </div>
             }
         </Fragment>
     }

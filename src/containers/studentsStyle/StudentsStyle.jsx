@@ -20,13 +20,13 @@ class StudentsStyle extends Component {
         //定时刷新
         var _this = this;
         window.addEventListener('hashchange', function () {
-            if(window.location.href.indexOf('studentsStyle') == -1){
+            if (window.location.href.indexOf('studentsStyle') == -1) {
                 clearInterval(_this.getListTimer);
             }
         });
-        this.getListTimer = setInterval(function(){
+        this.getListTimer = setInterval(function () {
             _this.getDataList();
-        },600000)
+        }, 600000)
         this.getDataList()
     }
 
@@ -62,9 +62,9 @@ class StudentsStyle extends Component {
                     (
                         dataList.length > 0
                             ?
-                            <div className={styles['content']} style={this.getStyle(dataList.length) == 'contentM4' ? { overflow: 'scroll',paddingBottom:'88px' } : {}} >
+                            <div className={styles['content']} style={this.getStyle(dataList.length) == 'contentM4' ? { overflow: 'scroll', paddingBottom: '88px' } : {}} >
                                 {
-                                    dataList.map((item, index) =>
+                                    dataList.filter((t, i) => i <= 5).map((item, index) =>
                                         <Link to={`/studentsStyle/deatil?id=${item.id}`} key={index}>
                                             <MyCarousel desc={item.desc} title={item.title} images={item.images} styleType={this.getStyle(dataList.length)} idx={index} />
                                         </Link>)
