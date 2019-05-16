@@ -48,4 +48,22 @@
             background-color: #eafffa;
         }
     }
+    .noData{
+        margin: 3.32rem 0  0 0 ;
+        text-align: center;
+        // .noDataWrap{
+            // width: 100%;
+            img{
+                width: 1.2rem !important;
+                height: 1.2rem !important;
+            }
+            p{
+                padding-top: 0.2rem;
+                font-size: 0.24rem;
+                line-height: 0.32rem;
+                letter-spacing: 0px;
+                color: #cccccc;
+            }
+        // }
+    }
 }
