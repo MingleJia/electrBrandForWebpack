@@ -424,7 +424,7 @@ class StudentsStyleP extends Component {
                         rows={2}
                         count={30}
                         value={title}
-                        onChange={(v) => { this.setOneKV('title', v.replace(/(\r\n)|(\n)/g,'').replace(/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|\u3030/ig, '')) }}
+                        onChange={(v) => { this.setOneKV('title', v.replace(/(\r\n)|(\n)/g, '').replace(/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|\u3030/ig, '')) }}
                     />
                 </div>
 
@@ -487,20 +487,23 @@ class StudentsStyleP extends Component {
                         </div> */}
                     </div>
                 }
-
-                <div className={styles['textAreaWrap']} style={{ paddingTop: 0, marginBottom: '8vw' }}>
-                    <div className={styles['title']} style={{ top: '5.6vw' }}>教师点评</div>
-                    <TextareaItem
-                        style={{ height: '10vw' }}
-                        placeholder="请填写教师点评"
-                        // autoHeight
-                        ref={el => this.customFocusInst = el}
-                        rows={2}
-                        count={30}
-                        value={comment}
-                        onChange={(v) => { this.setOneKV('comment', v.replace(/(\r\n)|(\n)/g,'').replace(/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|\u3030/ig, '')) }}
-                    />
-                </div>
+                {
+                    role_id == 103 ?
+                        <div className={styles['textAreaWrap']} style={{ paddingTop: 0, marginBottom: '8vw' }}>
+                            <div className={styles['title']} style={{ top: '5.6vw' }}>教师点评</div>
+                            <TextareaItem
+                                style={{ height: '10vw' }}
+                                placeholder="请填写教师点评"
+                                // autoHeight
+                                ref={el => this.customFocusInst = el}
+                                rows={2}
+                                count={30}
+                                value={comment}
+                                onChange={(v) => { this.setOneKV('comment', v.replace(/(\r\n)|(\n)/g, '').replace(/[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF][\u200D|\uFE0F]|[\uD83C|\uD83D|\uD83E][\uDC00-\uDFFF]|[0-9|*|#]\uFE0F\u20E3|[0-9|#]\u20E3|[\u203C-\u3299]\uFE0F\u200D|[\u203C-\u3299]\uFE0F|[\u2122-\u2B55]|\u303D|\u3030/ig, '')) }}
+                            />
+                        </div>
+                        : null
+                }
 
                 <div className={styles['btnWrap']}>
                     <div
