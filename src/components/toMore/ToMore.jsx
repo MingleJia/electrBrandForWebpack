@@ -23,7 +23,8 @@ class StudentsStyle extends Component {
             <div className={styles['tab']} >
                 <div className={styles['title']}>{this.props.title || ''}</div>
                 <Link to={this.props.toWhere || '/'}>
-                    <div className={styles['btnMore']} style={{ display: this.props.isShow ? 'block' : 'none' }} >更多
+                    <div className={styles['btnMore']} style={{ display: this.props.isShow ? 'block' : 'none' }} >
+                        <span className={styles['word']}>更多</span>
                         <span className={styles['more']}></span>
                     </div>
                 </Link>

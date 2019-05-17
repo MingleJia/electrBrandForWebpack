@@ -24,7 +24,7 @@
         line-height: 0.52rem;
         background-color: white;
         border-radius: 0.26rem;
-        border: solid 0.01rem #ffffff;
+        border: solid 0.02rem #ffffff;
         text-align: center;
         position: absolute;
         right: 0.4rem;
@@ -33,6 +33,11 @@
         font-size: 0.24rem;
         background-color: #29ab9a;
         color: white;
+        .word{
+            // line-height: 1rem
+            position: relative;
+            top:1px;
+        }
         .more {
             display: inline-block;
             width: 0.12rem;
