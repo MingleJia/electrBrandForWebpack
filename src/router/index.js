@@ -89,3 +89,9 @@ export const BlankP = Loadable({
 	loading: Loading,
 	timeout: timeout
 });
+// 考勤管理 app端
+export const AttendanceManageP = Loadable({
+    loader: () => import("CONTAINERS/phoneAttendanceManage/AttendanceManageP"),
+	loading: Loading,
+	timeout: timeout
+});

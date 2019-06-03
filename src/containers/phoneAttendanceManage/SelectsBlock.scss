@@ -1,0 +1,105 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.pageWraper{
+    width: 100vw;
+    height: 100%;
+    .mask{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.4);
+        margin-top: 2rem;
+    }
+}
+.selectWrapper{
+    background: #fff;
+    padding-left: 7vw;
+    padding-right: 7vw;
+    position: fixed;
+    top:0;
+    width: 100vw;
+    
+    .curSelect{
+        color: #37b37d;
+    }
+    .statusSelect{
+        float: right;
+    }
+}
+.titleSty{
+    color:red;
+}
+
+:global {
+    .ant-select-selection-selected-value{
+        height: 12vw!important;
+        line-height: 12vw!important;
+        font-family: 'PingFang-SC';
+        font-size: 4vw;
+        font-weight: normal;
+        font-stretch: normal;
+        line-height: 5vw;
+        letter-spacing: 0vw;
+        color: #999999;
+    }
+    .ant-select-dropdown,.ant-select-dropdown--single,.ant-select-dropdown-placement-bottomLeft{
+        width: 100vw;
+    }
+    .ant-select-selection{
+        border:none;
+        box-shadow: none;
+        border: 0 solid transparent!important;
+    }
+    .ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active{
+        border:none!important;
+        box-shadow: none!important;
+    }
+    .ant-select-dropdown-menu-item-selected, .ant-select-dropdown-menu-item-selected:hover{
+        background-color: #f5f7f8;
+        color: #37b37d;
+        font-weight: normal;
+    }
+    
+    .ant-select-dropdown{
+        left:0 !important;
+    }
+    .ant-select-dropdown-menu-item-active{
+        background-color: #f5f7f8!important;
+        font-family: 'PingFang-SC';
+        font-size: 3.7vw;
+        font-weight: normal!important;
+        font-stretch: normal;
+        letter-spacing: 0;
+        color: #37b37d!important;
+        height: 10.6vw!important;
+        line-height: 8vw!important;
+    }
+    .ant-select-dropdown-menu-item{
+        height: 11vw!important;
+        line-height: 8vw!important;
+        padding-left: 10.6vw!important;
+    }
+    .ant-select-dropdown-menu-item{
+        padding-left: 10.6vw!important;
+    }
+    .ant-select-open .ant-select-arrow-icon svg{
+        color:#39b881!important;
+    }
+    .ant-select-arrow {
+        margin-top: 0!important;
+    }
+    .ant-select-disabled .ant-select-selection{
+        background: #fff;
+        font-family: 'PingFang-SC';
+        font-size: 4vw;
+        font-weight: normal;
+        font-stretch: normal;
+        line-height: 5vw;
+        letter-spacing: 0vw;
+        color: #999999;
+    }
+}

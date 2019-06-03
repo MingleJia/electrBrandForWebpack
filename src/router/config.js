@@ -72,4 +72,9 @@ export const routerConfig = [
         component: config.BlankP,    // 空白页
         exact: true
     },
+    {
+        path:'/phone/attendanceManage',
+        component: config.AttendanceManageP,    // 考勤管理
+        exact: true
+    },
 ]
