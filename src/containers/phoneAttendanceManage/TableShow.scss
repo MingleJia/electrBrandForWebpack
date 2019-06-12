@@ -56,6 +56,12 @@
     .ant-table-thead > tr > th.ant-table-selection-column, .ant-table-tbody > tr > td.ant-table-selection-column{
         // display: none;
     }
+    .ant-table-tbody > tr > td{
+        // width: 17vw;
+        overflow: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+    }
     .ant-table-thead > tr:first-child > th:first-child{
         visibility: hidden!important;
     }

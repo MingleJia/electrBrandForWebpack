@@ -23,21 +23,16 @@ const columns = [
     {
       title: '姓名',
       dataIndex: 'name',
+      className:'sName',
     },
     {
       title: '考勤时间',
       dataIndex: 'attendenceTime',
+      align:'center'
     },
     {
       title: '操作',
       dataIndex: 'operation',
-      // eslint-disable-next-line react/display-name
-    //   render: (text) => (<Link to="/phone/SingleEdit/">{text}</Link>),
-    // render: (text, record) => {
-    //     console.log('record:', record)
-    //     const url = `/phone/SingleEdit/${record.key}`;
-    //     return <Link to={url}>{text}</Link>
-    // },
         render: (text) => <span className={styles.ope}>{text}</span>,
     },
 
@@ -47,7 +42,7 @@ const data = [
       key: '1',
       date: '3.3',
       status: '迟到',
-      name: 'John Brown',
+      name: '上官',
       age: 32,
       address: 'New York',
       attendenceTime: '08:30',
@@ -57,7 +52,7 @@ const data = [
       key: '2',
       date: '3.4',
       status: '早退',
-      name: 'Jim Green',
+      name: '欧阳俊',
       age: 42,
       address: 'London',
       attendenceTime: '08:30',
@@ -67,7 +62,7 @@ const data = [
       key: '3',
       date: '3.5',
       status: '正常',
-      name: 'Joe Black',
+      name: '上官欧阳',
       age: 32,
       address: 'Sidney',
       attendenceTime: '08:30',

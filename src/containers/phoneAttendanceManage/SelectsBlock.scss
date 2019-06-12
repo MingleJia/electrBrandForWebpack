@@ -21,6 +21,7 @@ ol, ul, dl{
 }
 .selectWrapper{
     background: #fff;
+    padding: 0 2vw;
     // padding-left: 7vw;
     // padding-right: 7vw;
     position: fixed;
@@ -84,7 +85,8 @@ ol, ul, dl{
     }
     
     .ant-select-dropdown{
-        left:0 !important;
+        left:0!important;
+        top:12vw!important;
     }
     .ant-select-dropdown-menu-item-active{
         background-color: #f5f7f8!important;
@@ -100,16 +102,15 @@ ol, ul, dl{
     .ant-select-dropdown-menu-item{
         height: 11vw!important;
         line-height: 8vw!important;
-        padding-left: 10.6vw!important;
-    }
-    .ant-select-dropdown-menu-item{
-        padding-left: 10.6vw!important;
+        padding-left: 7vw!important;
     }
     .ant-select-open .ant-select-arrow-icon svg{
         color:#39b881!important;
     }
     .ant-select-arrow {
         margin-top: 0!important;
+        top: 64%!important;
+        right: 1vw!important;
     }
     .ant-select-disabled .ant-select-selection{
         background: #fff;
@@ -122,7 +123,7 @@ ol, ul, dl{
         color: #999999;
     }
 
-    .am-list-item .am-list-line .am-list-content{
+    .calendar-list .am-list-item .am-list-line .am-list-content{
         font-size: 4vw;
         font-weight: normal;
         font-stretch: normal;
@@ -134,10 +135,14 @@ ol, ul, dl{
     .am-list-item .am-list-line{
         padding-right: 0 !important;
     }
-    .am-list-item .am-list-line .am-list-arrow{
+    .calendar-list .am-list-item .am-list-line .am-list-arrow{
+        background-image: url('../../assets/date3x.png')!important;
         margin-left: 0!important;
         position: relative;
         left: -5vw; // ???
+        top: 1px;
+        width: 3vw;
+        height: 3vw;
     }
     .ant-select{
         // margin-right: 6vw;
@@ -145,8 +150,9 @@ ol, ul, dl{
         // border: 1px solid green;
     }
     .ant-select-selection__rendered{
-        // margin-right: 0!important;
+        margin-right: 0!important;
         margin-left: 0!important;
+        height: 12vw!important;
     }
     .am-list-item{
         padding-left: 0!important;
@@ -155,6 +161,6 @@ ol, ul, dl{
         height: 12vw!important;
     }
     .am-list-item .am-list-line .am-list-arrow{
-        background-image: url('../../assets/date3x.png')!important;
+        
     }
 }

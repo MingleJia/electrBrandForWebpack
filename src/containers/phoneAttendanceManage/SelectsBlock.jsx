@@ -28,6 +28,7 @@ class SelectsBlock extends Component {
         clazzes: ['高一(1)班', '高一(10)班', '高一(12)班'], // 班级选项
         types: ['上午进班', '上午离班', '下午进班', '下午离班','晚自习进班', '晚自习离班', '选修班', '行政班',  '考试'], // 考勤类型
         chosenClazz: '', // 当前选中的班级值
+        chosenObj: '', // 当前选中的对象值
         chosenType: '', // 当前选中的类型值
         maskOpen: false, // true时 显示遮罩层
         clazzopen: false, // true时表示班级的下拉框被展开
@@ -38,27 +39,28 @@ class SelectsBlock extends Component {
 
     componentDidMount() {
         // 从url获取参数 如果没有的话 就设置默认值clazzs[0] 
-        const initClazz = parseInt(this.getQueryString('initClazz')) || 0;
-        const initType = parseInt(this.getQueryString('initType')) || 0;
-        this.setState({
-            chosenClazz: initClazz,
-            chosenType: initType,
-        });
+        // const initClazz = parseInt(this.getQueryString('initClazz')) || 0;
+        // const initType = parseInt(this.getQueryString('initType')) || 0;
+        // this.setState({
+        //     chosenClazz: initClazz,
+        //     chosenType: initType,
+        // });
     }
 
     // 获取url中的班级和状态初始值
-    getQueryString = (name) => {
-        let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        let r = window.location.search.substr(1).match(reg);
-        // let r = this.props.location.search.substr(1).match(reg);
-        if (r != null) {
-            return unescape(r[2]);
-        }  
-        return null;
-    }
+    // getQueryString = (name) => {
+    //     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    //     let r = window.location.search.substr(1).match(reg);
+    //     // let r = this.props.location.search.substr(1).match(reg);
+    //     if (r != null) {
+    //         return unescape(r[2]);
+    //     }  
+    //     return null;
+    // }
 
     // 弹出遮罩层
     showMask = (str, open) => {
+        console.log('open:', open)
         if (str === 'clazz') {
             if (open) {
                 this.setState({
@@ -92,14 +94,16 @@ class SelectsBlock extends Component {
         this.setState({
             chosenClazz: value,
             dataList: [],
-        }, () => {
-            // 当班级切换时，将状态select归零
-            this.setState({
-                chosenType: this.state.types[0]
-            });
         });
     }
-
+    
+    // 切换对象select框
+    handleObjChange = (value) => {
+        console.log('当前对象是：', value);
+        this.setState({
+            chosenObj: value
+        })
+    }
     // 切换类型select框时
     handleTypeChange = (value) => {
         this.setState({
@@ -148,7 +152,7 @@ class SelectsBlock extends Component {
     getDateExtra = date => extra[+date];
 
     render() {
-        const {clazzes, types, chosenClazz, chosenType, clazzopen, maskOpen} = this.state;
+        const {clazzes, types, chosenClazz, chosenObj, chosenType, clazzopen, maskOpen} = this.state;
         const selects = 
         <>
             <div className={styles.selectWrapper}>
@@ -166,7 +170,15 @@ class SelectsBlock extends Component {
                     </li>
                     <li>
                         {/* 对象 */}
-                        <Select value='学生' disabled></Select>
+                        <Select 
+                            value={chosenObj || '学生'}
+                            onChange={this.handleObjChange.bind(this)}
+                            dropdownMatchSelectWidth = {false}
+                            className={clazzopen ? styles.curSelect : ''}
+                            onDropdownVisibleChange = {this.showMask.bind(this, 'obj')}
+                        >
+                            <Option value="学生">学生</Option>
+                        </Select>
                     </li>
                     <li>
                         {/* 类型 */}
