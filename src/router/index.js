@@ -95,3 +95,9 @@ export const AttendanceManageP = Loadable({
 	loading: Loading,
 	timeout: timeout
 });
+// 考勤管理-修改状态（单条） app端
+export const SingleEdit = Loadable({
+    loader: () => import("CONTAINERS/SingleEdit/SingleEdit"),
+	loading: Loading,
+	timeout: timeout
+});

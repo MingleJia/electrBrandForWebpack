@@ -1,10 +1,28 @@
 /* eslint-disable no-console */
 import React, { Component, Fragment } from 'react';
 import {Select} from 'antd';
+import { List, Calendar } from 'antd-mobile';
 import styles from './SelectsBlock.scss';
 
 const Option = Select.Option;
+const extra = {
+    '2017/07/15': { info: 'Disable', disable: true },
+  };
+  
+const now = new Date();
+extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 5)] = { info: 'Disable', disable: true };
+extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 6)] = { info: 'Disable', disable: true };
+extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7)] = { info: 'Disable', disable: true };
+extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 8)] = { info: 'Disable', disable: true };
+Object.keys(extra).forEach((key) => {
+    const info = extra[key];
+    const date = new Date(key);
+    if (!Number.isNaN(+date) && !extra[+date]) {
+      extra[+date] = info;
+    }
+});
 class SelectsBlock extends Component {
+    originbodyScrollY = document.getElementsByTagName('body')[0].style.overflowY;
     state = {
         data: [],
         clazzes: ['高一(1)班', '高一(10)班', '高一(12)班'], // 班级选项
@@ -13,6 +31,9 @@ class SelectsBlock extends Component {
         chosenType: '', // 当前选中的类型值
         maskOpen: false, // true时 显示遮罩层
         clazzopen: false, // true时表示班级的下拉框被展开
+        en: false,
+        show: false,
+        config: {},
     }
 
     componentDidMount() {
@@ -86,32 +107,110 @@ class SelectsBlock extends Component {
         })
     }
 
+    renderBtn(zh, en = {}) {
+    
+        return (
+          <List.Item arrow="horizontal"
+            onClick={() => {
+              document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
+              this.setState({
+                show: true,
+              });
+            }}
+          >
+            {this.state.en ? en : zh}
+          </List.Item>
+        );
+    }
+
+    onSelectHasDisableDate = (dates) => {
+        console.warn('onSelectHasDisableDate', dates);
+    }
+
+    onConfirm = (startTime, endTime) => {
+        document.getElementsByTagName('body')[0].style.overflowY = this.originbodyScrollY;
+        this.setState({
+            show: false,
+            startTime,
+            endTime,
+        });
+    }
+
+    onCancel = () => {
+        document.getElementsByTagName('body')[0].style.overflowY = this.originbodyScrollY;
+        this.setState({
+            show: false,
+            startTime: undefined,
+            endTime: undefined,
+        });
+    }
+
+    getDateExtra = date => extra[+date];
+
     render() {
         const {clazzes, types, chosenClazz, chosenType, clazzopen, maskOpen} = this.state;
         const selects = 
         <>
             <div className={styles.selectWrapper}>
-                <Select
-                    value={chosenClazz || '班级'} 
-                    onChange={this.handleClazzChange.bind(this)} 
-                    dropdownMatchSelectWidth = {false}
-                    className={clazzopen ? styles.curSelect : ''}
-                    onDropdownVisibleChange = {this.showMask.bind(this, 'clazz')}
-                >
-                    {clazzes && clazzes.length > 0 && clazzes.map((clazz, index) => <Option key={index} value={clazz}>{clazz}</Option>)}
-                </Select>
-                {/* 对象 */}
-                <Select value='学生' disabled></Select>
-                {/* 类型 */}
-                <Select
-                    value={chosenType || '类型'} 
-                    onChange={this.handleTypeChange.bind(this)} 
-                    dropdownMatchSelectWidth = {false}
-                    className={clazzopen ? styles.curSelect : ''}
-                    onDropdownVisibleChange = {this.showMask.bind(this, 'type')}
-                >
-                    {types && types.length > 0 && types.map((type, index) => <Option key={index} value={type}>{type}</Option>)}
-                </Select>
+                <ul className={styles.clazzSelect}>
+                    <li>
+                        <Select
+                            value={chosenClazz || '班级'} 
+                            onChange={this.handleClazzChange.bind(this)} 
+                            dropdownMatchSelectWidth = {false}
+                            className={clazzopen ? styles.curSelect : ''}
+                            onDropdownVisibleChange = {this.showMask.bind(this, 'clazz')}
+                        >
+                            {clazzes && clazzes.length > 0 && clazzes.map((clazz, index) => <Option key={index} value={clazz}>{clazz}</Option>)}
+                        </Select>
+                    </li>
+                    <li>
+                        {/* 对象 */}
+                        <Select value='学生' disabled></Select>
+                    </li>
+                    <li>
+                        {/* 类型 */}
+                        <Select
+                            value={chosenType || '类型'} 
+                            onChange={this.handleTypeChange.bind(this)} 
+                            dropdownMatchSelectWidth = {false}
+                            className={clazzopen ? styles.curSelect : ''}
+                            onDropdownVisibleChange = {this.showMask.bind(this, 'type')}
+                        >
+                            {types && types.length > 0 && types.map((type, index) => <Option key={index} value={type}>{type}</Option>)}
+                        </Select>
+                    </li>
+                    <li>
+                        <span className={styles.calWraper}>
+                            <List className="calendar-list" style={{ backgroundColor: 'white' }}>
+                            {this.renderBtn('时间', 'Select DateTime Range (Shortcut)', { pickTime: true, showShortcut: true })}
+                            {
+                                this.state.startTime &&
+                                <List.Item>Time1: {this.state.startTime.toLocaleString()}</List.Item>
+                            }
+                            {
+                                this.state.endTime &&
+                                <List.Item>Time2: {this.state.endTime.toLocaleString()}</List.Item>
+                            }
+                            </List>
+                            <Calendar
+                            visible={this.state.show}
+                            onCancel={this.onCancel}
+                            onConfirm={this.onConfirm}
+                            onSelectHasDisableDate={this.onSelectHasDisableDate.bind(this, '不可选')}
+                            getDateExtra={this.getDateExtra}
+                            defaultDate={now}
+                            minDate={new Date(+now - 5184000000)}
+                            maxDate={new Date(+now + 31536000000)}
+                            />
+                        </span>
+                    </li>
+                </ul>
+                
+                
+                
+
+                
 
 
 
@@ -127,7 +226,6 @@ class SelectsBlock extends Component {
             <div className={styles.pageWraper}>
                 {maskOpen ? (<div className={styles.mask}></div>) : ''}
                 {content}
-                <div className={styles.titleSty}>考勤管理</div>
             </div>
         );
     }

@@ -8,7 +8,8 @@ const INITIAL_STATE = {
 	displayImg: false, //是否显示预览图片
 	previewImg: '', //当前预览图片的url 
 	noticeId: '', //首页当点点击选中id
-	noticeNum : 0, //选中第几条消息
+    noticeNum : 0, //选中第几条消息
+    rowkey: 0, // 选中的考勤记录的key
 };
 const root = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
@@ -34,6 +35,11 @@ const root = (state = INITIAL_STATE, action) => {
 				...state,
 				noticeId: action.noticeId,
 				noticeNum: action.noticeNum,
+			};
+		case Actions.TableShow:
+			return {
+				...state,
+				rowkey: action.rowkey,
 			};
 		default:
 			return state;

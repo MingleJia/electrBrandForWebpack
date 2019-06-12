@@ -77,4 +77,9 @@ export const routerConfig = [
         component: config.AttendanceManageP,    // 考勤管理
         exact: true
     },
+    {
+        path:'/phone/SingleEdit',
+        component: config.SingleEdit,    // 修改状态（单条）
+        exact: true
+    },
 ]

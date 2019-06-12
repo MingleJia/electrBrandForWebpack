@@ -1,0 +1,53 @@
+.wholeWrap{
+    padding: 0 4vw;
+    background: #fff;
+}
+.itemWrap{
+    height: 13vw;
+    line-height: 13vw;
+    border-bottom: 1px solid #dbdbdb;
+    .itemTitle{
+        float: left;
+        font-size: 4vw;
+        color: #777777;
+    }
+    .itemValue{
+        float: right;
+        font-size: 4vw;
+        color: #444444;
+    }
+}
+
+:global{
+    .am-list-item{
+        height: 13vw!important;
+        padding-left: 0!important;
+    }
+    .am-list-item .am-list-line{
+        padding-right: 0!important;
+    }
+    .am-list-item .am-list-line .am-list-content{
+        color: #777777!important;
+    }
+    .am-list-item .am-list-line .am-list-extra{
+        color: #444444!important;
+    }
+    .am-list-item .am-list-line .am-list-arrow{
+        margin-left: 3vw!important;
+    }
+
+    .am-picker-popup-header{
+        background: #f3f3f3!important;
+        height: 12vw!important;
+    }
+    .am-picker-popup-item{
+        font-size: 4vw;
+    }
+    .am-picker-popup-header-left {
+        color: #999;
+    }
+    .am-picker-popup-header-right {
+        color: #4ea375;
+    }
+    
+}
