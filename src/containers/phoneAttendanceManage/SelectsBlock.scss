@@ -22,12 +22,9 @@ ol, ul, dl{
 .selectWrapper{
     background: #fff;
     padding: 0 2vw;
-    // padding-left: 7vw;
-    // padding-right: 7vw;
     position: fixed;
     top:0;
     width: 100vw;
-    // border:1px solid purple;
     overflow: hidden;
     
     .clazzSelect{
@@ -40,18 +37,27 @@ ol, ul, dl{
             vertical-align: top;
             text-align: center;
         }
+        :global{
+            .calendar-list .am-list-item .am-list-line .am-list-arrow{
+                background-image: url('../../assets/date3x.png')!important;
+                margin-left: 1vw!important;
+                // position: relative;
+                // left: -5vw; // ???
+                // top: 1px;
+                width: 3vw;
+                height: 3vw;
+            }
+        }
     }
     .curSelect{
         color: #37b37d;
     }
-    // .calWraper{
-    //     border:1px solid yellow;
-    //     // float: right;
-    //     // height: 12vw;
-    // }
-}
-.titleSty{
-    color:red;
+    .calWraper{
+        // border:1px solid yellow;
+        display: inline-block;
+        // float: right;
+        // height: 12vw;
+    }
 }
 
 :global {
@@ -109,7 +115,7 @@ ol, ul, dl{
     }
     .ant-select-arrow {
         margin-top: 0!important;
-        top: 64%!important;
+        top: 54%!important;
         right: 1vw!important;
     }
     .ant-select-disabled .ant-select-selection{
@@ -125,25 +131,21 @@ ol, ul, dl{
 
     .calendar-list .am-list-item .am-list-line .am-list-content{
         font-size: 4vw;
-        font-weight: normal;
-        font-stretch: normal;
-        line-height: 5vw;
-        letter-spacing: 0vw;
         color: #999999;
         text-align: center!important;
     }
     .am-list-item .am-list-line{
         padding-right: 0 !important;
     }
-    .calendar-list .am-list-item .am-list-line .am-list-arrow{
-        background-image: url('../../assets/date3x.png')!important;
-        margin-left: 0!important;
-        position: relative;
-        left: -5vw; // ???
-        top: 1px;
-        width: 3vw;
-        height: 3vw;
-    }
+    // .calendar-list .am-list-item .am-list-line .am-list-arrow{
+    //     background-image: url('../../assets/date3x.png')!important;
+    //     margin-left: 0!important;
+    //     position: relative;
+    //     left: -5vw; // ???
+    //     top: 1px;
+    //     width: 3vw;
+    //     height: 3vw;
+    // }
     .ant-select{
         // margin-right: 6vw;
         height: 12vw;
@@ -159,8 +161,5 @@ ol, ul, dl{
     }
     .am-list-item.am-list-item-middle .am-list-line{
         height: 12vw!important;
-    }
-    .am-list-item .am-list-line .am-list-arrow{
-        
     }
 }

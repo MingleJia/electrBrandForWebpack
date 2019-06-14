@@ -16,6 +16,13 @@
         font-size: 4vw;
         color: #444444;
     }
+    :global{
+        .am-list-item .am-list-line .am-list-arrow{
+            margin-left: 3vw!important;
+            width: 2vw!important;
+            height: 4vw!important;
+        }
+    }
 }
 
 :global{
@@ -28,20 +35,24 @@
     }
     .am-list-item .am-list-line .am-list-content{
         color: #777777!important;
+        font-size: 4vw!important;
     }
     .am-list-item .am-list-line .am-list-extra{
         color: #444444!important;
+        font-size: 4vw!important;
     }
-    .am-list-item .am-list-line .am-list-arrow{
-        margin-left: 3vw!important;
-    }
+    // .am-list-item .am-list-line .am-list-arrow{
+    //     margin-left: 3vw!important;
+    //     // width: 2vw!important;
+    //     // height: 4vw!important;
+    // }
 
     .am-picker-popup-header{
         background: #f3f3f3!important;
         height: 12vw!important;
     }
     .am-picker-popup-item{
-        font-size: 4vw;
+        font-size: 4vw!important;
     }
     .am-picker-popup-header-left {
         color: #999;

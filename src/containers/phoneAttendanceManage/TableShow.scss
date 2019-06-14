@@ -1,11 +1,110 @@
 .wrap {
-    order:1px solid green;
     overflow: hidden;
     position: relative;
     top: 14vw;
     background: #fff;
-    .table tr:nth-child(odd){
-        background: #f5f7f8;
+    // z-index: -1;
+    .tableMock{
+        .tableHeader{
+            height: 9vw;
+            line-height: 9vw;
+            padding: 0 3vw;
+            .hItem{
+                color: #999;
+                display: inline-block;
+                width: 20%;
+                font-family: 'PingFang-SC';
+                font-size: 4vw;
+            }
+            .opeation{
+                text-align: right;
+            }
+        }
+        .tBodyWrap{
+            .tBodyItem{
+                padding: 0 3vw;
+                height: 13vw;
+                line-height: 13vw;
+                .bItem{
+                    color: #666;
+                    display: inline-block;
+                    width: 20%;
+                    font-family: 'PingFang-SC';
+                    font-size: 4vw;
+                }
+                .bName{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    vertical-align: top;
+                    width: 17vw;
+                }
+                .bDate{
+                    text-align: center;
+                }
+                .bEdit{
+                    color: #49bb7d;
+                    text-align: right;
+                    float: right;
+                }
+            }
+            li:nth-child(odd){
+                background:#fbfbfb;
+            }
+        }
+    }
+
+    .multiTable{
+        padding: 0 3vw;
+        .multiHeader{
+            height: 9vw;
+            line-height: 9vw;
+            
+            box-sizing: border-box;
+            span{
+                display: inline-block;
+                color: #999;
+                font-size: 4vw;
+            }
+            .multiHDate{
+                margin-left: 13vw;
+            }
+            .multiHDate,.multiHSta, .multiHName, .multiHTime{
+                width: 20vw;
+            }
+            .multiHTime{
+                float: right;
+                text-align: center;
+            }
+        }
+        .multiBodyWrap{
+            .multiBodyItem{
+                height: 13vw;
+                line-height: 13vw;
+                font-size: 4vw;
+                span{
+                    display: inline-block;
+                }
+                .multiBCheck{
+                    width: 12.6vw;
+                }
+                .multiBDate, .multiBStatus, .multiBName{
+                    width: 20vw;
+                }
+                .multiBName{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    vertical-align: top;
+                    width: 17vw;
+                }
+                .multiBTime{
+                    text-align: center;
+                    float: right;
+                    width: 20vw;
+                }
+            }
+        }
     }
 
     .footWrap{
@@ -43,9 +142,6 @@
     }
     .hide{
         display: none;
-    }
-    .ope{
-        color: #42b279;
     }
 }
 

@@ -83,7 +83,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^2.0.1",
-    "antd": "3.6.3",
+    "antd": "3.12.1",
     "antd-mobile": "^2.2.6",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.0",

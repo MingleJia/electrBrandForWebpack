@@ -5,22 +5,22 @@ import { List, Calendar } from 'antd-mobile';
 import styles from './SelectsBlock.scss';
 
 const Option = Select.Option;
-const extra = {
-    '2017/07/15': { info: 'Disable', disable: true },
-  };
+// const extra = {
+//     '2017/07/15': { info: 'Disable', disable: true },
+//   };
   
 const now = new Date();
-extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 5)] = { info: 'Disable', disable: true };
-extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 6)] = { info: 'Disable', disable: true };
-extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7)] = { info: 'Disable', disable: true };
-extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 8)] = { info: 'Disable', disable: true };
-Object.keys(extra).forEach((key) => {
-    const info = extra[key];
-    const date = new Date(key);
-    if (!Number.isNaN(+date) && !extra[+date]) {
-      extra[+date] = info;
-    }
-});
+// extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 5)] = { info: 'Disable', disable: true };
+// extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 6)] = { info: 'Disable', disable: true };
+// extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7)] = { info: 'Disable', disable: true };
+// extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 8)] = { info: 'Disable', disable: true };
+// Object.keys(extra).forEach((key) => {
+//     const info = extra[key];
+//     const date = new Date(key);
+//     if (!Number.isNaN(+date) && !extra[+date]) {
+//       extra[+date] = info;
+//     }
+// });
 class SelectsBlock extends Component {
     originbodyScrollY = document.getElementsByTagName('body')[0].style.overflowY;
     state = {
@@ -38,25 +38,7 @@ class SelectsBlock extends Component {
     }
 
     componentDidMount() {
-        // 从url获取参数 如果没有的话 就设置默认值clazzs[0] 
-        // const initClazz = parseInt(this.getQueryString('initClazz')) || 0;
-        // const initType = parseInt(this.getQueryString('initType')) || 0;
-        // this.setState({
-        //     chosenClazz: initClazz,
-        //     chosenType: initType,
-        // });
     }
-
-    // 获取url中的班级和状态初始值
-    // getQueryString = (name) => {
-    //     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-    //     let r = window.location.search.substr(1).match(reg);
-    //     // let r = this.props.location.search.substr(1).match(reg);
-    //     if (r != null) {
-    //         return unescape(r[2]);
-    //     }  
-    //     return null;
-    // }
 
     // 弹出遮罩层
     showMask = (str, open) => {
@@ -127,8 +109,11 @@ class SelectsBlock extends Component {
         );
     }
 
-    onSelectHasDisableDate = (dates) => {
-        console.warn('onSelectHasDisableDate', dates);
+    calendarSelect = () => {
+        // console.log('ssscalendarSelect');
+        var dom = document.getElementsByClassName('am-list-content');
+        // console.log('dom.style:', dom[0].style)
+        dom[0].style.fontSize = '3vw';
     }
 
     onConfirm = (startTime, endTime) => {
@@ -149,7 +134,7 @@ class SelectsBlock extends Component {
         });
     }
 
-    getDateExtra = date => extra[+date];
+    // getDateExtra = date => extra[+date];
 
     render() {
         const {clazzes, types, chosenClazz, chosenObj, chosenType, clazzopen, maskOpen} = this.state;
@@ -206,14 +191,13 @@ class SelectsBlock extends Component {
                             }
                             </List>
                             <Calendar
-                            visible={this.state.show}
-                            onCancel={this.onCancel}
-                            onConfirm={this.onConfirm}
-                            onSelectHasDisableDate={this.onSelectHasDisableDate.bind(this, '不可选')}
-                            getDateExtra={this.getDateExtra}
-                            defaultDate={now}
-                            minDate={new Date(+now - 5184000000)}
-                            maxDate={new Date(+now + 31536000000)}
+                                visible={this.state.show}
+                                onCancel={this.onCancel}
+                                onConfirm={this.onConfirm}
+                                onSelect = {this.calendarSelect.bind(this)}
+                                defaultDate={now}
+                                minDate={new Date(+now - 5184000000)}
+                                maxDate={new Date(+now + 31536000000)}
                             />
                         </span>
                     </li>
