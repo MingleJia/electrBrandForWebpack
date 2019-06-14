@@ -1,6 +1,5 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
-
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import {Checkbox } from 'antd';
@@ -60,7 +59,6 @@ class TableShow extends Component {
         isMultiEdit: true, // true时表示当前为修改状态
         selectedRowKeys: [], // 当前选中行的key值集合
         hasSelectAll: false, // 为true时表示全选，false表示取消全选
-        // statusAfterEdit: '',
         selectedIdArr: [], // 选中的id数组
         allIdArr: [], // dataList的所有数据id汇总
     }
@@ -79,7 +77,7 @@ class TableShow extends Component {
         })
     }
 
-    // 修改单条table选项时
+    // 单选修改：修改单条table选项时
     editSingle = (id) => {
         this.props.history.push('/phone/SingleEdit');
         this.props.setTableShow({
@@ -87,14 +85,13 @@ class TableShow extends Component {
         })
     }
 
-    // 选中某行或取消某行的选中
+    // 批量修改：选中某行或取消某行的选中
     rowChose = (rowId) => {
-        console.log('当前选中行的id:', rowId);
+        // console.log('当前选中行的id:', rowId);
         let arr = JSON.parse(JSON.stringify(this.state.selectedIdArr)); // 深拷贝一个数组，防止对原数组进行不可预知干扰
         let location = arr.indexOf(rowId);
         if(location !== -1) { // 已经存在
             arr.splice(location,1);
-            console.log('删除后的数组：', arr);
         } else {
             arr.push(rowId)
         }
@@ -145,6 +142,8 @@ class TableShow extends Component {
         })
     }
 
+    // 父组件state中的isMultiEdit变化时 子组件的isMultiEdit也要相应变化。
+    // props表示父组件传来的值，state表示当前组件内的值。return相当于setState
     static getDerivedStateFromProps(props, state){
         if(props.isMultiEdit !== state.isMultiEdit){
             return {

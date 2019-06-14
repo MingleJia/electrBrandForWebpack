@@ -53,10 +53,24 @@ ol, ul, dl{
         color: #37b37d;
     }
     .calWraper{
-        // border:1px solid yellow;
         display: inline-block;
-        // float: right;
-        // height: 12vw;
+        height: 12vw;
+        line-height: 12vw;
+        .message{
+            font-size: 4vw;
+            color: #999;
+        }
+        .period{
+            font-size: 3vw;
+            color: #999;
+        }
+        .dateLogo{
+            margin-left: 1vw!important;
+            width: 3vw;
+            height: 3vw;
+            position: relative;
+            top: -0.5vw;
+        }
     }
 }
 
@@ -137,15 +151,6 @@ ol, ul, dl{
     .am-list-item .am-list-line{
         padding-right: 0 !important;
     }
-    // .calendar-list .am-list-item .am-list-line .am-list-arrow{
-    //     background-image: url('../../assets/date3x.png')!important;
-    //     margin-left: 0!important;
-    //     position: relative;
-    //     left: -5vw; // ???
-    //     top: 1px;
-    //     width: 3vw;
-    //     height: 3vw;
-    // }
     .ant-select{
         // margin-right: 6vw;
         height: 12vw;

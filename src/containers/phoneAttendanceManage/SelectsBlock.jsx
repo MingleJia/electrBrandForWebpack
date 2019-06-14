@@ -1,26 +1,13 @@
 /* eslint-disable no-console */
 import React, { Component, Fragment } from 'react';
 import {Select} from 'antd';
-import { List, Calendar } from 'antd-mobile';
+import { Calendar } from 'antd-mobile';
 import styles from './SelectsBlock.scss';
+import date3x from 'ASSETS/date3x.png';
 
 const Option = Select.Option;
-// const extra = {
-//     '2017/07/15': { info: 'Disable', disable: true },
-//   };
   
 const now = new Date();
-// extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 5)] = { info: 'Disable', disable: true };
-// extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 6)] = { info: 'Disable', disable: true };
-// extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7)] = { info: 'Disable', disable: true };
-// extra[+new Date(now.getFullYear(), now.getMonth(), now.getDate() + 8)] = { info: 'Disable', disable: true };
-// Object.keys(extra).forEach((key) => {
-//     const info = extra[key];
-//     const date = new Date(key);
-//     if (!Number.isNaN(+date) && !extra[+date]) {
-//       extra[+date] = info;
-//     }
-// });
 class SelectsBlock extends Component {
     originbodyScrollY = document.getElementsByTagName('body')[0].style.overflowY;
     state = {
@@ -32,9 +19,7 @@ class SelectsBlock extends Component {
         chosenType: '', // 当前选中的类型值
         maskOpen: false, // true时 显示遮罩层
         clazzopen: false, // true时表示班级的下拉框被展开
-        en: false,
         show: false,
-        config: {},
     }
 
     componentDidMount() {
@@ -42,7 +27,7 @@ class SelectsBlock extends Component {
 
     // 弹出遮罩层
     showMask = (str, open) => {
-        console.log('open:', open)
+        // console.log('open:', open)
         if (str === 'clazz') {
             if (open) {
                 this.setState({
@@ -72,7 +57,7 @@ class SelectsBlock extends Component {
 
     // 切换班级select框时
     handleClazzChange = (value) => {
-        // console.log(`selected clazz ${value}`);
+        console.log(`selected clazz ${value}`);
         this.setState({
             chosenClazz: value,
             dataList: [],
@@ -88,34 +73,20 @@ class SelectsBlock extends Component {
     }
     // 切换类型select框时
     handleTypeChange = (value) => {
+        console.log(`selected 类型 ${value}`);
         this.setState({
             chosenType: value,
         })
     }
 
-    renderBtn(zh, en = {}) {
-    
-        return (
-          <List.Item arrow="horizontal"
-            onClick={() => {
-              document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
-              this.setState({
-                show: true,
-              });
-            }}
-          >
-            {this.state.en ? en : zh}
-          </List.Item>
-        );
+    // 展开Calendar组件
+    showCalendar = () => {
+        this.setState({
+            show:true
+        })
     }
 
-    calendarSelect = () => {
-        // console.log('ssscalendarSelect');
-        var dom = document.getElementsByClassName('am-list-content');
-        // console.log('dom.style:', dom[0].style)
-        dom[0].style.fontSize = '3vw';
-    }
-
+    // Calendar组件“确定”按钮点击事件
     onConfirm = (startTime, endTime) => {
         document.getElementsByTagName('body')[0].style.overflowY = this.originbodyScrollY;
         this.setState({
@@ -125,6 +96,7 @@ class SelectsBlock extends Component {
         });
     }
 
+    // Calendar组件取消”按钮点击事件
     onCancel = () => {
         document.getElementsByTagName('body')[0].style.overflowY = this.originbodyScrollY;
         this.setState({
@@ -134,10 +106,19 @@ class SelectsBlock extends Component {
         });
     }
 
-    // getDateExtra = date => extra[+date];
+    // 时间格式CST转GMT
+    getTaskTime = (strDate) => {
+        var date = new Date(strDate);
+        var m = date.getMonth() + 1;  
+        m = m < 10 ? ('0' + m) : m;  
+        var d = date.getDate();  
+        d = d < 10 ? ('0' + d) : d;  
+        var str = m+"."+d;
+        return str;
+    };
 
     render() {
-        const {clazzes, types, chosenClazz, chosenObj, chosenType, clazzopen, maskOpen} = this.state;
+        const {clazzes, types, chosenClazz, chosenObj, chosenType, clazzopen, maskOpen, show, startTime, endTime} = this.state;
         const selects = 
         <>
             <div className={styles.selectWrapper}>
@@ -178,46 +159,26 @@ class SelectsBlock extends Component {
                         </Select>
                     </li>
                     <li>
-                        <span className={styles.calWraper}>
-                            <List className="calendar-list" style={{ backgroundColor: 'white' }}>
-                            {this.renderBtn('时间', 'Select DateTime Range (Shortcut)', { pickTime: true, showShortcut: true })}
+                        <span className={styles.calWraper} onClick={this.showCalendar.bind(this)}>
                             {
-                                this.state.startTime &&
-                                <List.Item>Time1: {this.state.startTime.toLocaleString()}</List.Item>
+                                !(startTime&&endTime) ? (<span className={styles.message}>时间</span>) : (<span className={styles.period}>{this.getTaskTime(startTime)}~{this.getTaskTime(endTime)}</span>)
                             }
-                            {
-                                this.state.endTime &&
-                                <List.Item>Time2: {this.state.endTime.toLocaleString()}</List.Item>
-                            }
-                            </List>
-                            <Calendar
-                                visible={this.state.show}
-                                onCancel={this.onCancel}
-                                onConfirm={this.onConfirm}
-                                onSelect = {this.calendarSelect.bind(this)}
-                                defaultDate={now}
-                                minDate={new Date(+now - 5184000000)}
-                                maxDate={new Date(+now + 31536000000)}
-                            />
+                            <img className={styles.dateLogo} src={date3x} alt=""/>
                         </span>
                     </li>
                 </ul>
-                
-                
-                
-
-                
-
-
-
-
             </div>
+            <Calendar
+                visible={show}
+                onCancel={this.onCancel.bind(this)}
+                onConfirm={this.onConfirm.bind(this)}
+                defaultDate={now}
+                minDate={new Date(+now - 5184000000)}
+                maxDate={new Date(+now + 31536000000)}
+            />
         </>;
 
-        const content = 
-        <Fragment>
-            {selects}
-        </Fragment>
+        const content = <Fragment>{selects}</Fragment>
         return (
             <div className={styles.pageWraper}>
                 {maskOpen ? (<div className={styles.mask}></div>) : ''}

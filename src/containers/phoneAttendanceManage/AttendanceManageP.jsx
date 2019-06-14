@@ -36,8 +36,6 @@ class AttendanceManageP extends Component {
                     ]]);
                 }
             })
-
-
         }
     }
 
@@ -46,9 +44,9 @@ class AttendanceManageP extends Component {
     render() {        
         return (
             <div className={styles.container}>
-                <SelectsBlock></SelectsBlock>
+                {/* TableShow和SelectsBlock的顺序不能颠倒，不然会存在z-index覆盖问题 */}
                 <TableShow isMultiEdit={this.state.isMultiEdit}/>
-
+                <SelectsBlock></SelectsBlock>
             </div>
         );
     }

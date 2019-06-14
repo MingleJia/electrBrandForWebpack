@@ -5,10 +5,13 @@
     background: #fff;
     // z-index: -1;
     .tableMock{
+        overflow: hidden;
         .tableHeader{
             height: 9vw;
             line-height: 9vw;
             padding: 0 3vw;
+            position: fixed;
+            width: 100vw;
             .hItem{
                 color: #999;
                 display: inline-block;
@@ -21,6 +24,7 @@
             }
         }
         .tBodyWrap{
+            margin-top: 11vw;
             .tBodyItem{
                 padding: 0 3vw;
                 height: 13vw;
