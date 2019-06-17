@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-console */
 import React, { Component } from 'react';
-import {Checkbox } from 'antd';
+import {Checkbox, Icon} from 'antd';
 import {Picker} from 'antd-mobile';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
@@ -22,6 +22,7 @@ const season = [
       value: '夏',
     },
 ];
+const PULLSAFEMARGIN = 200; // 上拉加载时的安全距离
 Component.propTypes = {
     isMultiEdit: PropTypes.bool,
     history: PropTypes.object,
@@ -61,9 +62,15 @@ class TableShow extends Component {
         hasSelectAll: false, // 为true时表示全选，false表示取消全选
         selectedIdArr: [], // 选中的id数组
         allIdArr: [], // dataList的所有数据id汇总
+        curPage: 1,
+        totalPage: 0, 
+        pullLoading: true, // true时显示上拉加载动图
+        isAllowHttp: true, // true时继续发起请求
+        isOver: false, //true表示已经是最后一页数据了，没有更多了
     }
     componentDidMount() {
         // 此处请求接口数据
+        this.getData(1);
         // 对返回的接口数据进行处理
         let {dataList} = this.state;
         let dataAllIds = [];
@@ -74,7 +81,16 @@ class TableShow extends Component {
             // eslint-disable-next-line react/prop-types
             isMultiEdit: this.props.isMultiEdit,
             allIdArr: dataAllIds,
-        })
+        });
+
+        // 处理多页请求
+        window.addEventListener('scroll', this.handleScroll);
+    }
+
+    // 根据搜索条件查询数据
+    getData = () => {
+        // 请求接口
+        // isOver: json.data.data.length < 10 ? true : false
     }
 
     // 单选修改：修改单条table选项时
@@ -153,8 +169,31 @@ class TableShow extends Component {
         return null;
     }
 
+    // 上拉加载
+    handleScroll = () => {
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        //变量windowHeight是可视区的高度
+        let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        //变量scrollHeight是滚动条的总高度
+        let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+
+        if(scrollTop + windowHeight + PULLSAFEMARGIN >= scrollHeight  && this.state.isAllowHttp){
+            this.setState({
+                isAllowHttp:false
+            }, () => {
+                let {curPage, totalPage} = this.state;
+                if(curPage !== totalPage) {
+                    this.setState({
+                        pullLoading:true
+                    });
+                    this.getData(curPage + 1);
+                }
+            })
+        }
+    }
+
     render() {
-        const {isMultiEdit, dataList, selectedIdArr, allIdArr} = this.state;
+        const {isMultiEdit, dataList, selectedIdArr, allIdArr, pullLoading, isOver} = this.state;
         const editTxtActive =
         <>
             <Picker
@@ -229,12 +268,22 @@ class TableShow extends Component {
                 </div>
             </div>
         </>
+
+        const dropLoading = (
+            <div className={styles.noMoreData}>
+                {
+                    isOver ? '没有更多了' : (<Icon type="loading" className={styles.loadingIcon}/>)
+                }
+                
+            </div>
+        );
         return (
             <div className={styles.wrap}>
                 {/* table布局区 */}
                 {
                     dataList && dataList.length===0 ? <DefaultP/> : (isMultiEdit ? MultiTable : normalTable)
                 }
+                {pullLoading ? dropLoading : null}
                 {/* 底部操作fixed框 */}
                 <div className={`${styles.footWrap} ${isMultiEdit ? '' : styles.hide}`}>
                     <Checkbox onChange={this.selectAllMock.bind(this)} checked={selectedIdArr.length===allIdArr.length}><span className={styles.txt}>全选</span></Checkbox>

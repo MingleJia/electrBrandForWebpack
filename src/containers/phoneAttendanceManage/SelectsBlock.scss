@@ -167,4 +167,20 @@ ol, ul, dl{
     .am-list-item.am-list-item-middle .am-list-line{
         height: 12vw!important;
     }
+    .am-calendar .single-month .row .cell .date-wrapper .date-selected, .am-calendar .confirm-panel .button{
+        background: #48bb7d;
+    }
+    .am-calendar .single-month .row .cell .date-selected{
+        color: #48bb7d;
+    }
+    .am-calendar .header .left, .am-calendar .header .right{
+        color: #48bb7d;
+    }
+    .am-calendar .header .title, .am-calendar .single-month .month-title {
+        color: #999
+    }
+    .am-calendar .confirm-panel .info{
+        color: #999;
+    }
+
 }
