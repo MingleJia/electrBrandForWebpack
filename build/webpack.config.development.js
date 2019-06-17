@@ -19,7 +19,7 @@ module.exports = merge(base, {
 	devServer: {
 		contentBase: "./dist",
 		hot: true,
-		host: '192.168.70.203',
+		host: '192.168.70.182',
 		proxy:{
 			'/api':{
 				target:'http://eboard.leke.cn',

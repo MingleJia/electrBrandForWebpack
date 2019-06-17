@@ -64,7 +64,7 @@ class TableShow extends Component {
         allIdArr: [], // dataList的所有数据id汇总
         curPage: 1,
         totalPage: 0, 
-        pullLoading: true, // true时显示上拉加载动图
+        pullLoading: false, // true时显示上拉加载动图
         isAllowHttp: true, // true时继续发起请求
         isOver: false, //true表示已经是最后一页数据了，没有更多了
     }

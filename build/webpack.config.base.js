@@ -3,14 +3,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const filePublicPath="styles/assets/[name].[ext]";
 
 module.exports = {
-	context: path.resolve(__dirname, ".."),
+	context: path.resolve(__dirname, ".."), // 上下文绝对路径
 	resolve: {
-		modules: [
+		modules: [ // 配置webpack去哪些目录下寻找第三方模块
+			// path.resolve:把一个路径或路径片段的序列解析为一个绝对路径
+			// 从右向左拼接在一起
+			// path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');// 如果当前工作目录为 /home/myself/node，相当于：
 			path.resolve(__dirname, "../src"),
 			path.resolve(__dirname, "../node_modules"),
 			"node_modules"
 		],
-		alias: {
+		alias: { // 给路径取别名，方便import和require
 			src: path.resolve(__dirname, "../src"),
 			ASSETS: "src/assets",
 			COMPONENTS: "src/components",
@@ -22,7 +25,7 @@ module.exports = {
 			STYLES: "src/styles",
 			UTILS: "src/utils",
 		},
-		extensions: [
+		extensions: [ // 自动解析确定的扩展，用户可以在引入模块时不带扩展名
 			".web.js",
 			".js",
 			".jsx",
@@ -79,11 +82,11 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
 						//线上
-						name: '[name].[ext]',
-						outputPath: './assets',
-						publicPath: '/electrClassbrand/assets'
+						// name: '[name].[ext]',
+						// outputPath: './assets',
+						// publicPath: '/electrClassbrand/assets'
 						//本地
-						// name: 'assets/[name].[ext]',
+						name: 'assets/[name].[ext]',
 						
                     }
                 }]
